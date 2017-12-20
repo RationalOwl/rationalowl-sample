@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_101"/>
+	<classpathentry kind="lib" path="libs/jackson/2.2.0/jackson-annotations-2.2.0.jar"/>
+	<classpathentry kind="lib" path="libs/jackson/2.2.0/jackson-core-2.2.0.jar"/>
+	<classpathentry kind="lib" path="libs/jackson/2.2.0/jackson-databind-2.2.0.jar"/>
+	<classpathentry kind="lib" path="libs/rational-app-server-java1.1.2jar.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
