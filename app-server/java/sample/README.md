@@ -464,5 +464,4 @@ class SimpleMessageListener implements MessageListener {
     }
 }
 ```
-
-단말앱에서 앱서버로 업스트림 메시지를 발신하면 앱서버의 onUpstreamMsgReceived() 콜백이 호출된다. 단말앱에서 upstream 메시지를 발신하면 해당 콜백이 호출되는 것을 확인할 수 있을 것이다.
+앱서버가 업스트림 메시지를 수신하면 onUpstreamMsgReceived() 콜백이 호출된다.
