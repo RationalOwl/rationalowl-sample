@@ -19,7 +19,22 @@ JAVA 앱서버 샘플은 JAVA 앱서버 라이브러리에서 제공하는 API�
 
 
 
->## 앱서버 등록 
+>## 앱서버 등록/해제 
+
+## 앱서버 등록/해제 결과 콜백 등록
+샘플 코드에서 setRegisterResultListener()를 검색하면 아래의 샘플 코드를 확인할 수 있다. 해당 API는 앱서버 초기화 루틴에 추가하여 앱서버 등록/해제 API 호출 후 결과 리스너를 지정한다. 
+
+```java
+// set simple listeners
+AppServerManager serverMgr = AppServerManager.getInstance();
+serverMgr.setRegisterResultListener(new SimpleRegisterResultListener());
+serverMgr.setMsgListener(new SimpleMessageListener());
+serverMgr.setDeviceGroupListener(new SimpleDeviceGrpListener());
+```
+1. setRegisterResultListener() API의 인자로 SimpleRegisterResultListener를 지정하였다.
+
+
+## 앱서버 등록
 샘플 코드에서 registerAppServer()를 검색하면 아래의 샘플 코드를 확인할 수 있다.
 
 ```java
@@ -100,6 +115,18 @@ private void unregServer() {
 
 ![이미지 이름](./img/console_device_grp.png)
 
+
+## 단말그룹 관리 결과 콜백 등록
+샘플 코드에서 setDeviceGroupListener()를 검색하면 아래의 샘플 코드를 확인할 수 있다. 해당 API는 앱서버 초기화 루틴에 추가하여 단말그룹 관리 API 호출 후 결과 리스너를 지정한다. 
+
+```java
+// set simple listeners
+AppServerManager serverMgr = AppServerManager.getInstance();
+serverMgr.setRegisterResultListener(new SimpleRegisterResultListener());
+serverMgr.setMsgListener(new SimpleMessageListener());
+serverMgr.setDeviceGroupListener(new SimpleDeviceGrpListener());
+```
+1. setDeviceGroupListener() API의 인자로 SimpleDeviceGrpListener를 지정하였다.
 
 
 ## 단말그룹 생성
@@ -277,12 +304,23 @@ class SimpleDeviceGrpListener implements DeviceGroupListener {
 
 
 
->## 다운스트림 메시지 발신
+>## 실시간 메시지 수/발신
 
 관리자콘솔의 '서비스 > 메시지 현황'에서 실시간 메시지 전달 모니터링이 가능하다.
 
 ![이미지 이름](./img/console_msg.png)
 
+## 실시간 메시지 수/발신 결과 콜백 등록
+샘플 코드에서 setMsgListener()를 검색하면 아래의 샘플 코드를 확인할 수 있다. 해당 API는 앱서버 초기화 루틴에 추가하여 메시지 수/발신시 호출되는 리스너를 지정한다. 
+
+```java
+// set simple listeners
+AppServerManager serverMgr = AppServerManager.getInstance();
+serverMgr.setRegisterResultListener(new SimpleRegisterResultListener());
+serverMgr.setMsgListener(new SimpleMessageListener());
+serverMgr.setDeviceGroupListener(new SimpleDeviceGrpListener());
+```
+1. setMsgListener() API의 인자로 SimpleMessageListener 지정하였다.
 
 
 ## 멀티캐스트 발신
