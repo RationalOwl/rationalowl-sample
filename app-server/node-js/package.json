@@ -1,0 +1,30 @@
+{
+    "name": "rational-owl-sdk-node-sample",
+    "version": "1.0.0",
+    "description": "",
+    "license": "MIT",
+    "author": "RationalOwl",
+    "main": "index.js",
+    "scripts": {
+        "start": "npm run build && npm run serve",
+        "build": "tsc",
+        "serve": "node dist/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tj/commander.js.git"
+    },
+    "dependencies": {
+        "@types/body-parser": "^1.16.8",
+        "@types/express": "^4.0.39",
+        "@types/morgan": "^1.7.35",
+        "body-parser": "^1.18.2",
+        "express": "^4.16.2",
+        "morgan": "^1.9.0",
+        "rational-js-server": "^1.0.13"
+    },
+    "devDependencies": {
+        "@types/node": "^8.5.1",
+        "typescript": "^2.6.2"
+    }
+}

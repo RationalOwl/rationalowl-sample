@@ -1,0 +1,74 @@
+#### createDeviceGroup
+POST http://localhost:3000/device-group HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "testGroup",
+    "desc": "testDesc",
+    "devices" : [
+        "35d612418f354c7eba8c6492813ddf2d",
+        "386dda6521bf40d58aa935022a5bb144",
+        "3b3e4a3ae2d0412ea3d3eaf3f1eda5c5"
+    ]
+}
+
+#### addDeviceGroup
+POST http://localhost:3000/device-group/add/1eb9b0ccede44361ba57c0fc3efd0ff2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "devices" : [
+        "40bbaaba05c44160963d4d3dc3f95178",
+        "40f186b7666f413f83fb0754b02d21e4",
+        "425e58901bc3485a819a453a85053dff",
+        "466280bfa0994f80ae24a70d9343ddcc",
+        "4f1c05c6303245508eb2336314149d12",
+        "4f742a6a87494efab017b695181d5043"
+    ]
+}
+
+### subtractDeviceGroup
+POST http://localhost:3000/device-group/sub/1eb9b0ccede44361ba57c0fc3efd0ff2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "devices" : [
+        "40bbaaba05c44160963d4d3dc3f95178",
+        "40f186b7666f413f83fb0754b02d21e4",
+        "4f742a6a87494efab017b695181d5043"
+    ]
+}
+
+### deleteDeviceGroup
+DELETE http://localhost:3000/device-group/1eb9b0ccede44361ba57c0fc3efd0ff2 HTTP/1.1
+Content-Type: application/json
+
+### sendMulticastMsg
+POST http://localhost:3000/message/multi HTTP/1.1
+Content-Type: application/json
+
+{
+    "message" : "testMessage",
+    "devices" : [
+        "35d612418f354c7eba8c6492813ddf2d",
+        "386dda6521bf40d58aa935022a5bb144",
+        "3b3e4a3ae2d0412ea3d3eaf3f1eda5c5"
+    ]
+}
+
+### sendBroadcastMsg
+POST http://localhost:3000/message/broad HTTP/1.1
+Content-Type: application/json
+
+{
+    "message" : "testMessage"
+}
+
+### sendGroupMsg
+POST http://localhost:3000/message/group HTTP/1.1
+Content-Type: application/json
+
+{
+    "message" : "testMessage",
+    "groupId" : "b5765d02e66947d2a6bfa31cc48261fc"
+}
