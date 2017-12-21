@@ -387,7 +387,7 @@ public class SampleServerView extends JFrame implements ActionListener {
 
     private void sendGrpMsg() {
         String data = "group message";
-        String deviceGroupId = "group id1";
+        String deviceGroupId = "29426ab58f2349d4a01e77856d856841";
         AppServerManager serverMgr = AppServerManager.getInstance();
         String requestId = serverMgr.sendGroupMsg(data, deviceGroupId);
         output("sendGrpMsg Msg :" + data + "requestId = " + requestId);

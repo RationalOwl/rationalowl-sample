@@ -371,7 +371,7 @@ class SimpleMessageListener implements MessageListener {
 
 ![이미지 이름](./img/multicast.png)
 
-6. 관리자 콘솔의 '서비스 > 메시지 현황'에서 실시간으로 메시지 전달현황을 확인 할 수 있다.
+4. 관리자 콘솔의 '서비스 > 메시지 현황'에서 실시간으로 메시지 전달현황을 확인 할 수 있다.
 
 ![이미지 이름](./img/console_multicast.png)
 
@@ -390,7 +390,7 @@ private void sendBroadcastMsg() {
 }
 ```
 1. sendBroadcastMsg() API의 첫째 인자인 data는 단순한 스트링 데이터이다.
-3. 샘플앱서버를 실행하여 'send broadcast'버튼을 클릭하면 샘플 코드의 sendBroadcastMsg()을 호출하게 되고 그 발신 결과는 콜백인 SimpleMessageListener 클래스의 onSendBroadcastMsgResult()이 호출된다. 해당 콜백은 메시지 발신이 성공했는지 여부를 확인하는 용도로 제공한다.
+2. 샘플앱서버를 실행하여 'send broadcast'버튼을 클릭하면 샘플 코드의 sendBroadcastMsg()을 호출하게 되고 그 발신 결과는 콜백인 SimpleMessageListener 클래스의 onSendBroadcastMsgResult()이 호출된다. 해당 콜백은 메시지 발신이 성공했는지 여부를 확인하는 용도로 제공한다.
 
 ```java
 class SimpleMessageListener implements MessageListener {
@@ -405,45 +405,34 @@ class SimpleMessageListener implements MessageListener {
 
 ![이미지 이름](./img/broadcast.png)
 
-6. 관리자 콘솔의 '서비스 > 메시지 현황'에서 실시간으로 메시지 전달현황을 확인 할 수 있다.
+3. 관리자 콘솔의 '서비스 > 메시지 현황'에서 실시간으로 메시지 전달현황을 확인 할 수 있다. 콘솔에서 전달 2001 단말, 미전달 단말이 20000단말이다. 
 
 ![이미지 이름](./img/console_broadcast.png)
 
+'서비스 > 단말 현황'에서 서비스에 등록된 모든 단말이 22,001대이고 그 중 활성상태(동접상태)가 2,001대로 메시지 전달률과 일치함을 알 수 있다. 참고로 다운스트림은 기본 3일간 큐잉을 지원하며 해당 기간 내에 단말앱이 활성상태가 되면 미전달 메시지를 바로 전달한다.
+![이미지 이름](./img/console_broadcast_device.png)
 
-## 멀티캐스트 발신
 
-샘플 코드에서 sendMulticastMsg()를 검색하면 아래의 샘플 코드를 확인할 수 있다. 샘플코드에서는 3대의 단말에 JSON포맷의
-데이터를 발신한다. 
+
+## 그룹메시지 발신
+
+
+샘플 코드에서 sendGroupMsg()를 검색하면 아래의 샘플 코드를 확인할 수 있다. 
 
 
 ```java
-private void sendMulticastMsg() {        
-    // data format is json string 
-    // and jackson json library has used.
-    ObjectMapper mapper = new ObjectMapper();
-    Map<String, Object> jsonData = new LinkedHashMap<String, Object>();
-    jsonData.put("key1", "value1");
-    jsonData.put("key2", 2);        
-    String jsonStr = null;
-    try {
-        jsonStr = mapper.writeValueAsString(jsonData);
-        // target device registration id
-        ArrayList<String> targetDevices = new ArrayList<String>();
-        targetDevices.add("27af1a1cb5454b1caf5ccfd95d2c5b6f");
-        targetDevices.add("3b04be2c545d491d8323539bcc1a0176");
-        targetDevices.add("7661ad50f28842658e0bcbb5549a15fd");
-        AppServerManager serverMgr = AppServerManager.getInstance();
-        String requestId = serverMgr.sendMulticastMsg(jsonStr, targetDevices);
-        output("sendMulticastMsg Msg :" + jsonStr + "requestId = " + requestId);
-    }
-    catch (JsonProcessingException e) {           
-        e.printStackTrace();
-    }        
+private void sendGrpMsg() {
+    String data = "group message";
+    String deviceGroupId = "29426ab58f2349d4a01e77856d856841";
+    AppServerManager serverMgr = AppServerManager.getInstance();
+    String requestId = serverMgr.sendGroupMsg(data, deviceGroupId);
+    output("sendGrpMsg Msg :" + data + "requestId = " + requestId);
 }
 ```
-1. sendMulticastMsg() API의 첫째 인자인 jsonStr은 단말에 전달할 json포맷의 스트링 데이터이다.
-2. 두번째 인자인 groutargetDevices는 데이터를 전달할 대상 단말의 단말 등록 아이디 목록이다.
-3. 샘플앱서버를 실행하여 'send multicast'버튼을 클릭하면 샘플 코드의 sendMulticastMsg()을 호출하게 되고 그 발신 결과는 콜백인 SimpleMessageListener 클래스의 onSendMulticastMsgResult()이 호출된다. 해당 콜백은 메시지 발신이 성공했는지 여부를 확인하는 용도로 제공한다.
+1. sendMulticastMsg() API의 첫째 인자인 data는 단말에 전달할 스트링 데이터이다.
+2. 두번째 인자인 deviceGroupId에는 데이터를 전달할 단말 그룹 아이디를 입력한다.
+3. 샘플앱서버를 실행하여 'send group message'버튼 클릭하면 샘플 코드의 sendGroupMsg()을 호출하게 되고 그 발신 결과는 콜백인 SimpleMessageListener 클래스의 onSendGroupMsgResult()이 호출된다. 해당 콜백은 메시지 발신이 성공했는지 여부를 확인하는 용도로 제공한다.
+> 만약 단말 그룹이 존재하지 않으면 먼저 'create device group'버튼을 클릭하여 단말그룹을 생성 후 진행해야 한다.
 
 ```java
 class SimpleMessageListener implements MessageListener {
@@ -456,16 +445,11 @@ class SimpleMessageListener implements MessageListener {
 샘플 콜백에서는 단지 메시지 발신 결과를 결과창에 표시한다. 
 > 샘플 코드를 재실행시마다 register버튼을 눌러 먼저 앱서버 라이브러리를 구동시킨다.
 
-![이미지 이름](./img/broadcast.png)
+![이미지 이름](./img/grp_msg.png)
 
-6. 관리자 콘솔의 '서비스 > 메시지 현황'에서 실시간으로 메시지 전달현황을 확인 할 수 있다. 콘솔에서 전달 2001 단말, 미전달 단말이 20000단말이다. 
+6. 관리자 콘솔의 '서비스 > 메시지 현황'에서 실시간으로 메시지 전달현황을 확인 할 수 있다. 
 
-![이미지 이름](./img/console_broadcast.png)
-
-'서비스 > 단말 현황'에서 서비스에 등록된 모든 단말이 22,001대이고 그 중 활성상태(동접상태)가 2,001대로 메시지 전달률과 일치함을 알 수 있다. 참고로 다운스트림은 API는 기본 3일간 큐잉을 지원하며 해당 기간내에 단말앱이 활성상태가 되면 미전달 메시지를 바로 전달한다.
-![이미지 이름](./img/console_broadcast_device.png)
-
-
+![이미지 이름](./img/console_grp_msg.png)
 
 >## 업스트림 메시지 수신
 
