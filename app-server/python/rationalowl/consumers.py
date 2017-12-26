@@ -1,47 +1,18 @@
-# 래셔널아울 Python 앱서버 샘플
+import json
+import logging
+import re
 
-Python 앱서버 샘플은 Python 앱서버 라이브러리에서 제공하는 API를 이용해서 Django 위에서 앱서버를 만드는 것을 쉽게 따라할 수 있도록 작성되었다.
+import channels
+from channels import Group, Channel
+from channels.generic.websockets import WebsocketConsumer
+from channels.sessions import channel_session
+from minerva.AppServerManager import AppServerManager
+from minerva.AppServerRegisterResultListener import \
+    AppServerRegisterResultListener
+from minerva.DeviceGroupListener import DeviceGroupListener
+from minerva.MessageListener import MessageListener
 
-## 참고
-
-본 샘플은 Django와 channels를 이용한 WebSocket으로 구현되었다.
-
-## 샘플 프로젝트 설정
-
-1. 레셔널아울 Python 서버 라이브러리를 받아 설치한다.(자세한 설치 방법은 라이브러리 설치(링크) 참조)
-2. 의존 모듈을 설치한다
-```sh
-pip install channels daphne
-```
-
-3. 실행
-```sh
-python manage.py runserver
-```
-4. 브라우저에서 http://localhost:8000 로 접속한다
-
-래셔널아울 관리자콘솔이 제공하는 실시간 모니터링은 서비스 개발 전 단계에서 실시간 데이터의 전달 현황뿐 아니라 앱서버와 단말의 각 기능 별 성공 여부를 확인할 수 있어 개발속도를 향상시키고 서비스 운영단계에서는 예측 가능성과 서비스 대응력을 높이는 역할을 한다. 샘플 앱 서버 개발시 관리자콘솔을 이용해 각 기능별 동작을 확인함으로써 그 편의성을 확인할 수 있을 것이다.
-
->## 앱서버 등록
-
-앱서버 등록은 rationalowl/consumers.py 에서 구현했다.
-앱서버 등록 및 리스너들을 등록해주었다.
-
-```python
-AppServerManager().setRegisterResultListener(AppServerRegisterResultListenerImpl())
-AppServerManager().setMsgListener(MessageListenerImpl())
-AppServerManager().setDeviceGroupListener(DeviceGroupListenerImpl())
-
-req_id = AppServerManager().registerAppServer(
-    'ab03d23035e74e2fbd868a6f243c2dd5', 'sample-app-server-python', 'gate.rationalowl.com', 9081)
-```
-
-### 리스너
-
-리스너에 응답이 오면 channels의 Group에 메시지를 전달하도록 구현했다.
-
-```python
-from channels import Group
+log = logging.getLogger(__name__)
 
 class AppServerRegisterResultListenerImpl(AppServerRegisterResultListener):
     def onRegisterResult(self, resultCode, resultMsg, appServerRegId):
@@ -104,14 +75,15 @@ class MessageListenerImpl(MessageListener):
         msg = 'onSendGroupMsgResult {} {} {}'.format(
             resultCode, resultMsg, requestId)
         Group('rational').send({'text': msg})
-```
+
+AppServerManager().setRegisterResultListener(AppServerRegisterResultListenerImpl())
+AppServerManager().setMsgListener(MessageListenerImpl())
+AppServerManager().setDeviceGroupListener(DeviceGroupListenerImpl())
+
+req_id = AppServerManager().registerAppServer(
+    'ab03d23035e74e2fbd868a6f243c2dd5', 'sample-app-server-python', 'gate.rationalowl.com', 9081)
 
 
-### 웹소켓 핸들러
- 
-웹소켓 연결, 메시지 받음, 연결 해제에 대한 핸들러를 아래와 같이 구현했다.
-
-```python
 def ws_connect(message: channels.message.Message):
     Group('rational').add(message.reply_channel)
     message.reply_channel.send({"accept": True})
@@ -144,99 +116,5 @@ def ws_receive(message: channels.message.Message):
 
 def ws_disconnect(message):
     Group('rational').discard(message.reply_channel)
-```
-
->## 웹 브라우저로 테스트하기
-
->## 단말그룹 관리
-
-관리자콘솔의 '서비스 > 단말 현황'에 등록된 단말 그룹의 현황을 확인 할 수 있다.
-
-### 단말그룹 생성
-
-#### 요청
-
-![](img/2017-12-26-15-27-33.png)
-
-그룹 이름과 그룹 설몇, 디바이스 리스트를 입력 후 버튼을 누른다.
-
-#### 응답
-
-![](img/2017-12-26-16-30-57.png)
 
 
-### 단말그룹 내 단말 추가
-
-#### 요청
-
-![](img/2017-12-26-16-31-21.png)
-
-그룹 아이디와 디바이스 리스트를 입력 후 버튼을 누른다.
-
-#### 응답
-
-![](img/2017-12-26-16-41-15.png)
-
-### 단말그룹 내 단말 제거
-
-#### 요청
-
-![](img/2017-12-26-16-36-26.png)
-
-그룹 아이디와 디바이스 리스트를 입력 후 버튼을 누른다.
-
-#### 응답
-
-![](img/2017-12-26-16-41-30.png)
-
-### 단말그룹 삭제
-
-#### 요청
-
-![](img/2017-12-26-16-37-33.png)
-
-그룹 아이디를 입력 후 버튼을 누른다.
-
-#### 응답
-
-![](img/2017-12-26-16-41-47.png)
-
->## 실시간 메시지 수/발신
-
-관리자콘솔의 '서비스 > 메시지 현황'에서 실시간 메시지 전달 모니터링이 가능하다.
-
-### 멀티캐스트 발신
-
-#### 요청
-
-![](img/2017-12-26-16-38-14.png)
-
-메시지와 디바이스 리스트를 입력 후 버튼을 누른다.
-
-#### 응답
-
-![](img/2017-12-26-16-39-45.png)
-
-### 브로드캐스트 발신
-
-#### 요청
-
-![](img/2017-12-26-16-38-46.png)
-
-메시지를 입력 후 버튼을 누른다.
-
-#### 응답
-
-![](img/2017-12-26-16-40-03.png)
-
-### 그룹 메시지 발신
-
-#### 요청
-
-![](img/2017-12-26-16-39-04.png)
-
-메시지와 그룹 아이디를 입력 후 버튼을 누른다.
-
-#### 응답
-
-![](img/2017-12-26-16-40-13.png)

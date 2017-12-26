@@ -1,0 +1,185 @@
+{% extends "index.html" %} {% block content %} {% load staticfiles %}
+
+<h2>Response</h2>
+<table class="table table-bordered">
+    <thead id="receivedMessage">
+    </thead>
+</table>
+
+<h2>
+    Request</h2>
+<form id="createDeviceGroup">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td>Group Name</td>
+                <td>
+                    <input class="form-control" id="groupName" type="text" value="testGroup">
+                </td>
+            </tr>
+            <tr>
+                <td>Group Description</td>
+                <td>
+                    <input class="form-control" id="groupDesc" type="text" value="testDesc">
+                </td>
+            </tr>
+            <tr>
+                <td>Device List</td>
+                <td>
+                    <input class="form-control" id="creatDeviceList" type="text" value="['35d612418f354c7eba8c6492813ddf2d', '386dda6521bf40d58aa935022a5bb144', '3b3e4a3ae2d0412ea3d3eaf3f1eda5c5']">
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Create Device Group</button>
+                </td>
+        </tfoot>
+    </table>
+</form>
+
+<form id="addDeviceGroup">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td>Group ID</td>
+                <td>
+                    <input class="form-control" id="addGroupId" type="text" value="">
+                </td>
+            </tr>
+            <tr>
+                <td>Device List</td>
+                <td>
+                    <input class="form-control" id="addDeviceList" type="text" value="['40bbaaba05c44160963d4d3dc3f95178', '40f186b7666f413f83fb0754b02d21e4', '425e58901bc3485a819a453a85053dff', '466280bfa0994f80ae24a70d9343ddcc', '4f1c05c6303245508eb2336314149d12', '4f742a6a87494efab017b695181d5043']">
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Add Device to Group</button>
+                </td>
+        </tfoot>
+    </table>
+</form>
+
+<form id="subtractDeviceGroup">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td>Group ID</td>
+                <td>
+                    <input class="form-control" id="subGroupId" type="text" value="">
+                </td>
+            </tr>
+            <tr>
+                <td>Device List</td>
+                <td>
+                    <input class="form-control" id="subDeviceList" type="text" value="['40bbaaba05c44160963d4d3dc3f95178', '40f186b7666f413f83fb0754b02d21e4', '4f742a6a87494efab017b695181d5043']">
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Sub Device to Group</button>
+                </td>
+        </tfoot>
+    </table>
+</form>
+
+<form id="deleteDeviceGroup">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td>Group ID</td>
+                <td>
+                    <input class="form-control" id="deleteGroupId" type="text" value="">
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Delete Device Group</button>
+                </td>
+        </tfoot>
+    </table>
+</form>
+
+<form id="sendMulticastMsg">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td>Message</td>
+                <td>
+                    <input class="form-control" id="multicastMessage" type="text" value="testMulticastMessage">
+                </td>
+            </tr>
+            <tr>
+                <td>Device List</td>
+                <td>
+                    <input class="form-control" id="multicastDeviceList" type="text" value="['35d612418f354c7eba8c6492813ddf2d','386dda6521bf40d58aa935022a5bb144','3b3e4a3ae2d0412ea3d3eaf3f1eda5c5']">
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Send Multicast Message</button>
+                </td>
+        </tfoot>
+    </table>
+</form>
+
+<form id="sendBroadcastMsg">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td>Message</td>
+                <td>
+                    <input class="form-control" id="boardcastMessage" type="text" value="testBroadcastMessage">
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Send Broadcast Message</button>
+                </td>
+        </tfoot>
+    </table>
+</form>
+
+<form id="sendGroupMsg">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td>Message</td>
+                <td>
+                    <input class="form-control" id="groupMessage" type="text" value="testGroupMessage">
+                </td>
+            </tr>
+            <tr>
+                <td>Group Id</td>
+                <td>
+                    <input class="form-control" id="groupGroupId" type="text" value="">
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Send Group Message</button>
+                </td>
+        </tfoot>
+    </table>
+</form>
+
+
+
+{% endblock content %} {% block afterbody %}
+<script type="text/javascript" src='{% static "assets/lib/jquery-3.2.1.min.js" %}'></script>
+<script type="text/javascript" src='{% static "assets/lib/reconnecting-websocket.min.js" %}'></script>
+<script type="text/javascript" src='{% static "assets/rational.js" %}'></script> {% endblock afterbody %}

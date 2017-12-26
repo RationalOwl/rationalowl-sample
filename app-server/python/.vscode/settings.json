@@ -1,0 +1,9 @@
+{
+    "python.pythonPath": "${workspaceFolder}\\venv\\Scripts\\python.exe",
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "python.linting.pylintEnabled": false,
+    "pasteImage.basePath": "${currentFileDir}",
+    "pasteImage.path": "${currentFileDir}/img",
+    "markdown.preview.scrollEditorWithPreview": false,
+    "markdown.preview.scrollPreviewWithEditorSelection": false
+}
