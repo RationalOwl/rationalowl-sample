@@ -8,7 +8,7 @@ Python 앱서버 샘플은 Python 앱서버 라이브러리에서 제공하는 A
 
 ## 샘플 프로젝트 설정
 
-1. 레셔널아울 Python 서버 라이브러리를 받아 설치한다.(자세한 설치 방법은 라이브러리 설치(링크) 참조)
+1. 레셔널아울 Python 서버 라이브러리를 받아 설치한다.(자세한 설치 방법은 [라이브러리 설치](http://guide.rationalowl.com/guide/app-server#%EC%95%B1-%EC%84%9C%EB%B2%84-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EC%A0%81%EC%9A%A9) 참조)
 2. 의존 모듈을 설치한다
 ```sh
 pip install channels daphne
