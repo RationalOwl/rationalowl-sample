@@ -7,7 +7,7 @@ JAVA 앱서버 샘플은 JAVA 앱서버 라이브러리에서 제공하는 API�
 
 
 ## 샘플 프로젝트 설정
-1. githup에서 샘플 코드를 다운받는다.
+1. github에서 샘플 코드를 다운받는다.
 2. 이클립스에서 다운받은 폴더를 import 하면 샘플 앱 서버 환경이 만들어진다.
     - File > import > General > Existing Projects into Workspace
     - 이클립스 이외의 JAVA 툴에서도 다운받은 소스와 라이브러리로 쉽게 프로젝트 환경을 구성할 수 있다.
