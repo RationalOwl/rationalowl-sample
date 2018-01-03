@@ -108,7 +108,7 @@ class MessageListenerImpl(MessageListener):
 
 
 ### 웹소켓 핸들러
- 
+
 웹소켓 연결, 메시지 받음, 연결 해제에 대한 핸들러를 아래와 같이 구현했다.
 
 ```python
@@ -148,6 +148,8 @@ def ws_disconnect(message):
 
 >## 웹 브라우저로 테스트하기
 
+샘플 프로젝트를 실행 후 http://localhost:8000 로 접속하여 테스트 한다.
+
 >## 단말그룹 관리
 
 관리자콘솔의 '서비스 > 단말 현황'에 등록된 단말 그룹의 현황을 확인 할 수 있다.
@@ -156,11 +158,63 @@ def ws_disconnect(message):
 
 #### 요청
 
+파이썬 구현
+
+```python
+def ws_receive(message: channels.message.Message):
+    msg = json.loads(message.content['text'])
+
+    ...
+
+    if msg['action'] == 'createDeviceGroup':
+        AppServerManager().createDeviceGroup(
+            msg['body']['groupName'], msg['body']['groupDesc'], msg['body']['deviceList'])
+```
+
+웹 브라우저 구현
+
+```js
+$("#createDeviceGroup").on("submit", function (event) {
+    const message = {
+        groupName: $('#groupName').val(),
+        groupDesc: $('#groupDesc').val(),
+        deviceList: eval($('#creatDeviceList').val()),
+    }
+    chatsock.send(new RationalMessage('createDeviceGroup', message).toJsonString());
+    return false;
+});
+```
+
+웹 브라우저
+
 ![](img/2017-12-26-15-27-33.png)
 
 그룹 이름과 그룹 설몇, 디바이스 리스트를 입력 후 버튼을 누른다.
 
 #### 응답
+
+파이썬 구현
+
+```python
+class DeviceGroupListenerImpl(DeviceGroupListener):
+    def onDeviceGroupCreateResult(self, resultCode,  resultMsg,  deviceGrpId,
+                                    deviceGrpName,  deviceSize,  desc, failedDevices,  requestId):
+        msg = 'onDeviceGroupCreateResult {} {} {} {} {} {} {} {}'.format(
+            resultCode, resultMsg, deviceGrpId, deviceGrpName,  deviceSize,  desc, failedDevices,  requestId)
+        Group('rational').send({'text': msg})
+```
+
+웹 브라우저 구현
+
+```js
+chatsock.onmessage = function (message) {
+    console.log('[onmessage]', message.data);
+    onMessageBuffer.push(message.data);
+    $("#receivedMessage").append(`<tr><td>${message.data}</td></tr>`);
+};
+```
+
+웹 브라우저
 
 ![](img/2017-12-26-16-30-57.png)
 
@@ -169,11 +223,62 @@ def ws_disconnect(message):
 
 #### 요청
 
+파이썬 구현
+
+```python
+def ws_receive(message: channels.message.Message):
+    msg = json.loads(message.content['text'])
+
+    ...
+
+    elif msg['action'] == 'addDeviceGroup':
+        AppServerManager().addDeviceGroup(
+            msg['body']['groupId'], msg['body']['deviceList'])
+```
+
+웹 브라우저 구현
+
+```js
+$("#addDeviceGroup").on("submit", function (event) {
+    const message = {
+        groupId: $('#addGroupId').val(),
+        deviceList: eval($('#addDeviceList').val()),
+    }
+    chatsock.send(new RationalMessage('addDeviceGroup', message).toJsonString());
+    return false;
+});
+```
+
+웹 브라우저
+
 ![](img/2017-12-26-16-31-21.png)
 
 그룹 아이디와 디바이스 리스트를 입력 후 버튼을 누른다.
 
 #### 응답
+
+파이썬 구현
+
+```python
+class DeviceGroupListenerImpl(DeviceGroupListener):
+    def onDeviceGroupAddResult(self, resultCode,  resultMsg,  deviceGrpId,
+                                totalDeviceSize,  addedDeviceSize, failedDevices,  requestId):
+        msg = 'onDeviceGroupAddResult {} {} {} {} {} {} {}'.format(
+            resultCode, resultMsg, deviceGrpId, totalDeviceSize,  addedDeviceSize, failedDevices,  requestId)
+        Group('rational').send({'text': msg})
+```
+
+웹 브라우저 구현
+
+```js
+chatsock.onmessage = function (message) {
+    console.log('[onmessage]', message.data);
+    onMessageBuffer.push(message.data);
+    $("#receivedMessage").append(`<tr><td>${message.data}</td></tr>`);
+};
+```
+
+웹 브라우저
 
 ![](img/2017-12-26-16-41-15.png)
 
@@ -181,11 +286,62 @@ def ws_disconnect(message):
 
 #### 요청
 
+파이썬 구현
+
+```python
+def ws_receive(message: channels.message.Message):
+    msg = json.loads(message.content['text'])
+
+    ...
+
+    elif msg['action'] == 'subtractDeviceGroup':
+        AppServerManager().subtractDeviceGroup(
+            msg['body']['groupId'], msg['body']['deviceList'])
+```
+
+웹 브라우저 구현
+
+```js
+$("#subtractDeviceGroup").on("submit", function (event) {
+    const message = {
+        groupId: $('#subGroupId').val(),
+        deviceList: eval($('#subDeviceList').val()),
+    }
+    chatsock.send(new RationalMessage('subtractDeviceGroup', message).toJsonString());
+    return false;
+});
+```
+
+웹 브라우저
+
 ![](img/2017-12-26-16-36-26.png)
 
 그룹 아이디와 디바이스 리스트를 입력 후 버튼을 누른다.
 
 #### 응답
+
+파이썬 구현
+
+```python
+class DeviceGroupListenerImpl(DeviceGroupListener):
+    def onDeviceGroupSubtractResult(self, resultCode,  resultMsg,  deviceGrpId,
+                                    totalDeviceSize,  subtractDeviceSize, failedDevices,  requestId):
+        msg = 'onDeviceGroupSubtractResult {} {} {} {} {} {} {}'.format(
+            resultCode, resultMsg, deviceGrpId, totalDeviceSize,  subtractDeviceSize, failedDevices,  requestId)
+        Group('rational').send({'text': msg})
+```
+
+웹 브라우저 구현
+
+```js
+chatsock.onmessage = function (message) {
+    console.log('[onmessage]', message.data);
+    onMessageBuffer.push(message.data);
+    $("#receivedMessage").append(`<tr><td>${message.data}</td></tr>`);
+};
+```
+
+웹 브라우저
 
 ![](img/2017-12-26-16-41-30.png)
 
@@ -193,11 +349,60 @@ def ws_disconnect(message):
 
 #### 요청
 
+파이썬 구현
+
+```python
+def ws_receive(message: channels.message.Message):
+    msg = json.loads(message.content['text'])
+
+    ...
+
+    elif msg['action'] == 'deleteDeviceGroup':
+        AppServerManager().deleteDeviceGroup(
+            msg['body']['groupId'])
+```
+
+웹 브라우저 구현
+
+```js
+$("#deleteDeviceGroup").on("submit", function (event) {
+    const message = {
+        groupId: $('#deleteGroupId').val(),
+    }
+    chatsock.send(new RationalMessage('deleteDeviceGroup', message).toJsonString());
+    return false;
+});
+```
+
+웹 브라우저
+
 ![](img/2017-12-26-16-37-33.png)
 
 그룹 아이디를 입력 후 버튼을 누른다.
 
 #### 응답
+
+파이썬 구현
+
+```python
+class DeviceGroupListenerImpl(DeviceGroupListener):
+    def onDeviceGroupDeleteResult(self, resultCode,  resultMsg,  deviceGrpId, requestId):
+        msg = 'onDeviceGroupDeleteResult {} {} {} {}'.format(
+            resultCode, resultMsg, deviceGrpId,  requestId)
+        Group('rational').send({'text': msg})
+```
+
+웹 브라우저 구현
+
+```js
+chatsock.onmessage = function (message) {
+    console.log('[onmessage]', message.data);
+    onMessageBuffer.push(message.data);
+    $("#receivedMessage").append(`<tr><td>${message.data}</td></tr>`);
+};
+```
+
+웹 브라우저
 
 ![](img/2017-12-26-16-41-47.png)
 
@@ -209,11 +414,61 @@ def ws_disconnect(message):
 
 #### 요청
 
+파이썬 구현
+
+```python
+def ws_receive(message: channels.message.Message):
+    msg = json.loads(message.content['text'])
+
+    ...
+
+    elif msg['action'] == 'sendMulticastMsg':
+        AppServerManager().sendMulticastMsg(
+            msg['body']['message'], msg['body']['deviceList'])
+```
+
+웹 브라우저 구현
+
+```js
+$("#sendMulticastMsg").on("submit", function (event) {
+    const message = {
+        message: $('#multicastMessage').val(),
+        deviceList: eval($('#multicastDeviceList').val()),
+    }
+    chatsock.send(new RationalMessage('sendMulticastMsg', message).toJsonString());
+    return false;
+});
+```
+
+웹 브라우저
+
 ![](img/2017-12-26-16-38-14.png)
 
 메시지와 디바이스 리스트를 입력 후 버튼을 누른다.
 
 #### 응답
+
+파이썬 구현
+
+```python
+class MessageListenerImpl(MessageListener):
+    def onSendMulticastMsgResult(self, resultCode, resultMsg, requestId):
+        msg = 'onSendMulticastMsgResult {} {} {}'.format(
+                    resultCode, resultMsg, requestId)
+        Group('rational').send({'text': msg})
+```
+
+웹 브라우저 구현
+
+```js
+chatsock.onmessage = function (message) {
+    console.log('[onmessage]', message.data);
+    onMessageBuffer.push(message.data);
+    $("#receivedMessage").append(`<tr><td>${message.data}</td></tr>`);
+};
+```
+
+웹 브라우저
 
 ![](img/2017-12-26-16-39-45.png)
 
@@ -221,17 +476,94 @@ def ws_disconnect(message):
 
 #### 요청
 
+파이썬 구현
+
+```python
+def ws_receive(message: channels.message.Message):
+    msg = json.loads(message.content['text'])
+
+    ...
+
+    elif msg['action'] == 'sendBroadcastMsg':
+        AppServerManager().sendBroadcastMsg(
+            msg['body']['message'])
+```
+
+웹 브라우저 구현
+
+```js
+$("#sendBroadcastMsg").on("submit", function (event) {
+    const message = {
+        message: $('#boardcastMessage').val(),
+    }
+    chatsock.send(new RationalMessage('sendBroadcastMsg', message).toJsonString());
+    return false;
+});
+```
+
+웹 브라우저
+
 ![](img/2017-12-26-16-38-46.png)
 
 메시지를 입력 후 버튼을 누른다.
 
 #### 응답
 
+파이썬 구현
+
+```python
+class MessageListenerImpl(MessageListener):
+    def onSendBroadcastMsgResult(self, resultCode, resultMsg, requestId):
+        msg = 'onSendBroadcastMsgResult {} {} {}'.format(
+            resultCode, resultMsg, requestId)
+        Group('rational').send({'text': msg})
+```
+
+웹 브라우저 구현
+
+```js
+chatsock.onmessage = function (message) {
+    console.log('[onmessage]', message.data);
+    onMessageBuffer.push(message.data);
+    $("#receivedMessage").append(`<tr><td>${message.data}</td></tr>`);
+};
+```
+
+웹 브라우저
+
 ![](img/2017-12-26-16-40-03.png)
 
 ### 그룹 메시지 발신
 
 #### 요청
+
+파이썬 구현
+
+```python
+def ws_receive(message: channels.message.Message):
+    msg = json.loads(message.content['text'])
+
+    ...
+
+    elif msg['action'] == 'sendGroupMsg':
+        AppServerManager().sendGroupMsg(
+            msg['body']['message'], msg['body']['groupId'])
+```
+
+웹 브라우저 구현
+
+```js
+$("#sendGroupMsg").on("submit", function (event) {
+    const message = {
+        message: $('#groupMessage').val(),
+        groupId: $('#groupGroupId').val(),
+    }
+    chatsock.send(new RationalMessage('sendGroupMsg', message).toJsonString());
+    return false;
+});
+```
+
+웹 브라우저
 
 ![](img/2017-12-26-16-39-04.png)
 
@@ -240,3 +572,27 @@ def ws_disconnect(message):
 #### 응답
 
 ![](img/2017-12-26-16-40-13.png)
+
+### 업스트림 메시지 수신
+
+#### 응답
+
+파이썬 구현
+
+```python
+class MessageListenerImpl(MessageListener):
+    def onUpstreamMsgReceived(self, sender, sendTime, msg):
+        msg = 'onUpstreamMsgReceived {} {} {}'.format(
+            sender, sendTime, msg)
+        Group('rational').send({'text': msg})
+```
+
+웹 브라우저 구현
+
+```js
+chatsock.onmessage = function (message) {
+    console.log('[onmessage]', message.data);
+    onMessageBuffer.push(message.data);
+    $("#receivedMessage").append(`<tr><td>${message.data}</td></tr>`);
+};
+```
