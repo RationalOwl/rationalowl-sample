@@ -313,3 +313,23 @@ curl --request POST \
   "resultMsg": "작업이  성공 했습니다."
 }
 ```
+
+### 업스트림 메시지 수신
+
+메시지 수신과 같은 경우는 HTTP 프로토콜의 제약으로 인해 REST API를 만들 수 없으므로 아래 예제로 대체한다.
+
+단말에서 업스트림 메시지를 보내면 앱 서버는 아래와 같은 코드로 수신 할 수 있다.
+
+```js
+const listnener: UpstreamMessageListenerType = (result) => {
+    console.log(result.sender, result.serverTime, result.data);
+};
+
+AppServerManager.getInstance().addReceivedUpstreamMsgListener(listnener);
+```
+
+리스너의 삭제는 아래와 같다.
+
+```js
+AppServerManager.getInstance().removeReceivedUpstreamMsgListener(listnener);
+```

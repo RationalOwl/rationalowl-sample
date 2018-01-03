@@ -102,7 +102,6 @@ app.post('/message/group', async (req, res) => {
     }
 });
 
-
 app.listen(3000, async () => {
     await AppServerManager.getInstance()
         .registerAppServer(SERVICE_ID, 'sample-node-app-server', 'gate.rationalowl.com', 9081);
