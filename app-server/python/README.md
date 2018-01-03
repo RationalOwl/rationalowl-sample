@@ -6,6 +6,10 @@ Python 앱서버 샘플은 Python 앱서버 라이브러리에서 제공하는 A
 
 본 샘플은 Django와 channels를 이용한 WebSocket으로 구현되었다.
 
+앱서버의 자세한 설명은 [가이드](http://guide.rationalowl.com/guide/app-server)에서 확인할 수 있다.
+
+API 명세는 [API Reference](http://guide.rationalowl.com/api-doc/app-server/python/)에서 확인할 수 있다.
+
 ## 샘플 프로젝트 설정
 
 1. 레셔널아울 Python 서버 라이브러리를 받아 설치한다.(자세한 설치 방법은 [라이브러리 설치](http://guide.rationalowl.com/guide/app-server#%EC%95%B1-%EC%84%9C%EB%B2%84-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EC%A0%81%EC%9A%A9) 참조)
@@ -154,11 +158,23 @@ def ws_disconnect(message):
 
 관리자콘솔의 '서비스 > 단말 현황'에 등록된 단말 그룹의 현황을 확인 할 수 있다.
 
+### 단말그룹 관리 결과 콜백 등록
+
+샘플 코드에서 setDeviceGroupListener()를 검색하면 아래의 샘플 코드를 확인할 수 있다. 해당 API는 앱서버 초기화 루틴에 추가하여 단말그룹 관리 API 호출 후 결과 리스너를 지정한다.
+
+```python
+AppServerManager().setDeviceGroupListener(DeviceGroupListenerImpl())
+```
+
 ### 단말그룹 생성
 
 #### 요청
 
 파이썬 구현
+
+createDeviceGroup() API의 첫째 인자인 groupName은 관리자 콘솔에서 '단말그룹명'으로 확인할 수 있도록 readable한 단말 그룹 구분자이다.
+두번째 인자인 groupDesc은 단말 그룹을 설명하는 내용이다. 입력하지 않을 시 None을 넣으면 된다.
+devices는 단말 그룹 아이디 목록으로 단말 그룹 생성시 그룹에 포함할 단말 등록 아이디를 포함한다.
 
 ```python
 def ws_receive(message: channels.message.Message):
@@ -218,12 +234,14 @@ chatsock.onmessage = function (message) {
 
 ![](img/2017-12-26-16-30-57.png)
 
-
 ### 단말그룹 내 단말 추가
 
 #### 요청
 
 파이썬 구현
+
+addDevicesToGroup() API의 첫째 인자인 groupId는 단말을 추가하고자 하는 대상 단말그룹의 아이디이다. 단말그룹 생성 예제의 onDeviceGroupCreateResult() 콜백 내에 인자로 넘어온 deviceGrpId의 값을 넣는다.
+두번째 인자인 devices는 단말 그룹에서 추가하고자 하는 단말들의 단말등록 아이디 목록이다.
 
 ```python
 def ws_receive(message: channels.message.Message):
@@ -288,6 +306,9 @@ chatsock.onmessage = function (message) {
 
 파이썬 구현
 
+subtractDeviceGroup() API의 첫째 인자인 groupId는 단말을 제거하고자 하는 대상 단말그룹의 아이디이다. 단말그룹 생성 예제의 onDeviceGroupCreateResult() 콜백 내에 인자로 넘어온 deviceGrpId의 값을 넣는다.
+두번째 인자인 devices는 단말 그룹에서 제거하고자 하는 단말의 단말등록 아이디 목록이다.
+
 ```python
 def ws_receive(message: channels.message.Message):
     msg = json.loads(message.content['text'])
@@ -351,6 +372,8 @@ chatsock.onmessage = function (message) {
 
 파이썬 구현
 
+deleteDeviceGroup() API의 첫째 인자인 groupId는 제거하고자 하는 대상 단말그룹의 아이디이다. 단말그룹 생성 예제의 onDeviceGroupCreateResult() 콜백 내에 인자로 넘어온 deviceGrpId의 값을 넣는다.
+
 ```python
 def ws_receive(message: channels.message.Message):
     msg = json.loads(message.content['text'])
@@ -410,11 +433,22 @@ chatsock.onmessage = function (message) {
 
 관리자콘솔의 '서비스 > 메시지 현황'에서 실시간 메시지 전달 모니터링이 가능하다.
 
+### 실시간 메시지 수/발신 결과 콜백 등록
+
+샘플 코드에서 setMsgListener()를 검색하면 아래의 샘플 코드를 확인할 수 있다. 해당 API는 앱서버 초기화 루틴에 추가하여 메시지 수/발신시 호출되는 리스너를 지정한다.
+
+```python
+AppServerManager().setMsgListener(MessageListenerImpl())
+```
+
 ### 멀티캐스트 발신
 
 #### 요청
 
 파이썬 구현
+
+sendMulticastMsg() API의 첫째 인자인 jsonStr은 단말에 전달할 json포맷의 스트링 데이터이다.
+두번째 인자인 groutargetDevices는 데이터를 전달할 대상 단말의 단말 등록 아이디 목록이다.
 
 ```python
 def ws_receive(message: channels.message.Message):
@@ -478,6 +512,8 @@ chatsock.onmessage = function (message) {
 
 파이썬 구현
 
+sendBroadcastMsg() API의 첫째 인자인 data는 단순한 스트링 데이터이다.
+
 ```python
 def ws_receive(message: channels.message.Message):
     msg = json.loads(message.content['text'])
@@ -539,6 +575,9 @@ chatsock.onmessage = function (message) {
 
 파이썬 구현
 
+sendMulticastMsg() API의 첫째 인자인 data는 단말에 전달할 스트링 데이터이다.
+두번째 인자인 deviceGroupId에는 데이터를 전달할 단말 그룹 아이디를 입력한다.
+
 ```python
 def ws_receive(message: channels.message.Message):
     msg = json.loads(message.content['text'])
@@ -578,6 +617,8 @@ $("#sendGroupMsg").on("submit", function (event) {
 #### 응답
 
 파이썬 구현
+
+앱서버가 업스트림 메시지를 수신하면 onUpstreamMsgReceived() 콜백이 호출된다.
 
 ```python
 class MessageListenerImpl(MessageListener):
