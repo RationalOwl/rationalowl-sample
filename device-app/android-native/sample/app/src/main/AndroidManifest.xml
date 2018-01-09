@@ -1,0 +1,54 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.customer.test">
+
+    <!--  for device control demo -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+    <!--  user app permission -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <!--  by bug android 4.2 and 4.3 -->
+    <uses-permission android:name="android.permission.VIBRATE" android:maxSdkVersion="18"/>
+    <application
+        android:name="com.customer.test.Service1App"
+        android:allowBackup="true"
+        android:icon="@mipmap/icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <service android:enabled="true" android:name="com.customer.test.MyService" />
+        <receiver android:name="com.customer.test.MyReceiver" android:enabled="true" android:exported="true" android:label="MyReceiver">
+            <intent-filter>
+                <!-- register/un-register result -->
+                <action android:name="com.rationalowl.minerva.action.ACTION_MINERVA_DEVICE_REGISTER_RESULT"/>
+                <action android:name="com.rationalowl.minerva.action.ACTION_MINERVA_DEVICE_UNREGISTER_RESULT" />
+
+                <!-- send message result -->
+                <action android:name="com.rationalowl.minerva.action.ACTION_MINERVA_UPSTREAM_MSG_RESULT" />
+                <action android:name="com.rationalowl.minerva.action.ACTION_MINERVA_P2P_MSG_RESULT" />
+
+                <!-- receive message -->
+                <action android:name="com.rationalowl.minerva.action.ACTION_MINERVA_PUSH_MSG_RECEIVED" />
+                <action android:name="com.rationalowl.minerva.action.ACTION_MINERVA_P2P_MSG_RECEIVED" />
+            </intent-filter>
+        </receiver>
+        <activity
+            android:name="com.customer.test.MainActivity"
+            android:label="@string/title_activity_main" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.customer.test.RegisterActivity"
+            android:label="푸시서버를 등록하세요" >
+        </activity>
+        <activity android:name="com.customer.test.MsgActivity"
+            android:label="푸시메시지" >
+        </activity>
+    </application>
+</manifest>
