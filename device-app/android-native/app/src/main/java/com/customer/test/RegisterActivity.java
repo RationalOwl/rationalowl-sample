@@ -54,7 +54,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
     protected void onStart() {
         //Log.d(TAG, "onStart() enter");
         super.onStart();         
-        mUrlEt.setText("gate.rationalowl.com"); //hostway
+        mUrlEt.setText("gate.rationalowl.com");
         //mUrlEt.setText("52.78.193.223:9082"); //aws test
     }
     
