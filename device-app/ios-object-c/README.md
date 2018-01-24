@@ -277,7 +277,7 @@ unregisterDevice API 호출 결과 MsgResultDelegate 의 onUpstreamMsgResult 콜
 샘플코드에서 sendP2PMsg 검색하면 아래의 샘플코드를 확인할 수 있다. 
 
 
-````swift
+```swift
 - (IBAction)sendP2PMsg:(id)sender {
     NSString* msg = inputMessageField.text;
     NSMutableArray* devices = [[NSMutableArray alloc] init];
@@ -294,7 +294,6 @@ unregisterDevice API 호출 결과 MsgResultDelegate 의 onUpstreamMsgResult 콜
                       atScrollPosition:UITableViewScrollPositionMiddle
                               animated:YES];
 }
-
 ```
 sendP2PMsg API의 각 인자별 의미는 다음과 같다.
 
@@ -382,7 +381,7 @@ sendP2PMsg API 호출 결과는  MinervaDelegate.h에 정의된 onP2PMsgResult �
   - 단말앱이 백그라운드시 표시할 알림 타이틀
   - 단말앱이 백그라운드시 표시할 알림 본문
 
-샘플앱이 메시지 수신시 백그라운드일 경우에는 알림이 오고 샘플앱이 포그라운드일 경우 샘플앱의 메시지 면에서 메시지 수신됨을 확인 가능하다.
+샘플앱이 메시지 수신시 백그라운드일 경우에는 알림이 오고 샘플앱이 포그라운드일 경우 샘플앱의 메시지 화면에서 메시지 수신됨을 확인 가능하다.
 
 ![이미지 이름](./img/sample_msg.png)
 
