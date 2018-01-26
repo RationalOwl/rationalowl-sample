@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90CA99B2201AE50E003D46B9 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CA99B0201AE284003D46B9 /* UserNotifications.framework */; };
 		90D999082016F0C3005D3401 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D999072016F0C3005D3401 /* AppDelegate.m */; };
 		90D9990E2016F0C4005D3401 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90D9990C2016F0C4005D3401 /* Main.storyboard */; };
 		90D999102016F0C4005D3401 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90D9990F2016F0C4005D3401 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		90CA99B0201AE284003D46B9 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		90D999032016F0C3005D3401 /* sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D999062016F0C3005D3401 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		90D999072016F0C3005D3401 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90CA99B2201AE50E003D46B9 /* UserNotifications.framework in Frameworks */,
 				90D99937201711AB005D3401 /* RationalOwl.framework in Frameworks */,
 				90D99938201711E2005D3401 /* RationalOwl.framework in Frameworks */,
 			);
@@ -84,6 +87,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		90CA99AF201AE284003D46B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				90CA99B0201AE284003D46B9 /* UserNotifications.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		90D998FA2016F0C3005D3401 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +102,7 @@
 				90D999052016F0C3005D3401 /* sample */,
 				90D9991E2016F0C4005D3401 /* sampleTests */,
 				90D999042016F0C3005D3401 /* Products */,
+				90CA99AF201AE284003D46B9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
