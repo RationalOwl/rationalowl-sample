@@ -1,0 +1,33 @@
+cmake_minimum_required(VERSION 3.6)
+project(cpp_test_app_server VERSION)
+set(PROJECT_VERSION_MAJOR 0)
+set(PROJECT_VERSION_MINOR 1)
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_C_COMPILE, "g++")
+
+
+set(Boost_DETAILED_FAILURE_MSG ON)
+set(Boost_THREADAPI "win32")
+set(BOOST_ROOT "C:/Users/gyeongmin-company/Desktop/boost_1_65_1/")
+
+set(Boost_USE_STATIC_LIBS        ON)
+set(Boost_USE_STATIC_RUNTIME    OFF)
+set(Boost_USE_MULTITHREADED      ON)
+set(BOOST_DEBUG ON)
+
+find_package(Boost 1.65.1 COMPONENTS system thread locale REQUIRED)
+
+if(Boost_FOUND)
+  include_directories(${Boost_INCLUDE_DIRS})
+  LINK_DIRECTORIES("C:/Users/gyeongmin-company/Desktop/boost_1_65_1/stage/lib/")
+endif()
+
+  
+LINK_DIRECTORIES( ${PROJECT_SOURCE_DIR}/lib )
+include_directories(${PROJECT_SOURCE_DIR})
+
+add_executable(cpp_app_server_test test.cpp)
+
+target_link_libraries(cpp_app_server_test optimized cpp_app_server_static ${Boost_LIBRARIES})
+target_link_libraries(cpp_app_server_test debug     cpp_app_server_static_debug ${Boost_LIBRARIES})

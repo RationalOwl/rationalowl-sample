@@ -1,0 +1,38 @@
+Determining if the include file pthread.h exists failed with the following output:
+Change Dir: c:/users/gyeongmin-company/desktop/project/rationalowl-sample/app-server/c++/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_64369.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+.NET Framework용 Microsoft (R) Build Engine 버전 15.5.180.51428
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+빌드 시작: 2018-01-26 오후 2:24:29
+1 노드의 "c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\cmTC_64369.vcxproj" 프로젝트(기본 대상)입니다.
+PrepareForBuild:
+  "cmTC_64369.dir\Debug\" 디렉터리를 만들고 있습니다.
+  "C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\Debug\" 디렉터리를 만들고 있습니다.
+  "cmTC_64369.dir\Debug\cmTC_64369.tlog\" 디렉터리를 만들고 있습니다.
+InitializeBuildStatus:
+  "AlwaysCreate"이(가) 지정되었기 때문에 "cmTC_64369.dir\Debug\cmTC_64369.tlog\unsuccessfulbuild"을(를) 만들고 있습니다.
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x64\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_64369.dir\Debug\\" /Fd"cmTC_64369.dir\Debug\vc141.pdb" /Gd /TC /errorReport:queue "C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.12.25834 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_64369.dir\Debug\\" /Fd"cmTC_64369.dir\Debug\vc141.pdb" /Gd /TC /errorReport:queue "C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  CheckIncludeFile.c
+  
+C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c(1): fatal error C1083: Cannot open include file: 'pthread.h': No such file or directory [c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\cmTC_64369.vcxproj]
+"c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\cmTC_64369.vcxproj" 프로젝트를 빌드했습니다(기본 대상). - 실패
+
+빌드하지 못했습니다.
+
+"c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\cmTC_64369.vcxproj"(기본 대상)(1)->
+(ClCompile 대상) -> 
+  C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c(1): fatal error C1083: Cannot open include file: 'pthread.h': No such file or directory [c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\cmTC_64369.vcxproj]
+
+    경고 0개
+    오류 1개
+
+경과 시간: 00:00:00.52
+
+

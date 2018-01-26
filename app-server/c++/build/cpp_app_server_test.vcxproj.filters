@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\cmakelists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{C83F2CE4-206C-390D-8A3A-43A69994FB8C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

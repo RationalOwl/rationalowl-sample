@@ -1,0 +1,338 @@
+The system is: Windows - 10.0.16299 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler:  
+Build flags: 
+Id flags:  
+
+The output was:
+0
+.NET Framework�� Microsoft (R) Build Engine ���� 15.5.180.51428
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+���� ����: 2018-01-26 ���� 2:24:20
+1 ����� "c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\3.10.2\CompilerIdC\CompilerIdC.vcxproj" ������Ʈ(�⺻ ���)�Դϴ�.
+PrepareForBuild:
+  "Debug\" ���͸��� ����� �ֽ��ϴ�.
+  "Debug\CompilerIdC.tlog\" ���͸��� ����� �ֽ��ϴ�.
+InitializeBuildStatus:
+  "AlwaysCreate"��(��) �����Ǿ��� ������ "Debug\CompilerIdC.tlog\unsuccessfulbuild"��(��) ����� �ֽ��ϴ�.
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x64\CL.exe /c /nologo /W0 /WX- /diagnostics:classic /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc141.pdb" /Gd /TC /errorReport:queue CMakeCCompilerId.c
+  CMakeCCompilerId.c
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x64\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdC.lib" /MACHINE:X64 Debug\CMakeCCompilerId.obj
+  CompilerIdC.vcxproj -> c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\3.10.2\CompilerIdC\.\CompilerIdC.exe
+PostBuildEvent:
+  for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
+  :VCEnd
+  CMAKE_C_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\Hostx86\x64\cl.exe
+FinalizeBuildStatus:
+  "Debug\CompilerIdC.tlog\unsuccessfulbuild" ������ �����ϰ� �ֽ��ϴ�.
+  "Debug\CompilerIdC.tlog\CompilerIdC.lastbuildstate"�� ����(touching)�ϰ� �ֽ��ϴ�.
+"c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\3.10.2\CompilerIdC\CompilerIdC.vcxproj" ������Ʈ�� �����߽��ϴ�(�⺻ ���).
+
+�����߽��ϴ�.
+    ��� 0��
+    ���� 0��
+
+��� �ð�: 00:00:00.88
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
+
+The C compiler identification is MSVC, found in "c:/users/gyeongmin-company/desktop/project/rationalowl-sample/app-server/c++/build/CMakeFiles/3.10.2/CompilerIdC/CompilerIdC.exe"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler:  
+Build flags: 
+Id flags:  
+
+The output was:
+0
+.NET Framework�� Microsoft (R) Build Engine ���� 15.5.180.51428
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+���� ����: 2018-01-26 ���� 2:24:21
+1 ����� "c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\3.10.2\CompilerIdCXX\CompilerIdCXX.vcxproj" ������Ʈ(�⺻ ���)�Դϴ�.
+PrepareForBuild:
+  "Debug\" ���͸��� ����� �ֽ��ϴ�.
+  "Debug\CompilerIdCXX.tlog\" ���͸��� ����� �ֽ��ϴ�.
+InitializeBuildStatus:
+  "AlwaysCreate"��(��) �����Ǿ��� ������ "Debug\CompilerIdCXX.tlog\unsuccessfulbuild"��(��) ����� �ֽ��ϴ�.
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x64\CL.exe /c /nologo /W0 /WX- /diagnostics:classic /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc141.pdb" /Gd /TP /errorReport:queue CMakeCXXCompilerId.cpp
+  CMakeCXXCompilerId.cpp
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x64\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdCXX.lib" /MACHINE:X64 Debug\CMakeCXXCompilerId.obj
+  CompilerIdCXX.vcxproj -> c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\3.10.2\CompilerIdCXX\.\CompilerIdCXX.exe
+PostBuildEvent:
+  for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+  :VCEnd
+  CMAKE_CXX_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\Hostx86\x64\cl.exe
+FinalizeBuildStatus:
+  "Debug\CompilerIdCXX.tlog\unsuccessfulbuild" ������ �����ϰ� �ֽ��ϴ�.
+  "Debug\CompilerIdCXX.tlog\CompilerIdCXX.lastbuildstate"�� ����(touching)�ϰ� �ֽ��ϴ�.
+"c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\3.10.2\CompilerIdCXX\CompilerIdCXX.vcxproj" ������Ʈ�� �����߽��ϴ�(�⺻ ���).
+
+�����߽��ϴ�.
+    ��� 0��
+    ���� 0��
+
+��� �ð�: 00:00:00.80
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+
+The CXX compiler identification is MSVC, found in "c:/users/gyeongmin-company/desktop/project/rationalowl-sample/app-server/c++/build/CMakeFiles/3.10.2/CompilerIdCXX/CompilerIdCXX.exe"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: c:/users/gyeongmin-company/desktop/project/rationalowl-sample/app-server/c++/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_70ee5.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+.NET Framework용 Microsoft (R) Build Engine 버전 15.5.180.51428
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+빌드 시작: 2018-01-26 오후 2:24:23
+1 노드의 "c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\cmTC_70ee5.vcxproj" 프로젝트(기본 대상)입니다.
+PrepareForBuild:
+  "cmTC_70ee5.dir\Debug\" 디렉터리를 만들고 있습니다.
+  "C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\Debug\" 디렉터리를 만들고 있습니다.
+  "cmTC_70ee5.dir\Debug\cmTC_70ee5.tlog\" 디렉터리를 만들고 있습니다.
+InitializeBuildStatus:
+  "AlwaysCreate"이(가) 지정되었기 때문에 "cmTC_70ee5.dir\Debug\cmTC_70ee5.tlog\unsuccessfulbuild"을(를) 만들고 있습니다.
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x64\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_70ee5.dir\Debug\\" /Fd"cmTC_70ee5.dir\Debug\vc141.pdb" /Gd /TC /errorReport:queue "C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\testCCompiler.c"
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.12.25834 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_70ee5.dir\Debug\\" /Fd"cmTC_70ee5.dir\Debug\vc141.pdb" /Gd /TC /errorReport:queue "C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\testCCompiler.c"
+  testCCompiler.c
+  
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\Debug\cmTC_70ee5.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/gyeongmin-company/Desktop/project/rationalowl-sample/app-server/c++/build/CMakeFiles/CMakeTmp/Debug/cmTC_70ee5.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/gyeongmin-company/Desktop/project/rationalowl-sample/app-server/c++/build/CMakeFiles/CMakeTmp/Debug/cmTC_70ee5.lib" /MACHINE:X64  /machine:x64 cmTC_70ee5.dir\Debug\testCCompiler.obj
+  cmTC_70ee5.vcxproj -> C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\Debug\cmTC_70ee5.exe
+FinalizeBuildStatus:
+  "cmTC_70ee5.dir\Debug\cmTC_70ee5.tlog\unsuccessfulbuild" 파일을 삭제하고 있습니다.
+  "cmTC_70ee5.dir\Debug\cmTC_70ee5.tlog\cmTC_70ee5.lastbuildstate"에 연결(touching)하고 있습니다.
+"c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\cmTC_70ee5.vcxproj" 프로젝트를 빌드했습니다(기본 대상).
+
+빌드했습니다.
+    경고 0개
+    오류 0개
+
+경과 시간: 00:00:01.11
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: c:/users/gyeongmin-company/desktop/project/rationalowl-sample/app-server/c++/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_9b1f3.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+.NET Framework용 Microsoft (R) Build Engine 버전 15.5.180.51428
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+빌드 시작: 2018-01-26 오후 2:24:24
+1 노드의 "c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\cmTC_9b1f3.vcxproj" 프로젝트(기본 대상)입니다.
+PrepareForBuild:
+  "cmTC_9b1f3.dir\Debug\" 디렉터리를 만들고 있습니다.
+  "C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\Debug\" 디렉터리를 만들고 있습니다.
+  "cmTC_9b1f3.dir\Debug\cmTC_9b1f3.tlog\" 디렉터리를 만들고 있습니다.
+InitializeBuildStatus:
+  "AlwaysCreate"이(가) 지정되었기 때문에 "cmTC_9b1f3.dir\Debug\cmTC_9b1f3.tlog\unsuccessfulbuild"을(를) 만들고 있습니다.
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x64\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_9b1f3.dir\Debug\\" /Fd"cmTC_9b1f3.dir\Debug\vc141.pdb" /Gd /TC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.10\Modules\CMakeCCompilerABI.c"
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.12.25834 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_9b1f3.dir\Debug\\" /Fd"cmTC_9b1f3.dir\Debug\vc141.pdb" /Gd /TC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.10\Modules\CMakeCCompilerABI.c"
+  CMakeCCompilerABI.c
+  
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\Debug\cmTC_9b1f3.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/gyeongmin-company/Desktop/project/rationalowl-sample/app-server/c++/build/CMakeFiles/CMakeTmp/Debug/cmTC_9b1f3.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/gyeongmin-company/Desktop/project/rationalowl-sample/app-server/c++/build/CMakeFiles/CMakeTmp/Debug/cmTC_9b1f3.lib" /MACHINE:X64  /machine:x64 cmTC_9b1f3.dir\Debug\CMakeCCompilerABI.obj
+  cmTC_9b1f3.vcxproj -> C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\Debug\cmTC_9b1f3.exe
+FinalizeBuildStatus:
+  "cmTC_9b1f3.dir\Debug\cmTC_9b1f3.tlog\unsuccessfulbuild" 파일을 삭제하고 있습니다.
+  "cmTC_9b1f3.dir\Debug\cmTC_9b1f3.tlog\cmTC_9b1f3.lastbuildstate"에 연결(touching)하고 있습니다.
+"c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\cmTC_9b1f3.vcxproj" 프로젝트를 빌드했습니다(기본 대상).
+
+빌드했습니다.
+    경고 0개
+    오류 0개
+
+경과 시간: 00:00:00.88
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: c:/users/gyeongmin-company/desktop/project/rationalowl-sample/app-server/c++/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_cd830.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+.NET Framework용 Microsoft (R) Build Engine 버전 15.5.180.51428
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+빌드 시작: 2018-01-26 오후 2:24:25
+1 노드의 "c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\cmTC_cd830.vcxproj" 프로젝트(기본 대상)입니다.
+PrepareForBuild:
+  "cmTC_cd830.dir\Debug\" 디렉터리를 만들고 있습니다.
+  "C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\Debug\" 디렉터리를 만들고 있습니다.
+  "cmTC_cd830.dir\Debug\cmTC_cd830.tlog\" 디렉터리를 만들고 있습니다.
+InitializeBuildStatus:
+  "AlwaysCreate"이(가) 지정되었기 때문에 "cmTC_cd830.dir\Debug\cmTC_cd830.tlog\unsuccessfulbuild"을(를) 만들고 있습니다.
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x64\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_cd830.dir\Debug\\" /Fd"cmTC_cd830.dir\Debug\vc141.pdb" /Gd /TP /errorReport:queue "C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.12.25834 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_cd830.dir\Debug\\" /Fd"cmTC_cd830.dir\Debug\vc141.pdb" /Gd /TP /errorReport:queue "C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
+  testCXXCompiler.cxx
+  
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\Debug\cmTC_cd830.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/gyeongmin-company/Desktop/project/rationalowl-sample/app-server/c++/build/CMakeFiles/CMakeTmp/Debug/cmTC_cd830.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/gyeongmin-company/Desktop/project/rationalowl-sample/app-server/c++/build/CMakeFiles/CMakeTmp/Debug/cmTC_cd830.lib" /MACHINE:X64  /machine:x64 cmTC_cd830.dir\Debug\testCXXCompiler.obj
+  cmTC_cd830.vcxproj -> C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\Debug\cmTC_cd830.exe
+FinalizeBuildStatus:
+  "cmTC_cd830.dir\Debug\cmTC_cd830.tlog\unsuccessfulbuild" 파일을 삭제하고 있습니다.
+  "cmTC_cd830.dir\Debug\cmTC_cd830.tlog\cmTC_cd830.lastbuildstate"에 연결(touching)하고 있습니다.
+"c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\cmTC_cd830.vcxproj" 프로젝트를 빌드했습니다(기본 대상).
+
+빌드했습니다.
+    경고 0개
+    오류 0개
+
+경과 시간: 00:00:00.89
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: c:/users/gyeongmin-company/desktop/project/rationalowl-sample/app-server/c++/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_575d6.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+.NET Framework용 Microsoft (R) Build Engine 버전 15.5.180.51428
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+빌드 시작: 2018-01-26 오후 2:24:26
+1 노드의 "c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\cmTC_575d6.vcxproj" 프로젝트(기본 대상)입니다.
+PrepareForBuild:
+  "cmTC_575d6.dir\Debug\" 디렉터리를 만들고 있습니다.
+  "C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\Debug\" 디렉터리를 만들고 있습니다.
+  "cmTC_575d6.dir\Debug\cmTC_575d6.tlog\" 디렉터리를 만들고 있습니다.
+InitializeBuildStatus:
+  "AlwaysCreate"이(가) 지정되었기 때문에 "cmTC_575d6.dir\Debug\cmTC_575d6.tlog\unsuccessfulbuild"을(를) 만들고 있습니다.
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x64\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_575d6.dir\Debug\\" /Fd"cmTC_575d6.dir\Debug\vc141.pdb" /Gd /TP /errorReport:queue "C:\Program Files\CMake\share\cmake-3.10\Modules\CMakeCXXCompilerABI.cpp"
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.12.25834 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_575d6.dir\Debug\\" /Fd"cmTC_575d6.dir\Debug\vc141.pdb" /Gd /TP /errorReport:queue "C:\Program Files\CMake\share\cmake-3.10\Modules\CMakeCXXCompilerABI.cpp"
+  CMakeCXXCompilerABI.cpp
+  
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\Debug\cmTC_575d6.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/gyeongmin-company/Desktop/project/rationalowl-sample/app-server/c++/build/CMakeFiles/CMakeTmp/Debug/cmTC_575d6.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/gyeongmin-company/Desktop/project/rationalowl-sample/app-server/c++/build/CMakeFiles/CMakeTmp/Debug/cmTC_575d6.lib" /MACHINE:X64  /machine:x64 cmTC_575d6.dir\Debug\CMakeCXXCompilerABI.obj
+  cmTC_575d6.vcxproj -> C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\Debug\cmTC_575d6.exe
+FinalizeBuildStatus:
+  "cmTC_575d6.dir\Debug\cmTC_575d6.tlog\unsuccessfulbuild" 파일을 삭제하고 있습니다.
+  "cmTC_575d6.dir\Debug\cmTC_575d6.tlog\cmTC_575d6.lastbuildstate"에 연결(touching)하고 있습니다.
+"c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\cmTC_575d6.vcxproj" 프로젝트를 빌드했습니다(기본 대상).
+
+빌드했습니다.
+    경고 0개
+    오류 0개
+
+경과 시간: 00:00:00.94
+
+
+
+
+Detecting CXX [] compiler features compiled with the following output:
+Change Dir: c:/users/gyeongmin-company/desktop/project/rationalowl-sample/app-server/c++/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_b7f5c.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+.NET Framework용 Microsoft (R) Build Engine 버전 15.5.180.51428
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+빌드 시작: 2018-01-26 오후 2:24:28
+1 노드의 "c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\cmTC_b7f5c.vcxproj" 프로젝트(기본 대상)입니다.
+PrepareForBuild:
+  "cmTC_b7f5c.dir\Debug\" 디렉터리를 만들고 있습니다.
+  "C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\Debug\" 디렉터리를 만들고 있습니다.
+  "cmTC_b7f5c.dir\Debug\cmTC_b7f5c.tlog\" 디렉터리를 만들고 있습니다.
+InitializeBuildStatus:
+  "AlwaysCreate"이(가) 지정되었기 때문에 "cmTC_b7f5c.dir\Debug\cmTC_b7f5c.tlog\unsuccessfulbuild"을(를) 만들고 있습니다.
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x64\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_b7f5c.dir\Debug\\" /Fd"cmTC_b7f5c.dir\Debug\vc141.pdb" /Gd /TP /errorReport:queue "C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\feature_tests.cxx"
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.12.25834 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_b7f5c.dir\Debug\\" /Fd"cmTC_b7f5c.dir\Debug\vc141.pdb" /Gd /TP /errorReport:queue "C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\feature_tests.cxx"
+  feature_tests.cxx
+  
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x64\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\Debug\cmTC_b7f5c.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/gyeongmin-company/Desktop/project/rationalowl-sample/app-server/c++/build/CMakeFiles/CMakeTmp/Debug/cmTC_b7f5c.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/gyeongmin-company/Desktop/project/rationalowl-sample/app-server/c++/build/CMakeFiles/CMakeTmp/Debug/cmTC_b7f5c.lib" /MACHINE:X64  /machine:x64 cmTC_b7f5c.dir\Debug\feature_tests.obj
+  cmTC_b7f5c.vcxproj -> C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\Debug\cmTC_b7f5c.exe
+FinalizeBuildStatus:
+  "cmTC_b7f5c.dir\Debug\cmTC_b7f5c.tlog\unsuccessfulbuild" 파일을 삭제하고 있습니다.
+  "cmTC_b7f5c.dir\Debug\cmTC_b7f5c.tlog\cmTC_b7f5c.lastbuildstate"에 연결(touching)하고 있습니다.
+"c:\users\gyeongmin-company\desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\CMakeTmp\cmTC_b7f5c.vcxproj" 프로젝트를 빌드했습니다(기본 대상).
+
+빌드했습니다.
+    경고 0개
+    오류 0개
+
+경과 시간: 00:00:00.88
+
+
+    Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:1cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:1cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:1cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:1cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:1cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:1cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:1cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:1cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates

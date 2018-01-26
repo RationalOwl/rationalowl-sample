@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\gyeongmin-company\Desktop\project\rationalowl-sample\app-server\c++\build\CMakeFiles\e0ac11b618a3ea01da0f3b7404550c31\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{41289762-1B9F-3B98-AF0B-543831AFCCB2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
