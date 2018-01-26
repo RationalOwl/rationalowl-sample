@@ -52,7 +52,7 @@
 
 - (IBAction)sendUpstreamMsg:(id)sender {
     //NSString* svcId = @"d0a83353281e4b678774a0efa44fdd82";
-    NSString* serverId = @"1fe45769e24348bfa501c32032958483";
+    NSString* serverId = @"fb8bf1de65e443e294588923e187a248";  //sample server
     NSString* msg = inputMessageField.text;
     MinervaManager* mgr = [MinervaManager getInstance];
     [mgr sendUpstreamMsg:msg serverRegId:serverId];
@@ -61,6 +61,7 @@
     //[self.messages insertObject:displayStr atIndex:0];
     [self.messages addObject:displayStr];
     [self.tView reloadData];
+    
     NSIndexPath *topIndexPath = [NSIndexPath indexPathForRow:messages.count-1 inSection:0];
     [self.tView scrollToRowAtIndexPath:topIndexPath
                       atScrollPosition:UITableViewScrollPositionMiddle
@@ -72,7 +73,7 @@
 - (IBAction)sendP2PMsg:(id)sender {
     NSString* msg = inputMessageField.text;
     NSMutableArray* devices = [[NSMutableArray alloc] init];
-    [devices addObject:@"cf12c6b3c46e4e318b6e3c77b0590b9d"];
+    [devices addObject:@"57e14b87cc2646ef883b99d7de7a9567"];
     MinervaManager* mgr = [MinervaManager getInstance];
     [mgr sendP2PMsg:msg devices:devices];
     
@@ -109,7 +110,7 @@
         serverTime = [msg[@"serverTime"] longValue];
         NSDate* date = [NSDate dateWithTimeIntervalSince1970:(serverTime /1000)];
         msgData = msg[@"data"];
-        NSString* displayStr = [NSString stringWithFormat:@"%@  [sent time:%@]", msgData, [format stringFromDate:date]];
+        NSString* displayStr = [NSString stringWithFormat:@"%@  [%@]", msgData, [format stringFromDate:date]];
         //[self.messages insertObject:displayStr atIndex:0];
         [self.messages addObject:displayStr];
     }
@@ -139,7 +140,7 @@
         serverTime = [msg[@"serverTime"] longValue];
         NSDate* date = [NSDate dateWithTimeIntervalSince1970:(serverTime /1000)];
         msgData = msg[@"data"];
-        NSString* displayStr = [NSString stringWithFormat:@"p2p:%@  [sent time:%@]", msgData, [format stringFromDate:date]];
+        NSString* displayStr = [NSString stringWithFormat:@"p2p:%@  [%@]", msgData, [format stringFromDate:date]];
         //[self.messages insertObject:displayStr atIndex:0];
         [self.messages addObject:displayStr];
     }
