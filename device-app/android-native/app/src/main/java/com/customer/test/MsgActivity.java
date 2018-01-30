@@ -160,7 +160,7 @@ public class MsgActivity extends Activity implements OnClickListener {
                 //String serverId = "1fe45769e24348bfa501c32032958483"; // jungdo
                 //String serverId = "def829b853d046779e2227bdd091653c:null";
                 //String serverId = "0bb887049fb04bca924853be0e78f28d"; //gyeong min python
-                MinervaManager minMgr = MinervaManager.getInstance(this);
+                MinervaManager minMgr = MinervaManager.getInstance();
                 //manage umi(upstream message id) to check upstream delivery
                 // when ACTION_MINERVA_UPSTREAM_MSG_RESULT fires
                 String umi = minMgr.sendUpstreamMsg(msg, serverId);
@@ -181,7 +181,7 @@ public class MsgActivity extends Activity implements OnClickListener {
 
                 mListAdapter.notifyDataSetChanged();          
 
-                MinervaManager minMgr = MinervaManager.getInstance(this);
+                MinervaManager minMgr = MinervaManager.getInstance();
                 //manage pmi(p2p message id) to check p2p delivery
                 // when ACTION_MINERVA_P2P_MSG_RESULT fires
                 String pmi = minMgr.sendP2PMsg(msg, destDevices);

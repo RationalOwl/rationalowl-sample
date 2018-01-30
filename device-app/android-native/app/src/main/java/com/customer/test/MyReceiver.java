@@ -67,7 +67,7 @@ public class MyReceiver extends BroadcastReceiver {
             Toast.makeText(context, msg, Toast.LENGTH_LONG).show();           
         }
         else if(action.equals(MinervaManager.ACTION_MINERVA_UPSTREAM_MSG_RESULT)) {
-            Log.d(TAG, "onReceive" + action);                        
+            Log.d(TAG, "onReceive" + action);
             Bundle bundle = intent.getExtras();
             int resultCode = bundle.getInt("resultCode");    
             String resultMsg = bundle.getString("resultMsg");

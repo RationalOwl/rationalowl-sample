@@ -93,7 +93,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
         switch (v.getId()) {
             case R.id.regBtn: {
                 String url = mUrlEt.getText().toString();
-                MinervaManager mgr = MinervaManager.getInstance(this);
+                MinervaManager mgr = MinervaManager.getInstance();
                 //mgr.registerDevice(url, "faebcfe844d54d449136491fb253619d","단말등록이름2"); //hostway
                 mgr.registerDevice(url, "faebcfe844d54d449136491fb253619d","단말등록이름"); //tta
                 //mgr.registerDevice(url, "def829b853d046779e2227bdd091653c","경민테스트폰"); //hostway
@@ -102,7 +102,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 
             }
             case R.id.unregBtn:
-                MinervaManager mgr = MinervaManager.getInstance(this);
+                MinervaManager mgr = MinervaManager.getInstance();
                 mgr.unregisterDevice("faebcfe844d54d449136491fb253619d"); //hostway
                 //mgr.unregisterDevice("def829b853d046779e2227bdd091653c"); //hostway
                 //mgr.unregisterDevice("c8574b6882c34db0a6e6691987de1221"); //aws test
