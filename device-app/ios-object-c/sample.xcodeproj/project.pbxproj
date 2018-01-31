@@ -16,9 +16,8 @@
 		90D999202016F0C4005D3401 /* sampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D9991F2016F0C4005D3401 /* sampleTests.m */; };
 		90D999322016FD0B005D3401 /* RegViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D999312016FD0B005D3401 /* RegViewController.m */; };
 		90D999352016FD35005D3401 /* MsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D999342016FD35005D3401 /* MsgViewController.m */; };
-		90D99937201711AB005D3401 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D99936201711AB005D3401 /* RationalOwl.framework */; };
-		90D99938201711E2005D3401 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D99936201711AB005D3401 /* RationalOwl.framework */; };
-		90D99939201711E2005D3401 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90D99936201711AB005D3401 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		90E4B98D20219CB500FA07D8 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E4B98B20219C9F00FA07D8 /* RationalOwl.framework */; };
+		90E4B98E20219CB500FA07D8 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90E4B98B20219C9F00FA07D8 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +37,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				90D99939201711E2005D3401 /* RationalOwl.framework in Embed Frameworks */,
+				90E4B98E20219CB500FA07D8 /* RationalOwl.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,7 +62,7 @@
 		90D999312016FD0B005D3401 /* RegViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegViewController.m; sourceTree = "<group>"; };
 		90D999332016FD25005D3401 /* MsgViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MsgViewController.h; sourceTree = "<group>"; };
 		90D999342016FD35005D3401 /* MsgViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MsgViewController.m; sourceTree = "<group>"; };
-		90D99936201711AB005D3401 /* RationalOwl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RationalOwl.framework; sourceTree = "<group>"; };
+		90E4B98B20219C9F00FA07D8 /* RationalOwl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RationalOwl.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +71,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90CA99B2201AE50E003D46B9 /* UserNotifications.framework in Frameworks */,
-				90D99937201711AB005D3401 /* RationalOwl.framework in Frameworks */,
-				90D99938201711E2005D3401 /* RationalOwl.framework in Frameworks */,
+				90E4B98D20219CB500FA07D8 /* RationalOwl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +96,7 @@
 		90D998FA2016F0C3005D3401 = {
 			isa = PBXGroup;
 			children = (
-				90D99936201711AB005D3401 /* RationalOwl.framework */,
+				90E4B98B20219C9F00FA07D8 /* RationalOwl.framework */,
 				90D999052016F0C3005D3401 /* sample */,
 				90D9991E2016F0C4005D3401 /* sampleTests */,
 				90D999042016F0C3005D3401 /* Products */,
@@ -333,6 +331,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/RationalOwl.framework\"";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -388,6 +387,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/RationalOwl.framework\"";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
