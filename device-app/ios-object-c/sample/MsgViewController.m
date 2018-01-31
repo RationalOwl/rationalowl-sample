@@ -169,14 +169,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *s = (NSString *) [messages objectAtIndex:indexPath.row];
+    NSString *str = (NSString *) [messages objectAtIndex:indexPath.row];
     static NSString *CellIdentifier = @"ChatCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = s;
+    cell.textLabel.text = str;
     return cell;
 }
 
@@ -189,9 +189,5 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return messages.count;
 }
-
-
-
-
 @end
 
