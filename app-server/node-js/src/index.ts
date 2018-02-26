@@ -9,7 +9,7 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const SERVICE_ID = 'ab03d23035e74e2fbd868a6f243c2dd5';
+const SERVICE_ID = 'b4a2166853ad4f19acc77b193d89c497';
 
 app.post('/device-group', async (req, res) => {
     const name = req.body.name;
