@@ -4,8 +4,6 @@ Rest API 앱서버 샘플은 REST API를 이용해서 구현한 예제이다.
 
 ## 참고
 
-[데모]()
-
 아래 샘플에서 사용하는 sendHttpRequest() 함수의 구현은 아래와 같다.
 
 ```javascript
