@@ -1,0 +1,20 @@
+.sample-box {
+    border: 1px solid black;
+    margin-bottom: 20px;
+    padding: 5px;
+}
+.response-box {
+    border: 1px solid black;
+    margin-bottom: 20px;
+    padding: 5px;
+}
+
+.sample-box div label{
+    display: inline-block;
+    width: 150px;
+}
+
+.sample-box div input{
+    display: inline-block;
+    width: 300px;
+}

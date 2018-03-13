@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Rationalowl Rest API Sample</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./main.css" rel="stylesheet">
+    <script src="./main.js"></script>
+</head>
+
+<body>
+    <h1>Rationalowl Rest API Sample</h1>
+
+    <div id="response-box" style="visibility: hidden;">
+        <h3>Response</h3>
+        <span id="response-status"></span>
+        <div id="response-body">
+        </div>
+    </div>
+
+    <div class="sample-box">
+        <h3>Register Server</h3>
+        <div>
+            <label for="register-service-id">Service ID *</label>
+            <input id="register-service-id" type="text">
+        </div>
+        <div>
+            <label for="register-name">Register Name *</label>
+            <input id="register-name" type="text">
+        </div>
+        <button onclick="registerServerRun()">Run</button>
+    </div>
+
+    <div class="sample-box">
+        <h3>Unregister Server</h3>
+        <div>
+            <label for="unregister-service-id">Service ID *</label>
+            <input id="unregister-service-id" type="text">
+        </div>
+        <div>
+            <label for="unregister-id">Register ID *</label>
+            <input id="unregister-id" type="text">
+        </div>
+        <button onclick="unregisterServerRun()">Run</button>
+    </div>
+
+    <div class="sample-box">
+        <h3>Multicast Message</h3>
+        <div>
+            <label for="multicast-service-id">Service ID *</label>
+            <input id="multicast-service-id" type="text">
+        </div>
+        <div>
+            <label for="multicast-register-id">Register ID *</label>
+            <input id="multicast-register-id" type="text">
+        </div>
+        <div>
+            <label for="multicast-queueing">Queueing *</label>
+            <select id="multicast-queueing">
+                <option value="1">Enable</option>
+                <option value="0">Disable</option>
+            </select>
+        </div>
+        <div>
+            <label for="multicast-data">Message *</label>
+            <input id="multicast-data" type="text">
+        </div>
+        <div>
+            <label for="multicast-devices">Devices *</label>
+            <input id="multicast-devices" type="text">
+        </div>
+        <div>
+            <label for="multicast-noti-title">Notification Title</label>
+            <input id="multicast-noti-title" type="text">
+        </div>
+        <div>
+            <label for="multicast-noti-body">Notification Body</label>
+            <input id="multicast-noti-body" type="text">
+        </div>
+        <button onclick="multicastRun()">Run</button>
+    </div>
+
+    <div class="sample-box">
+        <h3>Broadcast Message</h3>
+        <div>
+            <label for="broadcast-service-id">Service ID *</label>
+            <input id="broadcast-service-id" type="text">
+        </div>
+        <div>
+            <label for="broadcast-register-id">Register ID *</label>
+            <input id="broadcast-register-id" type="text">
+        </div>
+        <div>
+            <label for="broadcast-queueing">Queueing *</label>
+            <select id="broadcast-queueing">
+                <option value="1">Enable</option>
+                <option value="0">Disable</option>
+            </select>
+        </div>
+        <div>
+            <label for="broadcast-data">Message *</label>
+            <input id="broadcast-data" type="text">
+        </div>
+        <div>
+            <label for="broadcast-noti-title">Notification Title</label>
+            <input id="broadcast-noti-title" type="text">
+        </div>
+        <div>
+            <label for="broadcast-noti-body">Notification Body</label>
+            <input id="broadcast-noti-body" type="text">
+        </div>
+        <button onclick="broadcastRun()">Run</button>
+    </div>
+
+    <div class="sample-box">
+        <h3>Group Message</h3>
+        <div>
+            <label for="groupmsg-service-id">Service ID *</label>
+            <input id="groupmsg-service-id" type="text">
+        </div>
+        <div>
+            <label for="groupmsg-register-id">Register ID *</label>
+            <input id="groupmsg-register-id" type="text">
+        </div>
+        <div>
+            <label for="groupmsg-queueing">Queueing *</label>
+            <select id="groupmsg-queueing">
+                <option value="1">Enable</option>
+                <option value="0">Disable</option>
+            </select>
+        </div>
+        <div>
+            <label for="groupmsg-data">Message *</label>
+            <input id="groupmsg-data" type="text">
+        </div>
+        <div>
+            <label for="groupmsg-group-id">Group ID *</label>
+            <input id="groupmsg-group-id" type="text">
+        </div>
+        <div>
+            <label for="groupmsg-noti-title">Notification Title</label>
+            <input id="groupmsg-noti-title" type="text">
+        </div>
+        <div>
+            <label for="groupmsg-noti-body">Notification Body</label>
+            <input id="groupmsg-noti-body" type="text">
+        </div>
+        <button onclick="groupmsgRun()">Run</button>
+    </div>
+
+    <hr>
+
+    <div class="sample-box">
+        <h3>Device Group Create</h3>
+        <div>
+            <label for="device-group-create-service-id">Service ID *</label>
+            <input id="device-group-create-service-id" type="text">
+        </div>
+        <div>
+            <label for="device-group-create-register-id">Register ID *</label>
+            <input id="device-group-create-register-id" type="text">
+        </div>
+        <div>
+            <label for="device-group-create-name">Group Name *</label>
+            <input id="device-group-create-name" type="text">
+        </div>
+        <div>
+            <label for="device-group-create-devices">Devices *</label>
+            <input id="device-group-create-devices" type="text">
+        </div>
+        <div>
+            <label for="device-group-create-description">description *</label>
+            <input id="device-group-create-description" type="text">
+        </div>
+        <button onclick="deviceGroupCreateRun()">Run</button>
+    </div>
+
+    <div class="sample-box">
+        <h3>Device Group Add</h3>
+        <div>
+            <label for="device-group-add-service-id">Service ID *</label>
+            <input id="device-group-add-service-id" type="text">
+        </div>
+        <div>
+            <label for="device-group-add-register-id">Register ID *</label>
+            <input id="device-group-add-register-id" type="text">
+        </div>
+        <div>
+            <label for="device-group-add-id">Group ID *</label>
+            <input id="device-group-add-id" type="text">
+        </div>
+        <div>
+            <label for="device-group-add-devices">Devices *</label>
+            <input id="device-group-add-devices" type="text">
+        </div>
+        <button onclick="deviceGroupAddRun()">Run</button>
+    </div>
+
+    <div class="sample-box">
+        <h3>Device Group Subtract</h3>
+        <div>
+            <label for="device-group-subtract-service-id">Service ID *</label>
+            <input id="device-group-subtract-service-id" type="text">
+        </div>
+        <div>
+            <label for="device-group-subtract-register-id">Register ID *</label>
+            <input id="device-group-subtract-register-id" type="text">
+        </div>
+        <div>
+            <label for="device-group-subtract-id">Group ID *</label>
+            <input id="device-group-subtract-id" type="text">
+        </div>
+        <div>
+            <label for="device-group-subtract-devices">Devices *</label>
+            <input id="device-group-subtract-devices" type="text">
+        </div>
+        <button onclick="deviceGroupSubtractRun()">Run</button>
+    </div>
+
+    <div class="sample-box">
+        <h3>Device Group Remove</h3>
+        <div>
+            <label for="device-group-remove-service-id">Service ID *</label>
+            <input id="device-group-remove-service-id" type="text">
+        </div>
+        <div>
+            <label for="device-group-remove-register-id">Register ID *</label>
+            <input id="device-group-remove-register-id" type="text">
+        </div>
+        <div>
+            <label for="device-group-remove-id">Group ID *</label>
+            <input id="device-group-remove-id" type="text">
+        </div>
+        <button onclick="deviceGroupRemoveRun()">Run</button>
+    </div>
+
+</body>
+
+</html>
