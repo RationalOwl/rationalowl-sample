@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.customer.test.data.MsgCache;
 import com.customer.test.data.MsgCache.PushMsg;
+import com.rationalowl.minerva.client.android.MinervaManager;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class EventLogListAdapter extends BaseAdapter {
     
     public EventLogListAdapter(){
         Log.d(TAG, "constructor enter");
-        Context context = Service1App.getContext();
+        Context context = MinervaManager.getContext();//Service1App.getContext();
         mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     

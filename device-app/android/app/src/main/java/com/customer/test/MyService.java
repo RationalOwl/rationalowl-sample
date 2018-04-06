@@ -158,6 +158,7 @@ public class MyService extends Service {
                                 intent.putExtra("msg", data);
                                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent2);
                             }
+                            return;
                         }
                         else {
                             String notiTitleStr = notiTitle == null ? "msg" : notiTitle;
@@ -243,6 +244,7 @@ public class MyService extends Service {
                                 intent.putExtra("msg", data);
                                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent2);
                             }
+                            return;
                         }
                         // show notification title and body
                         else {

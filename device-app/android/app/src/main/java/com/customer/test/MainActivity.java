@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(Menu.NONE, MENU_ID_REGISTER, 0, "register/un-register");
-        menu.add(Menu.NONE, MENU_ID_MSG, 0, "push message");
+        menu.add(Menu.NONE, MENU_ID_MSG, 0, "message");
         return super.onCreateOptionsMenu(menu);
     }
     

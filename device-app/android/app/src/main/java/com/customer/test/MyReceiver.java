@@ -29,12 +29,19 @@ public class MyReceiver extends BroadcastReceiver {
             Bundle bundle = intent.getExtras();
             int resultCode = bundle.getInt("resultCode");    
             String msg = null;
-            //yes registration has completed successfully!
+            // yes registration has completed successfully!
             if(resultCode == Result.RESULT_OK) {
                 String deviceRegId = bundle.getString("deviceRegId");
                 MyData data = MyData.getInstance();
                 data.setDeviceRegId(deviceRegId);
                 msg = "registration success !!\n" + "registration id : " + deviceRegId;
+                //TODO : should sendUpstream deviceRegId to the app server which should communicate with
+                /*
+                String data = deviceRegId;
+                String serverRegId = "server registration id which should be communicated!";
+                MinervaManager minMgr = MinervaManager.getInstance(this);
+                minMgr.sendUpstreamMsg(msg, serverRegId);
+                */
             }
             else if(resultCode == Result.RESULT_DEVICE_ALREADY_REGISTERED) {
                 String deviceRegId = bundle.getString("deviceRegId");
@@ -67,7 +74,7 @@ public class MyReceiver extends BroadcastReceiver {
             Toast.makeText(context, msg, Toast.LENGTH_LONG).show();           
         }
         else if(action.equals(MinervaManager.ACTION_MINERVA_UPSTREAM_MSG_RESULT)) {
-            Log.d(TAG, "onReceive" + action);
+            Log.d(TAG, "onReceive" + action);                        
             Bundle bundle = intent.getExtras();
             int resultCode = bundle.getInt("resultCode");    
             String resultMsg = bundle.getString("resultMsg");
@@ -103,9 +110,7 @@ public class MyReceiver extends BroadcastReceiver {
             }       
         }                 
         else if(action.equals(MinervaManager.ACTION_MINERVA_PUSH_MSG_RECEIVED)) {
-            Log.d(TAG, "onReceive 2 " + action);            
-            //jungdo_for_test
-            //String serverURL = intent.getExtras().getString("serverURL");            
+            Log.d(TAG, "onReceive 2 " + action);
             Bundle bundle = intent.getExtras();
             int msgSize = bundle.getInt(MinervaManager.FIELD_MSG_SIZE);
             String jsonStr = bundle.getString(MinervaManager.FIELD_MSG_LIST);
@@ -115,9 +120,12 @@ public class MyReceiver extends BroadcastReceiver {
                 ArrayList<Map<String, Object>> testJson = mapper.readValue(jsonStr, new TypeReference<ArrayList<Map<String, Object>>>() {});
                 
                 for(int i = 0; i < msgSize; i++) {
-                    Map<String, Object> oneMsg = testJson.get(i);
-                    String data = (String)oneMsg.get(MinervaWrapperProtocol.FIELD_PUSH_DATA);
-                    long serverTime = (Long)oneMsg.get(MinervaWrapperProtocol.FIELD_PUSH_SERVER_TIME);                    
+                   Map<String, Object> oneMsg = testJson.get(i);
+                    String sender = (String)oneMsg.get(MinervaManager.FIELD_MSG_SENDER);
+                    String data = (String)oneMsg.get(MinervaManager.FIELD_PUSH_DATA);
+                    long serverTime = (Long)oneMsg.get(MinervaManager.FIELD_PUSH_SERVER_TIME);
+                    String notiTitle = (Long)oneMsg.get(MinervaManager.FIELD_MSG_NOTI_TITLE);
+                    String notiBody = (Long)oneMsg.get(MinervaManager.FIELD_MSG_NOTI_BODY);
                 }
                 
                 System.out.println();
@@ -149,8 +157,11 @@ public class MyReceiver extends BroadcastReceiver {
                 
                 for(int i = 0; i < msgSize; i++) {
                     Map<String, Object> oneMsg = testJson.get(i);
-                    String data = (String)oneMsg.get(MinervaWrapperProtocol.FIELD_PUSH_DATA);
-                    long serverTime = (Long)oneMsg.get(MinervaWrapperProtocol.FIELD_PUSH_SERVER_TIME);                    
+                    String sender = (String)oneMsg.get(MinervaManager.FIELD_MSG_SENDER);
+                    String data = (String)oneMsg.get(MinervaManager.FIELD_PUSH_DATA);
+                    long serverTime = (Long)oneMsg.get(MinervaManager.FIELD_PUSH_SERVER_TIME);
+                    String notiTitle = (Long)oneMsg.get(MinervaManager.FIELD_MSG_NOTI_TITLE);
+                    String notiBody = (Long)oneMsg.get(MinervaManager.FIELD_MSG_NOTI_BODY);
                 }
                 
                 System.out.println();
@@ -159,7 +170,7 @@ public class MyReceiver extends BroadcastReceiver {
                 e.printStackTrace();
             }
             //example end
-             * */           
+            */
             Intent sendIntent = new Intent(context, MyService.class);
             sendIntent.putExtra(MyService.SERVICE_TYPE, MyService.SERVICE_TYPE_P2P_MSG_RECEIVED);
             Object[] argv = new Object[2];

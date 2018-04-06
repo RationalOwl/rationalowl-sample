@@ -54,8 +54,8 @@ public class RegisterActivity extends Activity implements OnClickListener {
     protected void onStart() {
         //Log.d(TAG, "onStart() enter");
         super.onStart();         
-        mUrlEt.setText("gate.rationalowl.com");
-        //mUrlEt.setText("52.78.193.223:9082"); //aws test
+        //mUrlEt.setText("gate.rationalowl.com");
+        mUrlEt.setText("13.125.250.51"); //aws dev
     }
     
     
@@ -95,7 +95,8 @@ public class RegisterActivity extends Activity implements OnClickListener {
                 String url = mUrlEt.getText().toString();
                 MinervaManager mgr = MinervaManager.getInstance();
                 //mgr.registerDevice(url, "faebcfe844d54d449136491fb253619d","단말등록이름2"); //hostway
-                mgr.registerDevice(url, "faebcfe844d54d449136491fb253619d","단말등록이름"); //tta
+                mgr.registerDevice(url, "5eba22cda7b747c0aa2e22bc7a833d24","My Android 1"); //aws dev gate
+                //mgr.registerDevice(url, "faebcfe844d54d449136491fb253619d","단말등록이름"); //tta
                 //mgr.registerDevice(url, "def829b853d046779e2227bdd091653c","경민테스트폰"); //hostway
                 //mgr.registerDevice(url, "c8574b6882c34db0a6e6691987de1221"); //aws test
                 break;
@@ -103,7 +104,8 @@ public class RegisterActivity extends Activity implements OnClickListener {
             }
             case R.id.unregBtn:
                 MinervaManager mgr = MinervaManager.getInstance();
-                mgr.unregisterDevice("faebcfe844d54d449136491fb253619d"); //hostway
+                mgr.unregisterDevice("5eba22cda7b747c0aa2e22bc7a833d24"); //aws dev gate
+                //mgr.unregisterDevice("faebcfe844d54d449136491fb253619d"); //hostway
                 //mgr.unregisterDevice("def829b853d046779e2227bdd091653c"); //hostway
                 //mgr.unregisterDevice("c8574b6882c34db0a6e6691987de1221"); //aws test
                 break;
