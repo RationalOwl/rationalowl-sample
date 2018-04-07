@@ -11,7 +11,7 @@ Windows 10에서 실행되었다.
 
 ## 샘플 프로젝트 설정
 
-1. [라이브러리](https://cmake.org/download/)를 다운받는다.
+1. [라이브러리](http://guide.rationalowl.com/download/app-server/csharp/1.1.0/rationalowl.app.server.dll)를 다운받는다.
 2. 프로젝트에 라이브러리를 등록한다.
 
 예) csproj일 경우
