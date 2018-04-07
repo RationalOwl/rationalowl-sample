@@ -155,7 +155,7 @@ public class MsgActivity extends Activity implements OnClickListener {
 
 
                 ArrayList<String> destDevices = new ArrayList<String>();
-                destDevices.add("f43c192e212c4a04bda5a80f803e595b");  // my i pad
+                destDevices.add("335a4c36c7aa40bfa7144fff30820d82");  // i pad
                 //destDevices.add("32835fac9df249479cda877b12409bca");  // jungdo_use_phone
                 //destDevices.add("1241670df8694da586605bf431f150a9");  // jungdo_empty_phone(galaxy nexus)
                 //destDevices.add("4285e11625ff4e71a94ad799457358a3");  // helpter designer(g6)
