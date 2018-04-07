@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.customer.test.Service1App;
+import com.rationalowl.minerva.client.android.MinervaManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -107,7 +108,7 @@ public class MsgCache {
         Log.d(TAG, "load enter");
 
         try {
-            Context context = Service1App.getContext();
+            Context context = MinervaManager.getContext();
             //default       
             File privateDir = context.getFilesDir();
             propertyFile = new File(privateDir, MSG_LOG_FILE);
@@ -215,7 +216,7 @@ public class MsgCache {
             }
 
             //finally, save property file.
-            Context context = Service1App.getContext();
+            Context context = MinervaManager.getContext();
             File privateDir = context.getFilesDir();
             File propertyFile = new File(privateDir, MSG_LOG_FILE);
 

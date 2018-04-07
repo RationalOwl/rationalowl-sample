@@ -94,7 +94,6 @@ public class RegisterActivity extends Activity implements OnClickListener {
             case R.id.regBtn: {
                 String url = mUrlEt.getText().toString();
                 MinervaManager mgr = MinervaManager.getInstance();
-                //mgr.registerDevice(url, "faebcfe844d54d449136491fb253619d","단말등록이름2"); //hostway
                 mgr.registerDevice(url, "5eba22cda7b747c0aa2e22bc7a833d24","My Android 1"); //aws dev gate
                 //mgr.registerDevice(url, "faebcfe844d54d449136491fb253619d","단말등록이름"); //tta
                 //mgr.registerDevice(url, "def829b853d046779e2227bdd091653c","경민테스트폰"); //hostway
