@@ -52,7 +52,7 @@
 
 - (IBAction)sendUpstreamMsg:(id)sender {
     //NSString* svcId = @"d0a83353281e4b678774a0efa44fdd82";
-    NSString* serverId = @"fb8bf1de65e443e294588923e187a248";  //sample server
+    NSString* serverId = @"f4c8b4c2f8e24ec1b6ea099480497898";  //sample server
     NSString* msg = inputMessageField.text;
     MinervaManager* mgr = [MinervaManager getInstance];
     [mgr sendUpstreamMsg:msg serverRegId:serverId];
@@ -73,7 +73,7 @@
 - (IBAction)sendP2PMsg:(id)sender {
     NSString* msg = inputMessageField.text;
     NSMutableArray* devices = [[NSMutableArray alloc] init];
-    [devices addObject:@"57e14b87cc2646ef883b99d7de7a9567"];
+    [devices addObject:@"f43c192e212c4a04bda5a80f803e595b"];
     MinervaManager* mgr = [MinervaManager getInstance];
     [mgr sendP2PMsg:msg devices:devices];
     
@@ -169,14 +169,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *str = (NSString *) [messages objectAtIndex:indexPath.row];
+    NSString *s = (NSString *) [messages objectAtIndex:indexPath.row];
     static NSString *CellIdentifier = @"ChatCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = str;
+    cell.textLabel.text = s;
     return cell;
 }
 
@@ -189,5 +189,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return messages.count;
 }
+
+
+
+
 @end
 

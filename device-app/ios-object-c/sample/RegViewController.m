@@ -25,7 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    inputNameField.text = @"gate.rationalowl.com";
+    //inputNameField.text = @"gate.rationalowl.com";
+    inputNameField.text = @"13.125.250.51"; // aws dev env
     
     //set message delegate
     MinervaManager* minMgr = [MinervaManager getInstance];
@@ -48,13 +49,13 @@
     
     NSString* gateHost = inputNameField.text;
     MinervaManager* mgr = [MinervaManager getInstance];
-    [mgr registerDevice:gateHost serviceId:@"faebcfe844d54d449136491fb253619d" deviceRegName:@"my i pad 1"];
+    [mgr registerDevice:gateHost serviceId:@"5eba22cda7b747c0aa2e22bc7a833d24" deviceRegName:@"my i pad 1"];
 }
 
 
 - (IBAction) unregDevice {
     MinervaManager* mgr = [MinervaManager getInstance];
-    [mgr unregisterDevice:@"faebcfe844d54d449136491fb253619d"];
+    [mgr unregisterDevice:@"5eba22cda7b747c0aa2e22bc7a833d24"];
 }
 
 
