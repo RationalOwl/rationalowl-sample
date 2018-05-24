@@ -13,7 +13,7 @@
 @protocol MessageDelegate;
 
 
-@interface MinervaManager  : NSObject <NSStreamDelegate> {
+@interface MinervaManager  : NSObject <NSStreamDelegate> /*<NSURLConnectionDataDelegate, NSURLConnectionDelegate>*/ {
     
 @public 
     
