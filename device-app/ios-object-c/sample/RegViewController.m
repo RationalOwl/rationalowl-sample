@@ -25,8 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //inputNameField.text = @"gate.rationalowl.com";
-    inputNameField.text = @"13.125.250.51"; // aws dev env
+    inputNameField.text = @"gate.rationalowl.com";
+    //inputNameField.text = @"13.125.250.51"; // aws dev env
     
     //set message delegate
     MinervaManager* minMgr = [MinervaManager getInstance];

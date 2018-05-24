@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		90ABE2DF207B915700292483 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D99936201711AB005D3401 /* RationalOwl.framework */; };
-		90ABE2E0207B915700292483 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90D99936201711AB005D3401 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9036A82920B6DF030008B376 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9036A82520B6DE390008B376 /* RationalOwl.framework */; };
+		9036A82A20B6DF030008B376 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9036A82520B6DE390008B376 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		90CA99B2201AE50E003D46B9 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CA99B0201AE284003D46B9 /* UserNotifications.framework */; };
 		90D999082016F0C3005D3401 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D999072016F0C3005D3401 /* AppDelegate.m */; };
 		90D9990E2016F0C4005D3401 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90D9990C2016F0C4005D3401 /* Main.storyboard */; };
@@ -31,13 +31,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		90ABE2E1207B915700292483 /* Embed Frameworks */ = {
+		9036A82B20B6DF030008B376 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				90ABE2E0207B915700292483 /* RationalOwl.framework in Embed Frameworks */,
+				9036A82A20B6DF030008B376 /* RationalOwl.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,6 +45,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9036A82520B6DE390008B376 /* RationalOwl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RationalOwl.framework; sourceTree = "<group>"; };
 		90CA99B0201AE284003D46B9 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		90D999032016F0C3005D3401 /* sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D999062016F0C3005D3401 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -62,7 +63,6 @@
 		90D999312016FD0B005D3401 /* RegViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegViewController.m; sourceTree = "<group>"; };
 		90D999332016FD25005D3401 /* MsgViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MsgViewController.h; sourceTree = "<group>"; };
 		90D999342016FD35005D3401 /* MsgViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MsgViewController.m; sourceTree = "<group>"; };
-		90D99936201711AB005D3401 /* RationalOwl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RationalOwl.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +71,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90CA99B2201AE50E003D46B9 /* UserNotifications.framework in Frameworks */,
-				90ABE2DF207B915700292483 /* RationalOwl.framework in Frameworks */,
+				9036A82920B6DF030008B376 /* RationalOwl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +96,7 @@
 		90D998FA2016F0C3005D3401 = {
 			isa = PBXGroup;
 			children = (
-				90D99936201711AB005D3401 /* RationalOwl.framework */,
+				9036A82520B6DE390008B376 /* RationalOwl.framework */,
 				90D999052016F0C3005D3401 /* sample */,
 				90D9991E2016F0C4005D3401 /* sampleTests */,
 				90D999042016F0C3005D3401 /* Products */,
@@ -151,7 +151,7 @@
 				90D998FF2016F0C3005D3401 /* Sources */,
 				90D999002016F0C3005D3401 /* Frameworks */,
 				90D999012016F0C3005D3401 /* Resources */,
-				90ABE2E1207B915700292483 /* Embed Frameworks */,
+				9036A82B20B6DF030008B376 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
