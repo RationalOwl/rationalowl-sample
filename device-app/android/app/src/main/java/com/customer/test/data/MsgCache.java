@@ -4,7 +4,6 @@ package com.customer.test.data;
 import android.content.Context;
 import android.util.Log;
 
-import com.customer.test.Service1App;
 import com.rationalowl.minerva.client.android.MinervaManager;
 
 import org.json.JSONArray;
@@ -91,7 +90,7 @@ public class MsgCache {
 
     public void clearMsgList() {
         int msgSize = mMsgLogList.size();
-        PushMsg lastMsg = mMsgLogList.get(msgSize - 1);
+        PushMsg lastMsg = mMsgLogList.get(0);
         mMsgLogList.clear();
         mMsgLogList.add(0, lastMsg);
         save();

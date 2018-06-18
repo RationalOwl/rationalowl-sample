@@ -1,6 +1,7 @@
 package com.customer.test;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,16 +13,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.rationalowl.minerva.client.android.DeviceRegisterResultListener;
 import com.rationalowl.minerva.client.android.MinervaManager;
+import com.rationalowl.minerva.client.android.Result;
 import com.rationalowl.minerva.client.android.data.MinervaDataManager;
 
-public class RegisterActivity extends Activity implements OnClickListener {
+public class RegisterActivity extends Activity implements OnClickListener, DeviceRegisterResultListener {
     
     private static final String TAG = "RegisterActivity";
-    
-    private static final int MENU_MAIN = Menu.FIRST;
-    
+
     
     RadioGroup mSCRg;
     RadioButton mAcceptRb;
@@ -38,7 +41,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
         Button regBtn = (Button) findViewById(R.id.regBtn);
         Button unreglBtn = (Button) findViewById(R.id.unregBtn);
         regBtn.setOnClickListener(this);
-        unreglBtn.setOnClickListener(this);        
+        unreglBtn.setOnClickListener(this);
     }
 
     
@@ -56,46 +59,36 @@ public class RegisterActivity extends Activity implements OnClickListener {
         super.onStart();         
         //mUrlEt.setText("gate.rationalowl.com");
         mUrlEt.setText("13.125.250.51"); //aws dev
+
     }
     
     
     @Override
     protected void onResume() {
         //Log.d(TAG, "onResume enter");       
-        super.onResume();      
-        //setTable();        
+        super.onResume();
+
+        //set register callback listener
+        MinervaManager minMgr = MinervaManager.getInstance();
+        minMgr.setRegisterResultListener(this);
     }    
-    
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(Menu.NONE, MENU_MAIN, 0, "main");
-        return super.onCreateOptionsMenu(menu);
-    }
-    
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Log.d(TAG, "onOptionsItemSelected enter");
-        switch (item.getItemId()) {
-            case MENU_MAIN:
-                Log.d(TAG, "onOptionsItemSelected 1");
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);       
-                return true;            
-        }
-        return super.onOptionsItemSelected(item);
-    }        
+
    
     
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.regBtn: {
                 String url = mUrlEt.getText().toString();
+
+                // sometimes, FCM onTokenRefresh() callback not called,
+                // So, before registering we should need to call explicitly it.
+                String fcmToken = FirebaseInstanceId.getInstance().getToken();
                 MinervaManager mgr = MinervaManager.getInstance();
-                mgr.registerDevice(url, "5eba22cda7b747c0aa2e22bc7a833d24","My Android 1"); //aws dev gate
-                //mgr.registerDevice(url, "faebcfe844d54d449136491fb253619d","단말등록이름"); //tta
+                mgr.setDeviceToken(fcmToken);
+
+                // register device app.
+                mgr.registerDevice(url, "54a50ca3c9fa4629a3766b225fae4f8d","My Android 1"); //aws dev gate
+                //mgr.registerDevice(url, "faebcfe844d54d449136491fb253619d","단말등록이름2"); //hostway
                 //mgr.registerDevice(url, "def829b853d046779e2227bdd091653c","경민테스트폰"); //hostway
                 //mgr.registerDevice(url, "c8574b6882c34db0a6e6691987de1221"); //aws test
                 break;
@@ -103,13 +96,45 @@ public class RegisterActivity extends Activity implements OnClickListener {
             }
             case R.id.unregBtn:
                 MinervaManager mgr = MinervaManager.getInstance();
-                mgr.unregisterDevice("5eba22cda7b747c0aa2e22bc7a833d24"); //aws dev gate
-                //mgr.unregisterDevice("faebcfe844d54d449136491fb253619d"); //hostway
+                mgr.unregisterDevice("54a50ca3c9fa4629a3766b225fae4f8d"); //aws dev gate
                 //mgr.unregisterDevice("def829b853d046779e2227bdd091653c"); //hostway
                 //mgr.unregisterDevice("c8574b6882c34db0a6e6691987de1221"); //aws test
                 break;
             default:
                 break;
         }        
-    }      
+    }
+
+    @Override
+    public void onRegisterResult(int resultCode, String resultMsg, String deviceRegId) {
+        Log.d(TAG, "onRegisterResult " + resultCode);
+        String msg = resultMsg + "registration id : " + deviceRegId;
+        //yes registration has completed successfully!
+        if(resultCode == Result.RESULT_OK) {
+            // save deviceRegId to local file
+            // and send deviceRegId to app server using MinervaManager.sendUpstreamMsg()
+            // MinervaManager minMgr = MinervaManager.getInstance();
+            // minMgr.sendUpstreamMsg("data including deviceRegId", "your app server registration id");
+        }
+        //already registered
+        else if(resultCode == Result.RESULT_DEVICE_ALREADY_REGISTERED) {
+            // already registered.
+        }
+        //registration error has occurred!
+        else {
+            //error occurred while registering device app.
+        }
+        Log.d(TAG, msg);
+    }
+
+    @Override
+    public void onUnregisterResult(int resultCode, String resultMsg) {
+
+        //yes unregistration has completed successfully!
+        if(resultCode == Result.RESULT_OK) {
+        }
+        //registration error has occurred!
+        else {
+        }
+    }
 }

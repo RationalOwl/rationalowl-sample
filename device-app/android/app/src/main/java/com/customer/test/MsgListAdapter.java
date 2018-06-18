@@ -24,7 +24,6 @@ public class MsgListAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     
     private List<PushMsg> mMsgList;
-    //private Context context;
 
 
     public MsgListAdapter(Context ctx) {
@@ -81,7 +80,7 @@ public class MsgListAdapter extends BaseAdapter {
         {
             int msgSize = mMsgList.size();
             
-            if(msgSize > 300) {
+            if(msgSize > 100) {
                 MsgCache cache = MsgCache.getInstance();
                 cache.clearMsgList();
 

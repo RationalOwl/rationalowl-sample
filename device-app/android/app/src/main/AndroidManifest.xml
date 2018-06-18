@@ -1,17 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.customer.test">
 
-    <!--  for device control demo -->
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
-    <!--  user app permission -->
-    <uses-permission android:name="android.permission.GET_TASKS" />
 
-    <!--  by bug android 4.2 and 4.3 -->
-    <uses-permission android:name="android.permission.VIBRATE" android:maxSdkVersion="18"/>
     <application
         android:name="com.customer.test.Service1App"
         android:allowBackup="true"
@@ -20,35 +15,33 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <service android:enabled="true" android:name="com.customer.test.MyService" />
-        <receiver android:name="com.customer.test.MyReceiver" android:enabled="true" android:exported="true" android:label="MyReceiver">
-            <intent-filter>
-                <!-- register/un-register result -->
-                <action android:name="com.rationalowl.minerva.action.ACTION_MINERVA_DEVICE_REGISTER_RESULT"/>
-                <action android:name="com.rationalowl.minerva.action.ACTION_MINERVA_DEVICE_UNREGISTER_RESULT" />
-
-                <!-- send message result -->
-                <action android:name="com.rationalowl.minerva.action.ACTION_MINERVA_UPSTREAM_MSG_RESULT" />
-                <action android:name="com.rationalowl.minerva.action.ACTION_MINERVA_P2P_MSG_RESULT" />
-
-                <!-- receive message -->
-                <action android:name="com.rationalowl.minerva.action.ACTION_MINERVA_PUSH_MSG_RECEIVED" />
-                <action android:name="com.rationalowl.minerva.action.ACTION_MINERVA_P2P_MSG_RECEIVED" />
-            </intent-filter>
-        </receiver>
-        <activity
-            android:name="com.customer.test.MainActivity"
-            android:label="@string/title_activity_main" >
+        <!-- activity using Rationalowl Register API -->
+        <activity android:name="com.customer.test.RegisterActivity"
+            android:label="단말앱 등록" >
+        </activity>
+        <!-- activity using Rationalowl real-time messaging API   -->
+        <activity android:name="com.customer.test.MsgActivity"
+            android:label="메시지" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.customer.test.RegisterActivity"
-            android:label="푸시서버를 등록하세요" >
-        </activity>
-        <activity android:name="com.customer.test.MsgActivity"
-            android:label="푸시메시지" >
-        </activity>
+
+        <!-- FCM token received -->
+        <service
+            android:name=".FcmTokenService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <!-- FCM messaging while back ground -->
+        <service
+            android:name=".FcmMsgService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
+
 </manifest>

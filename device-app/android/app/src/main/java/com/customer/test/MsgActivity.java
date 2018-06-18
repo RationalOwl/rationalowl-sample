@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,18 +20,21 @@ import android.widget.ListView;
 
 import com.customer.test.data.MsgCache;
 import com.customer.test.data.MsgCache.PushMsg;
-import com.customer.test.data.MyData;
+import com.rationalowl.minerva.client.android.MessageListener;
 import com.rationalowl.minerva.client.android.MinervaManager;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
 
-public class MsgActivity extends Activity implements OnClickListener {
+public class MsgActivity extends AppCompatActivity implements OnClickListener, MessageListener {
     
     private static final String TAG = "NoticeListActivity";
-    
-    private static final int MENU_MAIN = Menu.FIRST;
+
+    private static final int MENU_ID_REGISTER = Menu.FIRST;
     
     BroadcastReceiver mMsgRecver;
     
@@ -40,7 +44,6 @@ public class MsgActivity extends Activity implements OnClickListener {
     private Button upstreamBtn;
     private Button p2pBtn;
     private EditText et;
-    
     
     private MsgListAdapter mListAdapter = null;
 
@@ -91,27 +94,38 @@ public class MsgActivity extends Activity implements OnClickListener {
         super.onStart();
         LocalBroadcastManager.getInstance(this).registerReceiver((mMsgRecver), new IntentFilter("demo"));
     }
-    
-    
+
+
+    @Override
+    public void onStop() {
+        Log.d(TAG, "onStop() enter");
+        super.onStop();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mMsgRecver);
+        //this.unregisterReceiver(mMsgRecver);
+        //finish();
+    }
+
+
+
     @Override
     protected void onResume() {
         Log.d(TAG, "onResume() enter");
         super.onResume();          
         mListAdapter.notifyDataSetChanged();
-        //setTable();
+
+        //set message callback listener
+        MinervaManager minMgr = MinervaManager.getInstance();
+        minMgr.setMsgListener(this);
     }
-    
-    
+
+
+
     @Override
-    public void onStop() {        
-        Log.d(TAG, "onStop() enter");
-        super.onStop();
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mMsgRecver);
-        //this.unregisterReceiver(mMsgRecver);
-        //finish();       
-    }  
-    
-    
+    public void onPause() {
+        super.onPause();
+    }
+
+
     public void onClick(View v) {
         String msg = et.getText().toString();
         
@@ -129,14 +143,12 @@ public class MsgActivity extends Activity implements OnClickListener {
                 cache.addMsg(pushMsg);
                 
                 mListAdapter.notifyDataSetChanged();
-                String serverId = "f4c8b4c2f8e24ec1b6ea099480497898"; // tta
-                //String serverId = "1fe45769e24348bfa501c32032958483"; // jungdo
+                String serverId = "8e6c7c6d56c447db9344b91ba26ba542"; // java test app server
+                //String serverId = "def829b853d046779e2227bdd091653c:null";
                 //String serverId = "0bb887049fb04bca924853be0e78f28d"; //gyeong min python
                 MinervaManager minMgr = MinervaManager.getInstance();
                 //manage umi(upstream message id) to check upstream delivery
-                // when ACTION_MINERVA_UPSTREAM_MSG_RESULT fires
                 String umi = minMgr.sendUpstreamMsg(msg, serverId);
-                // manage umi if you want to check later
                 break;
             }
             case R.id.p2pBtn:                
@@ -151,21 +163,24 @@ public class MsgActivity extends Activity implements OnClickListener {
                 pushMsg.mElapsedTime = 0;
                 cache.addMsg(pushMsg);
 
-                mListAdapter.notifyDataSetChanged();
+                mListAdapter.notifyDataSetChanged();          
 
+                MinervaManager minMgr = MinervaManager.getInstance();
 
+                // target device(device registration id) list
                 ArrayList<String> destDevices = new ArrayList<String>();
-                destDevices.add("335a4c36c7aa40bfa7144fff30820d82");  // i pad
-                //destDevices.add("32835fac9df249479cda877b12409bca");  // jungdo_use_phone
+                //destDevices.add("50b0020d9ba2405d88b1d967839d696e");  // i pad
+                //destDevices.add("2b9f6349d5f4432a9baa77e01353303a");  // galaxy nexus
+                destDevices.add("25ee697f86e74c84b2b618dc5f41b5df");  // note 5
+                destDevices.add("5ed0976ff51b41d5a144e8b81aa852cb");  // xiaomi oreo
                 //destDevices.add("1241670df8694da586605bf431f150a9");  // jungdo_empty_phone(galaxy nexus)
                 //destDevices.add("4285e11625ff4e71a94ad799457358a3");  // helpter designer(g6)
                 //destDevices.add("8a7540dd28854615b5b17c933a167206");  // helpter ceo(aka)
                 //destDevices.add("bc8a9818c02d4e84a6b9cbe6357c0749");  // helpter gpad
 
-                MinervaManager minMgr = MinervaManager.getInstance();
-                //manage pmi(p2p message id) to check p2p delivery
-                // when ACTION_MINERVA_P2P_MSG_RESULT fires
-                String pmi = minMgr.sendP2PMsg(msg, destDevices);
+                // if you want to push to the device apps which are inactive set notification title and notification body.
+                String pmi = minMgr.sendP2PMsg(msg, destDevices, true, "noti title", "noti body");
+                // String pmi = minMgr.sendP2PMsg(msg, destDevices);
                 // manage pmi if you want to check later
                 break;
             default:
@@ -178,7 +193,7 @@ public class MsgActivity extends Activity implements OnClickListener {
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(Menu.NONE, MENU_MAIN, 0, "main");
+        menu.add(Menu.NONE, MENU_ID_REGISTER, 0, "register device app");
         return super.onCreateOptionsMenu(menu);
     }
     
@@ -187,13 +202,130 @@ public class MsgActivity extends Activity implements OnClickListener {
     public boolean onOptionsItemSelected(MenuItem item) {
         Log.d(TAG, "onOptionsItemSelected enter");
         switch (item.getItemId()) {
-            case MENU_MAIN:
+            case MENU_ID_REGISTER:
                 Log.d(TAG, "onOptionsItemSelected 1");
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, RegisterActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);       
+                startActivity(intent);
                 return true;            
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onDownstreamMsgReceived(ArrayList<JSONObject> msgs) {
+        Log.d(TAG, "onDownstreamMsgReceived enter");
+
+        int msgSize = msgs.size();
+
+        try {
+            JSONObject oneMsg = null;
+            String data = null, notiTitle = null, notiBody = null;
+            String sender = null;
+            long serverTime;
+            long curTime = System.currentTimeMillis();
+            long elapseTime;
+            Calendar cal = Calendar.getInstance();
+            String curTimeStr = cal.get(Calendar.YEAR) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
+            String serverTimeStr = null;
+            MsgCache cache = MsgCache.getInstance();
+            PushMsg pushMsg = new PushMsg();
+
+            // recent messages are ordered previous position [recentest, recent, old, older, oldest...]
+            // this sample app treat old message first.
+            for (int i = msgSize - 1; i >= 0; i--) {
+                oneMsg = msgs.get(i);
+                sender = (String) oneMsg.get(MinervaManager.FIELD_MSG_SENDER);
+                data = (String) oneMsg.get(MinervaManager.FIELD_MSG_DATA);
+                serverTime = (Long) oneMsg.get(MinervaManager.FIELD_MSG_SERVER_TIME);
+
+                // optional fields
+                if(oneMsg.has(MinervaManager.FIELD_MSG_NOTI_TITLE)) {
+                    notiTitle = (String) oneMsg.get(MinervaManager.FIELD_MSG_NOTI_TITLE);
+                }
+
+                if(oneMsg.has(MinervaManager.FIELD_MSG_NOTI_BODY)) {
+                    notiBody = (String) oneMsg.get(MinervaManager.FIELD_MSG_NOTI_BODY);
+                }
+                curTime = System.currentTimeMillis();
+                elapseTime = curTime - serverTime;
+                cal.setTimeInMillis(serverTime);
+                serverTimeStr = cal.get(Calendar.YEAR) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
+
+                pushMsg = new PushMsg();
+                pushMsg.mData = data;
+                pushMsg.mSrcTime = serverTimeStr;
+                pushMsg.mDestTime = curTimeStr;
+                pushMsg.mElapsedTime = elapseTime;
+                cache.addMsg(pushMsg);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        mListAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onP2PMsgReceived(ArrayList<JSONObject> msgs) {
+        Log.d(TAG, "onP2PMsgReceived enter");
+
+        int msgSize = msgs.size();
+
+        try {
+
+            JSONObject oneMsg = null;
+            String sender = null;
+            String data = null, notiTitle = null, notiBody = null;
+            long serverTime;
+            long curTime = System.currentTimeMillis();
+            long elapseTime;
+            Calendar cal = Calendar.getInstance();
+            String curTimeStr = cal.get(Calendar.YEAR) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
+            String serverTimeStr = null;
+            MsgCache cache = MsgCache.getInstance();
+            PushMsg pushMsg = new PushMsg();
+
+            for (int i = 0; i < msgSize; i++) {
+                oneMsg = msgs.get(i);
+                sender = (String) oneMsg.get(MinervaManager.FIELD_MSG_SENDER);
+                data = (String) oneMsg.get(MinervaManager.FIELD_MSG_DATA);
+                serverTime = (Long) oneMsg.get(MinervaManager.FIELD_MSG_SERVER_TIME);
+
+                // optional fields
+                if(oneMsg.has(MinervaManager.FIELD_MSG_NOTI_TITLE)) {
+                    notiTitle = (String) oneMsg.get(MinervaManager.FIELD_MSG_NOTI_TITLE);
+                }
+
+                if(oneMsg.has(MinervaManager.FIELD_MSG_NOTI_BODY)) {
+                    notiBody = (String) oneMsg.get(MinervaManager.FIELD_MSG_NOTI_BODY);
+                }
+                curTime = System.currentTimeMillis();
+                elapseTime = curTime - serverTime;
+                cal.setTimeInMillis(serverTime);
+                serverTimeStr = cal.get(Calendar.YEAR) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
+
+                pushMsg = new PushMsg();
+                pushMsg.mData = data;
+                pushMsg.mSrcTime = serverTimeStr;
+                pushMsg.mDestTime = curTimeStr;
+                pushMsg.mElapsedTime = elapseTime;
+                cache.addMsg(pushMsg);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        mListAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onSendUpstreamMsgResult(int resultCode, String resultMsg, String requestId) {
+        Log.d(TAG, "onSendUpstreamMsgResult enter");
+    }
+
+    @Override
+    public void onSendP2PMsgResult(int resultCode, String resultMsg, String requestId) {
+        Log.d(TAG, "onSendP2PMsgResult enter");
     }
 }
