@@ -30,7 +30,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // RationalOwl library
-    implementation 'com.rationalowl.minerva.client.android:rationalowl-android-2.0.1:2.0.1@aar'
+    implementation 'com.rationalowl.minerva.client.android:rationalowl-android-2.0.2:2.0.2@aar'
+
+    // RationalOwl using library
     implementation 'android.arch.lifecycle:extensions:1.1.0'
 
     // FCM library

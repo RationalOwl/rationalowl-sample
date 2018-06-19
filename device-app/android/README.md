@@ -11,6 +11,32 @@ Android 단말앱 샘플은 Android 단말앱 라이브러리에서 제공하는
 ![이미지 이름](./img/project.png)
 
 
+### 단말앱 라이브러리 적용 확인
+
+래셔널아울 단말앱 라이브러리 적용을 확인한다.
+
+1. 'app > libs' 폴더에 'rationalowl-andoird-x.x.x.aar' 라이브러리 존재를 확인한다.
+2. 탑레벨 build.gradle 파일에 'flatDir { dirs 'libs' }'이 삽입되어 있어야 한다.
+
+![이미지 이름](./img/top_build_gradle.png)
+
+3. 앱레벨 build.gradle 파일에 세 라이브러리가 디펜던시에 명시되어야 한다.
+ a. 래셔널아울 단말앱 라이브러리
+ b. 라이프사이클 라이브러리
+ c. fcm 라이브러리
+
+![이미지 이름](./img/app_build_gradle.png)
+
+
+### FCM(Firebase Cloud Messaging) 적용
+
+안드로이드 마쉬멜로 이전에는 백그라운드의 제한이 없어서 안드로이드 단말앱에서 래셔널아울 단말앱 라이브러리를 통해 실시간 푸시 알림이 가능하였다.
+ 
+그러나 안드로이드 마쉬멜로의 백그라운드 제한과 결정적으로 안드로이드 오레오의 등장으로 사실상 백그라운드시 퍼블릭 푸시를 
+이용하지 않을 수 없게 되었다.
+[FCM 설정 가이드](https://github.com/RationalOwl/rationalowl-guide/tree/master/device-app/fcm-setting)를 통해 FCM설정한다.
+
+
 ### 샘플앱 실행
 
 안드로이드 단말을 PC에 연결 후 안드로이드 스튜디오에서 실행시키면 실제 안드로이드 단말에 샘플앱이 설치 후 실행된다.
