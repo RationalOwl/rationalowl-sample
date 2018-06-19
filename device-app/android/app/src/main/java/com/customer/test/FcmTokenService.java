@@ -15,7 +15,7 @@ public class FcmTokenService  extends FirebaseInstanceIdService {
      * the previous token had been compromised. Note that this is called when the InstanceID token
      * is initially generated so this is where you would retrieve the token.
      */
-    // [START refresh_token]
+
     @Override
     public void onTokenRefresh() {
         // Get updated InstanceID token.
@@ -25,5 +25,5 @@ public class FcmTokenService  extends FirebaseInstanceIdService {
         MinervaManager minMgr = MinervaManager.getInstance();
         minMgr.setDeviceToken(refreshedToken);
     }
-    // [END refresh_token]
+
 }
