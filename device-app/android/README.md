@@ -13,17 +13,17 @@ Android 단말앱 샘플은 Android 단말앱 라이브러리에서 제공하는
 
 ### 단말앱 라이브러리 적용 확인
 
-래셔널아울 단말앱 라이브러리 적용을 확인한다.
+래셔널아울 안드로이드 단말앱 라이브러리 적용을 확인한다.
 
 1. 'app > libs' 폴더에 'rationalowl-andoird-x.x.x.aar' 라이브러리 존재를 확인한다.
 2. 탑레벨 build.gradle 파일에 'flatDir { dirs 'libs' }'이 삽입되어 있어야 한다.
 
 ![이미지 이름](./img/top_build_gradle.png)
 
-3. 앱레벨 build.gradle 파일에 세 라이브러리가 디펜던시에 명시되어야 한다.
- a. 래셔널아울 단말앱 라이브러리
- b. 라이프사이클 라이브러리
- c. fcm 라이브러리
+3. 앱레벨 build.gradle 파일에 세 라이브러리가 디펜던시에 명시되어야 한다.    
+ a. 래셔널아울 단말앱 라이브러리    
+ b. 라이프사이클 라이브러리    
+ c. fcm 라이브러리    
 
 ![이미지 이름](./img/app_build_gradle.png)
 
@@ -31,9 +31,9 @@ Android 단말앱 샘플은 Android 단말앱 라이브러리에서 제공하는
 ### FCM(Firebase Cloud Messaging) 적용
 
 안드로이드 마쉬멜로 이전에는 백그라운드의 제한이 없어서 안드로이드 단말앱에서 래셔널아울 단말앱 라이브러리를 통해 실시간 푸시 알림이 가능하였다.
- 
-그러나 안드로이드 마쉬멜로의 백그라운드 제한과 결정적으로 안드로이드 오레오의 등장으로 사실상 백그라운드시 퍼블릭 푸시를 
-이용하지 않을 수 없게 되었다.
+
+그러나 안드로이드 마쉬멜로의 백그라운드 제한과 결정적으로 안드로이드 오레오의 등장으로 사실상 단말앱이 백그라운드시 퍼블릭 푸시가 유일한 알림 수단이 되었다. 
+따라서 현재 래셔널아울 서비스도 안드로이드 단말이 백그라운드일 경우 FCM을 통해 알림을 보낸다.
 [FCM 설정 가이드](https://github.com/RationalOwl/rationalowl-guide/tree/master/device-app/fcm-setting)를 통해 FCM설정한다.
 
 
@@ -56,20 +56,14 @@ Android 단말앱 샘플은 Android 단말앱 라이브러리에서 제공하는
 public class Service1App extends Application {
     private static final String TAG = "MyApp";
 
-    private static Context context;
-    
 
     public void onCreate(){
         Log.d(TAG, "onCreate enter");
         super.onCreate();
-        context = getApplicationContext();
+        Context context = getApplicationContext();
         MinervaManager.init(context);
     }
 
-
-    public static Context getContext() {
-        return context;
-    }
 }
 ```
 
@@ -84,24 +78,31 @@ public class Service1App extends Application {
 ![이미지 이름](./img/sample_reg1.png)
 
 
-
 샘플코드에서 registerDevice를 검색하면 아래의 샘플코드를 확인할 수 있다. 
+주의 할 점은 샘플코드에서처럼 registerDevice() API 호출 전 setDeviceToken() API 호출을 해야 한다.
 
 
 ```java
 public void onClick(View v) {
-    switch (v.getId()) {
-        case R.id.regBtn: {
-            String gateHost = mUrlEt.getText().toString();
-            MinervaManager mgr = MinervaManager.getInstance(this);
-            mgr.registerDevice(gateHost, "faebcfe844d54d449136491fb253619d", "단말등록이름"); 
-            break;
+        switch (v.getId()) {
+            case R.id.regBtn: {
+                String url = mUrlEt.getText().toString();
 
+                // sometimes, FCM onTokenRefresh() callback not called,
+                // So, before registering we should need to call explicitly it.
+                String fcmToken = FirebaseInstanceId.getInstance().getToken();
+                MinervaManager mgr = MinervaManager.getInstance();
+                mgr.setDeviceToken(fcmToken);
+
+                // register device app.
+                mgr.registerDevice(url, "54a50ca3c9fa4629a3766b225fae4f8d","My Android 1");
+                break;
+
+            }
+            ...
         }        
-        default:
-            break;
-    }        
-}      
+    }
+
 ```
 
 MinervaManager.registerDevice() API의 각 인자별 의미는 다음과 같다.
@@ -123,48 +124,58 @@ MinervaManager.registerDevice() API의 각 인자별 의미는 다음과 같다.
 
 ### 단말앱 등록 결과
 
-소스코드에서 ACTION_MINERVA_DEVICE_REGISTER_RESULT를 검색하면 아래의 샘플코드를 확인 할 수 있다.
+#### 단말앱 등록 결과 리스너 등록
+
+DeviceRegisterResultListener 인터페이스는 두 개의 메소드를 선언한다.
+
+1. onRegisterResult 
+ - 단말앱 등록 결과 콜백
+2. onUnregisterResult
+ - 단말앱 등록 해제 결과 콜백
+
+
+setRegisterResultListener() API를 통해 DeviceRegisterResultListener 리스너를 등록한다.
+샘플코드에서 setRegisterResultListener 로 검색하면 아래의 리스너 등록 코드를 확인할 수 있다. 
 
 ```java
-public void onReceive(Context context, Intent intent) {
-    String action = intent.getAction();    
+@Override
+protected void onResume() {
+    //Log.d(TAG, "onResume enter");       
+    super.onResume();
 
-    if(action.equals(MinervaManager.ACTION_MINERVA_DEVICE_REGISTER_RESULT)) {
-        Bundle bundle = intent.getExtras();
-        int resultCode = bundle.getInt("resultCode");    
-        String msg = null;
-        // yes registration has completed successfully!
-        if(resultCode == Result.RESULT_OK) {
-            String deviceRegId = bundle.getString("deviceRegId");
-            MyData data = MyData.getInstance();
-            // save and manage deviceRegId
-            data.setDeviceRegId(deviceRegId);            
-            msg = "registration success !!\n" + "registration id : " + deviceRegId;
+    //set register callback listener
+    MinervaManager minMgr = MinervaManager.getInstance();
+    minMgr.setRegisterResultListener(this);
+}    
+```
 
-            //TODO : should sendUpstream deviceRegId to the app server which should communicate with
-            /*
-            String data = deviceRegId;
-            String serverRegId = "server registration id which should be communicated!";
-            MinervaManager minMgr = MinervaManager.getInstance(this);
-            minMgr.sendUpstreamMsg(msg, serverRegId);
-            */
+#### 단말앱 등록 결과 콜백 처리
 
-        }
-        else if(resultCode == Result.RESULT_DEVICE_ALREADY_REGISTERED) {
-            String deviceRegId = bundle.getString("deviceRegId");
-            MyData data = MyData.getInstance();
-            data.setDeviceRegId(deviceRegId);
-            msg = bundle.getString("resultMsg") + "!!\n" + "registration id : " + deviceRegId;
-        }
-        //registration error has occurred!
-        else {
-            msg = bundle.getString("resultMsg");
-        }
-        Log.d(TAG, msg);
-        Toast.makeText(context, msg, Toast.LENGTH_LONG).show();           
-    } 
-    ...
-} 
+registerDevice() API 호출 결과는 앞서 리스너로 등록한 onRegisterResult() 콜백을 통해 처리한다.
+샘플코드에서 onRegisterResult로 검색하면 아래의 샘플 코드를 확인할 수 있다.
+
+```java
+@Override
+public void onRegisterResult(int resultCode, String resultMsg, String deviceRegId) {
+    Log.d(TAG, "onRegisterResult " + resultCode);
+    String msg = resultMsg + "registration id : " + deviceRegId;
+    //yes registration has completed successfully!
+    if(resultCode == Result.RESULT_OK) {
+        // save deviceRegId to local file
+        // and send deviceRegId to app server using MinervaManager.sendUpstreamMsg()
+        // MinervaManager minMgr = MinervaManager.getInstance();
+        // minMgr.sendUpstreamMsg("data including deviceRegId", "your app server registration id");
+    }
+    //already registered
+    else if(resultCode == Result.RESULT_DEVICE_ALREADY_REGISTERED) {
+        // already registered.
+    }
+    //registration error has occurred!
+    else {
+        //error occurred while registering device app.
+    }
+    Log.d(TAG, msg);
+}
 ```
 
 단말앱 등록이 성공되면 발급받은 단말 등록 아이디를 단말앱은 저장 및 관리해야 하고 해당 단말 등록 아이디를 단말앱을 관리 및 통신할 대상 앱서버에게 업스트림 API를 통해 전달해야 한다.
@@ -177,10 +188,8 @@ public void onReceive(Context context, Intent intent) {
     - 단말 앱을 구분하는 구분자
     - 단말앱 등록 성공이거나 기등록된 경우 전달받는다.
     - 단말앱 등록 성공일 경우 이를 앱 서버에게 upstream API를 통해 전달해야 한다.
- 2. 결과 코드
-    - 샘플코드에서 bundle.getInt("resultCode")로 반환
- 3. 결과 메시지
-    - 샘플코드에서 bundle.getString("resultMsg")로 반환
+ 2. 결과 코드   
+ 3. 결과 메시지  
 
 
 ## 단말앱 등록해제
@@ -219,32 +228,20 @@ MinervaManager.unregisterDevice() API의 각 인자별 의미는 다음과 같�
 
 ### 단말앱 등록해제 결과
 
-소스코드에서 ACTION_MINERVA_DEVICE_UNREGISTER_RESULT 검색하면 아래의 샘플코드를 확인 할 수 있다.
+unregisterDevice() API 호출 결과는 앞서 리스너로 등록한 onUnregisterResult() 콜백을 통해 처리한다.
+샘플코드에서 onUnregisterResult 검색하면 아래의 샘플 코드를 확인할 수 있다.
 
 ```java
- public void onReceive(Context context, Intent intent) {
-    String action = intent.getAction();    
-    
-    if(action.equals(MinervaManager.ACTION_MINERVA_DEVICE_REGISTER_RESULT)) {
-        ...
-    }                
-    else if(action.equals(MinervaManager.ACTION_MINERVA_DEVICE_UNREGISTER_RESULT)) {
-        Log.d(TAG, "onReceive 2 " + action);       
-        Bundle bundle = intent.getExtras();
-        int resultCode = bundle.getInt("resultCode");    
-        String msg = null;
-        //yes unregistration has completed successfully!
-        if(resultCode == Result.RESULT_OK) {
-            String deviceRegId = bundle.getString("deviceRegId");           
-        }          
-        //registration error has occurred!
-        else {
-            // error message
-            msg = bundle.getString("resultMsg");
-        }                    
+@Override
+public void onUnregisterResult(int resultCode, String resultMsg) {
+
+    //yes unregistration has completed successfully!
+    if(resultCode == Result.RESULT_OK) {
     }
-    ... 
- }  
+    //registration error has occurred!
+    else {
+    }
+}
 ```
 
 단말앱 등록해제 결과 단말앱 라이브러리는 단말앱에 다음의 값들을 알려준다.
@@ -258,16 +255,53 @@ MinervaManager.unregisterDevice() API의 각 인자별 의미는 다음과 같�
     - 샘플코드에서 bundle.getString("resultMsg")로 반환
 
 
+
+## 메시지 리스너 등록
+
+단말앱은 다음의 메시지를 발신한다.
+1. 앱서버로 업스트림 메시지를 발신
+2. 다른 단말앱들에 P2P메시지를 발신
+
+또한 다음의 메시지를 수신한다.
+1. 앱서버로부터 다운스트림 메시지 수신
+2. 다른 단말앱으로부터 P2P 메시지 수신
+
+이러한 메시지 발신 결과와 메시지 수신을 처리하기 위해서는 메시지 리스너를 등록해야 한다.
+
+MessageListener 인터페이스는 네 개의 메소드를 선언한다.
+
+1. onDownstreamMsgReceived 
+ - 앱서버로부터 다운스트림 메시지 수신 콜백
+2. onP2PMsgReceived
+ - 다른 단말앱으로부터 P2P 메시지 수신 콜백
+3. onSendUpstreamMsgResult
+ - 앱서버로 업스트림 메시지를 발신 결과 콜백
+4. onSendP2PMsgResult
+ - 다른 단말앱들에 P2P메시지를 발신 결과 콜백
+
+샘플코드에서 setMsgListener로 검색하면 메시지 리스너 등록하는 샘플코드를 확인할 수 있다.
+
+```java
+@Override
+protected void onResume() {
+    Log.d(TAG, "onResume() enter");
+    super.onResume();          
+    mListAdapter.notifyDataSetChanged();
+
+    //set message callback listener
+    MinervaManager minMgr = MinervaManager.getInstance();
+    minMgr.setMsgListener(this);
+}
+```
+
+
 ## 업스트림 메시지 발신
 
 샘플 단말앱에서 업스트림 메시지를 발신하기 위해서는 다음 절차를 따르면 된다.
 
-1. 샘플앱 초기 화면에서 메뉴를 클릭
-2. push message 클릭
-3. 메시지화면에서 전송할 데이터를 텍스트 필드에 입력 후 'UPSTREAM' 버튼 클릭
+1. 메시지화면에서 전송할 데이터를 텍스트 필드에 입력 후 'UPSTREAM' 버튼 클릭
 
 ![이미지 이름](./img/sample_up.png)
-
 
 샘플코드에서 sendUpstreamMsg 검색하면 아래의 샘플코드를 확인할 수 있다. 
 
@@ -320,53 +354,32 @@ MinervaManager.sendUpstreamMsg() API의 각 인자별 의미는 다음과 같다
 
 ### 업스트림 메시지 발신 결과
 
-소스코드에서 ACTION_MINERVA_UPSTREAM_MSG_RESULT 검색하면 아래의 샘플코드를 확인 할 수 있다.
+앞서 메시지 리스너로 등록한 onSendUpstreamMsgResult() 콜백이 호출된다.
+샘플코드에서 onSendUpstreamMsgResult로 검색하면 아래의 샘플코드를 확인 할 수 있다.
 
 ```java
- public void onReceive(Context context, Intent intent) {
-    String action = intent.getAction();    
-    
-    else if(action.equals(MinervaManager.ACTION_MINERVA_UPSTREAM_MSG_RESULT)) {
-        Log.d(TAG, "onReceive" + action);                        
-        Bundle bundle = intent.getExtras();
-        int resultCode = bundle.getInt("resultCode");    
-        String resultMsg = bundle.getString("resultMsg");
-        //umi(upstream message id) 
-        String umi = bundle.getString("umi");
-        //yes upstream message success
-        if(resultCode == Result.RESULT_OK) {
-            //do something
-            Log.d(TAG, "upstream success umi = " + umi);
-        }          
-        //upstream message fail
-        else {
-            //do something.
-            Log.d(TAG, "upstream fail umi = " + umi);
-        }       
-    }            
-    ... 
- }  
+@Override
+public void onSendUpstreamMsgResult(int resultCode, String resultMsg, String requestId) {
+    Log.d(TAG, "onSendUpstreamMsgResult enter");
+}  
 ```
 
 단말앱 라이브러리는 단말앱에 다음의 값들을 알려준다.
 
- 1. upstream message id
-    - 샘플코드에서 bundle.getString("umi")로 반환
+ 1. 결과 코드
+    - 샘플코드에서 bundle.getInt("resultCode")로 반환
+ 2. 결과 메시지
+    - 샘플코드에서 bundle.getString("resultMsg")로 반환
+ 3. requestId    
     - minMgr.sendUpstreamMsg(msg, serverRegId)의 반환값과 동일하다.
     - 업스트림 발신 결과와 sendUpstreamMsg() API 호출원을 검증하는 용도
- 2. 결과 코드
-    - 샘플코드에서 bundle.getInt("resultCode")로 반환
- 3. 결과 메시지
-    - 샘플코드에서 bundle.getString("resultMsg")로 반환
 
 
 ## P2P 메시지 발신
 
 샘플 단말앱에서 P2P 메시지를 발신하기 위해서는 다음 절차를 따르면 된다.
 
-1. 샘플앱 초기 화면에서 메뉴를 클릭
-2. push message 클릭
-3. 메시지화면에서 전송할 데이터를 텍스트 필드에 입력 후 'P2P' 버튼 클릭
+1. 메시지화면에서 전송할 데이터를 텍스트 필드에 입력 후 'P2P' 버튼 클릭
 
 ![이미지 이름](./img/sample_msg.png)
 
@@ -396,9 +409,16 @@ public void onClick(View v) {
 
             mListAdapter.notifyDataSetChanged();          
 
-            MinervaManager minMgr = MinervaManager.getInstance(this);
-            //manage pmi(p2p message id) to check p2p delivery            
-            String pmi = minMgr.sendP2PMsg(msg, destDevices);
+            MinervaManager minMgr = MinervaManager.getInstance();
+
+            // target device(device registration id) list
+            ArrayList<String> destDevices = new ArrayList<String>();            
+            destDevices.add("25ee697f86e74c84b2b618dc5f41b5df");  // note 5
+            destDevices.add("5ed0976ff51b41d5a144e8b81aa852cb");  // xiaomi oreo            
+           
+            // if you want to push to the device apps which are inactive, set notification title and notification body.
+            String pmi = minMgr.sendP2PMsg(msg, destDevices, true, "noti title", "noti body");
+            // String pmi = minMgr.sendP2PMsg(msg, destDevices);
             // manage pmi if you want to check later
             break;
         default:
@@ -414,108 +434,111 @@ MinervaManager.sendP2PMsg() API의 각 인자별 의미는 다음과 같다.
 2. destDevices 
  - 데이터를 전달할 대상 단말앱들의 단말등록아이디 목록
  - 최대 2000대까지 가능
+3. supportMsgQ
+ - false 
+    - 단말이 비활성에서 활성으로 전환시 미전달 메시지를 단말앱에 전달하지 않는다.
+    - 단말이 활성상태에서 실시간 데이터 전달 용도로만 사용시 false로 사용한다.
+- true
+    - 미전달 메시지를 메시징 서버에서 큐잉기간(디폴트 3일)동안 큐잉하고 있다가 단말상태가 활성상태가 되면 미전달 메시지를 단말앱에 전달한다.
+4. notiTitle  
+ - 알림 용도로 메시지 전달 시 단말앱이 비활성시 알림 타이틀로 표시할 문자
+ - notiTitle과 notiBody가 모두 null이면 단말앱이 비활성시 푸시 메시지를 발송하지 않는다.
+5. notiBody
+ - 알림 용도로 메시지 전달 시 단말앱이 비활성시 알림 내용으로 표시할 문자
+
 
 샘플코드에서 MinervaManager.sendP2PMsg() API의 destDevices에 실제 등록한 한개 이상의 단말 등록 아이디로 대체해서 실행시키면 해당 단말앱으로 실시간 메시지가 전달되는 것을 확인할 수 있다.
 그리고 메시지 전달현황은 관리자 콘솔의 '서비스 > 메시지현황'에서 실시간 모니터링 할 수 있다.
 
 ### P2P 메시지 발신 결과
 
-소스코드에서 ACTION_MINERVA_P2P_MSG_RESULT 검색하면 아래의 샘플코드를 확인 할 수 있다.
+앞서 메시지 리스너로 등록한 onSendP2PMsgResult() 콜백이 호출된다.
+샘플코드에서 onSendP2PMsgResult로 검색하면 아래의 샘플코드를 확인 할 수 있다.
 
 ```java
- public void onReceive(Context context, Intent intent) {
-    String action = intent.getAction();    
-    
-    else if(action.equals(MinervaManager.ACTION_MINERVA_P2P_MSG_RESULT)) {
-        Log.d(TAG, "onReceive" + action);                        
-        Bundle bundle = intent.getExtras();
-        int resultCode = bundle.getInt("resultCode");    
-        String resultMsg = bundle.getString("resultMsg");
-        //pmi(P2P message id) 
-        String pmi = bundle.getString("pmi");
-        //yes upstream message success
-        if(resultCode == Result.RESULT_OK) {
-            //do something
-            Log.d(TAG, "P2P send success pmi = " + pmi);
-        }          
-        //upstream message fail
-        else {
-            //do something.
-            Log.d(TAG, "upstream fail pmi = " + pmi);
-        }       
-    }            
-    ... 
- }  
+@Override
+public void onSendP2PMsgResult(int resultCode, String resultMsg, String requestId) {
+    Log.d(TAG, "onSendP2PMsgResult enter");
+} 
 ```
 
 단말앱 라이브러리는 단말앱에 다음의 값들을 알려준다.
 
- 1. P2P message id
-    - 샘플코드에서 bundle.getString("pmi")로 반환
-    - minMgr.sendP2PMsg() API의 반환값과 동일하다.
-    - P2P 메시지 발신 결과와 sendP2PMsg() API 호출원을 검증하는 용도
- 2. 결과 코드
+ 1. 결과 코드
     - 샘플코드에서 bundle.getInt("resultCode")로 반환
- 3. 결과 메시지
+ 2. 결과 메시지
     - 샘플코드에서 bundle.getString("resultMsg")로 반환
-
+ 3. requestId    
+    - minMgr.sendP2PMsg()의 반환값과 동일하다.
+    - P2P 발신 결과와 sendP2PMsg() API 호출원을 검증하는 용도 
+ 
 
 ## 메시지 수신
 단말앱은 앱서버로부터의 다운스트림 메시지와 다른 단말앱으로부터의 P2P 메시지를 수신한다. 
 
 ### 다운스트림 메시지 수신
-
-소스코드에서 ACTION_MINERVA_PUSH_MSG_RECEIVED 검색하면 아래의 샘플코드를 확인 할 수 있다.
+다운스트림 메시지 수신시 앞서 메시지 리스너로 등록한 onDownstreamMsgReceived() 콜백이 호출된다.
+샘플코드에서 onDownstreamMsgReceived 검색하면 아래의 샘플코드를 확인 할 수 있다.
 
 ```java
- public void onReceive(Context context, Intent intent) {
-    String action = intent.getAction();    
-    
-    else if(action.equals(MinervaManager.ACTION_MINERVA_PUSH_MSG_RECEIVED)) {
-        Log.d(TAG, "onReceive 2 " + action);                            
-        Bundle bundle = intent.getExtras();
-        int msgSize = bundle.getInt(MinervaManager.FIELD_MSG_SIZE);
-        String jsonStr = bundle.getString(MinervaManager.FIELD_MSG_LIST);
-        //example..
-        /*
-        try {
-            ArrayList<Map<String, Object>> testJson = mapper.readValue(jsonStr, new TypeReference<ArrayList<Map<String, Object>>>() {});
-            
-            for(int i = 0; i < msgSize; i++) {
-                Map<String, Object> oneMsg = testJson.get(i);
-                String sender = (String)oneMsg.get(MinervaManager.FIELD_MSG_SENDER);
-                String data = (String)oneMsg.get(MinervaManager.FIELD_PUSH_DATA);
-                long serverTime = (Long)oneMsg.get(MinervaManager.FIELD_PUSH_SERVER_TIME);                    
-                long notiTitle = (Long)oneMsg.get(MinervaManager.FIELD_MSG_NOTI_TITLE);                    
-                long notiBody = (Long)oneMsg.get(MinervaManager.FIELD_MSG_NOTI_BODY);                   
-            }
-            
-            System.out.println();
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
-        //example end
-            * */           
-        Intent sendIntent = new Intent(context, MyService.class);
-        sendIntent.putExtra(MyService.SERVICE_TYPE, MyService.SERVICE_TYPE_PUSH_MSG_RECEIVED);
-        Object[] argv = new Object[2];
-        argv[0] = msgSize;
-        argv[1] = jsonStr;
-        sendIntent.putExtra(MyService.SERVICE_ARGV, argv);      
-        context.startService(sendIntent);         
-    }  
-... 
-}  
-```
+ @Override
+public void onDownstreamMsgReceived(ArrayList<JSONObject> msgs) {
+    Log.d(TAG, "onDownstreamMsgReceived enter");
 
+    int msgSize = msgs.size();
+
+    try {
+        JSONObject oneMsg = null;
+        String data = null, notiTitle = null, notiBody = null;
+        String sender = null;
+        long serverTime;
+        long curTime = System.currentTimeMillis();
+        long elapseTime;
+        Calendar cal = Calendar.getInstance();
+        String curTimeStr = cal.get(Calendar.YEAR) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
+        String serverTimeStr = null;
+        MsgCache cache = MsgCache.getInstance();
+        PushMsg pushMsg = new PushMsg();
+
+        // recent messages are ordered previous position [recentest, recent, old, older, oldest...]
+        // this sample app treat old message first.
+        for (int i = msgSize - 1; i >= 0; i--) {
+            oneMsg = msgs.get(i);
+            sender = (String) oneMsg.get(MinervaManager.FIELD_MSG_SENDER);
+            data = (String) oneMsg.get(MinervaManager.FIELD_MSG_DATA);
+            serverTime = (Long) oneMsg.get(MinervaManager.FIELD_MSG_SERVER_TIME);
+
+            // optional fields
+            if(oneMsg.has(MinervaManager.FIELD_MSG_NOTI_TITLE)) {
+                notiTitle = (String) oneMsg.get(MinervaManager.FIELD_MSG_NOTI_TITLE);
+            }
+
+            if(oneMsg.has(MinervaManager.FIELD_MSG_NOTI_BODY)) {
+                notiBody = (String) oneMsg.get(MinervaManager.FIELD_MSG_NOTI_BODY);
+            }
+            curTime = System.currentTimeMillis();
+            elapseTime = curTime - serverTime;
+            cal.setTimeInMillis(serverTime);
+            serverTimeStr = cal.get(Calendar.YEAR) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
+
+            pushMsg = new PushMsg();
+            pushMsg.mData = data;
+            pushMsg.mSrcTime = serverTimeStr;
+            pushMsg.mDestTime = curTimeStr;
+            pushMsg.mElapsedTime = elapseTime;
+            cache.addMsg(pushMsg);
+        }
+    }
+    catch (Exception e) {
+        e.printStackTrace();
+    }
+    mListAdapter.notifyDataSetChanged();
+}
+```
 
 앱서버에서 발신하는 멀티캐스트, 브로드캐스트, 그룹 메시지를 단말앱이 수신시 단말앱 라이브러리는 단말앱에게 다음의 값들을 알려준다.
 
-1. 다운스트림 메시지 갯수    
-  - 샘플코드에서 bundle.getInt(MinervaManager.FIELD_MSG_SIZE)로 반환
-2. 다운스트림 메시지 목록    
-   샘플코드에서 bundle.getString(MinervaManager.FIELD_MSG_LIST)로 반환     
+1. 다운스트림 메시지 목록           
    메시지 목록의 각 메시지는 다음의 값들을 포함한다.
   - 메시지 발신한 앱서버의 서버등록아이디
   - 메시지 데이터
@@ -523,7 +546,6 @@ MinervaManager.sendP2PMsg() API의 각 인자별 의미는 다음과 같다.
   - 단말앱이 백그라운드시 표시할 알림 타이틀
   - 단말앱이 백그라운드시 표시할 알림 본문
 
-샘플앱이 메시지 수신시 백그라운드일 경우에는 알림이 오고 샘플앱이 포그라운드일 경우 샘플앱의 메시지 면에서 메시지 수신됨을 확인 가능하다.
 
 ![이미지 이름](./img/sample_msg.png)
 
@@ -531,56 +553,66 @@ MinervaManager.sendP2PMsg() API의 각 인자별 의미는 다음과 같다.
 
 ### P2P 메시지 수신
 
-소스코드에서 ACTION_MINERVA_P2P_MSG_RECEIVED 검색하면 아래의 샘플코드를 확인 할 수 있다.
+P2P 메시지 수신시 앞서 메시지 리스너로 등록한 onP2PMsgReceived() 콜백이 호출된다.
+샘플코드에서 onP2PMsgReceived 검색하면 아래의 샘플코드를 확인 할 수 있다.
 
 ```java
- public void onReceive(Context context, Intent intent) {
-    String action = intent.getAction();    
-    
-    else if(action.equals(MinervaManager.ACTION_MINERVA_P2P_MSG_RECEIVED)) {
-        Log.d(TAG, "onReceive 2 " + action);            
-        //jungdo_for_test
-        //String serverURL = intent.getExtras().getString("serverURL");            
-        Bundle bundle = intent.getExtras();
-        int msgSize = bundle.getInt(MinervaManager.FIELD_MSG_SIZE);
-        String jsonStr = bundle.getString(MinervaManager.FIELD_MSG_LIST);
-        //example..
-        /*
-        try {
-            ArrayList<Map<String, Object>> testJson = mapper.readValue(jsonStr, new TypeReference<ArrayList<Map<String, Object>>>() {});
-            
-            for(int i = 0; i < msgSize; i++) {
-                Map<String, Object> oneMsg = testJson.get(i);
-                String sender = (String)oneMsg.get(MinervaManager.FIELD_MSG_SENDER);
-                String data = (String)oneMsg.get(MinervaManager.FIELD_PUSH_DATA);
-                long serverTime = (Long)oneMsg.get(MinervaManager.FIELD_PUSH_SERVER_TIME);                    
-                long notiTitle = (Long)oneMsg.get(MinervaManager.FIELD_MSG_NOTI_TITLE);                    
-                long notiBody = (Long)oneMsg.get(MinervaManager.FIELD_MSG_NOTI_BODY);                    
+@Override
+public void onP2PMsgReceived(ArrayList<JSONObject> msgs) {
+    Log.d(TAG, "onP2PMsgReceived enter");
+
+    int msgSize = msgs.size();
+
+    try {
+
+        JSONObject oneMsg = null;
+        String sender = null;
+        String data = null, notiTitle = null, notiBody = null;
+        long serverTime;
+        long curTime = System.currentTimeMillis();
+        long elapseTime;
+        Calendar cal = Calendar.getInstance();
+        String curTimeStr = cal.get(Calendar.YEAR) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
+        String serverTimeStr = null;
+        MsgCache cache = MsgCache.getInstance();
+        PushMsg pushMsg = new PushMsg();
+
+        for (int i = 0; i < msgSize; i++) {
+            oneMsg = msgs.get(i);
+            sender = (String) oneMsg.get(MinervaManager.FIELD_MSG_SENDER);
+            data = (String) oneMsg.get(MinervaManager.FIELD_MSG_DATA);
+            serverTime = (Long) oneMsg.get(MinervaManager.FIELD_MSG_SERVER_TIME);
+
+            // optional fields
+            if(oneMsg.has(MinervaManager.FIELD_MSG_NOTI_TITLE)) {
+                notiTitle = (String) oneMsg.get(MinervaManager.FIELD_MSG_NOTI_TITLE);
             }
-            
-            System.out.println();
+
+            if(oneMsg.has(MinervaManager.FIELD_MSG_NOTI_BODY)) {
+                notiBody = (String) oneMsg.get(MinervaManager.FIELD_MSG_NOTI_BODY);
+            }
+            curTime = System.currentTimeMillis();
+            elapseTime = curTime - serverTime;
+            cal.setTimeInMillis(serverTime);
+            serverTimeStr = cal.get(Calendar.YEAR) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
+
+            pushMsg = new PushMsg();
+            pushMsg.mData = data;
+            pushMsg.mSrcTime = serverTimeStr;
+            pushMsg.mDestTime = curTimeStr;
+            pushMsg.mElapsedTime = elapseTime;
+            cache.addMsg(pushMsg);
         }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
-        //example end
-        */           
-        Intent sendIntent = new Intent(context, MyService.class);
-        sendIntent.putExtra(MyService.SERVICE_TYPE, MyService.SERVICE_TYPE_P2P_MSG_RECEIVED);
-        Object[] argv = new Object[2];
-        argv[0] = msgSize;
-        argv[1] = jsonStr;
-        sendIntent.putExtra(MyService.SERVICE_ARGV, argv);      
-        context.startService(sendIntent);         
-    }  
-... 
-}  
+    }
+    catch (Exception e) {
+        e.printStackTrace();
+    }
+    mListAdapter.notifyDataSetChanged();
+}
 ```
 모바일 서비스 내 다른 단말앱에서 발신한 P2P 메시지를 단말앱이 수신시 단말앱 라이브러리은 단말앱에게 다음의 값들을 알려준다.
 
-1. P2P 메시지 갯수    
-  - 샘플코드에서 bundle.getInt(MinervaManager.FIELD_MSG_SIZE)로 반환
-2. P2P 메시지 목록    
+1. P2P 메시지 목록    
    샘플코드에서 bundle.getString(MinervaManager.FIELD_MSG_LIST)로 반환    
    메시지 목록의 각 메시지는 다음의 값들을 포함한다.
   - 메시지 발신한 단말앱의 단말등록아이디
@@ -588,5 +620,3 @@ MinervaManager.sendP2PMsg() API의 각 인자별 의미는 다음과 같다.
   - 메시지 발신시간
   - 단말앱이 백그라운드시 표시할 알림 타이틀
   - 단말앱이 백그라운드시 표시할 알림 본문
-
-샘플앱이 메시지 수신시 백그라운드일 경우에는 알림이 오고 샘플앱이 포그라운드일 경우 샘플앱의 메시지 화면에서 메시지 수신됨을 확인 가능하다.
