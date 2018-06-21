@@ -52,7 +52,7 @@
 
 - (IBAction)sendUpstreamMsg:(id)sender {
     //NSString* svcId = @"d0a83353281e4b678774a0efa44fdd82";
-    NSString* serverId = @"f4c8b4c2f8e24ec1b6ea099480497898";  //sample server
+    NSString* serverId = @"8e6c7c6d56c447db9344b91ba26ba542";  //sample server
     NSString* msg = inputMessageField.text;
     MinervaManager* mgr = [MinervaManager getInstance];
     [mgr sendUpstreamMsg:msg serverRegId:serverId];
@@ -100,7 +100,7 @@
     NSString* msgData;
     
     NSDateFormatter* format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
+    [format setDateFormat:@"MM/dd HH:mm:ss"];
     
     for(int i = 0; i < msgSize; i++) {
         msg = msgList[i];
@@ -131,7 +131,7 @@
     NSString* msgData;
     NSString* msgId;
     NSDateFormatter* format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
+    [format setDateFormat:@"MM/dd HH:mm:ss"];
     
     for(int i = 0; i < msgSize; i++) {
         msg = msgList[i];
