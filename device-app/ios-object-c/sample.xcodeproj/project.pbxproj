@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9036A82920B6DF030008B376 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9036A82520B6DE390008B376 /* RationalOwl.framework */; };
 		9036A82A20B6DF030008B376 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9036A82520B6DE390008B376 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		90CA99B2201AE50E003D46B9 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CA99B0201AE284003D46B9 /* UserNotifications.framework */; };
 		90D999082016F0C3005D3401 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D999072016F0C3005D3401 /* AppDelegate.m */; };
 		90D9990E2016F0C4005D3401 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90D9990C2016F0C4005D3401 /* Main.storyboard */; };
 		90D999102016F0C4005D3401 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90D9990F2016F0C4005D3401 /* Assets.xcassets */; };
@@ -46,7 +45,6 @@
 
 /* Begin PBXFileReference section */
 		9036A82520B6DE390008B376 /* RationalOwl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RationalOwl.framework; sourceTree = "<group>"; };
-		90CA99B0201AE284003D46B9 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		90D999032016F0C3005D3401 /* sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D999062016F0C3005D3401 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		90D999072016F0C3005D3401 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -70,7 +68,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90CA99B2201AE50E003D46B9 /* UserNotifications.framework in Frameworks */,
 				9036A82920B6DF030008B376 /* RationalOwl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,7 +85,6 @@
 		90CA99AF201AE284003D46B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				90CA99B0201AE284003D46B9 /* UserNotifications.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
