@@ -57,8 +57,8 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
     protected void onStart() {
         //Log.d(TAG, "onStart() enter");
         super.onStart();         
-        //mUrlEt.setText("gate.rationalowl.com");
-        mUrlEt.setText("13.125.250.51"); //aws dev
+        mUrlEt.setText("gate.rationalowl.com");
+        //mUrlEt.setText("13.125.250.51"); //aws dev
 
     }
     
@@ -87,7 +87,7 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
                 mgr.setDeviceToken(fcmToken);
 
                 // register device app.
-                mgr.registerDevice(url, "54a50ca3c9fa4629a3766b225fae4f8d","My Android 1"); //aws dev gate
+                mgr.registerDevice(url, "9bd4db31dbaa4897ad9aa81c3e7e183a","My Android 1"); //aws dev gate
                 //mgr.registerDevice(url, "faebcfe844d54d449136491fb253619d","단말등록이름2"); //hostway
                 //mgr.registerDevice(url, "def829b853d046779e2227bdd091653c","경민테스트폰"); //hostway
                 //mgr.registerDevice(url, "c8574b6882c34db0a6e6691987de1221"); //aws test
@@ -96,7 +96,7 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
             }
             case R.id.unregBtn:
                 MinervaManager mgr = MinervaManager.getInstance();
-                mgr.unregisterDevice("54a50ca3c9fa4629a3766b225fae4f8d"); //aws dev gate
+                mgr.unregisterDevice("9bd4db31dbaa4897ad9aa81c3e7e183a"); //aws dev gate
                 //mgr.unregisterDevice("def829b853d046779e2227bdd091653c"); //hostway
                 //mgr.unregisterDevice("c8574b6882c34db0a6e6691987de1221"); //aws test
                 break;

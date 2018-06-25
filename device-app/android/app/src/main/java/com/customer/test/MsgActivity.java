@@ -143,7 +143,7 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
                 cache.addMsg(pushMsg);
                 
                 mListAdapter.notifyDataSetChanged();
-                String serverId = "8e6c7c6d56c447db9344b91ba26ba542"; // java test app server
+                String serverId = "64286b586e0745eda860d0a96cfe38ad"; // java test app server
                 //String serverId = "def829b853d046779e2227bdd091653c:null";
                 //String serverId = "0bb887049fb04bca924853be0e78f28d"; //gyeong min python
                 MinervaManager minMgr = MinervaManager.getInstance();
@@ -171,8 +171,9 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
                 ArrayList<String> destDevices = new ArrayList<String>();
                 //destDevices.add("50b0020d9ba2405d88b1d967839d696e");  // i pad
                 //destDevices.add("2b9f6349d5f4432a9baa77e01353303a");  // galaxy nexus
-                destDevices.add("25ee697f86e74c84b2b618dc5f41b5df");  // note 5
-                destDevices.add("5ed0976ff51b41d5a144e8b81aa852cb");  // xiaomi oreo
+                destDevices.add("2f84c0dbc967493a8c401921f9191af4");  // note 5
+                destDevices.add("d5f1126b2eaf45dfbb9a545bb69fc8c4");  // xiaomi oreo
+                destDevices.add("90aee24fcce741d6abcf4bf2dc6121c9");  // xiaomi oreo
                 //destDevices.add("1241670df8694da586605bf431f150a9");  // jungdo_empty_phone(galaxy nexus)
                 //destDevices.add("4285e11625ff4e71a94ad799457358a3");  // helpter designer(g6)
                 //destDevices.add("8a7540dd28854615b5b17c933a167206");  // helpter ceo(aka)
