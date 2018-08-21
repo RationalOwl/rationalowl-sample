@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90226019212BFCB900E33172 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90226017212BFCA200E33172 /* RationalOwl.framework */; };
+		9022601A212BFCB900E33172 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90226017212BFCA200E33172 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		90E4B957201C3E0500FA07D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4B956201C3E0500FA07D8 /* AppDelegate.swift */; };
 		90E4B95C201C3E0500FA07D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90E4B95A201C3E0500FA07D8 /* Main.storyboard */; };
 		90E4B95E201C3E0500FA07D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90E4B95D201C3E0500FA07D8 /* Assets.xcassets */; };
@@ -14,8 +16,6 @@
 		90E4B969201C3E8400FA07D8 /* MsgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4B968201C3E8400FA07D8 /* MsgViewController.swift */; };
 		90E4B96B201C410400FA07D8 /* RegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4B96A201C410400FA07D8 /* RegViewController.swift */; };
 		90E4B973201C436000FA07D8 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E4B972201C435F00FA07D8 /* UserNotifications.framework */; };
-		90E4B981201CAF7700FA07D8 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E4B97F201CAF6300FA07D8 /* RationalOwl.framework */; };
-		90E4B982201CAF7700FA07D8 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90E4B97F201CAF6300FA07D8 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,7 +25,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				90E4B982201CAF7700FA07D8 /* RationalOwl.framework in Embed Frameworks */,
+				9022601A212BFCB900E33172 /* RationalOwl.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -33,6 +33,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		90226017212BFCA200E33172 /* RationalOwl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RationalOwl.framework; sourceTree = "<group>"; };
 		90E4B953201C3E0500FA07D8 /* sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90E4B956201C3E0500FA07D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90E4B95B201C3E0500FA07D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -44,7 +45,6 @@
 		90E4B972201C435F00FA07D8 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		90E4B974201C43D100FA07D8 /* sample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "sample-Bridging-Header.h"; sourceTree = "<group>"; };
 		90E4B975201C44B900FA07D8 /* sample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sample.entitlements; sourceTree = "<group>"; };
-		90E4B97F201CAF6300FA07D8 /* RationalOwl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RationalOwl.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +53,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90E4B973201C436000FA07D8 /* UserNotifications.framework in Frameworks */,
-				90E4B981201CAF7700FA07D8 /* RationalOwl.framework in Frameworks */,
+				90226019212BFCB900E33172 /* RationalOwl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,7 +63,7 @@
 		90E4B94A201C3E0500FA07D8 = {
 			isa = PBXGroup;
 			children = (
-				90E4B97F201CAF6300FA07D8 /* RationalOwl.framework */,
+				90226017212BFCA200E33172 /* RationalOwl.framework */,
 				90E4B955201C3E0500FA07D8 /* sample */,
 				90E4B954201C3E0500FA07D8 /* Products */,
 				90E4B971201C435F00FA07D8 /* Frameworks */,
