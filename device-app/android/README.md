@@ -277,7 +277,7 @@ MessageListener 인터페이스는 세 개의 메소드를 선언한다.
 2. onSendUpstreamMsgResult
  - 앱서버로 업스트림 메시지를 발신 결과 콜백
 3. onSendP2PMsgResult
- - 다른 단말앱들에 P2P메시지를 발신 결과 콜
+ - 다른 단말앱들에 P2P메시지를 발신 결과 콜백
 
 
 메시지 리스너 등록은 메시지 수발신을 처리할 Activity의 onResume()에서 setMsgListener로 지정해야 한다.
