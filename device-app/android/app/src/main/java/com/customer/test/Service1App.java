@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.rationalowl.minerva.client.android.MinervaManager;
+import com.rationalowl.minerva.client.android.util.Logger;
 
 
 public class Service1App extends Application {
@@ -12,7 +13,7 @@ public class Service1App extends Application {
 
 
     public void onCreate(){
-        Log.d(TAG, "onCreate enter");
+        Logger.debug(TAG, "onCreate enter");
         super.onCreate();
         Context context = getApplicationContext();
         MinervaManager.init(context);

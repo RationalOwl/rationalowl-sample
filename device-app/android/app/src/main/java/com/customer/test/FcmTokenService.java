@@ -5,6 +5,7 @@ import android.util.Log;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 import com.rationalowl.minerva.client.android.MinervaManager;
+import com.rationalowl.minerva.client.android.util.Logger;
 
 public class FcmTokenService  extends FirebaseInstanceIdService {
 
@@ -20,7 +21,7 @@ public class FcmTokenService  extends FirebaseInstanceIdService {
     public void onTokenRefresh() {
         // Get updated InstanceID token.
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-        Log.d(TAG, "Refreshed token: " + refreshedToken);
+        Logger.debug(TAG, "Refreshed token: " + refreshedToken);
 
         MinervaManager minMgr = MinervaManager.getInstance();
         minMgr.setDeviceToken(refreshedToken);

@@ -20,6 +20,7 @@ import com.rationalowl.minerva.client.android.DeviceRegisterResultListener;
 import com.rationalowl.minerva.client.android.MinervaManager;
 import com.rationalowl.minerva.client.android.Result;
 import com.rationalowl.minerva.client.android.data.MinervaDataManager;
+import com.rationalowl.minerva.client.android.util.Logger;
 
 public class RegisterActivity extends Activity implements OnClickListener, DeviceRegisterResultListener {
     
@@ -47,7 +48,7 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
     
     @Override
     protected void onDestroy() {
-        //Log.d(TAG, "onDestroy enter");
+        //Logger.debug(TAG, "onDestroy enter");
         super.onDestroy();
         
     }
@@ -55,7 +56,7 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
     
     @Override
     protected void onStart() {
-        //Log.d(TAG, "onStart() enter");
+        //Logger.debug(TAG, "onStart() enter");
         super.onStart();         
         mUrlEt.setText("gate.rationalowl.com");
         //mUrlEt.setText("13.125.250.51"); //aws dev
@@ -65,7 +66,7 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
     
     @Override
     protected void onResume() {
-        //Log.d(TAG, "onResume enter");       
+        //Logger.debug(TAG, "onResume enter");
         super.onResume();
 
         //set register callback listener
@@ -87,7 +88,7 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
                 mgr.setDeviceToken(fcmToken);
 
                 // register device app.
-                mgr.registerDevice(url, "9bd4db31dbaa4897ad9aa81c3e7e183a","My Android 1"); //aws dev gate
+                mgr.registerDevice(url, "9bd4db31dbaa4897ad9aa81c3e7e183a","My Android 2"); //aws dev gate
                 //mgr.registerDevice(url, "faebcfe844d54d449136491fb253619d","단말등록이름2"); //hostway
                 //mgr.registerDevice(url, "def829b853d046779e2227bdd091653c","경민테스트폰"); //hostway
                 //mgr.registerDevice(url, "c8574b6882c34db0a6e6691987de1221"); //aws test
@@ -107,7 +108,7 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
 
     @Override
     public void onRegisterResult(int resultCode, String resultMsg, String deviceRegId) {
-        Log.d(TAG, "onRegisterResult " + resultCode);
+        Logger.debug(TAG, "onRegisterResult " + resultCode);
         String msg = resultMsg + "registration id : " + deviceRegId;
         //yes registration has completed successfully!
         if(resultCode == Result.RESULT_OK) {
@@ -124,7 +125,7 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
         else {
             //error occurred while registering device app.
         }
-        Log.d(TAG, msg);
+        Logger.debug(TAG, msg);
     }
 
     @Override

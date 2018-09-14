@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.rationalowl.minerva.client.android.MinervaManager;
+import com.rationalowl.minerva.client.android.util.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +28,7 @@ public class MsgCache {
         public long mElapsedTime;
     }
 
-    private static final String TAG = "PropertyInfoFetcher";
+    private static final String TAG = "MsgCache";
 
     //property key fields
     private static final String JSON_MSG_KEY = "msg_log";
@@ -104,7 +105,7 @@ public class MsgCache {
         FileReader fr = null;
         File propertyFile = null;
         long fileSize = 0;
-        Log.d(TAG, "load enter");
+        Logger.debug(TAG, "load enter");
 
         try {
             Context context = MinervaManager.getContext();
@@ -135,13 +136,13 @@ public class MsgCache {
 
                     //it's just for logging and it's error case
                     if(accumSize > fileSize) {
-                        Log.e(TAG, "loadData error");
+                        Logger.debug(TAG, "loadData error");
                     }
                 }
                 //in normal case, after breaking loop, fileSize would be equal to the accumSize.
                 //And it's just for logging.
                 if(accumSize != fileSize) {
-                    Log.e(TAG, "loadData error 2");
+                    Logger.debug(TAG, "loadData error 2");
                 }
                 br.close();
                 fr.close();
@@ -191,7 +192,7 @@ public class MsgCache {
 
 
     private void save() {
-        Log.d(TAG,"save enter");
+        Logger.debug(TAG,"save enter");
         JSONObject jObj = new JSONObject();
 
         try {

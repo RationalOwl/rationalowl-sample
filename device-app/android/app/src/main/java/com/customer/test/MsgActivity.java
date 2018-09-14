@@ -22,6 +22,7 @@ import com.customer.test.data.MsgCache;
 import com.customer.test.data.MsgCache.PushMsg;
 import com.rationalowl.minerva.client.android.MessageListener;
 import com.rationalowl.minerva.client.android.MinervaManager;
+import com.rationalowl.minerva.client.android.util.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -83,14 +84,14 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
 
     @Override
     public void onDestroy() {        
-        Log.d(TAG, "onDestroy() enter");
+        Logger.debug(TAG, "onDestroy() enter");
         super.onDestroy();
     }
     
     
     @Override
     protected void onStart() {
-        Log.d(TAG, "onStart() enter");
+        Logger.debug(TAG, "onStart() enter");
         super.onStart();
         LocalBroadcastManager.getInstance(this).registerReceiver((mMsgRecver), new IntentFilter("demo"));
     }
@@ -98,7 +99,7 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
 
     @Override
     public void onStop() {
-        Log.d(TAG, "onStop() enter");
+        Logger.debug(TAG, "onStop() enter");
         super.onStop();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mMsgRecver);
         //this.unregisterReceiver(mMsgRecver);
@@ -109,11 +110,11 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
 
     @Override
     protected void onResume() {
-        Log.d(TAG, "onResume() enter");
+        Logger.debug(TAG, "onResume() enter");
         super.onResume();          
         mListAdapter.notifyDataSetChanged();
 
-        //set message callback listener
+        // set message callback listener at onResume()
         MinervaManager minMgr = MinervaManager.getInstance();
         minMgr.setMsgListener(this);
     }
@@ -122,7 +123,12 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
 
     @Override
     public void onPause() {
+        Logger.debug(TAG, "onPause() enter");
         super.onPause();
+
+        // clear message callback listener at onPause()
+        MinervaManager minMgr = MinervaManager.getInstance();
+        minMgr.clearMsgListener();
     }
 
 
@@ -143,7 +149,7 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
                 cache.addMsg(pushMsg);
                 
                 mListAdapter.notifyDataSetChanged();
-                String serverId = "64286b586e0745eda860d0a96cfe38ad"; // java test app server
+                String serverId = "2ff3da1fb1af44b599876725ed46eb92"; // java test app server
                 //String serverId = "def829b853d046779e2227bdd091653c:null";
                 //String serverId = "0bb887049fb04bca924853be0e78f28d"; //gyeong min python
                 MinervaManager minMgr = MinervaManager.getInstance();
@@ -171,9 +177,8 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
                 ArrayList<String> destDevices = new ArrayList<String>();
                 //destDevices.add("50b0020d9ba2405d88b1d967839d696e");  // i pad
                 //destDevices.add("2b9f6349d5f4432a9baa77e01353303a");  // galaxy nexus
-                destDevices.add("2f84c0dbc967493a8c401921f9191af4");  // note 5
-                destDevices.add("d5f1126b2eaf45dfbb9a545bb69fc8c4");  // xiaomi oreo
-                destDevices.add("90aee24fcce741d6abcf4bf2dc6121c9");  // xiaomi oreo
+                destDevices.add("25ee697f86e74c84b2b618dc5f41b5df");  // note 5
+                destDevices.add("5ed0976ff51b41d5a144e8b81aa852cb");  // xiaomi oreo
                 //destDevices.add("1241670df8694da586605bf431f150a9");  // jungdo_empty_phone(galaxy nexus)
                 //destDevices.add("4285e11625ff4e71a94ad799457358a3");  // helpter designer(g6)
                 //destDevices.add("8a7540dd28854615b5b17c933a167206");  // helpter ceo(aka)
@@ -201,10 +206,10 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Log.d(TAG, "onOptionsItemSelected enter");
+        Logger.debug(TAG, "onOptionsItemSelected enter");
         switch (item.getItemId()) {
             case MENU_ID_REGISTER:
-                Log.d(TAG, "onOptionsItemSelected 1");
+                Logger.debug(TAG, "onOptionsItemSelected 1");
                 Intent intent = new Intent(this, RegisterActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
@@ -213,16 +218,18 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
-    public void onDownstreamMsgReceived(ArrayList<JSONObject> msgs) {
-        Log.d(TAG, "onDownstreamMsgReceived enter");
+    public void onMsgReceived(ArrayList<JSONObject> msgs) {
+        Logger.debug(TAG, "onMsgReceived enter");
 
         int msgSize = msgs.size();
 
         try {
             JSONObject oneMsg = null;
-            String data = null, notiTitle = null, notiBody = null;
+            int msgType;
             String sender = null;
+            String data = null, notiTitle = null, notiBody = null;
             long serverTime;
             long curTime = System.currentTimeMillis();
             long elapseTime;
@@ -236,6 +243,7 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
             // this sample app treat old message first.
             for (int i = msgSize - 1; i >= 0; i--) {
                 oneMsg = msgs.get(i);
+                msgType = (int) oneMsg.get(MinervaManager.FIELD_MSG_TYPE);  // 1(downstream), 2(p2p)
                 sender = (String) oneMsg.get(MinervaManager.FIELD_MSG_SENDER);
                 data = (String) oneMsg.get(MinervaManager.FIELD_MSG_DATA);
                 serverTime = (Long) oneMsg.get(MinervaManager.FIELD_MSG_SERVER_TIME);
@@ -267,66 +275,14 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
         mListAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void onP2PMsgReceived(ArrayList<JSONObject> msgs) {
-        Log.d(TAG, "onP2PMsgReceived enter");
-
-        int msgSize = msgs.size();
-
-        try {
-
-            JSONObject oneMsg = null;
-            String sender = null;
-            String data = null, notiTitle = null, notiBody = null;
-            long serverTime;
-            long curTime = System.currentTimeMillis();
-            long elapseTime;
-            Calendar cal = Calendar.getInstance();
-            String curTimeStr = cal.get(Calendar.YEAR) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
-            String serverTimeStr = null;
-            MsgCache cache = MsgCache.getInstance();
-            PushMsg pushMsg = new PushMsg();
-
-            for (int i = 0; i < msgSize; i++) {
-                oneMsg = msgs.get(i);
-                sender = (String) oneMsg.get(MinervaManager.FIELD_MSG_SENDER);
-                data = (String) oneMsg.get(MinervaManager.FIELD_MSG_DATA);
-                serverTime = (Long) oneMsg.get(MinervaManager.FIELD_MSG_SERVER_TIME);
-
-                // optional fields
-                if(oneMsg.has(MinervaManager.FIELD_MSG_NOTI_TITLE)) {
-                    notiTitle = (String) oneMsg.get(MinervaManager.FIELD_MSG_NOTI_TITLE);
-                }
-
-                if(oneMsg.has(MinervaManager.FIELD_MSG_NOTI_BODY)) {
-                    notiBody = (String) oneMsg.get(MinervaManager.FIELD_MSG_NOTI_BODY);
-                }
-                curTime = System.currentTimeMillis();
-                elapseTime = curTime - serverTime;
-                cal.setTimeInMillis(serverTime);
-                serverTimeStr = cal.get(Calendar.YEAR) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
-
-                pushMsg = new PushMsg();
-                pushMsg.mData = data;
-                pushMsg.mSrcTime = serverTimeStr;
-                pushMsg.mDestTime = curTimeStr;
-                pushMsg.mElapsedTime = elapseTime;
-                cache.addMsg(pushMsg);
-            }
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        mListAdapter.notifyDataSetChanged();
-    }
 
     @Override
     public void onSendUpstreamMsgResult(int resultCode, String resultMsg, String requestId) {
-        Log.d(TAG, "onSendUpstreamMsgResult enter");
+        Logger.debug(TAG, "onSendUpstreamMsgResult enter");
     }
 
     @Override
     public void onSendP2PMsgResult(int resultCode, String resultMsg, String requestId) {
-        Log.d(TAG, "onSendP2PMsgResult enter");
+        Logger.debug(TAG, "onSendP2PMsgResult enter");
     }
 }

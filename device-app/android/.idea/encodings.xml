@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/customer/test/FcmTokenService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/customer/test/MsgActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/customer/test/RegisterActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/customer/test/Service1App.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/customer/test/data/MsgCache.java" charset="UTF-8" />
+  </component>
+</project>
