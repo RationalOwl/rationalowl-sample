@@ -268,31 +268,51 @@ public void onUnregisterResult(int resultCode, String resultMsg) {
 
 이러한 메시지 발신 결과와 메시지 수신을 처리하기 위해서는 메시지 리스너를 등록해야 한다.
 
-MessageListener 인터페이스는 네 개의 메소드를 선언한다.
+MessageListener 인터페이스는 세 개의 메소드를 선언한다.
 
-1. onDownstreamMsgReceived 
- - 앱서버로부터 다운스트림 메시지 수신 콜백
-2. onP2PMsgReceived
- - 다른 단말앱으로부터 P2P 메시지 수신 콜백
-3. onSendUpstreamMsgResult
+1. onMsgReceived 
+ - 앱서버로부터 다운스트림 메시지 수신시 호출
+ - 다른 단말앱으로부터 P2P 메시지 수신시 호출
+ - 폰 전원꺼짐 등 다양한 이유로 미전달 메시지 수신시 호출 
+2. onSendUpstreamMsgResult
  - 앱서버로 업스트림 메시지를 발신 결과 콜백
-4. onSendP2PMsgResult
- - 다른 단말앱들에 P2P메시지를 발신 결과 콜백
+3. onSendP2PMsgResult
+ - 다른 단말앱들에 P2P메시지를 발신 결과 콜
 
-샘플코드에서 setMsgListener로 검색하면 메시지 리스너 등록하는 샘플코드를 확인할 수 있다.
+
+메시지 리스너 등록은 메시지 수발신을 처리할 Activity의 onResume()에서 setMsgListener로 지정해야 한다.
+샘플코드는 다음과 같다.
 
 ```java
 @Override
 protected void onResume() {
-    Log.d(TAG, "onResume() enter");
+    Logger.debug(TAG, "onResume() enter");
     super.onResume();          
     mListAdapter.notifyDataSetChanged();
 
-    //set message callback listener
+    // set message callback listener at onResume()
     MinervaManager minMgr = MinervaManager.getInstance();
     minMgr.setMsgListener(this);
 }
 ```
+
+반드시 메시지 수발신을 처리할 Activity의 onPause()에서 메시지 리스너를 해제해야 한다.
+샘플코드는 다음과 같다.
+
+```java
+@Override
+public void onPause() {
+    Logger.debug(TAG, "onPause() enter");
+    super.onPause();
+
+    // clear message callback listener at onPause()
+    MinervaManager minMgr = MinervaManager.getInstance();
+    minMgr.clearMsgListener();
+}
+```
+
+단말앱내에 메시지를 처리할 Activity가 몇개가 있든지 반드시 onResume()에서 메시지 리스너를 등록하고
+onPause()에서는 메시지 리스너를 해제해야 하는 규칙을 따라야 한다.
 
 
 ## 업스트림 메시지 발신
@@ -474,23 +494,23 @@ public void onSendP2PMsgResult(int resultCode, String resultMsg, String requestI
  
 
 ## 메시지 수신
-단말앱은 앱서버로부터의 다운스트림 메시지와 다른 단말앱으로부터의 P2P 메시지를 수신한다. 
+단말앱 실행시 앱서버로부터의 실시간 다운스트림 메시지와 다른 단말앱으로부터의 실시간 P2P 메시지를 수신한다. 그 밖에 단말 전원이 꺼지거나 단말앱 미실행등 여러가지 이유로 실시간 메시지 수신을 못한 경우 단말앱 실행시 미전달 메시지를 수신한다.
 
-### 다운스트림 메시지 수신
-다운스트림 메시지 수신시 앞서 메시지 리스너로 등록한 onDownstreamMsgReceived() 콜백이 호출된다.
-샘플코드에서 onDownstreamMsgReceived 검색하면 아래의 샘플코드를 확인 할 수 있다.
+메시지 수신시 등록한 메시지 리스너의 onMsgReceived() 콜백이 호출된다.
+샘플코드에서 onMsgReceived 검색하면 아래의 샘플코드를 확인 할 수 있다.
 
 ```java
- @Override
-public void onDownstreamMsgReceived(ArrayList<JSONObject> msgs) {
-    Log.d(TAG, "onDownstreamMsgReceived enter");
+@Override
+public void onMsgReceived(ArrayList<JSONObject> msgs) {
+    Logger.debug(TAG, "onMsgReceived enter");
 
     int msgSize = msgs.size();
 
     try {
         JSONObject oneMsg = null;
-        String data = null, notiTitle = null, notiBody = null;
+        int msgType;
         String sender = null;
+        String data = null, notiTitle = null, notiBody = null;
         long serverTime;
         long curTime = System.currentTimeMillis();
         long elapseTime;
@@ -504,6 +524,7 @@ public void onDownstreamMsgReceived(ArrayList<JSONObject> msgs) {
         // this sample app treat old message first.
         for (int i = msgSize - 1; i >= 0; i--) {
             oneMsg = msgs.get(i);
+            msgType = (int) oneMsg.get(MinervaManager.FIELD_MSG_TYPE);  // 1(downstream), 2(p2p)
             sender = (String) oneMsg.get(MinervaManager.FIELD_MSG_SENDER);
             data = (String) oneMsg.get(MinervaManager.FIELD_MSG_DATA);
             serverTime = (Long) oneMsg.get(MinervaManager.FIELD_MSG_SERVER_TIME);
@@ -536,11 +557,9 @@ public void onDownstreamMsgReceived(ArrayList<JSONObject> msgs) {
 }
 ```
 
-앱서버에서 발신하는 멀티캐스트, 브로드캐스트, 그룹 메시지를 단말앱이 수신시 단말앱 라이브러리는 단말앱에게 다음의 값들을 알려준다.
-
-1. 다운스트림 메시지 목록           
-   메시지 목록의 각 메시지는 다음의 값들을 포함한다.
-  - 메시지 발신한 앱서버의 서버등록아이디
+샘플코드에서 알 수 있듯이 onMsgReceived()콜백 파라미터로 수신한 메시지 목록이 넘어오고 각 메시지에는 다음의 정보를 포함하고 있다.
+  - 메시지 타입 : 1(다운스트림), 2(P2P)
+  - 메시지 발신주체 : 다운스트림일 경우 메시지 발신한 앱서버의 서버등록아이디, P2P 일 경우 발신 단말앱 등록 아이디
   - 메시지 데이터
   - 메시지 발신시간
   - 단말앱이 백그라운드시 표시할 알림 타이틀
@@ -549,74 +568,3 @@ public void onDownstreamMsgReceived(ArrayList<JSONObject> msgs) {
 
 ![이미지 이름](./img/sample_msg.png)
 
-
-
-### P2P 메시지 수신
-
-P2P 메시지 수신시 앞서 메시지 리스너로 등록한 onP2PMsgReceived() 콜백이 호출된다.
-샘플코드에서 onP2PMsgReceived 검색하면 아래의 샘플코드를 확인 할 수 있다.
-
-```java
-@Override
-public void onP2PMsgReceived(ArrayList<JSONObject> msgs) {
-    Log.d(TAG, "onP2PMsgReceived enter");
-
-    int msgSize = msgs.size();
-
-    try {
-
-        JSONObject oneMsg = null;
-        String sender = null;
-        String data = null, notiTitle = null, notiBody = null;
-        long serverTime;
-        long curTime = System.currentTimeMillis();
-        long elapseTime;
-        Calendar cal = Calendar.getInstance();
-        String curTimeStr = cal.get(Calendar.YEAR) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
-        String serverTimeStr = null;
-        MsgCache cache = MsgCache.getInstance();
-        PushMsg pushMsg = new PushMsg();
-
-        for (int i = 0; i < msgSize; i++) {
-            oneMsg = msgs.get(i);
-            sender = (String) oneMsg.get(MinervaManager.FIELD_MSG_SENDER);
-            data = (String) oneMsg.get(MinervaManager.FIELD_MSG_DATA);
-            serverTime = (Long) oneMsg.get(MinervaManager.FIELD_MSG_SERVER_TIME);
-
-            // optional fields
-            if(oneMsg.has(MinervaManager.FIELD_MSG_NOTI_TITLE)) {
-                notiTitle = (String) oneMsg.get(MinervaManager.FIELD_MSG_NOTI_TITLE);
-            }
-
-            if(oneMsg.has(MinervaManager.FIELD_MSG_NOTI_BODY)) {
-                notiBody = (String) oneMsg.get(MinervaManager.FIELD_MSG_NOTI_BODY);
-            }
-            curTime = System.currentTimeMillis();
-            elapseTime = curTime - serverTime;
-            cal.setTimeInMillis(serverTime);
-            serverTimeStr = cal.get(Calendar.YEAR) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
-
-            pushMsg = new PushMsg();
-            pushMsg.mData = data;
-            pushMsg.mSrcTime = serverTimeStr;
-            pushMsg.mDestTime = curTimeStr;
-            pushMsg.mElapsedTime = elapseTime;
-            cache.addMsg(pushMsg);
-        }
-    }
-    catch (Exception e) {
-        e.printStackTrace();
-    }
-    mListAdapter.notifyDataSetChanged();
-}
-```
-모바일 서비스 내 다른 단말앱에서 발신한 P2P 메시지를 단말앱이 수신시 단말앱 라이브러리은 단말앱에게 다음의 값들을 알려준다.
-
-1. P2P 메시지 목록    
-   샘플코드에서 bundle.getString(MinervaManager.FIELD_MSG_LIST)로 반환    
-   메시지 목록의 각 메시지는 다음의 값들을 포함한다.
-  - 메시지 발신한 단말앱의 단말등록아이디
-  - 메시지 데이터
-  - 메시지 발신시간
-  - 단말앱이 백그라운드시 표시할 알림 타이틀
-  - 단말앱이 백그라운드시 표시할 알림 본문
