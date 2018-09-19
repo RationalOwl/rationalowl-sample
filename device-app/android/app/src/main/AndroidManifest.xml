@@ -15,6 +15,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
+        <!-- launch activity set by "android.intent.category.LAUNCHER" -->
+        <!-- when user tap on the notification, launch activity launches -->
+        <activity android:name="com.customer.test.MainActivity"
+            android:label="launcher" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <!-- activity using Rationalowl Register API -->
         <activity android:name="com.customer.test.RegisterActivity"
             android:label="단말앱 등록" >
@@ -22,10 +33,6 @@
         <!-- activity using Rationalowl real-time messaging API   -->
         <activity android:name="com.customer.test.MsgActivity"
             android:label="메시지" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!-- FCM token received -->
@@ -35,6 +42,15 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
+
+        <!-- RationalOwl  don't need to use com.google.firebase.MESSAGING_EVENT
+        <service
+            android:name=".NotNeedService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        -->
     </application>
 
 </manifest>

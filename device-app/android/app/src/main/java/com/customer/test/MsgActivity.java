@@ -239,7 +239,7 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
             MsgCache cache = MsgCache.getInstance();
             PushMsg pushMsg = new PushMsg();
 
-            // recent messages are ordered previous position [recentest, recent, old, older, oldest...]
+            // recent messages are ordered by message send time descending order [recentest, recent, old, older, oldest...]
             // this sample app treat old message first.
             for (int i = msgSize - 1; i >= 0; i--) {
                 oneMsg = msgs.get(i);

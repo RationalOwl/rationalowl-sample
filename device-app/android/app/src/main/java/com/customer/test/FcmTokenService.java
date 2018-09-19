@@ -9,7 +9,7 @@ import com.rationalowl.minerva.client.android.util.Logger;
 
 public class FcmTokenService  extends FirebaseInstanceIdService {
 
-    private static final String TAG = "MyFirebaseIIDService";
+    private static final String TAG = "FcmTokenService";
 
     /**
      * Called if InstanceID token is updated. This may occur if the security of
