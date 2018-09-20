@@ -38,19 +38,23 @@ public class MainActivity  extends AppCompatActivity {
 
         Bundle bundle = intent.getExtras();
 
+        // launch by app icon click
         if(bundle == null) {
             Logger.debug(TAG, "handle bundle null");
             // remain main activity
             // do nothing.
         }
-        // if you want to branch activity when user tap on notification,
-        // set fcm data field.
+        // launch by push notification tap
         else {
-            // fcm data format can be below
-            // "data":{"target_activity":"A_Activity", "data_to_display":"hi"}
+
             String target = bundle.getString("target_activity");
 
+            // if you want to branch activity when user tap on notification,
+            // set fcm data field.
+            // fcm data format can be below
+            // "data":{"target_activity":"A_Activity", "data_to_display":"hi"}
             if(target != null) {
+                // yes, you can launch activity what you want to
                 switch(target) {
                     case "A_Activity":
                         // launch A Activity
@@ -68,6 +72,8 @@ public class MainActivity  extends AppCompatActivity {
                         break;
                 }
             }
+            // if fcm data don't have target_activity
+            // default MsgActivity launches
             else {
                 // this demo don't use activity selection.
                 // If user tap fcm notification, simply, launches message activity.
