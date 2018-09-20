@@ -11,7 +11,7 @@ Android 단말앱 샘플은 Android 단말앱 라이브러리에서 제공하는
 ![이미지 이름](./img/project.png)
 
 
-### 단말앱 라이브러리 적용 확인
+## 단말앱 라이브러리 적용 확인
 
 래셔널아울 안드로이드 단말앱 라이브러리 적용을 확인한다.
 
@@ -28,7 +28,7 @@ Android 단말앱 샘플은 Android 단말앱 라이브러리에서 제공하는
 ![이미지 이름](./img/app_build_gradle.png)
 
 
-### FCM(Firebase Cloud Messaging) 적용
+## FCM(Firebase Cloud Messaging) 적용
 
 안드로이드 마쉬멜로 이전에는 백그라운드의 제한이 없어서 안드로이드 단말앱에서 래셔널아울 단말앱 라이브러리를 통해 실시간 푸시 알림이 가능하였다.
 
@@ -37,14 +37,31 @@ Android 단말앱 샘플은 Android 단말앱 라이브러리에서 제공하는
 [FCM 설정 가이드](https://github.com/RationalOwl/rationalowl-guide/tree/master/device-app/fcm-setting)를 통해 FCM설정한다.
 
 
-### 샘플앱 실행
+## 샘플앱 실행
 
-안드로이드 단말을 PC에 연결 후 안드로이드 스튜디오에서 실행시키면 실제 안드로이드 단말에 샘플앱이 설치 후 실행된다.
+샘플앱 실행은 앱 아이콘 클릭을 통해서 실행되고 푸시 알림 목록의 알림을 탭하여서도 실행된다.
+
+### 앱 아이콘 클릭을 통한 샘플앱 실행
+
+1. 앱 아이콘을 클릭하면 샘플앱에서 android.intent.category.LAUNCHER 으로 지정된 MainActivity가 실행된다.
+2. MainActivity의 메뉴>register device app 을 클릭하면 단말앱 등록화면으로 전이한다.
+3. MainActivity의 메뉴>message lsit 를 클릭하면 실시간 메시지 수발신 화면으로 전이한다.
 
 
 ![이미지 이름](./img/sample_main.png)
 
 
+### 푸시 알림 탭하여 샘플앱 실행
+
+1. 푸시 알림을 탭하면 샘플앱에서 android.intent.category.LAUNCHER 으로 지정된 MainActivity onNewIntent()가 실행된다.
+2. Fcm 발신시 data 필드에 원하는 Activity로 분기하도록 필드를 설정하여 원하는 임의의 Activity로 분기 가능하다.
+3. Activity 분기 필드를 별도로 지정하지 않으면 기본적으로 실시간 메시지 수발신 화면으로 전이한다.
+
+
+![이미지 이름](./img/sample_by_push.png)
+
+
+### 관리자 콘솔을 통한 모니터링
 래셔널아울 관리자콘솔이 제공하는 실시간 모니터링은 서비스 개발 전 단계에서 실시간 데이터의 전달 현황뿐 아니라 개발 단계에서 앱서버와 단말앱의 각 기능 별 성공 여부를 확인할 수 있어 개발속도를 향상시키고 서비스 운영단계에서는 예측 가능성과 서비스 대응력을 높이는 역할을 한다. 샘플앱 개발시 관리자콘솔을 이용해 각 기능별 동작을 확인함으로써 그 편의성을 확인할 수 있을 것이다.
 
 >## 단말앱 초기화
