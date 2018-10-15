@@ -73,6 +73,7 @@
 - (IBAction)sendP2PMsg:(id)sender {
     NSString* msg = inputMessageField.text;
     NSMutableArray* devices = [[NSMutableArray alloc] init];
+    [devices addObject:@"1acb906d881546e7b0a7bbc9e21cdb11"];
     [devices addObject:@"2f84c0dbc967493a8c401921f9191af4"];
     [devices addObject:@"d5f1126b2eaf45dfbb9a545bb69fc8c4"];
     [devices addObject:@"90aee24fcce741d6abcf4bf2dc6121c9"];
