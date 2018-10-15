@@ -32,7 +32,7 @@ class RegViewController: UIViewController, DeviceRegisterResultDelegate {
     /////////////////////////////////////////////////////////////////
     
     @IBAction func regDevice() {
-        let serviceId: String = "faebcfe844d54d449136491fb253619d";
+        let serviceId: String = "9bd4db31dbaa4897ad9aa81c3e7e183a";
         let gateHost: String = inputNameField.text!;
         let mgr: MinervaManager = MinervaManager.getInstance();
         mgr.registerDevice(gateHost, serviceId: serviceId, deviceRegName: "my I phone");
@@ -40,7 +40,7 @@ class RegViewController: UIViewController, DeviceRegisterResultDelegate {
     
     
     @IBAction func unregDevice() {
-        let serviceId: String = "faebcfe844d54d449136491fb253619d";
+        let serviceId: String = "9bd4db31dbaa4897ad9aa81c3e7e183a";
         let mgr: MinervaManager = MinervaManager.getInstance();
         mgr.unregisterDevice(serviceId);
     }

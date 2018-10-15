@@ -55,7 +55,7 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tVew.reloadData();
         
         let topIndexPath = IndexPath(row: messages.count-1, section: 0)
-        self.tVew.scrollToRow(at: topIndexPath, at: UITableViewScrollPosition.middle, animated: true);
+        self.tVew.scrollToRow(at: topIndexPath, at: UITableView.ScrollPosition.middle, animated: true);
     }
     
     
@@ -69,7 +69,7 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.messages.append(displayStr);
         self.tVew.reloadData();
         let topIndexPath = IndexPath(row: messages.count-1, section: 0)
-        self.tVew.scrollToRow(at: topIndexPath, at: UITableViewScrollPosition.middle, animated: true);
+        self.tVew.scrollToRow(at: topIndexPath, at: UITableView.ScrollPosition.middle, animated: true);
     }
     
     
@@ -101,7 +101,7 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         self.tVew.reloadData();
         let topIndexPath = IndexPath(row: messages.count-1, section: 0)
-        self.tVew.scrollToRow(at: topIndexPath, at: UITableViewScrollPosition.middle, animated: true);
+        self.tVew.scrollToRow(at: topIndexPath, at: UITableView.ScrollPosition.middle, animated: true);
     }
     
     
@@ -128,7 +128,7 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         self.tVew.reloadData();
         let topIndexPath = IndexPath(row: messages.count-1, section: 0)
-        self.tVew.scrollToRow(at: topIndexPath, at: UITableViewScrollPosition.middle, animated: true);
+        self.tVew.scrollToRow(at: topIndexPath, at: UITableView.ScrollPosition.middle, animated: true);
     }
     
     
@@ -159,7 +159,7 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let str: String = messages[indexPath.row];
         //let str: String = messages.object(at: indexPath.row) as! String;
-        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell");
+        let cell: UITableViewCell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "Cell");
         //let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "ChatCellIdentifier")!;
         cell.textLabel?.text = str;
         return cell;
