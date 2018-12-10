@@ -88,7 +88,7 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
                 mgr.setDeviceToken(fcmToken);
 
                 // register device app.
-                mgr.registerDevice(url, "9bd4db31dbaa4897ad9aa81c3e7e183a","My Android 2"); //aws dev gate
+                mgr.registerDevice(url, "9bd4db31dbaa4897ad9aa81c3e7e183a","My Android note5"); //aws dev gate
                 //mgr.registerDevice(url, "faebcfe844d54d449136491fb253619d","단말등록이름2"); //hostway
                 //mgr.registerDevice(url, "def829b853d046779e2227bdd091653c","경민테스트폰"); //hostway
                 //mgr.registerDevice(url, "c8574b6882c34db0a6e6691987de1221"); //aws test

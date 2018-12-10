@@ -267,7 +267,7 @@ public class SampleServerView extends JFrame implements ActionListener {
     private void regServer() {
         AppServerManager serverMgr = AppServerManager.getInstance();
         // edit service id as yours
-        String serviceId = "faebcfe844d54d449136491fb253619d";
+        String serviceId = "ab662e7a1f274124a588ae3477f535ca";
         //String appServerRegName = "app server registraion name1";
         String appServerRegName = "샘플앱서버";
         String gateHost = "gate.rationalowl.com";
@@ -279,8 +279,8 @@ public class SampleServerView extends JFrame implements ActionListener {
 
     private void unregServer() {
         AppServerManager serverMgr = AppServerManager.getInstance();
-        String serviceId = "faebcfe844d54d449136491fb253619d";
-        String serverRegId = "b0a4207baec4420ead6044295f13f3fe";
+        String serviceId = "ab662e7a1f274124a588ae3477f535ca";
+        String serverRegId = "75d0c3e10cff47ec81c807ea4de5f25b";
         //String serverRegId = "your app server registration Id";
         serverMgr.unregisterAppServer(serviceId, serverRegId);
         output("unregServer request");
@@ -355,30 +355,22 @@ public class SampleServerView extends JFrame implements ActionListener {
         
         // data format is json string 
         // and jackson json library has used.
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> jsonData = new LinkedHashMap<String, Object>();
-        jsonData.put("key1", "value1");
-        jsonData.put("key2", 2);        
-        String jsonStr = null;
-        try {
-            jsonStr = mapper.writeValueAsString(jsonData);
-            // target device registration id
-            ArrayList<String> targetDevices = new ArrayList<String>();
-            targetDevices.add("27af1a1cb5454b1caf5ccfd95d2c5b6f");
-            targetDevices.add("3b04be2c545d491d8323539bcc1a0176");
-            targetDevices.add("7661ad50f28842658e0bcbb5549a15fd");
-            AppServerManager serverMgr = AppServerManager.getInstance();
-            String requestId = serverMgr.sendMulticastMsg(jsonStr, targetDevices);
-            output("sendMulticastMsg Msg :" + jsonStr + "requestId = " + requestId);
-        }
-        catch (JsonProcessingException e) {           
-            e.printStackTrace();
-        }        
+        String data = msgField.getText();
+            
+        // target device registration id
+        ArrayList<String> targetDevices = new ArrayList<String>();
+        targetDevices.add("1453ff0bc4c54a5ab31fb9e85d667757");
+        //targetDevices.add("3b04be2c545d491d8323539bcc1a0176");
+        //targetDevices.add("7661ad50f28842658e0bcbb5549a15fd");
+        AppServerManager serverMgr = AppServerManager.getInstance();
+        String requestId = serverMgr.sendMulticastMsg(data, targetDevices);
+        output("sendMulticastMsg Msg :" + data + "requestId = " + requestId);
+         
     }
 
 
     private void sendBroadcastMsg() {
-        String data = "broadcast message!!";
+        String data = msgField.getText();
         AppServerManager serverMgr = AppServerManager.getInstance();
         String requestId = serverMgr.sendBroadcastMsg(data);
         output("sendBroadcastMsg Msg :" + data + "requestId = " + requestId);
@@ -386,7 +378,7 @@ public class SampleServerView extends JFrame implements ActionListener {
 
 
     private void sendGrpMsg() {
-        String data = "group message";
+        String data = msgField.getText();
         String deviceGroupId = "29426ab58f2349d4a01e77856d856841";
         AppServerManager serverMgr = AppServerManager.getInstance();
         String requestId = serverMgr.sendGroupMsg(data, deviceGroupId);
