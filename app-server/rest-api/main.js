@@ -25,9 +25,10 @@ const multicastRun = () => {
     const deviceRegIds = document.getElementById('multicast-devices').value.replace(/\s/g, '').split(/,/g);
     const notiTitle = document.getElementById('multicast-noti-title').value;
     const notiBody = document.getElementById('multicast-noti-body').value;
+    const notiSound = document.getElementById('multicast-noti-sound').value;
 
     sendHttpRequest(`http://${channelUrl}/downstream/multicast/`, {
-        serviceId, serverRegId, queuing, data, deviceRegIds, notiTitle, notiBody
+        serviceId, serverRegId, queuing, data, deviceRegIds, notiTitle, notiBody, notiSound
     });
 };
 
@@ -38,9 +39,10 @@ const broadcastRun = () => {
     const data = document.getElementById('broadcast-data').value;
     const notiTitle = document.getElementById('broadcast-noti-title').value;
     const notiBody = document.getElementById('broadcast-noti-body').value;
+    const notiSound = document.getElementById('broadcast-noti-sound').value;
 
     sendHttpRequest(`http://${channelUrl}/downstream/broadcast/`, {
-        serviceId, serverRegId, queuing, data, notiTitle, notiBody
+        serviceId, serverRegId, queuing, data, notiTitle, notiBody, notiSound
     });
 };
 
@@ -52,9 +54,10 @@ const groupmsgRun = () => {
     const groupId = document.getElementById('groupmsg-group-id').value;
     const notiTitle = document.getElementById('groupmsg-noti-title').value;
     const notiBody = document.getElementById('groupmsg-noti-body').value;
+    const notiSound = document.getElementById('groupmsg-noti-sound').value;
 
     sendHttpRequest(`http://${channelUrl}/downstream/group/`, {
-        serviceId, serverRegId, queuing, data, groupId, notiTitle, notiBody
+        serviceId, serverRegId, queuing, data, groupId, notiTitle, notiBody, notiSound
     });
 };
 

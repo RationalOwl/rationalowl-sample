@@ -277,9 +277,10 @@ const multicastRun = () => {
     const deviceRegIds = document.getElementById('multicast-devices').value.replace(/\s/g, '').split(/,/g);
     const notiTitle = document.getElementById('multicast-noti-title').value;
     const notiBody = document.getElementById('multicast-noti-body').value;
+    const notiSound = document.getElementById('multicast-noti-sound').value;
 
     sendHttpRequest(`http://${channelUrl}/downstream/multicast/`, {
-        serviceId, serverRegId, queuing, data, deviceRegIds, notiTitle, notiBody
+        serviceId, serverRegId, queuing, data, deviceRegIds, notiTitle, notiBody, notiSound
     });
 };
 ```
@@ -308,7 +309,9 @@ const multicastRun = () => {
 - notiTitle
   - 알림 제목 : 단말앱이 백그라운드/종료시 알림창에 표시할 제목
 - notiBody
-  - 알림 내용 : 단말앱이 백그라운드/종료시 알림창에 표시할 내용, 미설정시 data가 표시
+  - 알림 내용 : 단말앱이 백그라운드/종료시 알림창에 표시할 내용
+- notiSound
+  - 알림음 : 사용자 지정 알림음, 미설정시 알림기본음이 울림
 
 ### Result
 
@@ -332,9 +335,10 @@ const broadcastRun = () => {
     const data = document.getElementById('broadcast-data').value;
     const notiTitle = document.getElementById('broadcast-noti-title').value;
     const notiBody = document.getElementById('broadcast-noti-body').value;
+    const notiSound = document.getElementById('broadcast-noti-sound').value;
 
     sendHttpRequest(`http://${channelUrl}/downstream/broadcast/`, {
-        serviceId, serverRegId, queuing, data, notiTitle, notiBody
+        serviceId, serverRegId, queuing, data, notiTitle, notiBody, notiSound
     });
 };
 ```
@@ -357,6 +361,8 @@ const broadcastRun = () => {
   - 알림 제목 : 단말앱이 백그라운드/종료시 알림창에 표시할 제목
 - notiBody
   - 알림 내용 : 단말앱이 백그라운드/종료시 알림창에 표시할 내용, 미설정시 data가 표시
+- notiSound
+  - 알림음 : 사용자 지정 알림음, 미설정시 알림기본음이 울림
 
 ### Result
 
@@ -384,9 +390,10 @@ const groupmsgRun = () => {
     const groupId = document.getElementById('groupmsg-group-id').value;
     const notiTitle = document.getElementById('groupmsg-noti-title').value;
     const notiBody = document.getElementById('groupmsg-noti-body').value;
+    const notiSound = document.getElementById('groupmsg-noti-sound').value;
 
     sendHttpRequest(`http://${channelUrl}/downstream/group/`, {
-        serviceId, serverRegId, queuing, data, groupId, notiTitle, notiBody
+        serviceId, serverRegId, queuing, data, groupId, notiTitle, notiBody, notiSound
     });
 };
 ```
@@ -412,6 +419,8 @@ const groupmsgRun = () => {
   - 알림 제목 : 단말앱이 백그라운드/종료시 알림창에 표시할 제목
 - notiBody
   - 알림 내용 : 단말앱이 백그라운드/종료시 알림창에 표시할 내용, 미설정시 data가 표시
+- notiSound
+  - 알림음 : 사용자 지정 알림음, 미설정시 알림기본음이 울림
 
 ### Result
 
