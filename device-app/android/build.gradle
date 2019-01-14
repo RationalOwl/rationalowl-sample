@@ -19,9 +19,10 @@ allprojects {
         jcenter()
         google()
         maven { url "https://maven.google.com" }
-        flatDir {
-            dirs 'libs'
-        }
+        maven { url 'http://dl.bintray.com/rationalowl/maven/'}
+        //flatDir {
+        //    dirs 'libs'
+        //}
     }
 }
 
