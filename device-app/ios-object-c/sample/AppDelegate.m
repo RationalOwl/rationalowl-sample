@@ -37,6 +37,11 @@
         }
     }];
     
+    // to notification delivery tracking
+    // call setAppGroup API at the container app(main app).
+    MinervaManager* minMgr = [MinervaManager getInstance];
+    [minMgr setAppGroup:@"group.com.rationalowl.sample"];
+    
     return YES;
 }
 
@@ -91,15 +96,15 @@
 }
 
 
+#pragma mark - Remote Notification Delegate for < iOS 10
+//Called when a notification is delivered to a foreground app previous ios 10 .
 - (void)application:(UIApplication*) application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
     NSLog(@"didReceiveRemoteNotification");
-    MinervaManager* minMgr = [MinervaManager getInstance];
-    [minMgr receivedApns:userInfo];
 }
 
 
-
-//Called when a notification is delivered to a foreground app.
+#pragma mark - Remote Notification Delegate for >= iOS 10
+//Called when a notification is delivered to a foreground app over ios 10 .
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler {
     NSLog(@"User Info : %@",notification.request.content.userInfo);
     completionHandler(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge);
@@ -107,7 +112,12 @@
 
 //Called to let your app know which action was selected by the user for a given notification.
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)(void))completionHandler {
-    NSLog(@"User Info : %@",response.notification.request.content.userInfo);
+    NSDictionary* userInfo = response.notification.request.content.userInfo;
+    
+    // call receiveApns API here
+    MinervaManager* minMgr = [MinervaManager getInstance];
+    [minMgr receivedApns:userInfo];
+    
     completionHandler();
 }
 

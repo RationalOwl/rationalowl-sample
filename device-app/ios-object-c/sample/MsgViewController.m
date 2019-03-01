@@ -52,7 +52,7 @@
 
 - (IBAction)sendUpstreamMsg:(id)sender {
     //NSString* svcId = @"d0a83353281e4b678774a0efa44fdd82";
-    NSString* serverId = @"64286b586e0745eda860d0a96cfe38ad";  //sample server
+    NSString* serverId = @"e2c5f56d6cda41279c3a4ad8549052bf";
     NSString* msg = inputMessageField.text;
     MinervaManager* mgr = [MinervaManager getInstance];
     [mgr sendUpstreamMsg:msg serverRegId:serverId];
@@ -73,10 +73,10 @@
 - (IBAction)sendP2PMsg:(id)sender {
     NSString* msg = inputMessageField.text;
     NSMutableArray* devices = [[NSMutableArray alloc] init];
-    [devices addObject:@"1acb906d881546e7b0a7bbc9e21cdb11"];
-    [devices addObject:@"2f84c0dbc967493a8c401921f9191af4"];
-    [devices addObject:@"d5f1126b2eaf45dfbb9a545bb69fc8c4"];
-    [devices addObject:@"90aee24fcce741d6abcf4bf2dc6121c9"];
+    [devices addObject:@"a03e1768d6ab411b930eb6dd6b5048b4"];
+    //[devices addObject:@"2f84c0dbc967493a8c401921f9191af4"];
+    //[devices addObject:@"d5f1126b2eaf45dfbb9a545bb69fc8c4"];
+    //[devices addObject:@"90aee24fcce741d6abcf4bf2dc6121c9"];
     MinervaManager* mgr = [MinervaManager getInstance];
     [mgr sendP2PMsg:msg devices:devices];
     

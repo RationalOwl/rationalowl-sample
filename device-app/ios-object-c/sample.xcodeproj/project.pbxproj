@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		90226014212BF50900E33172 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90226010212BF4E600E33172 /* RationalOwl.framework */; };
-		90226015212BF50900E33172 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90226010212BF4E600E33172 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		903E12F22227FB6200F29763 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 903E12F12227FB6200F29763 /* NotificationService.m */; };
+		903E12F62227FB6200F29763 /* NotiServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 903E12EE2227FB6200F29763 /* NotiServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		903E130622290A4000F29763 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 903E130422290A2700F29763 /* RationalOwl.framework */; };
+		903E130722290A4000F29763 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 903E130422290A2700F29763 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		903E130822290A4900F29763 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 903E130422290A2700F29763 /* RationalOwl.framework */; };
 		90D999082016F0C3005D3401 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D999072016F0C3005D3401 /* AppDelegate.m */; };
 		90D9990E2016F0C4005D3401 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90D9990C2016F0C4005D3401 /* Main.storyboard */; };
 		90D999102016F0C4005D3401 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90D9990F2016F0C4005D3401 /* Assets.xcassets */; };
@@ -20,6 +23,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		903E12F42227FB6200F29763 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90D998FB2016F0C3005D3401 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 903E12ED2227FB6200F29763;
+			remoteInfo = NotiServiceExtension;
+		};
 		90D9991C2016F0C4005D3401 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90D998FB2016F0C3005D3401 /* Project object */;
@@ -36,15 +46,31 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				90226015212BF50900E33172 /* RationalOwl.framework in Embed Frameworks */,
+				903E130722290A4000F29763 /* RationalOwl.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		903E12FA2227FB6200F29763 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				903E12F62227FB6200F29763 /* NotiServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		90226010212BF4E600E33172 /* RationalOwl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RationalOwl.framework; sourceTree = "<group>"; };
+		903E12EE2227FB6200F29763 /* NotiServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotiServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		903E12F02227FB6200F29763 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
+		903E12F12227FB6200F29763 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
+		903E12F32227FB6200F29763 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		903E13032228EE4B00F29763 /* NotiServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotiServiceExtension.entitlements; sourceTree = "<group>"; };
+		903E130422290A2700F29763 /* RationalOwl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RationalOwl.framework; sourceTree = "<group>"; };
 		90D999032016F0C3005D3401 /* sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D999062016F0C3005D3401 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		90D999072016F0C3005D3401 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -64,11 +90,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		903E12EB2227FB6200F29763 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				903E130822290A4900F29763 /* RationalOwl.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90D999002016F0C3005D3401 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90226014212BF50900E33172 /* RationalOwl.framework in Frameworks */,
+				903E130622290A4000F29763 /* RationalOwl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,10 +116,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		903E12EF2227FB6200F29763 /* NotiServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				903E13032228EE4B00F29763 /* NotiServiceExtension.entitlements */,
+				903E12F02227FB6200F29763 /* NotificationService.h */,
+				903E12F12227FB6200F29763 /* NotificationService.m */,
+				903E12F32227FB6200F29763 /* Info.plist */,
+			);
+			path = NotiServiceExtension;
+			sourceTree = "<group>";
+		};
 		90CA99AF201AE284003D46B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				90226010212BF4E600E33172 /* RationalOwl.framework */,
+				903E130422290A2700F29763 /* RationalOwl.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -95,6 +140,7 @@
 			children = (
 				90D999052016F0C3005D3401 /* sample */,
 				90D9991E2016F0C4005D3401 /* sampleTests */,
+				903E12EF2227FB6200F29763 /* NotiServiceExtension */,
 				90D999042016F0C3005D3401 /* Products */,
 				90CA99AF201AE284003D46B9 /* Frameworks */,
 			);
@@ -105,6 +151,7 @@
 			children = (
 				90D999032016F0C3005D3401 /* sample.app */,
 				90D9991B2016F0C4005D3401 /* sampleTests.xctest */,
+				903E12EE2227FB6200F29763 /* NotiServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,6 +187,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		903E12ED2227FB6200F29763 /* NotiServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 903E12F72227FB6200F29763 /* Build configuration list for PBXNativeTarget "NotiServiceExtension" */;
+			buildPhases = (
+				903E12EA2227FB6200F29763 /* Sources */,
+				903E12EB2227FB6200F29763 /* Frameworks */,
+				903E12EC2227FB6200F29763 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotiServiceExtension;
+			productName = NotiServiceExtension;
+			productReference = 903E12EE2227FB6200F29763 /* NotiServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		90D999022016F0C3005D3401 /* sample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90D999242016F0C4005D3401 /* Build configuration list for PBXNativeTarget "sample" */;
@@ -148,10 +212,12 @@
 				90D999002016F0C3005D3401 /* Frameworks */,
 				90D999012016F0C3005D3401 /* Resources */,
 				90226016212BF50900E33172 /* Embed Frameworks */,
+				903E12FA2227FB6200F29763 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				903E12F52227FB6200F29763 /* PBXTargetDependency */,
 			);
 			name = sample;
 			productName = sample;
@@ -185,10 +251,22 @@
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = Rationalowl;
 				TargetAttributes = {
+					903E12ED2227FB6200F29763 = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					90D999022016F0C3005D3401 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
@@ -219,11 +297,19 @@
 			targets = (
 				90D999022016F0C3005D3401 /* sample */,
 				90D9991A2016F0C4005D3401 /* sampleTests */,
+				903E12ED2227FB6200F29763 /* NotiServiceExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		903E12EC2227FB6200F29763 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90D999012016F0C3005D3401 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -244,6 +330,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		903E12EA2227FB6200F29763 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				903E12F22227FB6200F29763 /* NotificationService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90D998FF2016F0C3005D3401 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -266,6 +360,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		903E12F52227FB6200F29763 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 903E12ED2227FB6200F29763 /* NotiServiceExtension */;
+			targetProxy = 903E12F42227FB6200F29763 /* PBXContainerItemProxy */;
+		};
 		90D9991D2016F0C4005D3401 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 90D999022016F0C3005D3401 /* sample */;
@@ -293,6 +392,51 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		903E12F82227FB6200F29763 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = NotiServiceExtension/NotiServiceExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 56AQ6CM687;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = NotiServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rationalowl.sample.NotiServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		903E12F92227FB6200F29763 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = NotiServiceExtension/NotiServiceExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 56AQ6CM687;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = NotiServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rationalowl.sample.NotiServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		90D999222016F0C4005D3401 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -472,6 +616,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		903E12F72227FB6200F29763 /* Build configuration list for PBXNativeTarget "NotiServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				903E12F82227FB6200F29763 /* Debug */,
+				903E12F92227FB6200F29763 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		90D998FE2016F0C3005D3401 /* Build configuration list for PBXProject "sample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

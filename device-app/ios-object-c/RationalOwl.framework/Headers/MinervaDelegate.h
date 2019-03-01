@@ -30,6 +30,7 @@
  * 단말앱 등록해제 결과 호출되는 콜백 함수이다.
  * @param resultCode 결과 코드로 성공시 Result.RESULT_OK 가 반환된다.
  * @param resultMsg 결과 코드인 resultCode에 대한 설명이다.
+ *               resultCode가 Result.RESULT_OK일 경우 단말앱은 등로해제된 단말 등록 아이디를 앱서버에게 전달해야 한다.
  */
 -(void) onUnregisterResult: (int) resultCode resultMsg : (NSString*) resultMsg;
 
@@ -69,7 +70,7 @@
  * MinervaManager.sendUpstreamMsg() API 호출에 의한 업스트림 메시지 발신 성공 여부를 알려준다.
  * @param resultCode 결과 코드로 성공시 Result.RESULT_OK 가 반환된다.
  * @param resultMsg 결과 코드인 resultCode에 대한 설명이다.
- * @param umi (UpstreamMessageId) MinervaManager.sendUpstreamMsg() API 반환값과 동일한 값으로 이 콜백이 어느 API의 결과인지를 알려준다.
+ * @param umi(UpstreamMessageId) MinervaManager.sendUpstreamMsg() API 반환값과 동일한 값으로 이 콜백이 어느 API의 결과인지를 알려준다.
  */
 -(void) onUpstreamMsgResult: (int) resultCode resultMsg : (NSString*) resultMsg umi : (NSString*) umi;
 
@@ -78,7 +79,7 @@
  * MinervaManager.sendP2PMsg() API 호출에 의한 P2P 메시지 발신 성공 여부를 알려준다.
  * @param resultCode 결과 코드로 성공시 Result.RESULT_OK 가 반환된다.
  * @param resultMsg 결과 코드인 resultCode에 대한 설명이다.
- * @param pmi (P2PMessageId) MinervaManager.sendP2PMsg() API 반환값과 동일한 값으로 이 콜백이 어느 API의 결과인지를 알려준다.
+ * @param pmi(P2PMessageId) MinervaManager.sendP2PMsg() API 반환값과 동일한 값으로 이 콜백이 어느 API의 결과인지를 알려준다.
  */
 -(void) onP2PMsgResult: (int) resultCode resultMsg : (NSString*) resultMsg pmi : (NSString*) pmi;
 
