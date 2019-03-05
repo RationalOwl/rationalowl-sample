@@ -8,12 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-//#import "MinervaDelegate.h"
-@protocol DeviceRegisterResultDelegate;
-@protocol MessageDelegate;
+#import "MinervaDelegate.h"
 
 
-@interface MinervaManager  : NSObject <NSStreamDelegate> {
+
+@interface MinervaManager  : NSObject /*<NSURLConnectionDataDelegate, NSURLConnectionDelegate>*/ {
     
 @public 
     
@@ -22,24 +21,6 @@
 @package
     
 @private
-    dispatch_queue_t mReqQ;    
-    dispatch_queue_t mMainQ;
-    
-    NSMutableData* mResponseData;
-    int mReqType;
-    
-    id<DeviceRegisterResultDelegate> mDeviceRegisterResultDelegate;
-    //id<MessageDelegate> mMsgDelegate;
-    
-    NSInputStream *mInputStream;
-    NSOutputStream *mOutputStream;
-    
-    NSMutableData* mInputBuffer;
-    
-    int mReq;
-    NSString* mReqPushGate;
-    NSString* mReqServiceId;
-    NSString* mReqDeviceRegName;
 }
 
 /* class methods */
@@ -99,7 +80,8 @@
  *            만약 null이면 data를 알림 창에 표시
  * @return request id
  */
-- (NSString*) sendP2PMsg: (NSString*) data devices : (NSArray*) devices supportMsgQ : (BOOL) supportMsgQ notiTitle : (NSString*) notiTitle notiBody : (NSString*) notiBody;
+- (NSString*) sendP2PMsg: (NSString*) data devices: (NSArray*) devices supportMsgQ: (BOOL) supportMsgQ notiTitle: (NSString*) notiTitle notiBody: (NSString*) notiBody;
+
 
 
 /////////////////////////////////////////
@@ -166,8 +148,35 @@
 
 /**
  * 단말앱이 APNS 알림을 수신했음을 단말 라이브러리에게 알린다.
- * AppDelegate 의 didReceiveRemoteNotification 함수 내에서 API 호출을 해야 한다
+ * AppDelegate 의 didReceiveNotificationResponse 함수 내에서 API 호출을 해야 한다
  */
 - (void) receivedApns: (NSDictionary *)userInfo;
+
+
+/////////////////////////////////////////
+// APNS Notification Service Extension group
+/////////////////////////////////////////
+
+/**
+ * 설정한 앱그룹을 라이브러리에게 알린다.
+ * Notification tracking을 이용하기 위해서는 반드시 컨테이너 앱(메인 앱)에서 setAppGroup을 호출해야 한다.
+ * 1. 컨테이너 앱(메인 앱) 에서 setAppGroup API 호출하고
+ * 2. Service Extension에서 enableNotificationTracking API 호출
+ */
+- (void) setAppGroup: (NSString *)appGroup;
+
+
+/////////////////////////////////////////
+// Notification Service Extension API
+/////////////////////////////////////////
+
+/**
+ * Service Extension에서 알림 수신시 호출하면 푸시 알림 수신 여부 실시간 트래킹을 지원한다.
+ *
+ * @param data
+ *            커스텀 푸시 데이터 키:값 쌍
+ */
+- (void) enableNotificationTracking: (NSDictionary*) data appGroup: (NSString*) appGroup;
+
 
 @end

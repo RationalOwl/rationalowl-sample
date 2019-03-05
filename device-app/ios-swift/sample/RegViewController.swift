@@ -6,7 +6,7 @@
 //  Copyright © 2018년 Rationalowl. All rights reserved.
 //
 
-import UIKit
+import UIKit;
 
 class RegViewController: UIViewController, DeviceRegisterResultDelegate {
     
@@ -18,7 +18,12 @@ class RegViewController: UIViewController, DeviceRegisterResultDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        //inputNameField.text = "gate.rationalowl.com";
+        inputNameField.text = "13.125.25.251"; // aws dev env
+        
+        let minMgr: MinervaManager = MinervaManager.getInstance();
+        minMgr.setDeviceRegisterResultDelegate(self);
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,7 +37,7 @@ class RegViewController: UIViewController, DeviceRegisterResultDelegate {
     /////////////////////////////////////////////////////////////////
     
     @IBAction func regDevice() {
-        let serviceId: String = "9bd4db31dbaa4897ad9aa81c3e7e183a";
+        let serviceId: String = "a6aefe546ccc4dd4bea03498680bb253";
         let gateHost: String = inputNameField.text!;
         let mgr: MinervaManager = MinervaManager.getInstance();
         mgr.registerDevice(gateHost, serviceId: serviceId, deviceRegName: "my I phone");
@@ -40,7 +45,7 @@ class RegViewController: UIViewController, DeviceRegisterResultDelegate {
     
     
     @IBAction func unregDevice() {
-        let serviceId: String = "9bd4db31dbaa4897ad9aa81c3e7e183a";
+        let serviceId: String = "a6aefe546ccc4dd4bea03498680bb253";
         let mgr: MinervaManager = MinervaManager.getInstance();
         mgr.unregisterDevice(serviceId);
     }
@@ -56,8 +61,8 @@ class RegViewController: UIViewController, DeviceRegisterResultDelegate {
         // device app registration success!
         // send deviceRegId to the app server.
         if(resultCode == RESULT_OK) {
-            //let mgr: MinervaManager = MinervaManager.getInstance();
-            //mgr.sendUpstreamMsg("send deviceRegId to the app server", serverRegId: "app server reg id");
+            let mgr: MinervaManager = MinervaManager.getInstance();
+            mgr.sendUpstreamMsg("send deviceRegId to the app server", serverRegId: "app server reg id");
             
         }
     }

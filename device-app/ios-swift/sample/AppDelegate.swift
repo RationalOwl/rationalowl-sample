@@ -6,8 +6,8 @@
 //  Copyright © 2018년 Rationalowl. All rights reserved.
 //
 
-import UIKit
-import UserNotifications
+import UIKit;
+import UserNotifications;
 
 
 @UIApplicationMain
@@ -78,14 +78,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
+    // available >= ios 10.0
+    func userNotificationCenter(_ center: UNUserNotificationCenter,  willPresent notification: UNNotification, withCompletionHandler   completionHandler: @escaping (_ options:   UNNotificationPresentationOptions) -> Void) {
+        // Called when a notification is delivered to a foreground app. >= ios10.0
+        let userInfo = notification.request.content.userInfo;
+        print("Push notification >= ios 10.0 received: \(userInfo)")
+    }
+    
+    // available < ios 10.0
     // Push notification received
     func application(_ application: UIApplication, didReceiveRemoteNotification data: [AnyHashable : Any]) {
-        print("Push notification received: \(data)")
+        // Called when a notification is delivered to a foreground app. < ios10.0
+        print("Push notification < ios 10.0 received: \(data)");
+        
+        // IOS bug, ios > 10 some version, this callback is called instead.
         let minMgr: MinervaManager = MinervaManager.getInstance();
         minMgr.receivedApns(data);
     }
     
     
-    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        // Called to let your app know which action was selected by the user for a given notification.
+        let userInfo = response.notification.request.content.userInfo;
+        print("\(String(describing: userInfo))");
+        
+        let minMgr: MinervaManager = MinervaManager.getInstance();
+        minMgr.receivedApns(userInfo);
+    }
 }
 

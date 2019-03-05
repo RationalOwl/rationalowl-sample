@@ -45,7 +45,7 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     /////////////////////////////////////////////////////////////////
     
     @IBAction func sendUpstreamMsg() {
-        let serverId: String = "fb8bf1de65e443e294588923e187a248";
+        let serverId: String = "e2c5f56d6cda41279c3a4ad8549052bf";
         let msg: String = inputMessageField.text!;
         let mgr: MinervaManager = MinervaManager.getInstance();
         mgr.sendUpstreamMsg(msg, serverRegId:serverId);
@@ -61,7 +61,7 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBAction func sendP2PstreamMsg() {
         let msg: String = inputMessageField.text!;
-        let devices: Array<String> = ["57e14b87cc2646ef883b99d7de7a9567"];
+        let devices: Array<String> = ["a03e1768d6ab411b930eb6dd6b5048b4"];
         let mgr: MinervaManager = MinervaManager.getInstance();
         mgr.sendP2PMsg(msg, devices:devices);
         
