@@ -132,13 +132,11 @@
     NSString* sender; //sending device
     long serverTime;
     NSString* msgData;
-    NSString* msgId;
     NSDateFormatter* format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"MM/dd HH:mm:ss"];
     
     for(int i = 0; i < msgSize; i++) {
         msg = msgList[i];
-        msgId = msg[@"msgId"];
         sender = msg[@"sender"];
         serverTime = [msg[@"serverTime"] longValue];
         NSDate* date = [NSDate dateWithTimeIntervalSince1970:(serverTime /1000)];

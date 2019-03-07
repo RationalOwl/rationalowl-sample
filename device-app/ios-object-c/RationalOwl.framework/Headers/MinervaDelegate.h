@@ -30,6 +30,7 @@
  * 단말앱 등록해제 결과 호출되는 콜백 함수이다.
  * @param resultCode 결과 코드로 성공시 Result.RESULT_OK 가 반환된다.
  * @param resultMsg 결과 코드인 resultCode에 대한 설명이다.
+ * @param deviceRegId 등록해제된 단말 등록 아이디이다.
  *               resultCode가 Result.RESULT_OK일 경우 단말앱은 등로해제된 단말 등록 아이디를 앱서버에게 전달해야 한다.
  */
 -(void) onUnregisterResult: (int) resultCode resultMsg : (NSString*) resultMsg;
