@@ -34,14 +34,7 @@ public class MsgCache {
     private static final String JSON_MSG_KEY = "msg_log";
     private static final String MSG_LOG_FILE = "msg.dat";
 
-
-
-    ///bbuek
-    private String mSceenLockData;
-
-
     private static MsgCache instance = new MsgCache();
-
 
     private ArrayList<PushMsg> mMsgLogList;
 
@@ -53,8 +46,6 @@ public class MsgCache {
 
 
     private MsgCache() {
-        //mMsgCnt = 0;        
-        mSceenLockData = "off";
         mMsgLogList = new ArrayList<PushMsg>();
         load();
     }
@@ -63,18 +54,6 @@ public class MsgCache {
     public void release() {
         //There's no resource to release.
     }
-
-
-    //bbueck start
-    public String getScreenLockData() {
-        return mSceenLockData;
-    }
-
-
-    public void setScreenLockData(String lockData) {
-        mSceenLockData = lockData;
-    }
-    //bbuek end
 
 
     public void addMsg(PushMsg msg) {
@@ -90,14 +69,9 @@ public class MsgCache {
 
 
     public void clearMsgList() {
-        int msgSize = mMsgLogList.size();
-        PushMsg lastMsg = mMsgLogList.get(0);
         mMsgLogList.clear();
-        mMsgLogList.add(0, lastMsg);
         save();
     }
-
-
 
 
     private void load() {
