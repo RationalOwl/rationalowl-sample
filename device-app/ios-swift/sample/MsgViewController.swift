@@ -45,7 +45,7 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     /////////////////////////////////////////////////////////////////
     
     @IBAction func sendUpstreamMsg() {
-        let serverId: String = "e2c5f56d6cda41279c3a4ad8549052bf";
+        let serverId: String = "76cdd965b6d848bda95cfd2e918cd74b";
         let msg: String = inputMessageField.text!;
         let mgr: MinervaManager = MinervaManager.getInstance();
         mgr.sendUpstreamMsg(msg, serverRegId:serverId);
@@ -61,7 +61,7 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBAction func sendP2PstreamMsg() {
         let msg: String = inputMessageField.text!;
-        let devices: Array<String> = ["a03e1768d6ab411b930eb6dd6b5048b4"];
+        let devices: Array<String> = ["c78502b18fb04bcda20c4a96990546b5"];
         let mgr: MinervaManager = MinervaManager.getInstance();
         mgr.sendP2PMsg(msg, devices:devices);
         
@@ -133,12 +133,12 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     
     func onUpstreamMsgResult(_ resultCode: Int32, resultMsg: String!, umi: String!) {
-        print("onMsgRecieved msg upstream message id = \(umi)")
+        print("onMsgRecieved msg upstream message id = \(umi)");
     }
     
     
     func onP2PMsgResult(_ resultCode: Int32, resultMsg: String!, pmi: String!) {
-        print("onMsgRecieved msg p2p message id = \(pmi)")
+        print("onMsgRecieved msg p2p message id = \(pmi)");
     }
     
     
