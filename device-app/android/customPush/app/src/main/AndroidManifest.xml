@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.customer.test">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
+
+    <application
+        android:name="com.customer.test.MyApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+
+        <!-- launch activity set by "android.intent.category.LAUNCHER" -->
+        <!-- when user tap on the notification, launch activity launches -->
+        <activity android:name=".MainActivity"
+            android:label="launcher" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- activity using Rationalowl Register API -->
+        <activity android:name=".RegisterActivity"
+            android:label="단말앱 등록" >
+        </activity>
+        <!-- activity using Rationalowl real-time messaging API   -->
+        <activity android:name="com.customer.test.MsgActivity"
+            android:label="메시지" >
+        </activity>
+
+        <!-- [START firebase_service] -->
+        <service
+            android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <!-- [END firebase_service] -->
+    </application>
+
+</manifest>

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "317976490322",
+    "firebase_url": "https://rationalfcm.firebaseio.com",
+    "project_id": "rationalfcm",
+    "storage_bucket": "rationalfcm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317976490322:android:ad61bba88bb44638",
+        "android_client_info": {
+          "package_name": "com.customer.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "317976490322-kf4i1nuni2vf83c4frvkao1fa8o6hn9q.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "317976490322-kf4i1nuni2vf83c4frvkao1fa8o6hn9q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPO2hp1N3SiF2ACliuoY2y8AW6tMfTXyo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
