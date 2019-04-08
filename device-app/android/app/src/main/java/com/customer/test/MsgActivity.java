@@ -149,7 +149,7 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
                 cache.addMsg(pushMsg);
                 
                 mListAdapter.notifyDataSetChanged();
-                String serverId = "e2c5f56d6cda41279c3a4ad8549052bf"; // aws dev
+                String serverId = "78c997cb2a2944f9b877f4cbdb3034a6"; // aws dev
                 //String serverId = "2ff3da1fb1af44b599876725ed46eb92"; // hostway sample
                 //String serverId = "0bb887049fb04bca924853be0e78f28d"; //gyeong min python
                 MinervaManager minMgr = MinervaManager.getInstance();
