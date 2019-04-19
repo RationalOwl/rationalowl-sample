@@ -3,7 +3,9 @@
     package="com.customer.test">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE"/>
+
 
 
     <application
@@ -32,6 +34,10 @@
         <!-- activity using Rationalowl real-time messaging API   -->
         <activity android:name="com.customer.test.MsgActivity"
             android:label="메시지" >
+        </activity>
+
+        <!-- activity using custom Activity push -->
+        <activity android:name=".MediaPlayerActivity" android:label="비디오 푸시" >
         </activity>
 
         <!-- [START firebase_service] -->

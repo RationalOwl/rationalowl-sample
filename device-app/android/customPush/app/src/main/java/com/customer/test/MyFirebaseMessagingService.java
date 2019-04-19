@@ -21,6 +21,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -33,9 +35,12 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.rationalowl.minerva.client.android.MinervaManager;
 import com.rationalowl.minerva.client.android.util.Logger;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Map;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
@@ -78,10 +83,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         Log.d(TAG, "From: " + remoteMessage.getFrom());
-
-
-
         showCustomNotification(data);
+        //showImageNotification(data);
     }
 
 
@@ -90,21 +93,56 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      *
      * @param data FCM message body.
      */
+
+
     private void showCustomNotification(Map<String, String> data) {
-        Intent intent = new Intent(this, MainActivity.class);
+
+        if(data.containsKey("notiType")) {
+            String type =  data.get("notiType");
+
+            switch(type) {
+                case "TEXT":
+                    showTextNotification(data);
+                    break;
+                case "IMAGE":
+                    showImageNotification(data);
+                    break;
+                case "VIDEO":
+                    showActivityNotification(data);
+                    break;
+                case "ACTIVITY":
+                    showActivityNotification(data);
+                    break;
+                default:
+                    showActivityNotification(data);
+                    break;
+            }
+        }
+        else {
+            showTextNotification(data);
+        }
+    }
+
+
+    private void showTextNotification(Map<String, String> data) {
+        Intent intent = new Intent(this, MsgActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
+
+        String notiTitle =  data.get("notiTitle");
+        String notiBody =  data.get("notiBody");
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, "defaultChannelId")
                         .setSmallIcon(R.drawable.icon)
-                        .setContentTitle("content title")
-                        .setContentText("content text")
+                        .setContentTitle(notiTitle)
+                        .setContentText(notiBody)
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)
                         .setContentIntent(pendingIntent);
+
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -118,5 +156,66 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+    }
+
+
+    private void showImageNotification(Map<String, String> data) {
+
+
+        Intent intent = new Intent(this, MsgActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                PendingIntent.FLAG_ONE_SHOT);
+
+        String notiTitle =  data.get("notiTitle");
+        String notiBody =  data.get("notiBody");
+        String imgUrl =  data.get("imgUrl");  //ex :   http://myimage.com/images/img1.gif
+
+        Bitmap myBitmap = null;
+        try {
+            URL url = new URL(imgUrl);
+            URLConnection conn = url.openConnection();
+            conn.connect();
+
+            BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
+            myBitmap = BitmapFactory.decodeStream(bis);
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(this, "defaultChannelId")
+                        .setSmallIcon(R.drawable.icon)
+                        .setStyle(new NotificationCompat.BigPictureStyle()
+                                .bigPicture(myBitmap))
+                        .setContentTitle(notiTitle)
+                        .setContentText(notiBody)
+                        .setAutoCancel(true)
+                        .setSound(defaultSoundUri)
+                        .setContentIntent(pendingIntent);
+
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // Since android Oreo notification channel is needed.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("defaultChannelId",
+                    "FCM Channel",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+    }
+
+
+    private void showActivityNotification(Map<String, String> data) {
+
+        Intent intent = new Intent(this, MediaPlayerActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
     }
 }

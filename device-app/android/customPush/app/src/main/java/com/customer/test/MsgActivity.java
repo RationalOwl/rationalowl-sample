@@ -177,7 +177,7 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
                 ArrayList<String> destDevices = new ArrayList<String>();
                 //destDevices.add("50b0020d9ba2405d88b1d967839d696e");  // i pad
                 //destDevices.add("2b9f6349d5f4432a9baa77e01353303a");  // galaxy nexus
-                destDevices.add("4a92c51f1eae4b3a80742d01aab9ecc1");  // note 5
+                destDevices.add("bfe08ff821eb45e1805629cfb43d8293");  // note 5
                 //destDevices.add("1241670df8694da586605bf431f150a9");  // jungdo_empty_phone(galaxy nexus)
                 //destDevices.add("4285e11625ff4e71a94ad799457358a3");  // helpter designer(g6)
                 //destDevices.add("8a7540dd28854615b5b17c933a167206");  // helpter ceo(aka)
