@@ -245,6 +245,10 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
                 msgType = (int) oneMsg.get(MinervaManager.FIELD_MSG_TYPE);  // 1(downstream), 2(p2p)
                 sender = (String) oneMsg.get(MinervaManager.FIELD_MSG_SENDER);
                 data = (String) oneMsg.get(MinervaManager.FIELD_MSG_DATA);
+
+                if(oneMsg.has(MinervaManager.FIELD_ENCRYPTED_MSG)) {
+                    data = "(encryped)" + data;
+                }
                 serverTime = (Long) oneMsg.get(MinervaManager.FIELD_MSG_SERVER_TIME);
 
                 // optional fields

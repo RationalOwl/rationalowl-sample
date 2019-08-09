@@ -35,10 +35,12 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.rationalowl.minerva.client.android.MinervaManager;
 import com.rationalowl.minerva.client.android.util.Logger;
 
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Map;
@@ -84,7 +86,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         Log.d(TAG, "From: " + remoteMessage.getFrom());
         showCustomNotification(data);
-        //showImageNotification(data);
     }
 
 
@@ -176,9 +177,21 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             URL url = new URL(imgUrl);
             URLConnection conn = url.openConnection();
             conn.connect();
-
             BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
             myBitmap = BitmapFactory.decodeStream(bis);
+            bis.close();
+
+
+            /*
+            HttpGet httpRequest = new HttpGet(URI.create(imgUrl) );
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpResponse response = (HttpResponse) httpclient.execute(httpRequest);
+            HttpEntity entity = response.getEntity();
+            BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(entity);
+            myBitmap = BitmapFactory.decodeStream(bufHttpEntity.getContent());
+            httpRequest.abort();
+            */
+
         }
         catch(IOException e) {
             e.printStackTrace();
