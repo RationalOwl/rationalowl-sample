@@ -17,6 +17,10 @@ const unregisterServerRun = () => {
     });
 };
 
+////////////////////////////////////////////
+// send realtime data 
+////////////////////////////////////////////
+
 const multicastRun = () => {
     const serviceId = document.getElementById('multicast-service-id').value;
     const serverRegId = document.getElementById('multicast-register-id').value;
@@ -33,7 +37,7 @@ const multicastRun = () => {
 };
 
 const broadcastRun = () => {
-    const serviceId = document.getElementById('broadcast-service-id').value;
+    const serviceId = document.getElementById('broadcast-service-id').value;[]
     const serverRegId = document.getElementById('broadcast-register-id').value;
     const queuing = Number(document.getElementById('broadcast-queueing').value);
     const data = document.getElementById('broadcast-data').value;
@@ -60,6 +64,73 @@ const groupmsgRun = () => {
         serviceId, serverRegId, queuing, data, groupId, notiTitle, notiBody, notiSound
     });
 };
+
+
+////////////////////////////////////////////
+// send custom push
+////////////////////////////////////////////
+const multicastPushRun = () => {
+    const serviceId = document.getElementById('multicast-push-service-id').value;
+    const serverRegId = document.getElementById('multicast-push-register-id').value;
+    const deviceRegIds = document.getElementById('multicast-push-devices').value.replace(/\s/g, '').split(/,/g);
+    const encrypt = Number(document.getElementById('multicast-push-encrypt').value);
+    const customField1 = document.getElementById('multicast-push-custom-field1').value;
+    const customField2 = document.getElementById('multicast-push-custom-field2').value;
+    const customField3 = document.getElementById('multicast-push-custom-field3').value;
+
+    const data = {customField1, customField2, customField3};
+
+    sendHttpRequest(`http://${channelUrl}/custompush/multicast/`, {
+        serviceId, serverRegId, deviceRegIds, encrypt, data
+    });
+};
+
+const broadcastPushRun = () => {
+    const serviceId = document.getElementById('broadcast-service-id').value;[]
+    const serverRegId = document.getElementById('broadcast-register-id').value;
+    const encrypt = Number(document.getElementById('broadcast-push-encrypt').value);
+    const customField1 = document.getElementById('broadcast-push-custom-field1').value;
+    const customField2 = document.getElementById('broadcast-push-custom-field2').value;
+    const customField3 = document.getElementById('broadcast-push-custom-field3').value;
+
+    const data = {customField1, customField2, customField3};
+
+    sendHttpRequest(`http://${channelUrl}/custompush/broadcast/`, {
+        serviceId, serverRegId, encrypt, data
+    });
+};
+
+const groupmsgPushRun = () => {
+    const serviceId = document.getElementById('group-push-service-id').value;
+    const serverRegId = document.getElementById('group-push-register-id').value;
+    const groupId = document.getElementById('group-push-group-id').value;
+    const encrypt = Number(document.getElementById('group-push-encrypt').value);
+    const customField1 = document.getElementById('group-push-custom-field1').value;
+    const customField2 = document.getElementById('group-push-custom-field2').value;
+    const customField3 = document.getElementById('group-push-custom-field3').value;
+
+    const data = {customField1, customField2, customField3};
+
+    sendHttpRequest(`http://${channelUrl}/custompush/group/`, {
+        serviceId, serverRegId, groupId, encrypt, data
+    });
+};
+
+const retryPushRun = () => {
+    const serviceId = document.getElementById('retry-push-service-id').value;
+    const serverRegId = document.getElementById('retry-push-register-id').value;
+    const msgId = document.getElementById('retry-push-msg-id').value;
+    const retryCondition = Number(document.getElementById('retry-condition').value);
+
+    sendHttpRequest(`http://${channelUrl}/custompush/retry/`, {
+        serviceId, serverRegId, msgId, retryCondition
+    });
+};
+
+
+////////////////////////////////////////////
+// device group management
+////////////////////////////////////////////
 
 const deviceGroupCreateRun = () => {
     const serviceId = document.getElementById('device-group-create-service-id').value;
@@ -106,11 +177,12 @@ const deviceGroupRemoveRun = () => {
 };
 
 const sendHttpRequest = (url, data) => {
+    console.log(JSON.stringify(data));    
+
     const request = new XMLHttpRequest();
     request.open("POST", url, false);
     request.setRequestHeader("Content-Type", "application/json");
-    request.send(JSON.stringify(data));
-
+    request.send(JSON.stringify(data));    
     document.getElementById('response-box').style.visibility = 'visible';
     document.getElementById('response-status').innerText = request.statusText;
     document.getElementById('response-body').innerText = request.responseText;

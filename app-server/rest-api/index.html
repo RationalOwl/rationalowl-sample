@@ -20,6 +20,9 @@
         </div>
     </div>
 
+    
+    // register server / un-register server
+
     <div class="sample-box">
         <h3>Register Server</h3>
         <div>
@@ -40,20 +43,23 @@
             <input id="unregister-service-id" type="text">
         </div>
         <div>
-            <label for="unregister-id">Register ID *</label>
+            <label for="unregister-id">Server ID *</label>
             <input id="unregister-id" type="text">
         </div>
         <button onclick="unregisterServerRun()">Run</button>
     </div>
 
+    
+    // send realtime data
+
     <div class="sample-box">
-        <h3>Multicast Message</h3>
+        <h3>실시간 데이터(멀티캐스트)</h3>
         <div>
             <label for="multicast-service-id">Service ID *</label>
             <input id="multicast-service-id" type="text">
         </div>
         <div>
-            <label for="multicast-register-id">Register ID *</label>
+            <label for="multicast-register-id">Server ID *</label>
             <input id="multicast-register-id" type="text">
         </div>
         <div>
@@ -87,13 +93,13 @@
     </div>
 
     <div class="sample-box">
-        <h3>Broadcast Message</h3>
+        <h3>실시간 데이터(브로드캐스트)</h3>
         <div>
             <label for="broadcast-service-id">Service ID *</label>
             <input id="broadcast-service-id" type="text">
         </div>
         <div>
-            <label for="broadcast-register-id">Register ID *</label>
+            <label for="broadcast-register-id">Server ID *</label>
             <input id="broadcast-register-id" type="text">
         </div>
         <div>
@@ -123,13 +129,13 @@
     </div>
 
     <div class="sample-box">
-        <h3>Group Message</h3>
+        <h3>실시간 데이터(그룹)</h3>
         <div>
             <label for="groupmsg-service-id">Service ID *</label>
             <input id="groupmsg-service-id" type="text">
         </div>
         <div>
-            <label for="groupmsg-register-id">Register ID *</label>
+            <label for="groupmsg-register-id">Server ID *</label>
             <input id="groupmsg-register-id" type="text">
         </div>
         <div>
@@ -162,8 +168,140 @@
         <button onclick="groupmsgRun()">Run</button>
     </div>
 
+    
+    // send custom push
+
+    <div class="sample-box">
+        <h3>커스텀 푸시(멀티캐스트)</h3>
+        <div>
+            <label for="multicast-push-service-id">Service ID *</label>
+            <input id="multicast-push-service-id" type="text">
+        </div>
+        <div>
+            <label for="multicast-push-register-id">Server ID *</label>
+            <input id="multicast-push-register-id" type="text">
+        </div>
+        <div>
+            <label for="multicast-push-devices">Devices *</label>
+            <input id="multicast-push-devices" type="text">
+        </div>
+        <div>
+            <label for="multicast-push-encrypt">Encrypt data *</label>
+            <select id="multicast-push-encrypt">
+                <option value="0">Disable</option>
+                <option value="1">Enable</option>
+            </select>
+        </div>
+        <div>
+            <label for="multicast-push-custom-field1">customField1</label>
+            <input id="multicast-push-custom-field1" type="text">
+        </div>
+        <div>
+            <label for="multicast-push-custom-field2">customField2</label>
+            <input id="multicast-push-custom-field2" type="text">
+        </div>
+        <div>
+            <label for="multicast-push-custom-field3">customField3</label>
+            <input id="multicast-push-custom-field3" type="text">
+        </div>
+        <button onclick="multicastPushRun()">Run</button>
+    </div>
+
+    <div class="sample-box">
+        <h3>커스텀 푸시(브로드캐스트)</h3>
+        <div>
+            <label for="broadcast-push-service-id">Service ID *</label>
+            <input id="broadcast-push-service-id" type="text">
+        </div>
+        <div>
+            <label for="broadcast-push-register-id">Server ID *</label>
+            <input id="broadcast-push-register-id" type="text">
+        </div>        
+        <div>
+            <label for="broadcast-push-encrypt">Encrypt data *</label>
+            <select id="broadcast-push-encrypt">
+                <option value="0">Disable</option>
+                <option value="1">Enable</option>
+            </select>
+        </div>
+        <div>
+            <label for="broadcast-push-custom-field1">customField1</label>
+            <input id="broadcast-push-custom-field1" type="text">
+        </div>
+        <div>
+            <label for="broadcast-push-custom-field2">customField2</label>
+            <input id="broadcast-push-custom-field2" type="text">
+        </div>
+        <div>
+            <label for="broadcast-push-custom-field3">customField3</label>
+            <input id="broadcast-push-custom-field3" type="text">
+        </div>
+        <button onclick="broadcastPushRun()">Run</button>
+    </div>
+
+    <div class="sample-box">
+        <h3>커스텀 푸시(그룹)</h3>
+        <div>
+            <label for="group-push-service-id">Service ID *</label>
+            <input id="group-push-service-id" type="text">
+        </div>
+        <div>
+            <label for="group-push-register-id">Server ID *</label>
+            <input id="group-push-register-id" type="text">
+        </div>
+        <div>
+            <label for="group-push-group-id">Group ID *</label>
+            <input id="group-push-group-id" type="text">
+        </div>
+        <div>
+            <label for="group-push-encrypt">Encrypt data *</label>
+            <select id="group-push-encrypt">                
+                <option value="0">Disable</option>
+                <option value="1">Enable</option>
+            </select>
+        </div>
+        <div>
+            <label for="group-push-custom-field1">customField1</label>
+            <input id="group-push-custom-field1" type="text">
+        </div>
+        <div>
+            <label for="group-push-custom-field2">customField2</label>
+            <input id="group-push-custom-field2" type="text">
+        </div>
+        <div>
+            <label for="group-push-custom-field3">customField3</label>
+            <input id="group-push-custom-field3" type="text">
+        </div>
+        <button onclick="groupPushRun()">Run</button>
+    </div>
+
+    <div class="sample-box">
+        <h3>재전송 커스텀 푸시</h3>
+        <div>
+            <label for="retry-push-service-id">Service ID *</label>
+            <input id="retry-push-service-id" type="text">
+        </div>
+        <div>
+            <label for="retry-push-register-id">Server ID *</label>
+            <input id="retry-push-register-id" type="text">
+        </div>
+        <div>
+            <label for="retry-push-msg-id">Message ID *</label>
+            <input id="retry-push-msg-id" type="text">
+        </div>       
+        <div>
+            <label for="retry-condition">재전송 조건 *</label>
+            <select id="retry-condition">
+                <option value="1">알림 미전달 단말</option>
+                <option value="2">알림 미확인 단말</option>
+            </select>
+        </div>    
+        <button onclick="retryPushRun()">Run</button>
+    </div>
+
     <hr>
 
+    // device group management
     <div class="sample-box">
         <h3>Device Group Create</h3>
         <div>
@@ -171,7 +309,7 @@
             <input id="device-group-create-service-id" type="text">
         </div>
         <div>
-            <label for="device-group-create-register-id">Register ID *</label>
+            <label for="device-group-create-register-id">Server ID *</label>
             <input id="device-group-create-register-id" type="text">
         </div>
         <div>
@@ -196,7 +334,7 @@
             <input id="device-group-add-service-id" type="text">
         </div>
         <div>
-            <label for="device-group-add-register-id">Register ID *</label>
+            <label for="device-group-add-register-id">Server ID *</label>
             <input id="device-group-add-register-id" type="text">
         </div>
         <div>
@@ -217,7 +355,7 @@
             <input id="device-group-subtract-service-id" type="text">
         </div>
         <div>
-            <label for="device-group-subtract-register-id">Register ID *</label>
+            <label for="device-group-subtract-register-id">Server ID *</label>
             <input id="device-group-subtract-register-id" type="text">
         </div>
         <div>
@@ -238,7 +376,7 @@
             <input id="device-group-remove-service-id" type="text">
         </div>
         <div>
-            <label for="device-group-remove-register-id">Register ID *</label>
+            <label for="device-group-remove-register-id">Server ID *</label>
             <input id="device-group-remove-register-id" type="text">
         </div>
         <div>
