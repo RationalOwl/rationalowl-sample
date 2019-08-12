@@ -176,6 +176,37 @@ const deviceGroupRemoveRun = () => {
     });
 };
 
+
+////////////////////////////////////////////
+// get tracking data
+////////////////////////////////////////////
+
+const trackMessageStatsRun = () => {
+    const serviceId = document.getElementById('tracking-msg-stats-service-id').value;
+    const msgIds = document.getElementById('tracking-msg-stats-msgids').value.replace(/\s/g, '').split(/,/g);
+
+    sendHttpRequest(`http://${channelUrl}/tracking/msgStats/`, {
+        serviceId, msgIds
+    });
+};
+
+
+const trackMessageDetailRun = () => {
+    const serviceId = document.getElementById('tracking-msg-detail-service-id').value;
+    const msgId = document.getElementById('tracking-msg-detail-msgid').value;
+    const msgState = Number(document.getElementById('tracking-msg-detail-msg-state').value);   
+    const deviceState = Number(document.getElementById('tracking-msg-detail-device-state').value);
+    const deviceType = Number(document.getElementById('tracking-msg-detail-device-type').value);   
+    const startIndex = Number(document.getElementById('tracking-msg-detail-start-idx').value);   
+    const fetchSize = Number(document.getElementById('tracking-msg-detail-fetch-size').value);   
+
+    sendHttpRequest(`http://${channelUrl}/tracking/msgDetail/`, {
+        serviceId, msgId, msgState, deviceState, deviceType, startIndex, fetchSize
+    });
+};
+
+
+
 const sendHttpRequest = (url, data) => {
     console.log(JSON.stringify(data));    
 

@@ -21,7 +21,7 @@
     </div>
 
     
-    // register server / un-register server
+    <!-- register server / un-register server -->
 
     <div class="sample-box">
         <h3>Register Server</h3>
@@ -50,7 +50,7 @@
     </div>
 
     
-    // send realtime data
+    <!-- send realtime data -->
 
     <div class="sample-box">
         <h3>실시간 데이터(멀티캐스트)</h3>
@@ -169,7 +169,7 @@
     </div>
 
     
-    // send custom push
+    <!-- send custom push -->
 
     <div class="sample-box">
         <h3>커스텀 푸시(멀티캐스트)</h3>
@@ -301,7 +301,7 @@
 
     <hr>
 
-    // device group management
+    <!-- device group management -->
     <div class="sample-box">
         <h3>Device Group Create</h3>
         <div>
@@ -384,6 +384,53 @@
             <input id="device-group-remove-id" type="text">
         </div>
         <button onclick="deviceGroupRemoveRun()">Run</button>
+    </div>
+
+    <!-- message tracking -->
+    <div class="sample-box">
+        <h3>메시지 전달 현황 트래킹</h3>
+        <div>
+            <label for="tracking-msg-stats-service-id">Service ID *</label>
+            <input id="tracking-msg-stats-service-id" type="text">
+        </div>
+        <div>
+            <label for="tracking-msg-stats-msgids">Msg Ids *</label>
+            <input id="tracking-msg-stats-msgids" type="text">
+        </div>
+        <button onclick="trackMessageStatsRun()">Run</button>
+    </div>
+
+    <div class="sample-box">
+        <h3>메시지 전달 상세 트래킹</h3>
+        <div>
+            <label for="tracking-msg-detail-service-id">Service ID *</label>
+            <input id="tracking-msg-detail-service-id" type="text">
+        </div>
+        <div>
+            <label for="tracking-msg-detail-msgid">Msg Id *</label>
+            <input id="tracking-msg-detail-msgid" type="text">
+        </div>
+        <div>
+            <label for="tracking-msg-detail-msg-state">메시지상태플래그(0: all, 1:que, 2:deliver, 4:expire, 8: noti deliver) *</label>
+            <input id="tracking-msg-detail-msg-state" type="text">
+        </div>
+        <div>
+            <label for="tracking-msg-detail-device-state">단말상태플래그(0: all, 1:active, 2:inactive, 4:long inactive) *</label>
+            <input id="tracking-msg-detail-device-state" type="text">
+        </div>
+        <div>
+            <label for="tracking-msg-detail-device-type">단말타입플래그(0: all, 1:안드로이드, 2:IOS) *</label>
+            <input id="tracking-msg-detail-device-type" type="text">
+        </div>
+        <div>
+            <label for="tracking-msg-detail-start-idx">device fetch index *</label>
+            <input id="tracking-msg-detail-start-idx" type="text">
+        </div>
+        <div>
+            <label for="tracking-msg-detail-fetch-size">device fetch size *</label>
+            <input id="tracking-msg-detail-fetch-size" type="text">
+        </div>           
+        <button onclick="trackMessageDetailRun()">Run</button>
     </div>
 
 </body>
