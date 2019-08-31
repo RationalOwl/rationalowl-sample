@@ -111,6 +111,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 case "VIDEO":
                     showActivityNotification(data);
                     break;
+                case "ACTIVITY":
+                    showActivityNotification(data);
+                    break;
                 default:
                     showActivityNotification(data);
                     break;

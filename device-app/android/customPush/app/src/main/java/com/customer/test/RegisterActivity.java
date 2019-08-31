@@ -1,18 +1,25 @@
 package com.customer.test;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.rationalowl.minerva.client.android.DeviceRegisterResultListener;
 import com.rationalowl.minerva.client.android.MinervaManager;
 import com.rationalowl.minerva.client.android.Result;
+import com.rationalowl.minerva.client.android.data.MinervaDataManager;
 import com.rationalowl.minerva.client.android.util.Logger;
 
 public class RegisterActivity extends Activity implements OnClickListener, DeviceRegisterResultListener {
