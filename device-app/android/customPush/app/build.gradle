@@ -29,8 +29,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     // RationalOwl library
-    // this sample simply import aar directly.
-    //implementation 'com.rationalowl.minerva.client.android:rationalowl-android:1.1.5@aar'
+    implementation 'com.rationalowl.minerva.client.android:rationalowl-android:1.1.6'
     // RationalOwl using library
     implementation 'android.arch.lifecycle:extensions:1.1.0'
     // FCM library
@@ -43,7 +42,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation project(':app-release')
 }
 
 apply plugin: 'com.google.gms.google-services'
