@@ -61,35 +61,35 @@ public class SampleServerView extends JFrame implements ActionListener {
 
 
         @Override
-        public void onSendMulticastMsgResult(int resultCode, String resultMsg, String requestId) {
+        public void onSendMulticastMsgResult(int resultCode, String resultMsg, String msgId, String requestId) {
             output("onSendMulticastMsgResult: resultCode = " + resultCode + "resultMsg = " + resultMsg + " requestId="+ requestId);
         }
 
 
         @Override
-        public void onSendBroadcastMsgResult(int resultCode, String resultMsg, String requestId) {
+        public void onSendBroadcastMsgResult(int resultCode, String resultMsg, String msgId, String requestId) {
             output("onSendBroadcastMsgResult: resultCode = " + resultCode + "resultMsg = " + resultMsg + " requestId="+ requestId);
         }
 
 
         @Override
-        public void onSendGroupMsgResult(int resultCode, String resultMsg, String requestId) {
+        public void onSendGroupMsgResult(int resultCode, String resultMsg, String msgId, String requestId) {
             output("onSendGroupMsgResult: resultCode = " + resultCode + "resultMsg = " + resultMsg + " requestId="+ requestId);
         }
 
 
         @Override
-        public void onSendMulticastCustomPushResult(int resultCode, String resultMsg, String reqMsgId) {
+        public void onSendMulticastCustomPushResult(int resultCode, String resultMsg, String msgId, String reqMsgId) {
             output("onSendMulticastCustomPushResult:" + reqMsgId + "msg = " + resultMsg);
         }
 
         @Override
-        public void onSendBroadcastCustomPushResult(int resultCode, String resultMsg, String reqMsgId) {
+        public void onSendBroadcastCustomPushResult(int resultCode, String resultMsg, String msgId, String reqMsgId) {
             output("onSendBroadcastCustomPushResult:" + reqMsgId + "msg = " + resultMsg);
         }
 
         @Override
-        public void onSendGroupCustomPushResult(int resultCode, String resultMsg, String reqMsgId) {
+        public void onSendGroupCustomPushResult(int resultCode, String resultMsg, String msgId, String reqMsgId) {
             output("onSendGroupCustomPushResult:" + reqMsgId + "msg = " + resultMsg);
         }
     }
