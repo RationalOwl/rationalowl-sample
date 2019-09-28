@@ -149,7 +149,7 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
                 cache.addMsg(pushMsg);
                 
                 mListAdapter.notifyDataSetChanged();
-                String serverId = "0e38fe0b46c9411294c41ef3c424bc6b"; // aws dev
+                String serverId = "dfe41cdd81a1479b80ecfe03068e4337"; // aws dev
                 //String serverId = "2ff3da1fb1af44b599876725ed46eb92"; // hostway sample
                 //String serverId = "0bb887049fb04bca924853be0e78f28d"; //gyeong min python
                 MinervaManager minMgr = MinervaManager.getInstance();
@@ -177,7 +177,7 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
                 ArrayList<String> destDevices = new ArrayList<String>();
                 //destDevices.add("50b0020d9ba2405d88b1d967839d696e");  // i pad
                 //destDevices.add("2b9f6349d5f4432a9baa77e01353303a");  // galaxy nexus
-                destDevices.add("64b0c4832c79497cb8d7aeee39e16bda");  // note 5
+                destDevices.add("d7bb4764912d4e2891a53bd91ad960a6");  // note 5
                 //destDevices.add("1241670df8694da586605bf431f150a9");  // jungdo_empty_phone(galaxy nexus)
                 //destDevices.add("4285e11625ff4e71a94ad799457358a3");  // helpter designer(g6)
                 //destDevices.add("8a7540dd28854615b5b17c933a167206");  // helpter ceo(aka)
