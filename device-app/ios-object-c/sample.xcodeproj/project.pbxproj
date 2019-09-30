@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		903E12F22227FB6200F29763 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 903E12F12227FB6200F29763 /* NotificationService.m */; };
 		903E12F62227FB6200F29763 /* NotiServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 903E12EE2227FB6200F29763 /* NotiServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		903E130622290A4000F29763 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 903E130422290A2700F29763 /* RationalOwl.framework */; };
 		903E130722290A4000F29763 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 903E130422290A2700F29763 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -334,7 +333,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				903E12F22227FB6200F29763 /* NotificationService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +395,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = NotiServiceExtension/NotiServiceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56AQ6CM687;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -420,6 +419,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = NotiServiceExtension/NotiServiceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56AQ6CM687;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -550,6 +550,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = sample/sample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56AQ6CM687;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -569,6 +570,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = sample/sample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56AQ6CM687;
 				FRAMEWORK_SEARCH_PATHS = (
