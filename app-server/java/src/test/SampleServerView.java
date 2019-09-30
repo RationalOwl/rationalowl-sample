@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -25,8 +25,6 @@ import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rationalowl.minerva.appserver.AppServerManager;
 import com.rationalowl.minerva.appserver.AppServerRegisterResultListener;
 import com.rationalowl.minerva.appserver.DeviceGroupListener;
@@ -63,20 +61,36 @@ public class SampleServerView extends JFrame implements ActionListener {
 
 
         @Override
-        public void onSendMulticastMsgResult(int resultCode, String resultMsg, String requestId) {
+        public void onSendMulticastMsgResult(int resultCode, String resultMsg, String msgId, String requestId) {
             output("onSendMulticastMsgResult: resultCode = " + resultCode + "resultMsg = " + resultMsg + " requestId="+ requestId);
         }
 
 
         @Override
-        public void onSendBroadcastMsgResult(int resultCode, String resultMsg, String requestId) {
+        public void onSendBroadcastMsgResult(int resultCode, String resultMsg, String msgId, String requestId) {
             output("onSendBroadcastMsgResult: resultCode = " + resultCode + "resultMsg = " + resultMsg + " requestId="+ requestId);
         }
 
 
         @Override
-        public void onSendGroupMsgResult(int resultCode, String resultMsg, String requestId) {
+        public void onSendGroupMsgResult(int resultCode, String resultMsg, String msgId, String requestId) {
             output("onSendGroupMsgResult: resultCode = " + resultCode + "resultMsg = " + resultMsg + " requestId="+ requestId);
+        }
+
+
+        @Override
+        public void onSendMulticastCustomPushResult(int resultCode, String resultMsg, String msgId, String reqMsgId) {
+            output("onSendMulticastCustomPushResult:" + reqMsgId + "msg = " + resultMsg);
+        }
+
+        @Override
+        public void onSendBroadcastCustomPushResult(int resultCode, String resultMsg, String msgId, String reqMsgId) {
+            output("onSendBroadcastCustomPushResult:" + reqMsgId + "msg = " + resultMsg);
+        }
+
+        @Override
+        public void onSendGroupCustomPushResult(int resultCode, String resultMsg, String msgId, String reqMsgId) {
+            output("onSendGroupCustomPushResult:" + reqMsgId + "msg = " + resultMsg);
         }
     }
 
@@ -121,7 +135,7 @@ public class SampleServerView extends JFrame implements ActionListener {
     private JButton createGrpBtn, addToGrpBtn, subtractGrpBtn, deleteGrpBtn;
 
     // message buttons
-    private JButton sendMulticastMsgBtn, sendBroadBtn, sendGrpBtn;
+    private JButton sendMulticastMsgBtn, sendBroadBtn, sendGrpBtn, sendMulticastPushBtn, sendBroadPushBtn, sendGrpPushBtn;
     private JButton clearBtn;
     JTextField msgField;
 
@@ -187,6 +201,14 @@ public class SampleServerView extends JFrame implements ActionListener {
         sendBroadBtn.addActionListener(this);
         sendGrpBtn = new JButton("send group message");
         sendGrpBtn.addActionListener(this);
+        
+        sendMulticastPushBtn = new JButton("multicast 푸시");
+        sendMulticastPushBtn.addActionListener(this);
+        sendBroadPushBtn = new JButton("broadcast 푸시");
+        sendBroadPushBtn.addActionListener(this);
+
+        sendGrpPushBtn = new JButton("그룹 푸시");
+        sendGrpPushBtn.addActionListener(this);
 
         btnPanel.add(regBtn);
         btnPanel.add(unRegBtn);
@@ -197,10 +219,13 @@ public class SampleServerView extends JFrame implements ActionListener {
         btnPanel.add(sendMulticastMsgBtn);
         btnPanel.add(sendBroadBtn);
         btnPanel.add(sendGrpBtn);
+        btnPanel.add(sendMulticastPushBtn);
+        btnPanel.add(sendBroadPushBtn);
+        btnPanel.add(sendGrpPushBtn);
         getContentPane().add(northPanel, BorderLayout.NORTH);
         getContentPane().add(mainPanel, BorderLayout.CENTER);
         getContentPane().add(btnPanel, BorderLayout.SOUTH);
-        setSize(1300, 700);
+        setSize(1800, 700);
         addWindowListener(new WindowAdapter() {
 
             public void windowClosing(WindowEvent e) {
@@ -234,6 +259,28 @@ public class SampleServerView extends JFrame implements ActionListener {
             unregServer();
         }
 
+        // send message
+        else if (src == sendMulticastMsgBtn) {
+            sendMulticastMsg();
+        }
+        else if (src == sendBroadBtn) {
+            sendBroadcastMsg();
+        }
+        else if (src == sendGrpBtn) {
+            sendGrpMsg();
+        }
+        
+        //send custom push
+        else if (e.getSource() == sendMulticastPushBtn) {
+            sendMulticastPush();
+        }
+        else if (e.getSource() == sendBroadPushBtn) {
+            sendBroadcastPush();
+        }       
+        else if (e.getSource() == sendGrpPushBtn) {
+            sendGrpMsgPush();
+        }   
+        
         // device group mananement
         else if (src == createGrpBtn) {
             createDeviceGroup();
@@ -247,17 +294,7 @@ public class SampleServerView extends JFrame implements ActionListener {
         else if (src == deleteGrpBtn) {
             deleteGroup();
         }
-
-        // send message
-        else if (src == sendMulticastMsgBtn) {
-            sendMulticastMsg();
-        }
-        else if (src == sendBroadBtn) {
-            sendBroadcastMsg();
-        }
-        else if (src == sendGrpBtn) {
-            sendGrpMsg();
-        }
+        
         else if (src == clearBtn) {
             clearText();
         }
@@ -267,10 +304,10 @@ public class SampleServerView extends JFrame implements ActionListener {
     private void regServer() {
         AppServerManager serverMgr = AppServerManager.getInstance();
         // edit service id as yours
-        String serviceId = "ab662e7a1f274124a588ae3477f535ca";
+        String serviceId = "a6aefe546ccc4dd4bea03498680bb253";
         //String appServerRegName = "app server registraion name1";
         String appServerRegName = "샘플앱서버";
-        String gateHost = "gate.rationalowl.com";
+        String gateHost = "13.125.25.251";
         int gatePort = 9081;   
         serverMgr.registerAppServer(serviceId, appServerRegName, gateHost, gatePort);
         output("Register request");
@@ -287,6 +324,86 @@ public class SampleServerView extends JFrame implements ActionListener {
     }
 
 
+    
+
+    private void sendMulticastMsg() {
+        
+        // data format is json string 
+        // and jackson json library has used.
+        String data = msgField.getText();
+            
+        // target device registration id
+        ArrayList<String> targetDevices = new ArrayList<String>();
+        targetDevices.add("1453ff0bc4c54a5ab31fb9e85d667757");
+        //targetDevices.add("3b04be2c545d491d8323539bcc1a0176");
+        //targetDevices.add("7661ad50f28842658e0bcbb5549a15fd");
+        AppServerManager serverMgr = AppServerManager.getInstance();
+        String requestId = serverMgr.sendMulticastMsg(data, targetDevices);
+        output("sendMulticastMsg Msg :" + data + "requestId = " + requestId);
+         
+    }
+
+
+    private void sendBroadcastMsg() {
+        String data = msgField.getText();
+        AppServerManager serverMgr = AppServerManager.getInstance();
+        String requestId = serverMgr.sendBroadcastMsg(data);
+        output("sendBroadcastMsg Msg :" + data + "requestId = " + requestId);
+    }
+
+
+    private void sendGrpMsg() {
+        String data = msgField.getText();
+        String deviceGroupId = "29426ab58f2349d4a01e77856d856841";
+        AppServerManager serverMgr = AppServerManager.getInstance();
+        String requestId = serverMgr.sendGroupMsg(data, deviceGroupId);
+        output("sendGrpMsg Msg :" + data + "requestId = " + requestId);
+    }
+        
+    
+    private void sendMulticastPush() {
+        
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("myNotiTitle", "커스텀 알람 타이틀");
+        data.put("myNotiBody", "이미지url로 나만의 알림을 표현하세요!");
+        data.put("imageUrl", "http://your.image.com/image1.jpg");
+        data.put("soundUrl", "http://your.sound.com/sound1.wav");   
+        
+        ArrayList<String> targetDevices = new ArrayList<String>();
+        targetDevices.add("1453ff0bc4c54a5ab31fb9e85d667757");
+        
+        AppServerManager serverMgr = AppServerManager.getInstance();
+        serverMgr.sendMulticastCustomPush(data, targetDevices);
+        output("broadcast push :" + data.toString());
+    }
+
+    
+    private void sendBroadcastPush() {
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("myNotiTitle", "커스텀 알람 타이틀");
+        data.put("myNotiBody", "이미지url로 나만의 알림을 표현하세요!");
+        data.put("imageUrl", "http://your.image.com/image1.jpg");
+        data.put("soundUrl", "http://your.sound.com/sound1.wav");  
+        AppServerManager serverMgr = AppServerManager.getInstance();
+        serverMgr.sendBroadcastCustomPush(data);
+        // same as serverMgr.sendBroadcastMsg(data);
+        output("broadcast push :" + data.toString());
+    }
+    
+    
+    private void sendGrpMsgPush() {
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("myNotiTitle", "커스텀 알람 타이틀");
+        data.put("myNotiBody", "이미지url로 나만의 알림을 표현하세요!");
+        data.put("imageUrl", "http://your.image.com/image1.jpg");
+        data.put("soundUrl", "http://your.sound.com/sound1.wav");  
+        String deviceGroupId = "29426ab58f2349d4a01e77856d856841";
+        AppServerManager serverMgr = AppServerManager.getInstance();
+        String requestId = serverMgr.sendGroupCustomPush(data, deviceGroupId);
+        output("sendGrpMsg Msg :" + data + "requestId = " + requestId);
+    }
+    
+    
     private void createDeviceGroup() {
         AppServerManager serverMgr = AppServerManager.getInstance();
         // device group name which will be displayed in the console
@@ -350,38 +467,4 @@ public class SampleServerView extends JFrame implements ActionListener {
         output("deleteGroup requestId = " + requestId);
     }
 
-
-    private void sendMulticastMsg() {
-        
-        // data format is json string 
-        // and jackson json library has used.
-        String data = msgField.getText();
-            
-        // target device registration id
-        ArrayList<String> targetDevices = new ArrayList<String>();
-        targetDevices.add("1453ff0bc4c54a5ab31fb9e85d667757");
-        //targetDevices.add("3b04be2c545d491d8323539bcc1a0176");
-        //targetDevices.add("7661ad50f28842658e0bcbb5549a15fd");
-        AppServerManager serverMgr = AppServerManager.getInstance();
-        String requestId = serverMgr.sendMulticastMsg(data, targetDevices);
-        output("sendMulticastMsg Msg :" + data + "requestId = " + requestId);
-         
-    }
-
-
-    private void sendBroadcastMsg() {
-        String data = msgField.getText();
-        AppServerManager serverMgr = AppServerManager.getInstance();
-        String requestId = serverMgr.sendBroadcastMsg(data);
-        output("sendBroadcastMsg Msg :" + data + "requestId = " + requestId);
-    }
-
-
-    private void sendGrpMsg() {
-        String data = msgField.getText();
-        String deviceGroupId = "29426ab58f2349d4a01e77856d856841";
-        AppServerManager serverMgr = AppServerManager.getInstance();
-        String requestId = serverMgr.sendGroupMsg(data, deviceGroupId);
-        output("sendGrpMsg Msg :" + data + "requestId = " + requestId);
-    }
 }
