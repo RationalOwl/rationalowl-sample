@@ -12,7 +12,7 @@
 
 
 
-@interface MinervaManager  : NSObject /*<NSURLConnectionDataDelegate, NSURLConnectionDelegate>*/ {
+@interface MinervaManager  : NSObject {
     
 @public 
     

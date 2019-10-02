@@ -95,12 +95,12 @@
 #pragma mark message delegate
 
 -(void) onDownstreamMsgRecieved: (int) msgSize msgList : (NSArray*) msgList alarmIdx : (int) alarmIdx {
-    NSLog(@"onMsgRecieved msg size = %d", msgSize);
+    NSLog(@"onMsgRecieved 2 msg size = %d", msgSize);
     NSDictionary* msg;
     
     NSString* serverRegId;
     long serverTime;
-    NSString* msgData;
+    NSObject* msgData;
     
     NSDateFormatter* format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"MM/dd HH:mm:ss"];
@@ -113,6 +113,9 @@
         serverTime = [msg[@"serverTime"] longValue];
         NSDate* date = [NSDate dateWithTimeIntervalSince1970:(serverTime /1000)];
         msgData = msg[@"data"];
+        
+        /* this sample simply display msgdata to the table view */
+        // msgData is simple string format or json string format(in custom push)
         NSString* displayStr = [NSString stringWithFormat:@"%@  [%@]", msgData, [format stringFromDate:date]];
         //[self.messages insertObject:displayStr atIndex:0];
         [self.messages addObject:displayStr];
