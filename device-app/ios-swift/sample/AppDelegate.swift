@@ -28,6 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil))
             UIApplication.shared.registerForRemoteNotifications()
         }
+        
+        // to notification delivery tracking enable
+        // 1. call setAppGroup API at the container app(main app).
+        // 2. call enableNotificationTracking() API at the service extension
+        let minMgr: MinervaManager = MinervaManager.getInstance();
+        minMgr.setAppGroup("group.com.rationalowl.sample");
         return true;
     }
     

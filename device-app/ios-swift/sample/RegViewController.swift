@@ -19,8 +19,9 @@ class RegViewController: UIViewController, DeviceRegisterResultDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //inputNameField.text = "gate.rationalowl.com";
-        inputNameField.text = "13.125.25.251"; // aws dev env
+        inputNameField.text = "gate.rationalowl.com";
+        //inputNameField.text = "13.125.25.251"; // aws dev env
+        
         
         let minMgr: MinervaManager = MinervaManager.getInstance();
         minMgr.setDeviceRegisterResultDelegate(self);
@@ -37,7 +38,7 @@ class RegViewController: UIViewController, DeviceRegisterResultDelegate {
     /////////////////////////////////////////////////////////////////
     
     @IBAction func regDevice() {
-        let serviceId: String = "a6aefe546ccc4dd4bea03498680bb253";
+        let serviceId: String = "c0612115666f4c54bdcc16978962da9c";
         let gateHost: String = inputNameField.text!;
         let mgr: MinervaManager = MinervaManager.getInstance();
         mgr.registerDevice(gateHost, serviceId: serviceId, deviceRegName: "my I phone");
@@ -45,7 +46,7 @@ class RegViewController: UIViewController, DeviceRegisterResultDelegate {
     
     
     @IBAction func unregDevice() {
-        let serviceId: String = "a6aefe546ccc4dd4bea03498680bb253";
+        let serviceId: String = "c0612115666f4c54bdcc16978962da9c";
         let mgr: MinervaManager = MinervaManager.getInstance();
         mgr.unregisterDevice(serviceId);
     }

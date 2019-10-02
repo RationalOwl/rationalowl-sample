@@ -7,18 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		90CE4CE0222D03C000F53A12 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E4B972201C435F00FA07D8 /* UserNotifications.framework */; };
 		90CE4CE8222D1A8C00F53A12 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CE4CE7222D1A8C00F53A12 /* NotificationService.swift */; };
 		90CE4CEC222D1A8C00F53A12 /* NotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 90CE4CE5222D1A8C00F53A12 /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		90CE4CF5222D3A4B00F53A12 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CE4CF3222D3A3500F53A12 /* RationalOwl.framework */; };
 		90CE4CF6222D3A4B00F53A12 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90CE4CF3222D3A3500F53A12 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		90CE4CF7222D3CB600F53A12 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CE4CF3222D3A3500F53A12 /* RationalOwl.framework */; };
 		90E4B957201C3E0500FA07D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4B956201C3E0500FA07D8 /* AppDelegate.swift */; };
 		90E4B95C201C3E0500FA07D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90E4B95A201C3E0500FA07D8 /* Main.storyboard */; };
 		90E4B95E201C3E0500FA07D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90E4B95D201C3E0500FA07D8 /* Assets.xcassets */; };
 		90E4B961201C3E0500FA07D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90E4B95F201C3E0500FA07D8 /* LaunchScreen.storyboard */; };
 		90E4B969201C3E8400FA07D8 /* MsgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4B968201C3E8400FA07D8 /* MsgViewController.swift */; };
 		90E4B96B201C410400FA07D8 /* RegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4B96A201C410400FA07D8 /* RegViewController.swift */; };
+		90FFE104234347450071E424 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E4B972201C435F00FA07D8 /* UserNotifications.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +79,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90CE4CF7222D3CB600F53A12 /* RationalOwl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90CE4CE0222D03C000F53A12 /* UserNotifications.framework in Frameworks */,
+				90FFE104234347450071E424 /* UserNotifications.framework in Frameworks */,
 				90CE4CF5222D3A4B00F53A12 /* RationalOwl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,7 +195,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = Rationalowl;
 				TargetAttributes = {
 					90CE4CE4222D1A8C00F53A12 = {
@@ -320,6 +318,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = NotificationServiceExtension/NotificationServiceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56AQ6CM687;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -345,6 +344,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = NotificationServiceExtension/NotificationServiceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56AQ6CM687;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -481,6 +481,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = sample/sample.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56AQ6CM687;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -488,6 +489,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = sample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(PROJECT_DIR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rationalowl.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -504,6 +506,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = sample/sample.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56AQ6CM687;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -511,6 +514,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = sample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(PROJECT_DIR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rationalowl.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";

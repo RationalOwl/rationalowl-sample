@@ -45,7 +45,7 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     /////////////////////////////////////////////////////////////////
     
     @IBAction func sendUpstreamMsg() {
-        let serverId: String = "76cdd965b6d848bda95cfd2e918cd74b";
+        let serverId: String = "dfe41cdd81a1479b80ecfe03068e4337";
         let msg: String = inputMessageField.text!;
         let mgr: MinervaManager = MinervaManager.getInstance();
         mgr.sendUpstreamMsg(msg, serverRegId:serverId);
@@ -83,7 +83,8 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         // who send message
         var sender: String;
         var sendTime: Double;
-        var msgData: String;
+        // nsgData sould be simple string or dictionary(json string on custom push)
+        var msgData: Any?;
         let dateFormatter = DateFormatter();
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss";
         
@@ -94,8 +95,8 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             // message sent time
             sendTime = msg["serverTime"] as! Double;
             let date = Date(timeIntervalSince1970: sendTime/1000);
-            msgData = msg["data"] as! String;
-            let displayStr: String = "\(msgData)   \(dateFormatter.string(from: date))";
+            msgData = msg["data"];
+            let displayStr: String = "\(String(describing: msgData))   \(dateFormatter.string(from: date))";
             self.messages.append(displayStr);
         }
         
@@ -133,12 +134,12 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     
     func onUpstreamMsgResult(_ resultCode: Int32, resultMsg: String!, umi: String!) {
-        print("onMsgRecieved msg upstream message id = \(umi)");
+        print("onMsgRecieved msg upstream message id =" + umi);
     }
     
     
     func onP2PMsgResult(_ resultCode: Int32, resultMsg: String!, pmi: String!) {
-        print("onMsgRecieved msg p2p message id = \(pmi)");
+        print("onMsgRecieved msg p2p message id = " + pmi);
     }
     
     
