@@ -81,10 +81,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         MinervaManager minMgr = MinervaManager.getInstance();
         minMgr.enableNotificationTracking(data);
 
-
-        // TODO(developer): Handle FCM messages here.
-        // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
-        Log.d(TAG, "From: " + remoteMessage.getFrom());
+        /* draw your custom push notification */
         showCustomNotification(data);
     }
 
@@ -180,18 +177,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
             myBitmap = BitmapFactory.decodeStream(bis);
             bis.close();
-
-
-            /*
-            HttpGet httpRequest = new HttpGet(URI.create(imgUrl) );
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpResponse response = (HttpResponse) httpclient.execute(httpRequest);
-            HttpEntity entity = response.getEntity();
-            BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(entity);
-            myBitmap = BitmapFactory.decodeStream(bufHttpEntity.getContent());
-            httpRequest.abort();
-            */
-
         }
         catch(IOException e) {
             e.printStackTrace();
