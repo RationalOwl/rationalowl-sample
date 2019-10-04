@@ -30,8 +30,8 @@
     [minMgr enableNotificationTracking:userInfo appGroup:@"group.com.rationalowl.sample"];
     
     // Modify the notification content here...
-    self.bestAttemptContent.title = userInfo[@"myNotiTitle"];
-    self.bestAttemptContent.body = userInfo[@"myNotiBody"];
+    self.bestAttemptContent.title = userInfo[@"notiTitle"];
+    self.bestAttemptContent.body = userInfo[@"notiBody"];
     
     // draw image from image url
     //NSString* imageUrl = userInfo[@"imageUrl"];

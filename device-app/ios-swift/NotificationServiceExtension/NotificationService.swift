@@ -30,9 +30,14 @@ class NotificationService: UNNotificationServiceExtension {
             minMgr.enableNotificationTracking(userInfo, appGroup: "group.com.rationalowl.sample");
             
             // Modify the notification content here...
-            bestAttemptContent.title = userInfo["myNotiTitle"] as! String;
-            bestAttemptContent.body = userInfo["myNotiBody"] as! String;
+            if userInfo["notiTitle"] != nil {
+                bestAttemptContent.title = userInfo["notiTitle"] as! String;
+            }
+            if userInfo["notiBody"] != nil {
+                bestAttemptContent.body = userInfo["notiBody"] as! String;
+            }
             
+            /* draw you custom push notification */
             // draw image from image url
             //NSString* imageUrl = userInfo[@"imageUrl"];
             

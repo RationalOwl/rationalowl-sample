@@ -52,7 +52,7 @@
 
 - (IBAction)sendUpstreamMsg:(id)sender {
     //NSString* svcId = @"d0a83353281e4b678774a0efa44fdd82";
-    NSString* serverId = @"e2c5f56d6cda41279c3a4ad8549052bf";
+    NSString* serverId = @"78c997cb2a2944f9b877f4cbdb3034a6";
     NSString* msg = inputMessageField.text;
     MinervaManager* mgr = [MinervaManager getInstance];
     [mgr sendUpstreamMsg:msg serverRegId:serverId];
@@ -73,7 +73,7 @@
 - (IBAction)sendP2PMsg:(id)sender {
     NSString* msg = inputMessageField.text;
     NSMutableArray* devices = [[NSMutableArray alloc] init];
-    [devices addObject:@"a03e1768d6ab411b930eb6dd6b5048b4"];
+    [devices addObject:@"590f123ddf144824bf7fbe5d3be4320f"];
     //[devices addObject:@"2f84c0dbc967493a8c401921f9191af4"];
     //[devices addObject:@"d5f1126b2eaf45dfbb9a545bb69fc8c4"];
     //[devices addObject:@"90aee24fcce741d6abcf4bf2dc6121c9"];
@@ -95,12 +95,12 @@
 #pragma mark message delegate
 
 -(void) onDownstreamMsgRecieved: (int) msgSize msgList : (NSArray*) msgList alarmIdx : (int) alarmIdx {
-    NSLog(@"onMsgRecieved msg size = %d", msgSize);
+    NSLog(@"onMsgRecieved 2 msg size = %d", msgSize);
     NSDictionary* msg;
     
     NSString* serverRegId;
     long serverTime;
-    NSString* msgData;
+    NSObject* msgData;
     
     NSDateFormatter* format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"MM/dd HH:mm:ss"];
@@ -113,6 +113,9 @@
         serverTime = [msg[@"serverTime"] longValue];
         NSDate* date = [NSDate dateWithTimeIntervalSince1970:(serverTime /1000)];
         msgData = msg[@"data"];
+        
+        /* this sample simply display msgdata to the table view */
+        // msgData is simple string format or json string format(in custom push)
         NSString* displayStr = [NSString stringWithFormat:@"%@  [%@]", msgData, [format stringFromDate:date]];
         //[self.messages insertObject:displayStr atIndex:0];
         [self.messages addObject:displayStr];
@@ -178,6 +181,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.textLabel.text = s;
+    cell.textLabel.numberOfLines = 0;
     return cell;
 }
 
