@@ -37,6 +37,7 @@ class NotificationService: UNNotificationServiceExtension {
                 bestAttemptContent.body = userInfo["notiBody"] as! String;
             }
             
+            /* draw you custom push notification */
             // draw image from image url
             //NSString* imageUrl = userInfo[@"imageUrl"];
             
