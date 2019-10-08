@@ -1,3 +1,15 @@
+
+[2019/10/8 업데이트]
+2019년 10월 8일 현재 Xcode11 최신 버전에서 개발시 빌드가 되지 않은 현상이 있어서
+그 원인이 Xcode버그인지 자체 앱 버그인지 원인을 밝히지 못한 상황입니다.
+이에 당분간 IOS는 Swift만 지원하게 되었습니다.
+
+[Swift 샘플앱](https://github.com/RationalOwl/rationalowl-sample/tree/master/device-app/ios-swift)
+
+최대한 빠른 시간 내 Objective-C도 다시 지원하겠습니다.
+
+
+
 # 래셔널아울 IOS Objective-C 단말앱 샘플
 IOS Objective-C 단말앱 샘플은 IOS Objective-C 단말앱 라이브러리에서 제공하는 API를 이용해서 단말앱을 만드는 것을 쉽게 따라할 수 있도록 작성되었다. 
 
