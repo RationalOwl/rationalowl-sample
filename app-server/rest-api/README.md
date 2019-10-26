@@ -36,7 +36,7 @@ const registerServerRun = () => {
     const response = sendHttpRequest('http://gate.rationalowl.com:8006/server/register/', {
         serviceId, registerName
     });
-    channelUrl = JSON.parse(response).channelServer;
+    channelServer = JSON.parse(response).channelServer;
 };
 ```
 
@@ -53,10 +53,18 @@ const registerServerRun = () => {
 
 ```javascript
 {
-  "serviceId":"service id here",
-  "registerName":"displayed app server name"
+  "serverRegId":"asdfkjkjlasfdasfd",
+  "channelServer":"211.211.223.44:9090"
 }
 ```
+
+- serverRegId
+  - 등록한 앱 서버의 아이디
+  - 이 후 REST API 호출시 이용되므로 앱 서버는 이를 저장해야 한다.
+- channelServer
+  - downstream 메시지 발신 시 이용할 채널서버
+  - REST API URL의 (channelServer)에 입력해야 한다.
+
 
 래셔널아울 관리자 콘솔은 앱서버 상태에 대해 실시간 모니터링을 제공한다. 앱서버 등록시 래셔널아울 관리자 콘솔의 '서비스 > 서버 현황'에서 실시간 확인 가능하다.
 
@@ -105,7 +113,7 @@ const deviceGroupCreateRun = () => {
     const deviceList = document.getElementById('device-group-create-devices').value.replace(/\s/g, '').split(/,/g);
     const description = document.getElementById('device-group-create-description').value;
 
-    sendHttpRequest(`http://${channelUrl}/deviceGroup/create/`, {
+    sendHttpRequest(`http://${channelServer}/deviceGroup/create/`, {
         serviceId, serverRegId, groupName, deviceList, description
     });
 };
@@ -151,7 +159,7 @@ const deviceGroupAddRun = () => {
     const groupId = document.getElementById('device-group-add-id').value;
     const deviceList = document.getElementById('device-group-add-devices').value.replace(/\s/g, '').split(/,/g);
 
-    sendHttpRequest(`http://${channelUrl}/deviceGroup/add/`, {
+    sendHttpRequest(`http://${channelServer}/deviceGroup/add/`, {
         serviceId, serverRegId, groupId, deviceList
     });
 };
@@ -193,7 +201,7 @@ const deviceGroupSubtractRun = () => {
     const groupId = document.getElementById('device-group-subtract-id').value;
     const deviceList = document.getElementById('device-group-subtract-devices').value.replace(/\s/g, '').split(/,/g);
 
-    sendHttpRequest(`http://${channelUrl}/deviceGroup/subtract/`, {
+    sendHttpRequest(`http://${channelServer}/deviceGroup/subtract/`, {
         serviceId, serverRegId, groupId, deviceList
     });
 };
@@ -234,7 +242,7 @@ const deviceGroupRemoveRun = () => {
     const serverRegId = document.getElementById('device-group-remove-register-id').value;
     const groupId = document.getElementById('device-group-remove-id').value;
 
-    sendHttpRequest(`http://${channelUrl}/deviceGroup/remove/`, {
+    sendHttpRequest(`http://${channelServer}/deviceGroup/remove/`, {
         serviceId, serverRegId, groupId
     });
 };
@@ -279,7 +287,7 @@ const multicastRun = () => {
     const notiBody = document.getElementById('multicast-noti-body').value;
     const notiSound = document.getElementById('multicast-noti-sound').value;
 
-    sendHttpRequest(`http://${channelUrl}/downstream/multicast/`, {
+    sendHttpRequest(`http://${channelServer}/downstream/multicast/`, {
         serviceId, serverRegId, queuing, data, deviceRegIds, notiTitle, notiBody, notiSound
     });
 };
@@ -337,7 +345,7 @@ const broadcastRun = () => {
     const notiBody = document.getElementById('broadcast-noti-body').value;
     const notiSound = document.getElementById('broadcast-noti-sound').value;
 
-    sendHttpRequest(`http://${channelUrl}/downstream/broadcast/`, {
+    sendHttpRequest(`http://${channelServer}/downstream/broadcast/`, {
         serviceId, serverRegId, queuing, data, notiTitle, notiBody, notiSound
     });
 };
@@ -392,7 +400,7 @@ const groupmsgRun = () => {
     const notiBody = document.getElementById('groupmsg-noti-body').value;
     const notiSound = document.getElementById('groupmsg-noti-sound').value;
 
-    sendHttpRequest(`http://${channelUrl}/downstream/group/`, {
+    sendHttpRequest(`http://${channelServer}/downstream/group/`, {
         serviceId, serverRegId, queuing, data, groupId, notiTitle, notiBody, notiSound
     });
 };
