@@ -4,28 +4,37 @@ Android 단말앱 샘플은 Android 단말앱 라이브러리에서 제공하는
 ## 샘플 프로젝트 설정
 1. github에서 샘플코드를 다운받는다.
 2. 안드로이드 스튜디오를 실행한다.
-3. 'File > New > Import Project..'
-4. 다운받은 폴더를 선택하면 아래 그림과 같이 실행가능한 샘플 프로젝트 환경을 확인 할 수 있다.
-5. 'app > libs' 폴더의 'rationalowl-andoird-x.x.x.aar' 파일이 래셔널아울 Android 단말앱 라이브러리이다.
-
-![이미지 이름](./img/project.png)
-
+3. 'File > New > Import Project..'로 샘플앱 프로젝트를 오픈한다.
 
 ## 단말앱 라이브러리 적용 확인
 
 래셔널아울 안드로이드 단말앱 라이브러리 적용을 확인한다.
 
-1. 'app > libs' 폴더에 'rationalowl-andoird-x.x.x.aar' 라이브러리 존재를 확인한다.
-2. 탑레벨 build.gradle 파일에 'flatDir { dirs 'libs' }'이 삽입되어 있어야 한다.
+1. 래셔널아울 라이브러리를 적용한다.
+    - 아래 build.gradle의 dependencies에서 // RationalOwl library 부분
+2. 래셔널아울 이용 라이브러리를 적용한다.
+    - 아래 build.gradle의 dependencies에서 // RationalOwl using library 부분   
+3. FCM 라이브러리를 적용한다.
+    - 아래 build.gradle의 dependencies에서 // FCM library 부분    
 
-![이미지 이름](./img/top_build_gradle.png)
+아래는 2019년 12월 기준 샘플앱 앱레벨 build.gradle의 dependencies 부분이다.
 
-3. 앱레벨 build.gradle 파일에 세 라이브러리가 디펜던시에 명시되어야 한다.    
- a. 래셔널아울 단말앱 라이브러리    
- b. 라이프사이클 라이브러리    
- c. fcm 라이브러리    
+```java
+dependencies {
+    ...
 
-![이미지 이름](./img/app_build_gradle.png)
+    // RationalOwl library
+    implementation 'com.rationalowl.minerva.client.android:rationalowl-android:1.1.7'
+    // RationalOwl using library
+    implementation 'android.arch.lifecycle:extensions:1.1.0'
+
+    // FCM library
+    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
+
+    ...
+}
+```
 
 
 ## FCM(Firebase Cloud Messaging) 적용
@@ -63,6 +72,67 @@ Android 단말앱 샘플은 Android 단말앱 라이브러리에서 제공하는
 
 ### 관리자 콘솔을 통한 모니터링
 래셔널아울 관리자콘솔이 제공하는 실시간 모니터링은 서비스 개발 전 단계에서 실시간 데이터의 전달 현황뿐 아니라 개발 단계에서 앱서버와 단말앱의 각 기능 별 성공 여부를 확인할 수 있어 개발속도를 향상시키고 서비스 운영단계에서는 예측 가능성과 서비스 대응력을 높이는 역할을 한다. 샘플앱 개발시 관리자콘솔을 이용해 각 기능별 동작을 확인함으로써 그 편의성을 확인할 수 있을 것이다.
+
+
+
+## FCM 안드로이드 단말앱 적용
+
+FCM 푸시 알림을 안드로이드 단말앱에 적용하기 위해서 를 처리하기 위해서는 FirebaseMessagingService 구현해야 한다.
+
+1. FCM 단말 토큰 생성시 호출되는 서비스인 onNewToken(String token) 메소드를 구현한다.
+    - 해당 함수내에서 setDeviceToken() API를 호출해야 한다.
+    - 샘플앱에서 setDeviceToken을 검색하여 관련 부분을 참조한다.
+
+2. 커스텀(Customizable Push)를 처리하는 onMessageReceived(RemoteMessage remoteMessage)를 구현한다.
+    - 해당 함수내에서 enableNotificationTracking() API를 호출해야 한다.
+    - 샘플앱에서 enableNotificationTracking을 검색하여 관련 부분을 참조한다.
+
+아래는 2019년 12월 기준 샘플앱의 해당 부분이다.
+
+
+```java
+public class MyFirebaseMessagingService extends FirebaseMessagingService {
+
+    private static final String TAG = "MyFirebaseMsgService";
+
+
+    /**
+     * Called if InstanceID token is updated. This may occur if the security of
+     * the previous token had been compromised. Note that this is called when the InstanceID token
+     * is initially generated so this is where you would retrieve the token.
+     */
+    @Override
+    public void onNewToken(String token) {
+        Logger.debug(TAG, "onNewToken token: " + token);
+        // just call setDeviceToken() API
+        MinervaManager minMgr = MinervaManager.getInstance();
+        minMgr.setDeviceToken(token);
+        // there's no need to do anything else
+    }
+
+
+    /**
+     * Called when message is received.
+     *
+     * @param remoteMessage Object representing the message received from Firebase Cloud Messaging.
+     */
+    // [START receive_message]
+    @Override
+    public void onMessageReceived(RemoteMessage remoteMessage) {
+        Logger.debug(TAG, "onMessageReceived enter");
+        Map<String, String> data = remoteMessage.getData();
+
+        // set notification  delivery tracking
+        MinervaManager minMgr = MinervaManager.getInstance();
+        minMgr.enableNotificationTracking(data);
+
+        // show your custom notification
+        showCustomNotification(data);
+    }
+    ...
+}
+```
+
 
 >## 단말앱 초기화
 샘플코드에서 MinervaManager.init를 검색하면 아래의 샘플코드를 확인할 수 있다. 해당 API는 안드로이드 단말앱 초기화 루틴에 위치시켜 단말앱 라이브러리를 가용한 상태로 만든다.      
