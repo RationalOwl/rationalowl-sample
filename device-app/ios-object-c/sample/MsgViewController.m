@@ -52,7 +52,7 @@
 
 - (IBAction)sendUpstreamMsg:(id)sender {
     //NSString* svcId = @"d0a83353281e4b678774a0efa44fdd82";
-    NSString* serverId = @"78c997cb2a2944f9b877f4cbdb3034a6";
+    NSString* serverId = @"afab0b12c8f44c00860195446032933d";
     NSString* msg = inputMessageField.text;
     MinervaManager* mgr = [MinervaManager getInstance];
     [mgr sendUpstreamMsg:msg serverRegId:serverId];

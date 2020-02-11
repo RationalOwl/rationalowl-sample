@@ -1,9 +1,8 @@
 //
 //  NotificationService.h
-//  NotiServiceExtension
+//  ServiceExtension
 //
-//  Created by 김정도 on 28/02/2019.
-//  Copyright © 2019 Rationalowl. All rights reserved.
+//  Created by 김정도 on 25/02/2019.
 //
 
 #import <UserNotifications/UserNotifications.h>
