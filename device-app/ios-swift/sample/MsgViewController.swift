@@ -45,7 +45,7 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     /////////////////////////////////////////////////////////////////
     
     @IBAction func sendUpstreamMsg() {
-        let serverId: String = "dfe41cdd81a1479b80ecfe03068e4337";
+        let serverId: String = "afab0b12c8f44c00860195446032933d";
         let msg: String = inputMessageField.text!;
         let mgr: MinervaManager = MinervaManager.getInstance();
         mgr.sendUpstreamMsg(msg, serverRegId:serverId);

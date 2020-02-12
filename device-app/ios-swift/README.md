@@ -1,18 +1,11 @@
 
-[2019/10/8 업데이트]
-실시간 API 및 이와 함께 제공되는 기본 푸시의 기능은 아래 원본을 참고하고
-본 샘플앱의 커스텀푸시에 대한 설명부분은 [커스텀푸시 앱 개발](https://rationalowl.tistory.com/21) 문서의 'IOS 단말앱 개발' 파트 참고
 
-
-
-
-
-# 래셔널아울 IOS Swift 단말앱 샘플
-
-IOS Swift 단말앱 샘플은 IOS Swift 단말앱 라이브러리에서 제공하는 API를 이용해서 단말앱을 만드는 것을 쉽게 따라할 수 있도록 작성되었다. 
+# 래셔널아울 IOS Objective-C 단말앱 샘플
+IOS Objective-C 단말앱 샘플은 IOS Objective-C 단말앱 라이브러리에서 제공하는 API를 이용해서 단말앱을 만드는 것을 쉽게 따라할 수 있도록 작성되었다. 
 
 - 샘플 코드내 RationalOwl.framework 라이브러리내 헤더 파일에 API 정의를 참조하여 샘플코드에 사용된 API 파라미터를 자신의 샘플앱에 맞게 수정한다.
 - 필요한 기반 지식은 [IOS 단말앱 개발 가이드](http://guide.rationalowl.com/guide/device-app)을 참조한다.
+- 본 샘플앱은 래셔널아울 커스텀 푸시를 지원한다. 커스텀 푸시의 개념은 [커스텀푸시 앱 개발](https://rationalowl.tistory.com/21) 을 참조한다.
 
 
 ## 개발 전 IOS 설정
@@ -25,12 +18,55 @@ IOS Swift 단말앱 샘플은 IOS Swift 단말앱 라이브러리에서 제공�
 ## 샘플 프로젝트 설정
 1. github에서 샘플코드를 다운받는다.
 2. 다운받은 폴더에서 'sample.xcodeproj'파일을 클릭하여 XCode를 실행한다.
+ - 샘플앱을 XCode로 실행하면 실행가능한 상태로 설정들이 되어 있다.
  - 프로젝트 루트에 'RationalOwl.framework'파일이 래셔널아울 OS Objective-C 단말앱 라이브러리이다.
- - 'sample-Bridging-Header.h'파일이 Objective-C 단말앱 라이브러리를 Swift에서 사용할 수 있게 해 준다.
  - General > Identify > Bundle Identifier에 developer.apple.com에서 등록한 App ID와 동일한 값을 입력해야 한다.
     
 
 ![이미지 이름](./img/project.png)
+
+# General > Frameworks, Libraries, and Embedded Contents
+1. 샘플앱 메인앱 확인
+ - X Code Targets을 메인앱(sample)을 선택 후 'General > Frameworks, Libraries, and Embedded Contents' 확인
+ - NotiServiceExtension.appex, RationalOwl.framework, UserNotification.framework 가 포함되어 있는지 확인
+
+![이미지 이름](./img/main_general_library.png)
+
+2. 리치 노티피케이션 지원을 위한 Service Extension 확인
+ - X Code Targets을 NotiServiceExtension 선택 후 'General > Frameworks, Libraries, and Embedded Contents' 확인
+ - 래셔널아울 라이브러리인 RationalOwl.framework 이 포함되어 있는지 확인
+
+![이미지 이름](./img/ext_general_library.png)
+
+아래는 래셔널아울 라이브러리를 적용한 앱을 개발시 확인해야 하는 주요 설정이다. 실제 개발시 샘플앱을 기반으로 개발하면 기설정되어 있어 상관이 없지만 새로 만들거나 기존 자신의 앱을 기반으로 적용시 참조하기 바란다.
+
+# Signing & Capabilities
+1. 샘플앱 메인앱 확인
+ - App Groups가 설정되어야 한다.
+ - Push Notifications 설정이 되어야 한다.
+ - Background Modes 의 Remote Notifications 항목이 체크되어야 한다.
+ 
+ ![이미지 이름](./img/main_capa_library.png)
+
+2. 리치 노티피케이션 지원을 위한 Service Extension 확인
+ - X Code Targets을 NotiServiceExtension 선택 후 'Signing & Capabilities' 확인
+ - App Groups 가 메인앱(sample)에서 설정된 것과 동일하게 설정되어 있는지 확인
+
+![이미지 이름](./img/ext_capa_library.png)
+
+# Build Phases
+1. 샘플앱 메인앱 확인
+ - Link Binary With Libraries 에 UserNotifications.framework, RationalOwl.framework 가 설정
+ - Embed Frameworks에 RationalOwl.framework 가 설정
+ 
+ ![이미지 이름](./img/main_build_phase.png)
+
+2. 리치 노티피케이션 지원을 위한 Service Extension 확인
+ - Link Binary With Libraries 에 RationalOwl.framework 가 설정
+ - Embed Frameworks에 RationalOwl.framework 가 설정
+ 
+ ![이미지 이름](./img/ext_build_phase.png)
+
 
 ## 샘플 단말앱 실행
 
@@ -151,6 +187,4 @@ IOS 단말을 Mac에 연결 후 XCode 빌드를 통해 단말에 설치 및 실�
 1. 샘플앱에 수신데이터 앞에 'p2p'문자가 붙고 발신시간이 디스플레이된다.
 
 단말앱이 P2P 메시지를 수신시 onP2PMsgRecieved 콜백이 호출된다. 샘플 코드에서 onP2PMsgRecieved API를 검색하면 관련 샘플코드를 확인할 수 있다.
-
-
 

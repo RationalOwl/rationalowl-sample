@@ -21,7 +21,7 @@
 		90C95A6623F03E55002C41D7 /* MsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C95A6323F03E55002C41D7 /* MsgViewController.m */; };
 		90C95A6F23F040C6002C41D7 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C95A6E23F040C6002C41D7 /* NotificationService.m */; };
 		90C95A7323F040C6002C41D7 /* NotiServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 90C95A6B23F040C5002C41D7 /* NotiServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		90C95A7C23F041F2002C41D7 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C95A7B23F041F2002C41D7 /* UserNotificationsUI.framework */; };
+		90F1006723F3C238000CD4CB /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F1006623F3C238000CD4CB /* UserNotifications.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +93,7 @@
 		90C95A7823F04102002C41D7 /* sample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = sample.entitlements; sourceTree = "<group>"; };
 		90C95A7923F04128002C41D7 /* NotiServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotiServiceExtension.entitlements; sourceTree = "<group>"; };
 		90C95A7B23F041F2002C41D7 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		90F1006623F3C238000CD4CB /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90C95A7C23F041F2002C41D7 /* UserNotificationsUI.framework in Frameworks */,
+				90F1006723F3C238000CD4CB /* UserNotifications.framework in Frameworks */,
 				9053C39D23F13C19002490A9 /* RationalOwl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,6 +171,7 @@
 		90C95A7A23F041F2002C41D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				90F1006623F3C238000CD4CB /* UserNotifications.framework */,
 				90B9794623F1383800DFFB75 /* RationalOwl.framework */,
 				90C95A7B23F041F2002C41D7 /* UserNotificationsUI.framework */,
 			);

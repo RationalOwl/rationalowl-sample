@@ -4,33 +4,15 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>NotificationServiceExtension.xcscheme_^#shared#^_</key>
+		<key>NotiServiceExtension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
-		</dict>
-		<key>sample.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
 		</dict>
 		<key>sample.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
-		</dict>
-	</dict>
-	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>90CE4CE4222D1A8C00F53A12</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>90E4B952201C3E0500FA07D8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
 		</dict>
 	</dict>
 </dict>

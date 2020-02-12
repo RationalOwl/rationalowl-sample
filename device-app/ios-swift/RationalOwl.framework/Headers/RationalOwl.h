@@ -18,4 +18,3 @@ FOUNDATION_EXPORT const unsigned char RationalOwlVersionString[];
 #import <RationalOwl/MinervaManager.h>
 #import <RationalOwl/MinervaDelegate.h>
 #import <RationalOwl/Result.h>
-
