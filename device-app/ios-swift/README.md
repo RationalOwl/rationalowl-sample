@@ -69,6 +69,17 @@ IOS Swift 단말앱 샘플은 IOS Objective-C 단말앱 라이브러리에서 �
  ![이미지 이름](./img/ext_build_phase.png)
 
 
+# Build Settings
+1. 샘플앱 메인앱 확인
+ - Swift Compiler - General > Objective-C Bridging Header 항목이 세팅한다.
+ - 좌측 파일 네비 창에서 Bridging header 파일을 마우스 드래그로 간단히 설정한다.
+ 
+ ![이미지 이름](./img/main_build_setting.png)
+
+2. 리치 노티피케이션 지원을 위한 Service Extension 확인
+ - Service Extension에서 빌드세팅 항목에 별도의 설정이 필요없다.
+
+
 ## 샘플 단말앱 실행
 
 IOS 단말을 Mac에 연결 후 XCode 빌드를 통해 단말에 설치 및 실행한다. 
