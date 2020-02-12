@@ -1,7 +1,7 @@
 
 
-# 래셔널아울 IOS Objective-C 단말앱 샘플
-IOS Objective-C 단말앱 샘플은 IOS Objective-C 단말앱 라이브러리에서 제공하는 API를 이용해서 단말앱을 만드는 것을 쉽게 따라할 수 있도록 작성되었다. 
+# 래셔널아울 IOS Swift 단말앱 샘플
+IOS Swift 단말앱 샘플은 IOS Objective-C 단말앱 라이브러리에서 제공하는 API를 이용해서 단말앱을 만드는 것을 쉽게 따라할 수 있도록 작성되었다. 
 
 - 샘플 코드내 RationalOwl.framework 라이브러리내 헤더 파일에 API 정의를 참조하여 샘플코드에 사용된 API 파라미터를 자신의 샘플앱에 맞게 수정한다.
 - 필요한 기반 지식은 [IOS 단말앱 개발 가이드](http://guide.rationalowl.com/guide/device-app)을 참조한다.
@@ -20,6 +20,7 @@ IOS Objective-C 단말앱 샘플은 IOS Objective-C 단말앱 라이브러리에
 2. 다운받은 폴더에서 'sample.xcodeproj'파일을 클릭하여 XCode를 실행한다.
  - 샘플앱을 XCode로 실행하면 실행가능한 상태로 설정들이 되어 있다.
  - 프로젝트 루트에 'RationalOwl.framework'파일이 래셔널아울 OS Objective-C 단말앱 라이브러리이다.
+ - 'sample-Bridging-Header.h'파일이 Objective-C 단말앱 라이브러리를 Swift에서 사용할 수 있게 해 준다.
  - General > Identify > Bundle Identifier에 developer.apple.com에서 등록한 App ID와 동일한 값을 입력해야 한다.
     
 
