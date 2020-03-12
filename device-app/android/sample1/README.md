@@ -167,28 +167,33 @@ public class Service1App extends Application {
 
 샘플코드에서 registerDevice를 검색하면 아래의 샘플코드를 확인할 수 있다. 
 주의 할 점은 샘플코드에서처럼 registerDevice() API 호출 전 setDeviceToken() API 호출을 해야 한다.
+간단한 방법은 샘플앱처럼 registerDevice() api가 호출되는 activity의 onStart 콜백에서 FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener() 코드를 삽입한다.
 
 
 ```java
-public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.regBtn: {
-                String url = mUrlEt.getText().toString();
+@Override
+    protected void onStart() {
+        //Logger.debug(TAG, "onStart() enter");
+        super.onStart();         
+        //mUrlEt.setText("gate.rationalowl.com");
+        mUrlEt.setText("211.239.150.123"); //aws dev
 
-                // sometimes, FCM onTokenRefresh() callback not called,
-                // So, before registering we should need to call explicitly it.
-                String fcmToken = FirebaseInstanceId.getInstance().getToken();
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( this,  new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+
+                // sometimes, FCM onNewToken() callback not called,
+                // So, before registering we need to call it explicitly.
+                // simple way is just call setDeviceToken api in the onStart() callback,
+                // which  exist registerDevice API
+
+                String fcmToken = instanceIdResult.getToken();
                 MinervaManager mgr = MinervaManager.getInstance();
                 mgr.setDeviceToken(fcmToken);
-
-                // register device app.
-                mgr.registerDevice(url, "54a50ca3c9fa4629a3766b225fae4f8d","My Android 1");
-                break;
-
             }
-            ...
-        }        
-    }
+        });
+
+    }   
 
 ```
 
