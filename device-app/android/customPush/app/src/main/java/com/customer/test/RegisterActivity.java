@@ -9,7 +9,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.rationalowl.minerva.client.android.DeviceRegisterResultListener;
 import com.rationalowl.minerva.client.android.MinervaManager;
 import com.rationalowl.minerva.client.android.Result;
@@ -51,8 +53,24 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
     protected void onStart() {
         //Logger.debug(TAG, "onStart() enter");
         super.onStart();         
-        mUrlEt.setText("gate.rationalowl.com");
-        //mUrlEt.setText("13.125.25.251"); //aws dev
+        //mUrlEt.setText("gate.rationalowl.com");
+        mUrlEt.setText("211.239.150.123"); //aws dev
+        //mUrlEt.setText("117.52.153.229"); // NH network
+
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( this,  new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+
+                // sometimes, FCM onNewToken() callback not called,
+                // So, before registering we need to call it explicitly.
+                // simple way is just call setDeviceToken api in the onStart() callback,
+                // which  exist registerDevice API
+
+                String fcmToken = instanceIdResult.getToken();
+                MinervaManager mgr = MinervaManager.getInstance();
+                mgr.setDeviceToken(fcmToken);
+            }
+        });
 
     }
     
@@ -74,14 +92,9 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
             case R.id.regBtn: {
                 String url = mUrlEt.getText().toString();
 
-                // sometimes, FCM onTokenRefresh() callback not called,
-                // So, before registering we need to call it explicitly.
-                String fcmToken = FirebaseInstanceId.getInstance().getToken();
-                MinervaManager mgr = MinervaManager.getInstance();
-                mgr.setDeviceToken(fcmToken);
-
                 // register device app.
-                mgr.registerDevice(url, "c0612115666f4c54bdcc16978962da9c","Android xiami"); //aws dev gate
+                MinervaManager mgr = MinervaManager.getInstance();
+                mgr.registerDevice(url, "afab0b12c8f44c00860195446032933d","jungdo android1"); //aws dev gate
                 //mgr.registerDevice(url, "faebcfe844d54d449136491fb253619d","단말등록이름2"); //hostway
                 //mgr.registerDevice(url, "def829b853d046779e2227bdd091653c","경민테스트폰"); //hostway
                 //mgr.registerDevice(url, "c8574b6882c34db0a6e6691987de1221"); //aws test
@@ -90,7 +103,7 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
             }
             case R.id.unregBtn:
                 MinervaManager mgr = MinervaManager.getInstance();
-                mgr.unregisterDevice("c0612115666f4c54bdcc16978962da9c"); //aws dev gate
+                mgr.unregisterDevice("afab0b12c8f44c00860195446032933d"); //aws dev gate
                 //mgr.unregisterDevice("def829b853d046779e2227bdd091653c"); //hostway
                 //mgr.unregisterDevice("c8574b6882c34db0a6e6691987de1221"); //aws test
                 break;
