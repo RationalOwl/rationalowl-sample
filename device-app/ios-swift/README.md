@@ -59,6 +59,8 @@ IOS Swift 단말앱 샘플은 IOS Objective-C 단말앱 라이브러리에서 �
 1. 샘플앱 메인앱 확인
  - Link Binary With Libraries 에 UserNotifications.framework, RationalOwl.framework 가 설정
  - Embed Frameworks에 RationalOwl.framework 가 설정
+ - ERROR ITMS-90685/90205/90206 발생시 해결방안(Cocoa Pods과 함께 사용 할 경우 발생할 수 있음)
+     -> 프로젝트 설정 -> Targets - Extension 선택 -> Build Phases -> '[CP] Embed Pods Frameworks' 전체 삭제
  
  ![이미지 이름](./img/main_build_phase.png)
 
