@@ -167,16 +167,21 @@ public class Service1App extends Application {
 
 샘플코드에서 registerDevice를 검색하면 아래의 샘플코드를 확인할 수 있다. 
 주의 할 점은 샘플코드에서처럼 registerDevice() API 호출 전 setDeviceToken() API 호출을 해야 한다.
-간단한 방법은 샘플앱처럼 registerDevice() api가 호출되는 activity의 onStart 콜백에서 FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener() 코드를 삽입한다.
+간단한 방법은 샘플앱처럼 registerDevice() api가 호출되는 activity의 onCreate 콜백에서 FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener() 코드를 삽입한다.
+
+
+* 2020년 3월 기준 주의사항
+    - 프로젝트 레벨 build.gradle 파일에 google-service:4.0.0 을 설정해야 버그없이 동작한다.
+        - classpath 'com.google.gms:google-services:4.0.0'
+    - 프로젝트 레벨 build.gradle 파일의 맨 끝에 다음을 추가해야 동작한다.
+        - apply plugin: 'com.google.gms.google-services'
+    - 샘플소스를 다운받아 환경을 그대로 이용하면 된다.
 
 
 ```java
-@Override
-    protected void onStart() {
-        //Logger.debug(TAG, "onStart() enter");
-        super.onStart();         
-        //mUrlEt.setText("gate.rationalowl.com");
-        mUrlEt.setText("211.239.150.123"); //aws dev
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( this,  new OnSuccessListener<InstanceIdResult>() {
             @Override
@@ -192,8 +197,7 @@ public class Service1App extends Application {
                 mgr.setDeviceToken(fcmToken);
             }
         });
-
-    }   
+        ...
 
 ```
 
