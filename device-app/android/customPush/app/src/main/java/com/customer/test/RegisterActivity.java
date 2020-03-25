@@ -32,6 +32,22 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( this,  new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+
+                // sometimes, FCM onNewToken() callback not called,
+                // So, before registering we need to call it explicitly.
+                // simple way is just call setDeviceToken api in the onStart() callback,
+                // which  exist registerDevice API
+
+                String fcmToken = instanceIdResult.getToken();
+                MinervaManager mgr = MinervaManager.getInstance();
+                mgr.setDeviceToken(fcmToken);
+            }
+        });
+
         setContentView(R.layout.activity_register);
         mUrlEt = (EditText) this.findViewById(R.id.url);
         Button regBtn = (Button) findViewById(R.id.regBtn);
@@ -48,29 +64,16 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
         
     }
 
-    
+
     @Override
     protected void onStart() {
         //Logger.debug(TAG, "onStart() enter");
-        super.onStart();         
+        super.onStart();
         //mUrlEt.setText("gate.rationalowl.com");
         mUrlEt.setText("211.239.150.123"); //aws dev
         //mUrlEt.setText("117.52.153.229"); // NH network
 
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( this,  new OnSuccessListener<InstanceIdResult>() {
-            @Override
-            public void onSuccess(InstanceIdResult instanceIdResult) {
 
-                // sometimes, FCM onNewToken() callback not called,
-                // So, before registering we need to call it explicitly.
-                // simple way is just call setDeviceToken api in the onStart() callback,
-                // which  exist registerDevice API
-
-                String fcmToken = instanceIdResult.getToken();
-                MinervaManager mgr = MinervaManager.getInstance();
-                mgr.setDeviceToken(fcmToken);
-            }
-        });
 
     }
     
