@@ -67,16 +67,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    
     // Called when APNs has assigned the device a unique token
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        // Convert token to string
-        let token = deviceToken.reduce("", {$0 + String(format: "%02X", $1)});
+        
+        let token = deviceToken.map { String(format: "%02x", $0) }.joined();
         let minMgr: MinervaManager = MinervaManager.getInstance();
         minMgr.setDeviceToken(token);
         
         // Persist it in your backend in case it's new
     }
+    
     
     // Called when APNs failed to register the device for push notifications
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

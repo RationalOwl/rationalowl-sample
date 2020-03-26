@@ -84,8 +84,17 @@
 
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSLog(@"devToken=%@",deviceToken);
-    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
-    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSUInteger length = deviceToken.length;
+    
+    if (length == 0) {
+        return;
+    }
+    const unsigned char* buffer = deviceToken.bytes;
+    NSMutableString* hexString  = [NSMutableString stringWithCapacity:(length * 2)];
+    for (int i = 0; i < length; ++i) {
+        [hexString appendFormat:@"%02x", buffer[i]];
+    }
+    NSString* token = [hexString copy];
     MinervaManager* minMgr = [MinervaManager getInstance];
     [minMgr setDeviceToken:token];
 }
