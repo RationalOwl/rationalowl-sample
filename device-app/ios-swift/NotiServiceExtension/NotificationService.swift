@@ -44,7 +44,7 @@ class NotificationService: UNNotificationServiceExtension {
             // set custom alarm sound from sound url
             //NSString* soundUrl = userInfo[@"soundUrl"];
             
-            contentHandler(bestAttemptContent)
+            contentHandler(bestAttemptContent);
         }
     }
     
