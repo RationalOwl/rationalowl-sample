@@ -6,6 +6,7 @@ IOS Objective-C 단말앱 샘플은 IOS Objective-C 단말앱 라이브러리에
 - 샘플 코드내 RationalOwl.framework 라이브러리내 헤더 파일에 API 정의를 참조하여 샘플코드에 사용된 API 파라미터를 자신의 샘플앱에 맞게 수정한다.
 - 필요한 기반 지식은 [IOS 단말앱 개발 가이드](http://guide.rationalowl.com/guide/device-app)을 참조한다.
 - 본 샘플앱은 래셔널아울 커스텀 푸시를 지원한다. 커스텀 푸시의 개념은 [커스텀푸시 앱 개발](https://rationalowl.tistory.com/21) 을 참조한다.
+- 샘플앱에서 제공되는 래셔널아울 라이브러리인 RationalOwl.framework/RationalOwl 은 유니버설 프레임워크로 시뮬레이션을 위한 x86_64, 실제 폰을 위한 Arm64를 모두 지원한다. 실제 앱스토어에 배포시에는 lipo -remove x86_64 명령어로 시뮬레이션용 아키텍쳐를 제거후 앱스토어에 배포해야 한다.
 
 
 ## 개발 전 IOS 설정
