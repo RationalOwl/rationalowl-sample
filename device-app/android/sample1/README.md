@@ -24,7 +24,7 @@ dependencies {
     ...
 
     // RationalOwl library
-    implementation 'com.rationalowl.minerva.client.android:rationalowl-android:1.1.8'
+    implementation 'com.rationalowl.minerva.client.android:rationalowl-android:1.2.0'
     // RationalOwl using library
     implementation 'android.arch.lifecycle:extensions:1.1.0'
 
@@ -189,7 +189,7 @@ public class Service1App extends Application {
 
                 // sometimes, FCM onNewToken() callback not called,
                 // So, before registering we need to call it explicitly.
-                // simple way is just call setDeviceToken api in the onStart() callback,
+                // simple way is just call setDeviceToken api in the onCreate() callback,
                 // which  exist registerDevice API
 
                 String fcmToken = instanceIdResult.getToken();
