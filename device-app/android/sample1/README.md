@@ -24,7 +24,7 @@ dependencies {
     ...
 
     // RationalOwl library
-    implementation 'com.rationalowl.minerva.client.android:rationalowl-android:1.2.0'
+    implementation 'com.rationalowl.minerva.client.android:rationalowl-android:1.2.1'
     // RationalOwl using library
     implementation 'android.arch.lifecycle:extensions:1.1.0'
 
