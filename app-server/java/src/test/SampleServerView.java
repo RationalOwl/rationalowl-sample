@@ -62,35 +62,35 @@ public class SampleServerView extends JFrame implements ActionListener {
 
         @Override
         public void onSendMulticastMsgResult(int resultCode, String resultMsg, String msgId, String requestId) {
-            output("onSendMulticastMsgResult: resultCode = " + resultCode + "resultMsg = " + resultMsg + " requestId="+ requestId);
+            output("onSendMulticastMsgResult: resultCode = " + resultCode + "resultMsg = " + resultMsg + " msgId="+ msgId);
         }
 
 
         @Override
         public void onSendBroadcastMsgResult(int resultCode, String resultMsg, String msgId, String requestId) {
-            output("onSendBroadcastMsgResult: resultCode = " + resultCode + "resultMsg = " + resultMsg + " requestId="+ requestId);
+            output("onSendBroadcastMsgResult: resultCode = " + resultCode + "resultMsg = " + resultMsg + " msgId="+ msgId);
         }
 
 
         @Override
         public void onSendGroupMsgResult(int resultCode, String resultMsg, String msgId, String requestId) {
-            output("onSendGroupMsgResult: resultCode = " + resultCode + "resultMsg = " + resultMsg + " requestId="+ requestId);
+            output("onSendGroupMsgResult: resultCode = " + resultCode + "resultMsg = " + resultMsg + " msgId="+ msgId);
         }
 
 
         @Override
-        public void onSendMulticastCustomPushResult(int resultCode, String resultMsg, String msgId, String reqMsgId) {
-            output("onSendMulticastCustomPushResult:" + reqMsgId + "msg = " + resultMsg);
+        public void onSendMulticastCustomPushResult(int resultCode, String resultMsg, String msgId, String requestId) {
+            output("onSendMulticastCustomPushResult: resultCode = " + resultCode + "resultMsg = " + resultMsg + " msgId="+ msgId);
         }
 
         @Override
-        public void onSendBroadcastCustomPushResult(int resultCode, String resultMsg, String msgId, String reqMsgId) {
-            output("onSendBroadcastCustomPushResult:" + reqMsgId + "msg = " + resultMsg);
+        public void onSendBroadcastCustomPushResult(int resultCode, String resultMsg, String msgId, String requestId) {
+            output("onSendBroadcastCustomPushResult: resultCode = "  + resultCode + "resultMsg = " + resultMsg + " msgId="+ msgId);
         }
 
         @Override
-        public void onSendGroupCustomPushResult(int resultCode, String resultMsg, String msgId, String reqMsgId) {
-            output("onSendGroupCustomPushResult:" + reqMsgId + "msg = " + resultMsg);
+        public void onSendGroupCustomPushResult(int resultCode, String resultMsg, String msgId, String requestId) {
+            output("onSendGroupCustomPushResult: resultCode = " + resultCode + "resultMsg = " + resultMsg + " msgId="+ msgId);
         }
     }
 
@@ -304,10 +304,10 @@ public class SampleServerView extends JFrame implements ActionListener {
     private void regServer() {
         AppServerManager serverMgr = AppServerManager.getInstance();
         // edit service id as yours
-        String serviceId = "a6aefe546ccc4dd4bea03498680bb253";
+        String serviceId = "afab0b12c8f44c00860195446032933d";
         //String appServerRegName = "app server registraion name1";
         String appServerRegName = "샘플앱서버";
-        String gateHost = "13.125.25.251";
+        String gateHost = "211.239.150.123";
         int gatePort = 9081;   
         serverMgr.registerAppServer(serviceId, appServerRegName, gateHost, gatePort);
         output("Register request");
