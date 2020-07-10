@@ -27,7 +27,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="c21dc278" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="0915f9356c980504" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -43,12 +43,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="2576" />
-    <option name="height" value="1416" />
-  </component>
   <component name="ProjectId" id="1eMQD82ZoeeEaXRcpyhrww7HVYB" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -56,7 +50,7 @@
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="E:/work/dev/android/adt-bundle-windows-x86_64-20131030/adt-bundle-windows-x86_64-20131030/sdk" />
     <property name="device.picker.selection" value="0915f9356c980504" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../minerva/minerva/device/android/lib_app" />
     <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
     <property name="sync.plugin.last.upgrade.timestamp" value="1551958570890" />
   </component>
@@ -195,7 +189,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
