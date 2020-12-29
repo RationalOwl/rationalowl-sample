@@ -81,8 +81,30 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         MinervaManager minMgr = MinervaManager.getInstance();
         minMgr.enableNotificationTracking(data);
 
-        /* draw your custom push notification */
-        showCustomNotification(data);
+        // silent push received.
+        if(data.containsKey("silent")) {
+		
+            // system push is sent by RationalOwl for device app lifecycle check.
+            // system push is also silent push.
+            // if system push has received, just return.
+            if(data.containsKey("SystemPush")) {
+                Logger.debug(TAG, "System push received!");
+                return;
+            }
+            // normal silent push which are sent by your app server.
+            // do your logic
+            else {
+                Logger.debug(TAG, "your app server sent silent push");
+                // do your logic
+            }
+        }
+        // it is normal custom push not silent push.
+        // do your logic here
+        else {
+            // make your custom notification UI
+            showCustomNotification(data);
+        }
+
     }
 
 
@@ -127,9 +149,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
-
-        String notiTitle =  data.get("notiTitle");
-        String notiBody =  data.get("notiBody");
+        // get title and body from your custom field.
+        String notiTitle =  data.get("myTitle");
+        String notiBody =  data.get("myBody");
+		
+		// get any other fields from your custom field
+		// String imgUrl =  data.get("http://myimage.com/img1.jpg");
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =

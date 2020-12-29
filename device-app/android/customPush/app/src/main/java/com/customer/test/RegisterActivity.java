@@ -32,22 +32,6 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( this,  new OnSuccessListener<InstanceIdResult>() {
-            @Override
-            public void onSuccess(InstanceIdResult instanceIdResult) {
-
-                // sometimes, FCM onNewToken() callback not called,
-                // So, before registering we need to call it explicitly.
-                // simple way is just call setDeviceToken api in the onStart() callback,
-                // which  exist registerDevice API
-
-                String fcmToken = instanceIdResult.getToken();
-                MinervaManager mgr = MinervaManager.getInstance();
-                mgr.setDeviceToken(fcmToken);
-            }
-        });
-
         setContentView(R.layout.activity_register);
         mUrlEt = (EditText) this.findViewById(R.id.url);
         Button regBtn = (Button) findViewById(R.id.regBtn);
@@ -93,14 +77,23 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.regBtn: {
-                String url = mUrlEt.getText().toString();
+                // sometimes, FCM onNewToken() callback not called,
+                // So, before registering we need to call it explicitly.
+                FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( this,  new OnSuccessListener<InstanceIdResult>() {
+                    @Override
+                    public void onSuccess(InstanceIdResult instanceIdResult) {
 
-                // register device app.
-                MinervaManager mgr = MinervaManager.getInstance();
-                mgr.registerDevice(url, "afab0b12c8f44c00860195446032933d","jungdo android1"); //aws dev gate
-                //mgr.registerDevice(url, "faebcfe844d54d449136491fb253619d","단말등록이름2"); //hostway
-                //mgr.registerDevice(url, "def829b853d046779e2227bdd091653c","경민테스트폰"); //hostway
-                //mgr.registerDevice(url, "c8574b6882c34db0a6e6691987de1221"); //aws test
+                        // Before registering call setDeviceToken API explicitly.
+                        String fcmToken = instanceIdResult.getToken();
+                        MinervaManager mgr = MinervaManager.getInstance();
+                        mgr.setDeviceToken(fcmToken);
+
+                        // after setDeviceToken API, call register API.
+                        String url = mUrlEt.getText().toString();
+                        // register device app.
+                        mgr.registerDevice(url, "afab0b12c8f44c00860195446032933d","Android jungdo note5 sample app");
+                    }
+                });
                 break;
 
             }
