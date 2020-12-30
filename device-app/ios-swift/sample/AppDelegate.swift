@@ -84,22 +84,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    // available >= ios 10.0
     func userNotificationCenter(_ center: UNUserNotificationCenter,  willPresent notification: UNNotification, withCompletionHandler   completionHandler: @escaping (_ options:   UNNotificationPresentationOptions) -> Void) {
-        // Called when a notification is delivered to a foreground app. >= ios10.0
-        let userInfo = notification.request.content.userInfo;
-        print("Push notification >= ios 10.0 received: \(userInfo)")
     }
     
-    // available < ios 10.0
-    // Push notification received
-    func application(_ application: UIApplication, didReceiveRemoteNotification data: [AnyHashable : Any]) {
-        // Called when a notification is delivered to a foreground app. < ios10.0
-        print("Push notification < ios 10.0 received: \(data)");
-        
-        // IOS bug, ios > 10 some version, this callback is called instead.
-        let minMgr: MinervaManager = MinervaManager.getInstance();
-        minMgr.receivedApns(data);
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+
+        if let aps = userInfo["aps"] as? NSDictionary {
+
+            // silent push recieved
+            if(aps["content-available"] != nil) {
+                // enable notification delivery tracking
+                let minMgr: MinervaManager = MinervaManager.getInstance();
+                minMgr.enableNotificationTracking(userInfo, appGroup: "group.com.rationalowl.sample");
+                // system push is sent by RationalOwl for device app lifecycle check.
+                // system push is also silent push.
+                // if system push has received, just return.
+                if(userInfo["SystemPush"] != nil) {
+                    print("system push received!!");
+                    return;
+                }
+                // normal silent push which are sent by your app server.
+                // do your logic
+                else {
+                    print("silent push received!");
+                    // do your logic
+                }
+            }
+        }
     }
     
     
