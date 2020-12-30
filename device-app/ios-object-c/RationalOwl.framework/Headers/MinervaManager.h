@@ -12,7 +12,7 @@
 
 
 
-@interface MinervaManager  : NSObject /*<NSURLConnectionDataDelegate, NSURLConnectionDelegate>*/ {
+@interface MinervaManager  : NSObject {
     
 @public 
     
@@ -47,6 +47,20 @@
  * @param serviceId 단말앱이 등록해제할 모바일 서비스의 아이디
  */
 - (void) unregisterDevice: (NSString*) serviceId;
+
+
+/**
+ * 단말앱이 등록되어 있는지 확인한다.
+ * 단말앱 자동 삭제 모드 설정 후 3주이상 폰을 꺼놓고 방치한 경우 앱 삭제하지 않더라도 자동 등록 해제된다.
+ * @param serviceId 서비스 아이디
+ * @param deviceRegId 단말 등록 아이디
+ *                    - 기존 registerDevice() API결과 발급받은 단말 등록 아이디
+ * @retuirn 단말앱 등록 여부
+ *        - true: 단말앱이 정상적으로 등록되어 있음
+ *        - false: 단말앱이 아직 등록하지 않거나
+ *                 단말앱 자동 삭제 모드에서 3주이상 폰을 꺼 놓은 상태로 방치시 자동 등록 해제된 경우
+ */
+- (BOOL) isDeviceAppRegister: (NSString*) serviceId deviceRegId: (NSString*) deviceRegId;
 
 
 /**
