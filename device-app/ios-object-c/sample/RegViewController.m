@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //inputNameField.text = @"gate.rationalowl.com";
-    inputNameField.text = @"211.239.150.123"; // aws dev env
+    inputNameField.text = @"211.239.150.123"; // your gate server.
     
     //set message delegate
     MinervaManager* minMgr = [MinervaManager getInstance];

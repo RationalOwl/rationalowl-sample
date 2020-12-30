@@ -105,15 +105,33 @@
 }
 
 
-#pragma mark - Remote Notification Delegate for < iOS 10
-//Called when a notification is delivered to a foreground app previous ios 10 .
 - (void)application:(UIApplication*) application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
     NSLog(@"didReceiveRemoteNotification");
+    NSLog(@"User Info : %@", userInfo);
+    
+    // silent push recieved
+    if ([[userInfo objectForKey:@"aps"] objectForKey:@"content-available"]) {
+        // enable notification delivery tracking
+        MinervaManager* minMgr = [MinervaManager getInstance];
+        [minMgr enableNotificationTracking:userInfo appGroup:@"group.com.rationalowl.sample"];
+
+        // system push is sent by RationalOwl for device app lifecycle check.
+        // system push is also silent push.
+        // if system push has received, just return.
+        if ([userInfo objectForKey:@"SystemPush"]) {
+            NSLog(@"system push received!!");            
+            return;
+        }
+        // normal silent push which are sent by your app server.
+        // do your logic
+        else {
+		    NSLog(@"silent push received!");
+            // do your logic
+        }
+    }
 }
 
 
-#pragma mark - Remote Notification Delegate for >= iOS 10
-//Called when a notification is delivered to a foreground app over ios 10 .
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler {
     NSLog(@"User Info : %@",notification.request.content.userInfo);
     completionHandler(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge);
