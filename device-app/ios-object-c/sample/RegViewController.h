@@ -10,7 +10,7 @@
 #define RegViewController_h
 
 #import <UIKit/UIKit.h>
-#import <RationalOwl/RationalOwl.h>
+#import <RationalOwl/MinervaDelegate.h>
 
 @interface RegViewController : UIViewController <DeviceRegisterResultDelegate> {
     UIView            *regDeviceView;

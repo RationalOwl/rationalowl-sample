@@ -6,6 +6,8 @@
 //  Copyright © 2018년 Rationalowl. All rights reserved.
 //
 
+#import <RationalOwl/MinervaManager.h>
+
 #import "MsgViewController.h"
 
 @interface MsgViewController ()

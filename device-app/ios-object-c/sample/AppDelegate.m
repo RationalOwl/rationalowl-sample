@@ -8,7 +8,7 @@
 
 
 
-#import <RationalOwl/RationalOwl.h>
+#import <RationalOwl/MinervaManager.h>
 
 #import "AppDelegate.h"
 #import "MsgViewController.h"
@@ -129,6 +129,7 @@
             // do your logic
         }
     }
+    completionHandler(UIBackgroundFetchResultNoData);
 }
 
 

@@ -11,7 +11,7 @@
 
 
 #import <UIKit/UIKit.h>
-#import <RationalOwl/RationalOwl.h>
+#import <RationalOwl/MinervaDelegate.h>
 
 
 @interface MsgViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MessageDelegate> {

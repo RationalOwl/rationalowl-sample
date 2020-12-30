@@ -6,6 +6,8 @@
 //  Copyright © 2018년 Rationalowl. All rights reserved.
 //
 
+#import <RationalOwl/MinervaManager.h>
+#import <RationalOwl/Result.h>
 
 #import "RegViewController.h"
 

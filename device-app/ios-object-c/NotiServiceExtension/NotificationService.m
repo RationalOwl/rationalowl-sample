@@ -7,7 +7,7 @@
 //
 
 #import "NotificationService.h"
-#import <RationalOwl/RationalOwl.h>
+#import <RationalOwl/MinervaManager.h>
 
 @interface NotificationService ()
 
