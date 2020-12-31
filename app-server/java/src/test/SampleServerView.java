@@ -304,9 +304,11 @@ public class SampleServerView extends JFrame implements ActionListener {
     private void regServer() {
         AppServerManager serverMgr = AppServerManager.getInstance();
         // edit service id as yours
+        //String serviceId = "9bd4db31dbaa4897ad9aa81c3e7e183a"; // cloud
         String serviceId = "afab0b12c8f44c00860195446032933d";
         //String appServerRegName = "app server registraion name1";
-        String appServerRegName = "샘플앱서버";
+        String appServerRegName = "샘플앱서버11";
+        //String gateHost = "gate.rationalowl.com";
         String gateHost = "211.239.150.123";
         int gatePort = 9081;   
         serverMgr.registerAppServer(serviceId, appServerRegName, gateHost, gatePort);
@@ -316,7 +318,7 @@ public class SampleServerView extends JFrame implements ActionListener {
 
     private void unregServer() {
         AppServerManager serverMgr = AppServerManager.getInstance();
-        String serviceId = "ab662e7a1f274124a588ae3477f535ca";
+        String serviceId = "9bd4db31dbaa4897ad9aa81c3e7e183a";
         String serverRegId = "75d0c3e10cff47ec81c807ea4de5f25b";
         //String serverRegId = "your app server registration Id";
         serverMgr.unregisterAppServer(serviceId, serverRegId);
