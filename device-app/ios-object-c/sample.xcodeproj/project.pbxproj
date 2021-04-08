@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9053C39D23F13C19002490A9 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B9794623F1383800DFFB75 /* RationalOwl.framework */; };
-		9053C39E23F13C19002490A9 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90B9794623F1383800DFFB75 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		90B9794823F1384900DFFB75 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B9794623F1383800DFFB75 /* RationalOwl.framework */; };
-		90B9794923F1384900DFFB75 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90B9794623F1383800DFFB75 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		90A9D9A8261EEE3800C60AE7 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90A9D9A6261EDC5200C60AE7 /* RationalOwl.framework */; };
+		90A9D9A9261EEE3800C60AE7 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90A9D9A6261EDC5200C60AE7 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		90A9D9AA261EEE8100C60AE7 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90A9D9A6261EDC5200C60AE7 /* RationalOwl.framework */; };
+		90A9D9AB261EEE8100C60AE7 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90A9D9A6261EDC5200C60AE7 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		90C95A4A23F03CFD002C41D7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C95A4923F03CFD002C41D7 /* AppDelegate.m */; };
 		90C95A5023F03CFD002C41D7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C95A4F23F03CFD002C41D7 /* ViewController.m */; };
 		90C95A5323F03CFD002C41D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90C95A5123F03CFD002C41D7 /* Main.storyboard */; };
@@ -35,13 +35,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		90A9D9A5261ED73900C60AE7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				90A9D9A9261EEE3800C60AE7 /* RationalOwl.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90B9794023F1256200DFFB75 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				90B9794923F1384900DFFB75 /* RationalOwl.framework in Embed Frameworks */,
+				90A9D9AB261EEE8100C60AE7 /* RationalOwl.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,21 +68,10 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		90C95E2E23F08474002C41D7 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				9053C39E23F13C19002490A9 /* RationalOwl.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		90B9794623F1383800DFFB75 /* RationalOwl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RationalOwl.framework; sourceTree = "<group>"; };
+		90A9D9A6261EDC5200C60AE7 /* RationalOwl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RationalOwl.framework; sourceTree = "<group>"; };
 		90C95A4523F03CFD002C41D7 /* sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C95A4823F03CFD002C41D7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		90C95A4923F03CFD002C41D7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90F1006723F3C238000CD4CB /* UserNotifications.framework in Frameworks */,
-				9053C39D23F13C19002490A9 /* RationalOwl.framework in Frameworks */,
+				90A9D9A8261EEE3800C60AE7 /* RationalOwl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,7 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90B9794823F1384900DFFB75 /* RationalOwl.framework in Frameworks */,
+				90A9D9AA261EEE8100C60AE7 /* RationalOwl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				90F1006623F3C238000CD4CB /* UserNotifications.framework */,
-				90B9794623F1383800DFFB75 /* RationalOwl.framework */,
+				90A9D9A6261EDC5200C60AE7 /* RationalOwl.framework */,
 				90C95A7B23F041F2002C41D7 /* UserNotificationsUI.framework */,
 			);
 			name = Frameworks;
@@ -189,7 +189,7 @@
 				90C95A4223F03CFD002C41D7 /* Frameworks */,
 				90C95A4323F03CFD002C41D7 /* Resources */,
 				90C95A7723F040C6002C41D7 /* Embed App Extensions */,
-				90C95E2E23F08474002C41D7 /* Embed Frameworks */,
+				90A9D9A5261ED73900C60AE7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -450,6 +450,7 @@
 					"$(PROJECT_DIR)/**",
 					"$(PROJECT_DIR)",
 				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/**";
 				INFOPLIST_FILE = sample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -474,6 +475,7 @@
 					"$(PROJECT_DIR)/**",
 					"$(PROJECT_DIR)",
 				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/**";
 				INFOPLIST_FILE = sample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
