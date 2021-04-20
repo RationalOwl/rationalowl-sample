@@ -53,7 +53,7 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
     protected void onStart() {
         //Logger.debug(TAG, "onStart() enter");
         super.onStart();
-        //mUrlEt.setText("gate.rationalowl.com");
+        //mUrlEt.setText("gate.rationalowl.com"); // default cloud gate
         mUrlEt.setText("211.239.150.123"); //aws dev
         //mUrlEt.setText("117.52.153.229"); // NH network
 
