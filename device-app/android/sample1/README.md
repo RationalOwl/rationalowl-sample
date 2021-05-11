@@ -17,17 +17,21 @@ Android 단말앱 샘플은 Android 단말앱 라이브러리에서 제공하는
 3. FCM 라이브러리를 적용한다.
     - 아래 build.gradle의 dependencies에서 // FCM library 부분    
 
-아래는 2019년 12월 기준 샘플앱 앱레벨 build.gradle의 dependencies 부분이다.
+아래는 2021년 5월 기준 샘플앱 앱레벨 build.gradle의 dependencies 부분이다.
 
 ```java
-dependencies {
-    ...
 
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    ...
     // RationalOwl library
-    implementation 'com.rationalowl.minerva.client.android:rationalowl-android:1.2.4'
+    // bintray repo to libs dir
+    implementation name: 'rationalowl-android-1.2.8', ext: 'aar'
+    // implementation 'com.rationalowl.minerva.client.android:rationalowl-android:1.2.8'
+
     // RationalOwl using library
     implementation 'android.arch.lifecycle:extensions:1.1.0'
-
     // FCM library
     implementation 'com.google.firebase:firebase-core:16.0.6'
     implementation 'com.google.firebase:firebase-messaging:17.3.4'

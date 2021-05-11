@@ -26,10 +26,20 @@ android {
     }
 }
 
+// rationalowl library just to libs folder
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     // RationalOwl library
-    implementation 'com.rationalowl.minerva.client.android:rationalowl-android:1.2.8'
+    // bintray repo to libs dir
+    implementation name: 'rationalowl-android-1.2.8', ext: 'aar'
+    // implementation 'com.rationalowl.minerva.client.android:rationalowl-android:1.2.8'
     // RationalOwl using library
     implementation 'android.arch.lifecycle:extensions:1.1.0'
     // FCM library
