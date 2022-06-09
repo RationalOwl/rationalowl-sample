@@ -92,6 +92,20 @@ public class SampleServerView extends JFrame implements ActionListener {
         public void onSendGroupCustomPushResult(int resultCode, String resultMsg, String msgId, String requestId) {
             output("onSendGroupCustomPushResult: resultCode = " + resultCode + "resultMsg = " + resultMsg + " msgId="+ msgId);
         }
+
+
+        @Override
+        public void onSendS2SMsgResult(int arg0, String arg1, String arg2, String arg3) {
+            // TODO Auto-generated method stub
+            
+        }
+
+
+        @Override
+        public void onS2SMsgReceived(String arg0, long arg1, String arg2) {
+            // TODO Auto-generated method stub
+            
+        }
     }
 
 
