@@ -18,6 +18,7 @@
         <!-- launch activity set by "android.intent.category.LAUNCHER" -->
         <!-- when user tap on the notification, launch activity launches -->
         <activity android:name=".MainActivity"
+            android:exported="true"
             android:label="launcher" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,15 +28,18 @@
 
         <!-- activity using Rationalowl Register API -->
         <activity android:name=".RegisterActivity"
+            android:exported="true"
             android:label="단말앱 등록" >
         </activity>
         <!-- activity using Rationalowl real-time messaging API   -->
         <activity android:name="com.customer.test.MsgActivity"
+            android:exported="true"
             android:label="메시지" >
         </activity>
 
         <!-- [START firebase_service] -->
         <service
+            android:exported="true"
             android:name=".MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
