@@ -26,7 +26,7 @@ dependencies {
 
     ...
     // RationalOwl library
-    implementation name: 'rationalowl-android-1.3.1', ext: 'aar'
+    implementation name: 'rationalowl-android-1.3.2', ext: 'aar'
     // RationalOwl using library
     implementation "androidx.lifecycle:lifecycle-service:2.5.1"
     implementation "androidx.lifecycle:lifecycle-process:2.5.1"

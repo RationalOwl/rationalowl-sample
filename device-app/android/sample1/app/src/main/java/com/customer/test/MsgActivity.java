@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -149,8 +150,9 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
                 cache.addMsg(pushMsg);
                 
                 mListAdapter.notifyDataSetChanged();
-                String serverId = "78c997cb2a2944f9b877f4cbdb3034a6"; // aws dev
-                //String serverId = "2ff3da1fb1af44b599876725ed46eb92"; // hostway sample
+                //String serverId = "859a35beaa434245a0b657503eda7b31"; // sample app server
+                //String serverId = "SVR6838f682-3831-4055-8ab2-c7a48cdd8a10"; // aws dev
+                String serverId = "SVR6838f682-3831-4055-8ab2-c7a48cdd8a10"; // hostway sample
                 //String serverId = "0bb887049fb04bca924853be0e78f28d"; //gyeong min python
                 MinervaManager minMgr = MinervaManager.getInstance();
                 //manage umi(upstream message id) to check upstream delivery
@@ -177,7 +179,7 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
                 ArrayList<String> destDevices = new ArrayList<String>();
                 //destDevices.add("50b0020d9ba2405d88b1d967839d696e");  // i pad
                 //destDevices.add("2b9f6349d5f4432a9baa77e01353303a");  // galaxy nexus
-                destDevices.add("4a92c51f1eae4b3a80742d01aab9ecc1");  // note 5
+                destDevices.add("5cf16d3529534ed398146e5367e8cce5");  // note 5
                 //destDevices.add("1241670df8694da586605bf431f150a9");  // jungdo_empty_phone(galaxy nexus)
                 //destDevices.add("4285e11625ff4e71a94ad799457358a3");  // helpter designer(g6)
                 //destDevices.add("8a7540dd28854615b5b17c933a167206");  // helpter ceo(aka)

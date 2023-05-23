@@ -1,7 +1,6 @@
 package com.customer.test;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -55,7 +54,8 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
         //Logger.debug(TAG, "onStart() enter");
         super.onStart();
         //mUrlEt.setText("gate.rationalowl.com");
-        mUrlEt.setText("211.239.150.124"); //aws dev
+        //mUrlEt.setText("211.239.150.124"); //aws dev
+        mUrlEt.setText("3.39.200.245"); //aws dev
         //mUrlEt.setText("117.52.153.229"); // NH network
 
 
@@ -73,8 +73,6 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
         minMgr.setRegisterResultListener(this);
     }    
 
-   
-    
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.regBtn: {
@@ -92,7 +90,10 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
                         // after setDeviceToken API, call register API.
                         String url = mUrlEt.getText().toString();
                         // register device app.
-                        mgr.registerDevice(url, "SVC59132746-625b-4773-b5db-aa8a0775e04d","Android jungdo note5 sample app");
+                        //mgr.registerDevice(url, "afab0b12c8f44c00860195446032933d","Android jungdo note10 sample app");
+                        //mgr.registerDevice(url, "SVC59132746-625b-4773-b5db-aa8a0775e04d","sample android");
+                        mgr.registerDevice(url, "SVCea9fe858-a49e-4e73-a42a-55668f825e0b","Android jungdo note5 sample app");
+
                     }
                 });
                 break;
@@ -100,9 +101,10 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
             }
             case R.id.unregBtn:
                 MinervaManager mgr = MinervaManager.getInstance();
-                mgr.unregisterDevice("SVC59132746-625b-4773-b5db-aa8a0775e04d"); //aws dev gate
+                //mgr.unregisterDevice("afab0b12c8f44c00860195446032933d"); //aws dev gate
                 //mgr.unregisterDevice("def829b853d046779e2227bdd091653c"); //hostway
-                //mgr.unregisterDevice("c8574b6882c34db0a6e6691987de1221"); //aws test
+                //mgr.unregisterDevice("SVC59132746-625b-4773-b5db-aa8a0775e04d"); //aws test
+                mgr.unregisterDevice("SVCea9fe858-a49e-4e73-a42a-55668f825e0b"); //aws dev gate
                 break;
             default:
                 break;

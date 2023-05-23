@@ -76,7 +76,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         // silent push received.
         if(data.containsKey("silent")) {
-		
             // system push is sent by RationalOwl for device app lifecycle check.
             // system push is also silent push.
             // if system push has received, just return.
@@ -97,7 +96,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             // make your custom notification UI
             showCustomNotification(data);
         }
-
     }
 
 
