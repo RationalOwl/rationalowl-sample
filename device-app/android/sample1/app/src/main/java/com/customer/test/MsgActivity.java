@@ -278,12 +278,12 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
 
 
     @Override
-    public void onSendUpstreamMsgResult(int resultCode, String resultMsg, String requestId) {
+    public void onSendUpstreamMsgResult(int resultCode, String resultMsg, String msgId) {
         Logger.debug(TAG, "onSendUpstreamMsgResult enter");
     }
 
     @Override
-    public void onSendP2PMsgResult(int resultCode, String resultMsg, String requestId) {
+    public void onSendP2PMsgResult(int resultCode, String resultMsg, String msgId) {
         Logger.debug(TAG, "onSendP2PMsgResult enter");
     }
 }
