@@ -11,7 +11,6 @@
 #import "MinervaDelegate.h"
 
 
-
 @interface MinervaManager  : NSObject {
     
 @public 
@@ -67,6 +66,8 @@
  * 업스트림메시지를 발신한다.
  * @param data 전달할 데이터로 모바일 서비스 특성에 맞게 json포맷 또는 일반 스트링으로 포맷팅하면 된다.
  * @param serverRegId 데이터를 전달할 앱서버의 등록아이디
+ * @return message id
+ * @return message id
  */
 - (NSString*) sendUpstreamMsg: (NSString*) data serverRegId : (NSString*) serverRegId;
 
@@ -76,6 +77,7 @@
  * @param data 전달할 데이터로 모바일 서비스 특성에 맞게 json포맷 또는 일반 스트링으로 포맷팅하면 된다.
  * @param devices 데이터를 전달할 단말앱들의 단말등록아이디 목록
  *                    최대 2000대까지 가능
+ * @return message id
  */
 - (NSString*) sendP2PMsg: (NSString*) data devices : (NSArray*) devices;
 
@@ -92,7 +94,7 @@
  * @param notiBody
  *            알림 용도로 메시지 전달 시 단말앱이 비활성시 알림 내용으로 표시할 문자
  *            만약 null이면 data를 알림 창에 표시
- * @return request id
+ * @return message id
  */
 - (NSString*) sendP2PMsg: (NSString*) data devices: (NSArray*) devices supportMsgQ: (BOOL) supportMsgQ notiTitle: (NSString*) notiTitle notiBody: (NSString*) notiBody;
 
@@ -192,5 +194,64 @@
  */
 - (void) enableNotificationTracking: (NSDictionary*) data appGroup: (NSString*) appGroup;
 
+
+
+//////////////////////////////////////////////////////////////////////////////
+// File storage
+//////////////////////////////////////////////////////////////////////////////
+
+
+/**
+ * 파일 스토리지 전송  결과를 처리할 Delegate를 지정한다.
+ *
+ * @param delegate
+ *            uploadFile()과 downloadFile() API를 통해 진행되는 파일업로드 및 다운로드 진행결과 처리를 담당할 Delegate
+ */
+
+- (void) setStorageTransferDelegate: (id<StorageTransferResultDelegate>) delegate;
+
+
+/**
+ * 파일 스토리지 전송  결과를 처리할 Delegate를 해제한다.
+ */
+- (void) clearStorageTransferResultDelegate;
+
+
+/**
+ * 파일을 파일 스토리지에 업로드한다. setStorageTransferListener()로 등록한
+ * StorageTransferListener의 콜백을 통해 업로드 진행률과 업로드 결과를 확인한다.
+ *
+ * @param storageHost
+ *            대상 스토리지 호스트  ex) storage.myhost.com 또는  111.111.11.11
+ * @param localFilePath
+ *            업로드할 로컬 파일
+ * @param storageDirPath
+ *            업로드할 스토리지 디렉토리 패스, 디렉토리 구분자 "/"
+ *            ex) "/", "/video", "/image","/image/sampleImg"
+ * @return request id
+ */
+
+
+
+- (NSString*) uploadFile: (NSString*) storageHost localFilePath : (NSString*) localFilePath storageDirPath : (NSString*) storageDirPath;
+
+/**
+ * 파일스토리지서버에서 파일을 다운로드하여 로컬 파일경로에 저장한다. setStorageTransferListener()로 등록한
+ * StorageTransferListener의 콜백을 통해 다운로드 진행률과 다운로드 결과를 확인한다.
+ *
+ * @param storageHost
+ *            대상 스토리지 호스트  ex) storage.myhost.com 또는  111.111.11.11
+ *
+ * @param storageFilePath
+ *            다운로드할 스토리지 파일패스: storageDirPath + "/" + 파일 명
+ *            ex) /images/img1.jpg
+ * @param downDirPath
+ *            다운로드한 파일을 저장할 디렉토리 파일 패스
+ * @param saveFileName
+ *            확장자를 포함한 저장할 파일명
+ * @return request id
+ */
+
+- (NSString*) downloadFile: (NSString*) storageHost storageFilePath : (NSString*) storageFilePath downDirPath : (NSString*) downDirPath saveFileName : (NSString*) saveFileName;
 
 @end

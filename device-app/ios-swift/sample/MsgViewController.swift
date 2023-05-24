@@ -8,6 +8,7 @@
 
 import UIKit;
 
+import RationalOwl;
 
 
 class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MessageDelegate {
@@ -45,7 +46,7 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     /////////////////////////////////////////////////////////////////
     
     @IBAction func sendUpstreamMsg() {
-        let serverId: String = "afab0b12c8f44c00860195446032933d";
+        let serverId: String = "SVR6838f682-3831-4055-8ab2-c7a48cdd8a10";
         let msg: String = inputMessageField.text!;
         let mgr: MinervaManager = MinervaManager.getInstance();
         mgr.sendUpstreamMsg(msg, serverRegId:serverId);
@@ -61,7 +62,7 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBAction func sendP2PstreamMsg() {
         let msg: String = inputMessageField.text!;
-        let devices: Array<String> = ["c78502b18fb04bcda20c4a96990546b5"];
+        let devices: Array<String> = ["DVC8d8e2fdf-025c-4bf9-a223-14a917c5b9e5"];
         let mgr: MinervaManager = MinervaManager.getInstance();
         mgr.sendP2PMsg(msg, devices:devices);
         
@@ -133,13 +134,13 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     
-    func onUpstreamMsgResult(_ resultCode: Int32, resultMsg: String!, umi: String!) {
-        print("onMsgRecieved msg upstream message id =" + umi);
+    func onUpstreamMsgResult(_ resultCode: Int32, resultMsg: String!, msgId: String!) {
+        print("onMsgRecieved msg upstream message id = " + msgId);
     }
     
     
-    func onP2PMsgResult(_ resultCode: Int32, resultMsg: String!, pmi: String!) {
-        print("onMsgRecieved msg p2p message id = " + pmi);
+    func onP2PMsgResult(_ resultCode: Int32, resultMsg: String!, msgId: String!) {
+        print("onMsgRecieved msg p2p message id = " + msgId);
     }
     
     

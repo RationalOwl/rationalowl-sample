@@ -23,7 +23,7 @@
  *               resultCode가 Result.RESULT_OK 이거나 Result.RESULT_DEVICE_ALREADY_REGISTERED일 경우 반환된다.
  *               최초 발급시인 resultCode가 Result.RESULT_OK일 경우 단말앱은 발급받은 단말 등록아이디를 업스트림 API를 통해 앱서버에게 전달해야 한다.
  */
--(void) onRegisterResult: (int) resultCode resultMsg : (NSString*) resultMsg deviceRegId : (NSString*) deviceRegId;
+-(void) onRegisterResult: (int) resultCode resultMsg: (NSString*) resultMsg deviceRegId: (NSString*) deviceRegId;
 
 
 /**
@@ -32,7 +32,7 @@
  * @param resultMsg 결과 코드인 resultCode에 대한 설명이다.
  *               resultCode가 Result.RESULT_OK일 경우 단말앱은 등로해제된 단말 등록 아이디를 앱서버에게 전달해야 한다.
  */
--(void) onUnregisterResult: (int) resultCode resultMsg : (NSString*) resultMsg;
+-(void) onUnregisterResult: (int) resultCode resultMsg: (NSString*) resultMsg;
 
 @optional
 
@@ -52,7 +52,7 @@
  *                 - 0 이상일 경우 APNS 알림을 클릭해서 호출된 경우로 msgList의 인덱스가 APNS알림 관련 메시지이다.
  *                 - 음수일 경우 APNS 알림을 클릭해서 호출되지 않은 경우.
  */
--(void) onDownstreamMsgRecieved: (int) msgSize msgList : (NSArray*) msgList alarmIdx : (int) alarmIdx;
+-(void) onDownstreamMsgRecieved: (int) msgSize msgList: (NSArray*) msgList alarmIdx: (int) alarmIdx;
 
 
 /**
@@ -63,25 +63,99 @@
  *                 - 0 이상일 경우 APNS 알림을 클릭해서 호출된 경우로 msgList의 인덱스가 APNS알림 관련 메시지이다.
  *                 - 음수일 경우 APNS 알림을 클릭해서 호출되지 않은 경우.
  */
--(void) onP2PMsgRecieved: (int) msgSize msgList : (NSArray*) msgList alarmIdx : (int) alarmIdx;
+-(void) onP2PMsgRecieved: (int) msgSize msgList: (NSArray*) msgList alarmIdx: (int) alarmIdx;
 
 
 /**
  * MinervaManager.sendUpstreamMsg() API 호출에 의한 업스트림 메시지 발신 성공 여부를 알려준다.
  * @param resultCode 결과 코드로 성공시 Result.RESULT_OK 가 반환된다.
  * @param resultMsg 결과 코드인 resultCode에 대한 설명이다.
- * @param umi (UpstreamMessageId) MinervaManager.sendUpstreamMsg() API 반환값과 동일한 값으로 이 콜백이 어느 API의 결과인지를 알려준다.
+ * @param msgId (UpstreamMessageId) MinervaManager.sendUpstreamMsg() API 반환값과 동일한 값으로 이 콜백이 어느 API의 결과인지를 알려준다.
  */
--(void) onUpstreamMsgResult: (int) resultCode resultMsg : (NSString*) resultMsg umi : (NSString*) umi;
+-(void) onUpstreamMsgResult: (int) resultCode resultMsg: (NSString*) resultMsg umi: (NSString*) msgId;
 
 
 /**
  * MinervaManager.sendP2PMsg() API 호출에 의한 P2P 메시지 발신 성공 여부를 알려준다.
  * @param resultCode 결과 코드로 성공시 Result.RESULT_OK 가 반환된다.
  * @param resultMsg 결과 코드인 resultCode에 대한 설명이다.
- * @param pmi (P2PMessageId) MinervaManager.sendP2PMsg() API 반환값과 동일한 값으로 이 콜백이 어느 API의 결과인지를 알려준다.
+ * @param msgId (P2PMessageId) MinervaManager.sendP2PMsg() API 반환값과 동일한 값으로 이 콜백이 어느 API의 결과인지를 알려준다.
  */
--(void) onP2PMsgResult: (int) resultCode resultMsg : (NSString*) resultMsg pmi : (NSString*) pmi;
+-(void) onP2PMsgResult: (int) resultCode resultMsg: (NSString*) resultMsg pmi: (NSString*) msgId;
+
+@optional
+
+@end
+
+
+
+
+@protocol StorageTransferResultDelegate <NSObject>
+
+@required
+
+
+
+/**
+ * uploadFile()API 진행 형황을 알려준다.
+ * @param filePath
+ *            파일 패스
+ * @param percent
+ *            업로드 진행 퍼센트
+ * @param uploadSize
+ *            업로드한 파일 사이즈(byte 단위)
+ * @param totalSize
+ *            전체 파일 사이즈 (byte 단위)
+ */
+
+-(void) onUploadProgress: (NSString*) filePath percent: (int) percent uploadSize: (long) uploadSize totalSize: (long) totalSize;
+
+
+/**
+ * uploadFile()API 결과를 알려준다.
+ * @param filePath
+ *            파일 패스
+ * @param resultCode
+ *            Result.RESULT_OK : 업로드 성공
+ *            그외는 에러
+ * @param resultMsg
+ *            resultCode의 값에 대한 의미
+ */
+
+-(void) onUploadResult: (NSString*) filePath resultCode: (int) resultCode resultMsg: (NSString*) resultMsg;
+
+
+
+/**
+ * downloadFile()API 진행 형황을 알려준다.
+ * @param filePath
+ *            파일 패스
+ * @param percent
+ *            다운로드 진행 퍼센트
+ * @param downloadSize
+ *            다운로드한 파일 사이즈(byte 단위)
+ * @param totalSize
+ *            전체 파일 사이즈(byte 단위)
+ */
+
+-(void) onDownloadProgress: (NSString*) filePath percent: (int) percent downloadSize: (long) downloadSize totalSize: (long) totalSize;
+
+
+/**
+ * downloadFile()API 결과를 알려준다.
+ * @param filePath
+ *            다운로드 한 파일이 저장된 파일패스
+ *            resultCode가 Result.RESULT_OK 일 경우 filePath에서 파일 작업 가능
+ * @param resultCode
+ *            Result.RESULT_OK : 다운로드 성공
+ *            그외는 에러
+ * @param resultMsg
+ *            resultCode의 값에 대한 의미
+ */
+
+-(void) onDownloadResult: (NSString*) filePath resultCode: (int) resultCode resultMsg: (NSString*) resultMsg;
+
+
 
 @optional
 

@@ -3,13 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04CA980D2A1E198400FB1E66 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CA980B2A1E198300FB1E66 /* RationalOwl.framework */; };
+		04CA98102A1E1B6000FB1E66 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CA980B2A1E198300FB1E66 /* RationalOwl.framework */; };
+		04CA98112A1E1B6000FB1E66 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04CA980B2A1E198300FB1E66 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		12DCA80B29BEE53F43B2FF17 /* Pods_sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE857DE0E65E5E96FD3019C3 /* Pods_sample.framework */; };
 		905B1FEB23F2D3A100349161 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 905B1FEA23F2D3A100349161 /* UserNotifications.framework */; };
-		905B1FEE23F2D3CC00349161 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 905B1FEC23F2D3B800349161 /* RationalOwl.framework */; };
-		905B1FEF23F2D3CC00349161 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 905B1FEC23F2D3B800349161 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		905B1FF423F2D61700349161 /* RegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905B1FF123F2D61600349161 /* RegViewController.swift */; };
 		905B1FF523F2D61700349161 /* MsgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905B1FF323F2D61700349161 /* MsgViewController.swift */; };
 		9097010223F2CC620034983E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9097010123F2CC620034983E /* AppDelegate.swift */; };
@@ -17,9 +19,8 @@
 		9097010B23F2CC640034983E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9097010A23F2CC640034983E /* Assets.xcassets */; };
 		9097010E23F2CC640034983E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9097010C23F2CC640034983E /* LaunchScreen.storyboard */; };
 		9097012223F2CF480034983E /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9097012123F2CF480034983E /* NotificationService.swift */; };
-		9097012623F2CF480034983E /* NotiServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9097011F23F2CF480034983E /* NotiServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		90F1006823F3D6A8000CD4CB /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 905B1FEC23F2D3B800349161 /* RationalOwl.framework */; };
-		90F1006923F3D6A8000CD4CB /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 905B1FEC23F2D3B800349161 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9097012623F2CF480034983E /* NotiServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9097011F23F2CF480034983E /* NotiServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D384052619A0322A95E1548E /* Pods_NotiServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29747D59ECF7A8750ED2705C /* Pods_NotiServiceExtension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,20 +40,20 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				905B1FEF23F2D3CC00349161 /* RationalOwl.framework in Embed Frameworks */,
+				04CA98112A1E1B6000FB1E66 /* RationalOwl.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9097012A23F2CF480034983E /* Embed App Extensions */ = {
+		9097012A23F2CF480034983E /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				9097012623F2CF480034983E /* NotiServiceExtension.appex in Embed App Extensions */,
+				9097012623F2CF480034983E /* NotiServiceExtension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		90F1006A23F3D6A8000CD4CB /* Embed Frameworks */ = {
@@ -61,7 +62,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				90F1006923F3D6A8000CD4CB /* RationalOwl.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,9 +69,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04CA980B2A1E198300FB1E66 /* RationalOwl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RationalOwl.framework; sourceTree = "<group>"; };
+		29747D59ECF7A8750ED2705C /* Pods_NotiServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotiServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CDBA46970D1CED0C7F5E83B /* Pods-NotiServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotiServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-NotiServiceExtension/Pods-NotiServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		84C5B373CAA7C32AE9ADEA8E /* Pods-NotiServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotiServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-NotiServiceExtension/Pods-NotiServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		905B1FE823F2D2BC00349161 /* NotiServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotiServiceExtension.entitlements; sourceTree = "<group>"; };
 		905B1FEA23F2D3A100349161 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
-		905B1FEC23F2D3B800349161 /* RationalOwl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RationalOwl.framework; sourceTree = "<group>"; };
 		905B1FF123F2D61600349161 /* RegViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegViewController.swift; sourceTree = "<group>"; };
 		905B1FF223F2D61700349161 /* sample-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "sample-Bridging-Header.h"; sourceTree = "<group>"; };
 		905B1FF323F2D61700349161 /* MsgViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MsgViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +88,9 @@
 		9097011F23F2CF480034983E /* NotiServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotiServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9097012123F2CF480034983E /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		9097012323F2CF480034983E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9EDD823FF5F16354D013DF51 /* Pods-sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sample.debug.xcconfig"; path = "Target Support Files/Pods-sample/Pods-sample.debug.xcconfig"; sourceTree = "<group>"; };
+		EE857DE0E65E5E96FD3019C3 /* Pods_sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F07965E8DF44913FDAF36A16 /* Pods-sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sample.release.xcconfig"; path = "Target Support Files/Pods-sample/Pods-sample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +98,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04CA98102A1E1B6000FB1E66 /* RationalOwl.framework in Frameworks */,
 				905B1FEB23F2D3A100349161 /* UserNotifications.framework in Frameworks */,
-				905B1FEE23F2D3CC00349161 /* RationalOwl.framework in Frameworks */,
+				12DCA80B29BEE53F43B2FF17 /* Pods_sample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +108,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90F1006823F3D6A8000CD4CB /* RationalOwl.framework in Frameworks */,
+				D384052619A0322A95E1548E /* Pods_NotiServiceExtension.framework in Frameworks */,
+				04CA980D2A1E198400FB1E66 /* RationalOwl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,9 +119,11 @@
 		905B1FE923F2D3A100349161 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04CA980B2A1E198300FB1E66 /* RationalOwl.framework */,
 				909700FF23F2CC620034983E /* Products */,
-				905B1FEC23F2D3B800349161 /* RationalOwl.framework */,
 				905B1FEA23F2D3A100349161 /* UserNotifications.framework */,
+				29747D59ECF7A8750ED2705C /* Pods_NotiServiceExtension.framework */,
+				EE857DE0E65E5E96FD3019C3 /* Pods_sample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -124,6 +134,7 @@
 				9097010023F2CC620034983E /* sample */,
 				9097012023F2CF480034983E /* NotiServiceExtension */,
 				905B1FE923F2D3A100349161 /* Frameworks */,
+				CC1CC731683E181081526A78 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,6 +173,17 @@
 			path = NotiServiceExtension;
 			sourceTree = "<group>";
 		};
+		CC1CC731683E181081526A78 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5CDBA46970D1CED0C7F5E83B /* Pods-NotiServiceExtension.debug.xcconfig */,
+				84C5B373CAA7C32AE9ADEA8E /* Pods-NotiServiceExtension.release.xcconfig */,
+				9EDD823FF5F16354D013DF51 /* Pods-sample.debug.xcconfig */,
+				F07965E8DF44913FDAF36A16 /* Pods-sample.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -169,11 +191,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9097011223F2CC640034983E /* Build configuration list for PBXNativeTarget "sample" */;
 			buildPhases = (
+				CF315BAF43463842B1E62258 /* [CP] Check Pods Manifest.lock */,
 				909700FA23F2CC620034983E /* Sources */,
 				909700FB23F2CC620034983E /* Frameworks */,
 				909700FC23F2CC620034983E /* Resources */,
-				9097012A23F2CF480034983E /* Embed App Extensions */,
+				9097012A23F2CF480034983E /* Embed Foundation Extensions */,
 				905B1FF023F2D3CC00349161 /* Embed Frameworks */,
+				2E1BC98E386179C8C8DE4B15 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -189,6 +213,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9097012723F2CF480034983E /* Build configuration list for PBXNativeTarget "NotiServiceExtension" */;
 			buildPhases = (
+				CC9067E79ECE223DDDF62E0B /* [CP] Check Pods Manifest.lock */,
 				9097011B23F2CF480034983E /* Sources */,
 				9097011C23F2CF480034983E /* Frameworks */,
 				9097011D23F2CF480034983E /* Resources */,
@@ -209,8 +234,9 @@
 		909700F623F2CC620034983E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1230;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = Rationalowl;
 				TargetAttributes = {
 					909700FD23F2CC620034983E = {
@@ -259,6 +285,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E1BC98E386179C8C8DE4B15 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sample/Pods-sample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sample/Pods-sample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sample/Pods-sample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC9067E79ECE223DDDF62E0B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NotiServiceExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CF315BAF43463842B1E62258 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		909700FA23F2CC620034983E /* Sources */ = {
@@ -429,6 +519,7 @@
 		};
 		9097011323F2CC640034983E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9EDD823FF5F16354D013DF51 /* Pods-sample.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -447,7 +538,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rationalowl.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/Samsung_T5/project/github/rationalowl-sample/device-app/ios-swift/sample/sample-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -456,6 +547,7 @@
 		};
 		9097011423F2CC640034983E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F07965E8DF44913FDAF36A16 /* Pods-sample.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -474,7 +566,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rationalowl.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/Samsung_T5/project/github/rationalowl-sample/device-app/ios-swift/sample/sample-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -483,6 +575,7 @@
 		};
 		9097012823F2CF480034983E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CDBA46970D1CED0C7F5E83B /* Pods-NotiServiceExtension.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = NotiServiceExtension/NotiServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -508,6 +601,7 @@
 		};
 		9097012923F2CF480034983E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84C5B373CAA7C32AE9ADEA8E /* Pods-NotiServiceExtension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = NotiServiceExtension/NotiServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;

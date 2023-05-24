@@ -8,6 +8,10 @@
 
 import UIKit;
 
+import RationalOwl;
+
+
+
 class RegViewController: UIViewController, DeviceRegisterResultDelegate {
     
     
@@ -20,7 +24,7 @@ class RegViewController: UIViewController, DeviceRegisterResultDelegate {
         super.viewDidLoad()
         
         //inputNameField.text = "gate.rationalowl.com";
-        inputNameField.text = "211.239.150.123"; // aws dev env
+        inputNameField.text = "3.39.200.245"; // aws dev env
         
         
         let minMgr: MinervaManager = MinervaManager.getInstance();
@@ -38,7 +42,7 @@ class RegViewController: UIViewController, DeviceRegisterResultDelegate {
     /////////////////////////////////////////////////////////////////
     
     @IBAction func regDevice() {
-        let serviceId: String = "afab0b12c8f44c00860195446032933d";
+        let serviceId: String = "SVCea9fe858-a49e-4e73-a42a-55668f825e0b";
         let gateHost: String = inputNameField.text!;
         let mgr: MinervaManager = MinervaManager.getInstance();
         mgr.registerDevice(gateHost, serviceId: serviceId, deviceRegName: "my I phone");
@@ -46,7 +50,7 @@ class RegViewController: UIViewController, DeviceRegisterResultDelegate {
     
     
     @IBAction func unregDevice() {
-        let serviceId: String = "afab0b12c8f44c00860195446032933d";
+        let serviceId: String = "SVCea9fe858-a49e-4e73-a42a-55668f825e0b";
         let mgr: MinervaManager = MinervaManager.getInstance();
         mgr.unregisterDevice(serviceId);
     }

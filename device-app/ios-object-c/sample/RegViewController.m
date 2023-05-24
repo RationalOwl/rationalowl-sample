@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //inputNameField.text = @"gate.rationalowl.com";
-    inputNameField.text = @"211.239.150.123"; // your gate server.
+    inputNameField.text = @"3.39.200.245"; // your gate server.
     
     //set message delegate
     MinervaManager* minMgr = [MinervaManager getInstance];
@@ -51,7 +51,7 @@
     
     NSString* gateHost = inputNameField.text;
     MinervaManager* mgr = [MinervaManager getInstance];
-    [mgr registerDevice:gateHost serviceId:@"afab0b12c8f44c00860195446032933d" deviceRegName:@"my i pad 11"];
+    [mgr registerDevice:gateHost serviceId:@"SVCea9fe858-a49e-4e73-a42a-55668f825e0b" deviceRegName:@"my i pad 11"];
     
     //[mgr registerDevice:gateHost serviceId:@"9bd4db31dbaa4897ad9aa81c3e7e183a" deviceRegName:@"my i pad 12"];
    
@@ -60,7 +60,7 @@
 
 - (IBAction) unregDevice {
     MinervaManager* mgr = [MinervaManager getInstance];
-    [mgr unregisterDevice:@"afab0b12c8f44c00860195446032933d"];
+    [mgr unregisterDevice:@"SVCea9fe858-a49e-4e73-a42a-55668f825e0b"];
     
     //[mgr unregisterDevice:@"9bd4db31dbaa4897ad9aa81c3e7e183a"];
 }

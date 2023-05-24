@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		90A9D9A8261EEE3800C60AE7 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90A9D9A6261EDC5200C60AE7 /* RationalOwl.framework */; };
-		90A9D9A9261EEE3800C60AE7 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90A9D9A6261EDC5200C60AE7 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		90A9D9AA261EEE8100C60AE7 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90A9D9A6261EDC5200C60AE7 /* RationalOwl.framework */; };
-		90A9D9AB261EEE8100C60AE7 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90A9D9A6261EDC5200C60AE7 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		04CA98032A1D19D900FB1E66 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CA98012A1D19D900FB1E66 /* RationalOwl.framework */; };
+		04CA98042A1D1E9C00FB1E66 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CA98012A1D19D900FB1E66 /* RationalOwl.framework */; };
+		04CA98052A1D1E9C00FB1E66 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04CA98012A1D19D900FB1E66 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		34C31E7AEA96AD039A299185 /* Pods_sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E93303AA6C95E8D41C07803 /* Pods_sample.framework */; };
+		813FA8B42F899F0288E8051E /* Pods_NotiServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B778282ADACAF3B0A10688A /* Pods_NotiServiceExtension.framework */; };
 		90C95A4A23F03CFD002C41D7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C95A4923F03CFD002C41D7 /* AppDelegate.m */; };
 		90C95A5023F03CFD002C41D7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C95A4F23F03CFD002C41D7 /* ViewController.m */; };
 		90C95A5323F03CFD002C41D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90C95A5123F03CFD002C41D7 /* Main.storyboard */; };
@@ -41,7 +42,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				90A9D9A9261EEE3800C60AE7 /* RationalOwl.framework in Embed Frameworks */,
+				04CA98052A1D1E9C00FB1E66 /* RationalOwl.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,7 +53,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				90A9D9AB261EEE8100C60AE7 /* RationalOwl.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,7 +71,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		90A9D9A6261EDC5200C60AE7 /* RationalOwl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RationalOwl.framework; sourceTree = "<group>"; };
+		04CA98012A1D19D900FB1E66 /* RationalOwl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RationalOwl.framework; sourceTree = "<group>"; };
+		06A2B1C5DD47F9DCB5F0B466 /* Pods-NotiServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotiServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-NotiServiceExtension/Pods-NotiServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		1A6F2515244CF5CBA4822361 /* Pods-sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sample.release.xcconfig"; path = "Target Support Files/Pods-sample/Pods-sample.release.xcconfig"; sourceTree = "<group>"; };
+		4E93303AA6C95E8D41C07803 /* Pods_sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B778282ADACAF3B0A10688A /* Pods_NotiServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotiServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		68E21FF339EEB324BE862262 /* Pods-sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sample.debug.xcconfig"; path = "Target Support Files/Pods-sample/Pods-sample.debug.xcconfig"; sourceTree = "<group>"; };
 		90C95A4523F03CFD002C41D7 /* sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C95A4823F03CFD002C41D7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		90C95A4923F03CFD002C41D7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -94,6 +99,7 @@
 		90C95A7923F04128002C41D7 /* NotiServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotiServiceExtension.entitlements; sourceTree = "<group>"; };
 		90C95A7B23F041F2002C41D7 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		90F1006623F3C238000CD4CB /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		C460E903F73BF13F05A865FA /* Pods-NotiServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotiServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-NotiServiceExtension/Pods-NotiServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +108,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				90F1006723F3C238000CD4CB /* UserNotifications.framework in Frameworks */,
-				90A9D9A8261EEE3800C60AE7 /* RationalOwl.framework in Frameworks */,
+				04CA98042A1D1E9C00FB1E66 /* RationalOwl.framework in Frameworks */,
+				34C31E7AEA96AD039A299185 /* Pods_sample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,7 +117,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90A9D9AA261EEE8100C60AE7 /* RationalOwl.framework in Frameworks */,
+				04CA98032A1D19D900FB1E66 /* RationalOwl.framework in Frameworks */,
+				813FA8B42F899F0288E8051E /* Pods_NotiServiceExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +132,7 @@
 				90C95A6C23F040C5002C41D7 /* NotiServiceExtension */,
 				90C95A4623F03CFD002C41D7 /* Products */,
 				90C95A7A23F041F2002C41D7 /* Frameworks */,
+				E56EB0936765C5492DF1945B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -172,10 +181,24 @@
 			isa = PBXGroup;
 			children = (
 				90F1006623F3C238000CD4CB /* UserNotifications.framework */,
-				90A9D9A6261EDC5200C60AE7 /* RationalOwl.framework */,
+				04CA98012A1D19D900FB1E66 /* RationalOwl.framework */,
 				90C95A7B23F041F2002C41D7 /* UserNotificationsUI.framework */,
+				5B778282ADACAF3B0A10688A /* Pods_NotiServiceExtension.framework */,
+				4E93303AA6C95E8D41C07803 /* Pods_sample.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E56EB0936765C5492DF1945B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C460E903F73BF13F05A865FA /* Pods-NotiServiceExtension.debug.xcconfig */,
+				06A2B1C5DD47F9DCB5F0B466 /* Pods-NotiServiceExtension.release.xcconfig */,
+				68E21FF339EEB324BE862262 /* Pods-sample.debug.xcconfig */,
+				1A6F2515244CF5CBA4822361 /* Pods-sample.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,11 +208,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90C95A5E23F03CFF002C41D7 /* Build configuration list for PBXNativeTarget "sample" */;
 			buildPhases = (
+				73D547D9FC8291BB17C19E74 /* [CP] Check Pods Manifest.lock */,
 				90C95A4123F03CFD002C41D7 /* Sources */,
 				90C95A4223F03CFD002C41D7 /* Frameworks */,
 				90C95A4323F03CFD002C41D7 /* Resources */,
 				90C95A7723F040C6002C41D7 /* Embed App Extensions */,
 				90A9D9A5261ED73900C60AE7 /* Embed Frameworks */,
+				ECD20890995097D851524F8C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -205,6 +230,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90C95A7423F040C6002C41D7 /* Build configuration list for PBXNativeTarget "NotiServiceExtension" */;
 			buildPhases = (
+				9FBF4733385F15B1962B56DF /* [CP] Check Pods Manifest.lock */,
 				90C95A6723F040C5002C41D7 /* Sources */,
 				90C95A6823F040C5002C41D7 /* Frameworks */,
 				90C95A6923F040C5002C41D7 /* Resources */,
@@ -274,6 +300,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		73D547D9FC8291BB17C19E74 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9FBF4733385F15B1962B56DF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NotiServiceExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECD20890995097D851524F8C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sample/Pods-sample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sample/Pods-sample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sample/Pods-sample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		90C95A4123F03CFD002C41D7 /* Sources */ = {
@@ -440,6 +530,7 @@
 		};
 		90C95A5F23F03CFF002C41D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68E21FF339EEB324BE862262 /* Pods-sample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = sample/sample.entitlements;
@@ -465,6 +556,7 @@
 		};
 		90C95A6023F03CFF002C41D7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A6F2515244CF5CBA4822361 /* Pods-sample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = sample/sample.entitlements;
@@ -490,6 +582,7 @@
 		};
 		90C95A7523F040C6002C41D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C460E903F73BF13F05A865FA /* Pods-NotiServiceExtension.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = NotiServiceExtension/NotiServiceExtension.entitlements;
@@ -516,6 +609,7 @@
 		};
 		90C95A7623F040C6002C41D7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06A2B1C5DD47F9DCB5F0B466 /* Pods-NotiServiceExtension.release.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = NotiServiceExtension/NotiServiceExtension.entitlements;

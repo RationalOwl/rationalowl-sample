@@ -13,8 +13,6 @@
 #import <RationalOwl/MinervaDelegate.h>
 
 @interface RegViewController : UIViewController <DeviceRegisterResultDelegate> {
-    UIView            *regDeviceView;
-    UITextField        *inputNameField;
 }
 
 

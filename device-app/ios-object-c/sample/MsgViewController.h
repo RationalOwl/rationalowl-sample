@@ -15,10 +15,6 @@
 
 
 @interface MsgViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MessageDelegate> {
-    UIView            *msgListView;
-    UITextField        *inputMessageField;
-    UITableView        *tView;
-    NSMutableArray    *messages;
 }
 
 @property (nonatomic, retain) IBOutlet UIView *msgListView;

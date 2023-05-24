@@ -129,7 +129,6 @@
             // do your logic
         }
     }
-    completionHandler(UIBackgroundFetchResultNoData);
 }
 
 

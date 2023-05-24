@@ -35,7 +35,6 @@
     //set delegate
     MinervaManager* minMgr = [MinervaManager getInstance];
     [minMgr setMessageDelegate:self];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,7 +53,7 @@
 
 - (IBAction)sendUpstreamMsg:(id)sender {
     //NSString* svcId = @"d0a83353281e4b678774a0efa44fdd82";
-    NSString* serverId = @"afab0b12c8f44c00860195446032933d";
+    NSString* serverId = @"SVR6838f682-3831-4055-8ab2-c7a48cdd8a10";
     NSString* msg = inputMessageField.text;
     MinervaManager* mgr = [MinervaManager getInstance];
     [mgr sendUpstreamMsg:msg serverRegId:serverId];
@@ -73,9 +72,10 @@
 
 
 - (IBAction)sendP2PMsg:(id)sender {
+    
     NSString* msg = inputMessageField.text;
     NSMutableArray* devices = [[NSMutableArray alloc] init];
-    [devices addObject:@"590f123ddf144824bf7fbe5d3be4320f"];
+    [devices addObject:@"DVC8d8e2fdf-025c-4bf9-a223-14a917c5b9e5"];
     //[devices addObject:@"2f84c0dbc967493a8c401921f9191af4"];
     //[devices addObject:@"d5f1126b2eaf45dfbb9a545bb69fc8c4"];
     //[devices addObject:@"90aee24fcce741d6abcf4bf2dc6121c9"];
