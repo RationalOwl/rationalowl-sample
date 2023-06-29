@@ -92,7 +92,8 @@ public class RegisterActivity extends Activity implements OnClickListener, Devic
                         // register device app.
                         //mgr.registerDevice(url, "afab0b12c8f44c00860195446032933d","Android jungdo note10 sample app");
                         //mgr.registerDevice(url, "SVC59132746-625b-4773-b5db-aa8a0775e04d","sample android");
-                        mgr.registerDevice(url, "SVCea9fe858-a49e-4e73-a42a-55668f825e0b","Android jungdo note5 sample app");
+                        //mgr.registerDevice(url, "SVCea9fe858-a49e-4e73-a42a-55668f825e0b","Android jungdo note5 sample app");
+                        mgr.registerDevice("211.239.150.123", "adbce9791c2c46cca10aa527a86dd6e7","Android jungdo note5 sample app");
 
                     }
                 });

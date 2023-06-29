@@ -15,18 +15,19 @@ Android 단말앱 샘플은 Android 단말앱 라이브러리에서 제공하는
 2. 래셔널아울 이용 라이브러리를 적용한다.
     - 아래 build.gradle의 dependencies에서 // RationalOwl using library 부분   
 3. FCM 라이브러리를 적용한다.
-    - 아래 build.gradle의 dependencies에서 // FCM library 부분    
+    - 가장 최신 라이브러리는 샘플코드의 lib 폴더에 적용된다.
+    - 가장 최신 라이브러리 적용법은 샘플코드 앱 레벨 build.gradle을 참조하기 바란다.    
+
 
 아래는 2023년 3월 기준 샘플앱 앱레벨 build.gradle의 dependencies 부분이다.
+
 
 ```java
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-
-    ...
     // RationalOwl library
-    implementation name: 'rationalowl-android-1.3.2', ext: 'aar'
+    implementation files('libs/rationalowl-android-1.3.4.aar')
     // RationalOwl using library
     implementation "androidx.lifecycle:lifecycle-service:2.5.1"
     implementation "androidx.lifecycle:lifecycle-process:2.5.1"

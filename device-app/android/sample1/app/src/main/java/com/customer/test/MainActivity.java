@@ -1,10 +1,25 @@
 package com.customer.test;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+
+import android.Manifest;
+import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.rationalowl.minerva.client.android.util.Logger;
 
 
@@ -21,6 +36,9 @@ public class MainActivity  extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        createNotificationChannel();
+
         handleIntent(getIntent());
     }
 
@@ -29,6 +47,19 @@ public class MainActivity  extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         handleIntent(intent);
+    }
+
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String name = "MyNotiChannel";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            String channelId = getApplicationContext().getPackageName();
+            NotificationChannel channel = new NotificationChannel(channelId, name, importance);
+            channel.setDescription("my notification channel description");
+            NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
 

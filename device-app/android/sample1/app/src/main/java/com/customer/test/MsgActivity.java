@@ -152,7 +152,8 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
                 mListAdapter.notifyDataSetChanged();
                 //String serverId = "859a35beaa434245a0b657503eda7b31"; // sample app server
                 //String serverId = "SVR6838f682-3831-4055-8ab2-c7a48cdd8a10"; // aws dev
-                String serverId = "SVR6838f682-3831-4055-8ab2-c7a48cdd8a10"; // hostway sample
+                //String serverId = "SVR6838f682-3831-4055-8ab2-c7a48cdd8a10"; // hostway sample
+                String serverId = "SVRe84f87e3-45b9-469d-97c5-a3dd73723663"; // hostway sample
                 //String serverId = "0bb887049fb04bca924853be0e78f28d"; //gyeong min python
                 MinervaManager minMgr = MinervaManager.getInstance();
                 //manage umi(upstream message id) to check upstream delivery
