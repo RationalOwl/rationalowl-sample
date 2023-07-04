@@ -67,7 +67,6 @@
  * @param data 전달할 데이터로 모바일 서비스 특성에 맞게 json포맷 또는 일반 스트링으로 포맷팅하면 된다.
  * @param serverRegId 데이터를 전달할 앱서버의 등록아이디
  * @return message id
- * @return message id
  */
 - (NSString*) sendUpstreamMsg: (NSString*) data serverRegId : (NSString*) serverRegId;
 

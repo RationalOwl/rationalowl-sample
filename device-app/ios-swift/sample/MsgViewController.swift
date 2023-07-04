@@ -81,6 +81,9 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     func onDownstreamMsgRecieved(_ msgSize: Int32, msgList: [Any]!, alarmIdx: Int32) {
         print("onMsgRecieved msg size = \(msgSize)")
         var msg: Dictionary<String, Any>;
+        // downstream msg type
+        // 1(realtime downstream),   3[custom push: 1) un-delivered push msg list delivered after app launch, 2) push while app fore-ground]
+        var msgType: Int;
         // who send message
         var sender: String;
         var sendTime: Double;
@@ -91,6 +94,8 @@ class MsgViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         for i in 0..<msgList.count {
             msg = msgList[i] as! Dictionary<String, Any>;
+            // 1(realtime downstream),  3[custom push: 1) un-delivered push while app launch, 2) push while app fore-ground]
+            msgType = msg["type"] as! Int;
             // message sender(app server)'s app server registraion id
             sender = msg["sender"] as! String;
             // message sent time

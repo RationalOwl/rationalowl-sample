@@ -70,7 +70,7 @@
  * MinervaManager.sendUpstreamMsg() API 호출에 의한 업스트림 메시지 발신 성공 여부를 알려준다.
  * @param resultCode 결과 코드로 성공시 Result.RESULT_OK 가 반환된다.
  * @param resultMsg 결과 코드인 resultCode에 대한 설명이다.
- * @param msgId (UpstreamMessageId) MinervaManager.sendUpstreamMsg() API 반환값과 동일한 값으로 이 콜백이 어느 API의 결과인지를 알려준다.
+ * @param msgId
  */
 -(void) onUpstreamMsgResult: (int) resultCode resultMsg: (NSString*) resultMsg msgId: (NSString*) msgId;
 
@@ -79,7 +79,7 @@
  * MinervaManager.sendP2PMsg() API 호출에 의한 P2P 메시지 발신 성공 여부를 알려준다.
  * @param resultCode 결과 코드로 성공시 Result.RESULT_OK 가 반환된다.
  * @param resultMsg 결과 코드인 resultCode에 대한 설명이다.
- * @param msgId (P2PMessageId) MinervaManager.sendP2PMsg() API 반환값과 동일한 값으로 이 콜백이 어느 API의 결과인지를 알려준다.
+ * @param msgId 
  */
 -(void) onP2PMsgResult: (int) resultCode resultMsg: (NSString*) resultMsg msgId: (NSString*) msgId;
 

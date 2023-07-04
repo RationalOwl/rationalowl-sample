@@ -24,7 +24,7 @@ class RegViewController: UIViewController, DeviceRegisterResultDelegate {
         super.viewDidLoad()
         
         //inputNameField.text = "gate.rationalowl.com";
-        inputNameField.text = "3.39.200.245"; // aws dev env
+        inputNameField.text = "211.239.150.123"; // aws dev env
         
         
         let minMgr: MinervaManager = MinervaManager.getInstance();
