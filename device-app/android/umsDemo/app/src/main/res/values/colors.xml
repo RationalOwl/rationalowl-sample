@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green">#59a353</color>
+    <color name="green_dark">#277427</color>
+    <color name="blue">#FF2E75B6</color>
+    <color name="blue_light">#FF68A3E9</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="card_background">#F2F2F2</color>
+    <color name="emergency">#EF6000</color>
+    <color name="notice">#55BA3C</color>
+    <color name="read">#548235</color>
+    <color name="unread">#C55A11</color>
+</resources>

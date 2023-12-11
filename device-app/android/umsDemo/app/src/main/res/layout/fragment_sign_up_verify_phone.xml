@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.rationalowl.umsdemo.representation.viewModel.SignUpViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/activity_horizontal_margin"
+        android:paddingVertical="@dimen/activity_vertical_margin"
+        tools:context=".representation.ui.account.SignUpVerifyPhoneFragment">
+
+        <TextView
+            android:id="@+id/textview_input_auth_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="@{@string/input_auth_number(viewModel.phoneNumber)}"
+            android:textAlignment="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:hint="@string/auth_number"
+                android:theme="@style/ThemeOverlay.AppTheme.Accent"
+                app:boxBackgroundColor="@color/white"
+                app:startIconDrawable="@drawable/ic_baseline_mail_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_verification_code"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="0123456789"
+                    android:inputType="number"
+                    android:text="@={viewModel.phoneAuthNumber}"
+                    android:theme="@style/ThemeOverlay.AppTheme.Accent" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/button_confirm_verification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_marginStart="8dp"
+                android:enabled="@{viewModel.phoneAuthNumber.length() > 0}"
+                android:text="@string/next"
+                android:theme="@style/ThemeOverlay.AppTheme.Button.ElevatedButton.Accent" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_edit_phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/edit_phone_number"
+            android:theme="@style/ThemeOverlay.AppTheme.Button.ElevatedButton.Icon.Accent"
+            app:icon="@drawable/ic_baseline_arrow_back_ios_new_24" />
+    </LinearLayout>
+</layout>

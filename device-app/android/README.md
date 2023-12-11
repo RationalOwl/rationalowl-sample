@@ -5,8 +5,12 @@ Android 단말앱 샘플은 Android 단말앱 라이브러리에서 제공하는
 
 채팅, 실시간 소셜앱, 게임 등 실시간 데이터 전달과 이와 함께 제공되는 푸시 알림에 대한 샘플앱이다.
 
+##  [UMS Demo](https://github.com/RationalOwl/rationalowl-sample/tree/master/device-app/android/umsDemo)
+
+래셔널아울을 기반으로 만든 통합 메시지 솔루션 데모 앱이다. (2024년 10월 개발 환경)
+
 
 ##  [커스텀 푸시앱](https://github.com/RationalOwl/rationalowl-sample/tree/master/device-app/android/customPush)
 
 래셔널아울 커스텀푸시는 안드로이드에서 지원하는 이미지 푸시, 팝업 푸시, 멀티미디어 푸시알림 등 사용자 맞춤형 푸시 알림을 지원하고
-그에 더해 다음의 푸시알림 전달 여부에 대한 고속 트래킹을 지원한다.
+그에 더해 다음의 푸시알림 전달 여부에 대한 고속 트래킹을 지원한다. 2020년 개발 환경 기준 설명이라 최신 개발환경과 맞지 않은 부분이 있어서 개발 환경 참조에 적합하지 않다.
