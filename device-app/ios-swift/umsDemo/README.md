@@ -411,7 +411,6 @@ ok
     "aId":"myAccountId",            // account id
     "rc":1,  
     "cmt":"정상처리",
-
     "imgD":"imageData"
 }
 ```
