@@ -245,7 +245,7 @@ public class MsgActivity extends AppCompatActivity implements OnClickListener, M
             // this sample app treat old message first.
             for (int i = msgSize - 1; i >= 0; i--) {
                 oneMsg = msgs.get(i);
-                msgType = (int) oneMsg.get(MinervaManager.FIELD_MSG_TYPE);  // 1(downstream), 2(p2p)
+                msgType = (int) oneMsg.get(MinervaManager.FIELD_MSG_TYPE);  // 1 (realtime: downstream), 2 (realtime: p2p), 3(custom push)
                 sender = (String) oneMsg.get(MinervaManager.FIELD_MSG_SENDER);
                 data = (String) oneMsg.get(MinervaManager.FIELD_MSG_DATA);
                 serverTime = (Long) oneMsg.get(MinervaManager.FIELD_MSG_SERVER_TIME);

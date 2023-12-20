@@ -52,10 +52,7 @@ public class MainActivity  extends AppCompatActivity {
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String name = "MyNotiChannel";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            String channelId = getApplicationContext().getPackageName();
-            NotificationChannel channel = new NotificationChannel(channelId, name, importance);
+            NotificationChannel channel = new NotificationChannel("myNotiChannelId", "myNotiChannelName", NotificationManager.IMPORTANCE_DEFAULT);
             channel.setDescription("my notification channel description");
             NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
             notificationManager.createNotificationChannel(channel);
