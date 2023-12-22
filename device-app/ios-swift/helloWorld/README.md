@@ -13,7 +13,7 @@
  -  다운받은 폴더에서 'RationalOwlUMSDemo.xcworkspace'파일을 클릭하여 XCode를 실행한다.
     - 2023년 12월 개발환경 기준
     - 샘플앱을 XCode로 실행하면 실행가능한 상태로 설정들이 되어 있다.
-    - 프로젝트 루트에 'RationalOwl.framework'파일이 래셔널아울 OS Objective-C 단말앱 라이브러리이다.
+    - 프로젝트 내 'RationalOwl.framework'파일이 래셔널아울 IOS 단말앱 라이브러리이다.
     - 'sample-Bridging-Header.h'파일이 Objective-C 단말앱 라이브러리를 Swift에서 사용할 수 있게 해 준다. 
  - 래셔널아울 Push API를 적용한 간단한 hello world 앱
     - 래셔널아울 실시간 API와 Push API를 모두 적용한 간단한 앱은 [Sample1](https://github.com/RationalOwl/rationalowl-sample/tree/master/device-app/ios-swift/sample1) 샘플 참조
