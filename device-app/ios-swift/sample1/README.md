@@ -9,7 +9,7 @@ IOS Swift 단말앱 샘플은 IOS Objective-C 단말앱 라이브러리에서 �
 - 샘플앱에서 제공되는 래셔널아울 라이브러리인 RationalOwl.framework/RationalOwl 은 유니버설 프레임워크로 시뮬레이션을 위한 x86_64, 실제 폰을 위한 Arm64를 모두 지원한다. 실제 앱스토어에 배포시에는 lipo -remove x86_64 명령어로 시뮬레이션용 아키텍쳐를 제거후 앱스토어에 배포해야 한다.
 
 ## 개발 전 IOS 설정
-[IOS 설정 가이드](https://github.com/RationalOwl/rationalowl-guide/tree/master/device-app/ios-setting)를 통해 개발 전 아래 설정을 먼저 진행해야 한다.
+[IOS 설정 가이드](https://github.com/RationalOwl/rationalowl-guide/tree/master/device-app/ios-apns-p8)를 통해 개발 전 아래 설정을 먼저 진행해야 한다.
 
 - APNS 발신용 인증서 생성 및 래셔널아울 서비스에 등록
 - 프로비저닝 프로파일 설정

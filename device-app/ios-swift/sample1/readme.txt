@@ -6,4 +6,5 @@
  2) podfile edit
    - pod 'CocoaAsyncSocket' 추가
  * framework에서 추가했는데 또 해야 하나? 튜토리얼 못찾아 간단히 pod로 다시 추가 함.
-   
+ 3) podfile 내 라이브러리 설치
+  - pod install
