@@ -81,47 +81,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
 
-    /**
-     * Create and show user defined custom notification such as image/rich notification.
-     *
-     * @param data FCM message body.
-     */
-    private void showCustomNotification1(Map<String, String> data) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
-                PendingIntent.FLAG_IMMUTABLE);
-        // get title and body from your custom field.
-        String notiTitle =  data.get("myTitle");
-        String notiBody =  data.get("myBody");
-
-        // get any other fields from your custom field
-        // String imgUrl =  data.get("http://myimage.com/img1.jpg");
-
-        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder =
-                new NotificationCompat.Builder(this, "defaultChannelId")
-                        .setSmallIcon(R.drawable.icon)
-                        .setContentTitle(notiTitle)
-                        .setContentText(notiBody)
-                        .setAutoCancel(true)
-                        .setSound(defaultSoundUri)
-                        .setContentIntent(pendingIntent);
-
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        // Since android Oreo notification channel is needed.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("defaultChannelId",
-                    "FCM Channel",
-                    NotificationManager.IMPORTANCE_DEFAULT);
-            notificationManager.createNotificationChannel(channel);
-        }
-
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
-    }
-
     public static void showCustomNotification(Map<String, String> data) {
         // hello app custom data format can be any fields you want
         // this sample app assume below fields
@@ -131,6 +90,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
           "title": "message title here",
           "body": "message body here",
           "ii": "image id here"
+          "st": "(message) send time"
         }
         */
         String msgId = null, body = null, title = null, imageId = null;

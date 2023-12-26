@@ -29,16 +29,39 @@ class NotificationService: UNNotificationServiceExtension {
             // enable notification delivery tracking
             let minMgr: MinervaManager = MinervaManager.getInstance();
             minMgr.enableNotificationTracking(userInfo, appGroup: "group.com.rationalowl.hello");
-            
-            // Modify the notification content here...
-            if userInfo["notiTitle"] != nil {
-                bestAttemptContent.title = userInfo["notiTitle"] as! String;
+
+            // system push is sent by RationalOwl for device app lifecycle check.
+            // system push is also silent push.
+            // if system push has received, just return.
+            if userInfo["SystemPush"] != nil
+            {
+                print("system push received!!")
+                return
             }
-            if userInfo["notiBody"] != nil {
-                bestAttemptContent.body = userInfo["notiBody"] as! String;
-            }
-            
+           
+            // custom push format can be any fields app need.
+            // RationalUms Demo format
+            /*
+            {
+                "mId": "message id here",
+                "title": "message title here",
+                "body": "message body here",
+                "ii": "image id here"
+                "st": "(message) send time"
+                }
+            */
             /* draw you custom push notification */
+            // Modify the notification content here...
+            if userInfo["title"] != nil
+            {
+                bestAttemptContent.title = userInfo["title"] as! String
+            }
+            
+            if userInfo["body"] != nil
+            {
+                bestAttemptContent.body = userInfo["body"] as! String
+            }         
+            
             // draw image from image url
             //NSString* imageUrl = userInfo[@"imageUrl"];
             

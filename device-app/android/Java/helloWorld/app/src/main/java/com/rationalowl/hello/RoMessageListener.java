@@ -43,8 +43,6 @@ public class RoMessageListener implements MessageListener {
                 msgType = (int) json.get(MinervaManager.FIELD_MSG_TYPE);  // 1 (realtime: downstream), 2 (realtime: p2p), 3(custom push)
                 // message sender (sender registration id)
                 sender = (String) json.get(MinervaManager.FIELD_MSG_SENDER);
-                // message send time
-                serverTime = (Long) json.get(MinervaManager.FIELD_MSG_SERVER_TIME);
                 // data
                 data = (String) json.get(MinervaManager.FIELD_MSG_DATA);
 
@@ -63,6 +61,17 @@ public class RoMessageListener implements MessageListener {
                     }
                     // custom push received
                     case 3: {
+                        // custom push format can be any fields app need.
+                        // RationalUms Demo format
+                        /*
+                        {
+                            "mId": "message id here",
+                            "title": "message title here",
+                            "body": "message body here",
+                            "ii": "image id here"
+                            "st": "(message) send time"
+                          }
+                        */
                         // if multiple custom push received, we just notify recentest push only.
                         if(customPush == null) {
                             customPush = mapper.readValue(data, new TypeReference<Map<String, String>>() {});

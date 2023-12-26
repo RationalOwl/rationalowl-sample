@@ -71,8 +71,6 @@ class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDe
         var msgType: Int;
         // sender's registration id
         var sender: String;
-        // msg send time
-        var sendTime: Double;
         // msgData sould be simple string or dictionary(json string on custom push)
         var msgData: Any?;
         let dateFormatter = DateFormatter();
@@ -84,9 +82,6 @@ class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDe
             msgType = msg["type"] as! Int;
             // message sender(app server)'s app server registraion id
             sender = msg["sender"] as! String;
-            // message sent time
-            sendTime = msg["serverTime"] as! Double;
-            let date = Date(timeIntervalSince1970: sendTime/1000);
             msgData = msg["data"];
             
             switch (msgType) {
@@ -104,6 +99,18 @@ class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDe
                 case 3:
                     // When push received while app foreground, simplay print msg.
                     let customPushStr: String = (String(describing: msgData));
+                    // custom push format can be any fields app need.
+                    // RationalUms Demo format
+                    /*
+                    {
+                        "mId": "message id here",
+                        "title": "message title here",
+                        "body": "message body here",
+                        "ii": "image id here"
+                        "st": "(message) send time"
+                        }
+                    */
+                    // hello world simply print custom push string.
                     print("push msg = \(customPushStr)")
                     break;
                 
