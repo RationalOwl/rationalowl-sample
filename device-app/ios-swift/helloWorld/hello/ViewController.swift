@@ -47,9 +47,7 @@ class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDe
         
         // device app registration success!
         // send deviceRegId to the app server.
-        if(resultCode == RESULT_OK) {
-            let mgr: MinervaManager = MinervaManager.getInstance();
-            mgr.sendUpstreamMsg("send deviceRegId to the app server", serverRegId: "app server reg id");
+        if(resultCode == RESULT_OK || resultCode == RESULT_DEVICE_ALREADY_REGISTERED) {
             
         }
     }
