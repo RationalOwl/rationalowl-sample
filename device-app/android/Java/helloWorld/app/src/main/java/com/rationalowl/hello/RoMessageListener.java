@@ -48,7 +48,6 @@ public class RoMessageListener implements MessageListener {
 
                 Log.d(TAG,  "message type:" + msgType);
                 Log.d(TAG,  "message sender:" + sender);
-                Log.d(TAG,  "message send time :" + serverTime);
                 // custom data formatted json format
                 Log.d(TAG,  "message :" + data);
 
