@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+	<LinearLayout
+		  android:layout_width="fill_parent"
+		  android:layout_height="wrap_content"
+		  android:orientation="horizontal"
+		  android:layout_marginBottom="20dp"
+		/>
+
+   <FrameLayout
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="40dp">
+
+	   <Button
+		   android:id="@+id/downloadBtn"
+		   android:layout_width="wrap_content"
+		   android:layout_height="40dp"
+		   android:layout_gravity="right"
+		   android:layout_marginRight="43dp"
+		   android:gravity="center"
+		   android:text="파일다운로드"
+		   android:textColor="#ff6c00"></Button>
+
+	   <Button
+		   android:id="@+id/uploadBtn"
+		   android:layout_width="wrap_content"
+		   android:layout_height="40dp"
+		   android:layout_gravity="left"
+		   android:layout_marginLeft="43dp"
+		   android:gravity="center"
+		   android:text="파일업로드"
+		   android:textColor="#9896ff"></Button>
+
+   </FrameLayout>
+</LinearLayout>

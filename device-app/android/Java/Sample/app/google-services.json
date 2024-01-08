@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "238164826848",
+    "project_id": "sample-db9e1",
+    "storage_bucket": "sample-db9e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238164826848:android:aad6d3f67f1b89db208e85",
+        "android_client_info": {
+          "package_name": "com.rationalowl.sample"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMhYyNvlpN73088rL1DjqDCblgw5iJfdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

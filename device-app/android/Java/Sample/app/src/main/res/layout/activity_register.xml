@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout		  
+		  android:layout_width="fill_parent"
+		  android:layout_height="wrap_content"
+		  android:orientation="horizontal"
+		  android:layout_marginBottom="20dp"
+		>
+		<TextView	
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:gravity="right"
+			android:text="url(host:port)"
+			android:layout_weight="30"
+			android:textColor="#C8CBFF"
+			android:textSize="13.3dp"
+			android:layout_marginRight="15dp"
+		/>
+		<EditText
+			android:id="@+id/url"
+			android:layout_weight="70"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginRight="20dp"		
+			android:paddingLeft="5dp"
+			android:paddingRight="5dp"			
+			android:textSize="13.3dp"		
+		/>
+	</LinearLayout>
+
+   <FrameLayout
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="40dp">			
+			<Button 				
+				android:layout_height="40dp" 
+				android:layout_width="100dp"
+				android:id="@+id/regBtn" 				
+				android:text="서비스등록" 
+				android:textColor="#9896ff"				
+				android:gravity="center" 
+				android:layout_gravity="left"
+				android:layout_marginLeft="43dp">
+			</Button>
+			<Button 				
+				android:layout_height="40dp" 
+				android:layout_width="100dp"
+				android:id="@+id/unregBtn" 				
+				android:text="서비스해제" 
+				android:textColor="#ff6c00"				
+				android:gravity="center" 
+				android:layout_gravity="right"
+				android:layout_marginRight="43dp">
+			</Button>
+		</FrameLayout>
+</LinearLayout>

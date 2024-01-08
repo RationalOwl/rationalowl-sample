@@ -1,0 +1,66 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
+
+android {
+    namespace 'com.rationalowl.sample'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.rationalowl.sample"
+        minSdk 26
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    // RationalOwl library
+    implementation files('libs/rationalowl-android-1.4.0.aar')
+
+    // RationalOwl using library
+    implementation "androidx.lifecycle:lifecycle-service:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-process:2.5.1"
+
+
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.11.3'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.11.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
+
+    // base64
+    implementation 'commons-codec:commons-codec:1.16.0'
+
+    // FCM library
+    implementation 'com.google.firebase:firebase-core:21.1.1'
+    implementation 'com.google.firebase:firebase-messaging:23.2.1'
+    implementation platform('com.google.firebase:firebase-bom:32.2.3')
+    implementation 'com.google.firebase:firebase-messaging-directboot:23.2.1'
+
+
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.navigation:navigation-ui:2.7.6'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}

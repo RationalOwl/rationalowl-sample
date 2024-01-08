@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.rationalowl.sample"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:name=".MyApp"
+        android:label="@string/app_name"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Sample"
+        tools:targetApi="31">
+        <service
+            android:exported="true"
+            android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- activity using Rationalowl Register API -->
+        <activity android:name=".RegisterActivity"
+            android:exported="true"
+            android:label="단말앱 등록" >
+        </activity>
+        <!-- activity using Rationalowl real-time messaging API   -->
+        <activity android:name=".MsgActivity"
+            android:exported="true"
+            android:label="메시지" >
+        </activity>
+
+        <!-- activity using Rationalowl File transfer API   -->
+        <activity android:name=".FileActivity"
+            android:exported="true"
+            android:label="파일전송" >
+        </activity>
+
+    </application>
+
+</manifest>
