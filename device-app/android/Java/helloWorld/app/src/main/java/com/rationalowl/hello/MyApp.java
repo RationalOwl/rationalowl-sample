@@ -31,7 +31,7 @@ public class MyApp extends Application {
 
         // register sample channel
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationChannel channel = new NotificationChannel("sampleChannelId","sampleChannel", NotificationManager.IMPORTANCE_DEFAULT);
+        NotificationChannel channel = new NotificationChannel("sampleChannelId","sample fcm Channel", NotificationManager.IMPORTANCE_DEFAULT);
         notificationManager.createNotificationChannel(channel);
 
     }
