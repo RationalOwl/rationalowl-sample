@@ -222,7 +222,6 @@ public class RoMessageListener implements MessageListener {
 ```java
 {
     "cId":303,                      // command id
-    "sId":"myRationalOwlServiceId", // service id
     "aId":"myAccountId",            // account id
     "dt": 1,                        // device type 1: android, 2: ios
     "dRId":"myDeviceRegId",         // device registration id
@@ -233,7 +232,6 @@ public class RoMessageListener implements MessageListener {
 ```
  - post parameter 설명
     - cId : (command id) 303
-    - sId : (service id) 래셔널아울 서비스 아이디
     - aId : (account id) 래셔널UMS 계정 아이디
     - dt : (device type) 1: android, 2: ios
     - dRId : (device registration id) 래셔널아울 단말등록 아이디, onRegisterResult 콜백내에서 전달받음.
