@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        >
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp">
+        <Button
+            android:id="@+id/btn_reg"
+            android:layout_height="40dp"
+            android:layout_width="100dp"
+            android:gravity="center"
+            android:layout_gravity="left"
+            android:text="앱등록"
+            android:layout_marginLeft="43dp">
+        </Button>
+
+        <Button
+            android:id="@+id/btn_unreg"
+            android:layout_height="40dp"
+            android:layout_width="100dp"
+            android:gravity="center"
+            android:layout_gravity="right"
+            android:text="앱탈퇴"
+            android:layout_marginRight="43dp">
+        </Button>
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/txt_msg"
+        android:background="#E3AA"
+        android:layout_width="291dp"
+        android:layout_height="344dp"
+        android:layout_gravity="center"
+        android:text="msg will display here!! " />
+
+
+</LinearLayout>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1001316338193",
+    "project_id": "hello-a5404",
+    "storage_bucket": "hello-a5404.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001316338193:android:33432f068cedfbb263bfb0",
+        "android_client_info": {
+          "package_name": "com.rationalowl.hello"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa1D6GncX45zPLIeJ6CgUvJXp8QtQ5EWg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

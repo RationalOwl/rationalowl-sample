@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        >
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_reg"
+        android:layout_width="163dp"
+        android:layout_height="40dp"
+        android:layout_gravity="left"
+        android:layout_marginLeft="43dp"
+        android:gravity="center"
+        android:text="앱등록/해제"></Button>
+
+    <Button
+        android:id="@+id/btn_msg"
+        android:layout_width="164dp"
+        android:layout_height="40dp"
+        android:layout_gravity="left"
+        android:layout_marginLeft="43dp"
+        android:gravity="center"
+
+        android:text="메시지 목록"></Button>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp">
+
+    </FrameLayout>
+
+</LinearLayout>
