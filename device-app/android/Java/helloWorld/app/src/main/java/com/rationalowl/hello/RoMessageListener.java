@@ -20,12 +20,23 @@ public class RoMessageListener implements MessageListener {
 
     private static final ObjectMapper mapper = new ObjectMapper();
 
+    @Override
+    public void onP2PMsgRecieved(ArrayList<JSONObject> msgList) {
+        // hello app don't treat realtime data
+        Log.d(TAG, "onP2PMsgRecieved enter");
+    }
 
     @Override
-    public void onMsgReceived(ArrayList<JSONObject> msgs) {
-        Log.d(TAG, "onMsgReceived enter");
+    public void onDownstreamMsgRecieved(ArrayList<JSONObject> msgList) {
+        // hello app don't treat realtime data
+        Log.d(TAG, "onDownstreamMsgRecieved enter");
+    }
 
-        int msgSize = msgs.size();
+    @Override
+    public void onPushMsgRecieved(ArrayList<JSONObject> msgList) {
+        Log.d(TAG, "onPushMsgRecieved enter");
+
+        int msgSize = msgList.size();
 
         Log.d(TAG, msgSize + " message received");
 
@@ -38,70 +49,52 @@ public class RoMessageListener implements MessageListener {
             Map<String, String> customPush = null;
 
             // recent messages are ordered by message send time descending order [recentest, recent, old, older, ... oldest]
-            for (JSONObject json : msgs) {
-                // message type
-                msgType = (int) json.get(MinervaManager.FIELD_MSG_TYPE);  // 1 (realtime: downstream), 2 (realtime: p2p), 3(custom push)
+            for (JSONObject json : msgList) {
                 // message sender (sender registration id)
                 sender = (String) json.get(MinervaManager.FIELD_MSG_SENDER);
                 // data
                 data = (String) json.get(MinervaManager.FIELD_MSG_DATA);
 
-                Log.d(TAG,  "message type:" + msgType);
                 Log.d(TAG,  "message sender:" + sender);
                 // custom data formatted json format
                 Log.d(TAG,  "message :" + data);
+                // custom push format can be any fields app need.
+                // RationalUms Demo format
+                /*
+                {
+                    "mId": "message id here",
+                    "title": "message title here",
+                    "body": "message body here",
+                    "ii": "image id here"
+                    "st": "(message) send time"
+                  }
+                */
+                // if multiple custom push received, we just notify recentest push only.
+                if(customPush == null) {
+                    customPush = mapper.readValue(data, new TypeReference<Map<String, String>>() {});
 
-                switch(msgType) {
+                    String msgId = null, body = null, title = null, imageId = null;
+                    // mandatory fields
+                    msgId = customPush.get("mId");
+                    body = customPush.get("body");
 
-                    case 1: // realtime downstream
-                    case 2: {// realtime p2p
-                        // this hello world don't handle realtime message
-                        break;
+                    // optional fields
+                    if(customPush.containsKey("title")) {
+                        title = customPush.get("title");
                     }
-                    // custom push received
-                    case 3: {
-                        // custom push format can be any fields app need.
-                        // RationalUms Demo format
-                        /*
-                        {
-                            "mId": "message id here",
-                            "title": "message title here",
-                            "body": "message body here",
-                            "ii": "image id here"
-                            "st": "(message) send time"
-                          }
-                        */
-                        // if multiple custom push received, we just notify recentest push only.
-                        if(customPush == null) {
-                            customPush = mapper.readValue(data, new TypeReference<Map<String, String>>() {});
-
-                            String msgId = null, body = null, title = null, imageId = null;
-                            // mandatory fields
-                            msgId = customPush.get("mId");
-                            body = customPush.get("body");
-
-                            // optional fields
-                            if(customPush.containsKey("title")) {
-                                title = customPush.get("title");
-                            }
-                            if(customPush.containsKey("ii")) {
-                                imageId = customPush.get("ii");
-                            }
-
-                            String[] extra = new String[4];
-                            extra[0] = msgId;
-                            extra[1] = body;
-                            extra[2] = title;
-                            extra[3] = imageId;
-                            Context context = MinervaManager.getContext();
-                            Intent intent = new Intent(MainActivity.MESSAGE_FROM_RATIONALOWL_MSG_LISTENER_ACTION);
-                            intent.putExtra(MainActivity.MESSAGE_FROM_RATIONALOWL_MSG_LISTENER_KEY, extra);
-                            context.sendBroadcast(intent);
-                        }
-                        break;
+                    if(customPush.containsKey("ii")) {
+                        imageId = customPush.get("ii");
                     }
-                    default:
-                        break;
+
+                    String[] extra = new String[4];
+                    extra[0] = msgId;
+                    extra[1] = body;
+                    extra[2] = title;
+                    extra[3] = imageId;
+                    Context context = MinervaManager.getContext();
+                    Intent intent = new Intent(MainActivity.MESSAGE_FROM_RATIONALOWL_MSG_LISTENER_ACTION);
+                    intent.putExtra(MainActivity.MESSAGE_FROM_RATIONALOWL_MSG_LISTENER_KEY, extra);
+                    context.sendBroadcast(intent);
                 }
             }
 
@@ -114,7 +107,6 @@ public class RoMessageListener implements MessageListener {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public void onSendUpstreamMsgResult(int resultCode, String resultMsg, String msgId) {

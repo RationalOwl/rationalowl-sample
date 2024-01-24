@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Logger.debug(TAG, "onRegisterResult " + resultCode);
         String msg = resultMsg + "registration id : " + deviceRegId;
         //yes registration has completed successfully!
-        if(resultCode == Result.RESULT_OK || resultCode == Result.RESULT_DEVICE_ALREADY_REGISTERED) {
+        if(resultCode == Result.RESULT_OK) {
             // save deviceRegId to local file
             // and send deviceRegId to app server
             mDeviceRegId = deviceRegId;
