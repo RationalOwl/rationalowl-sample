@@ -10,6 +10,8 @@ import UIKit;
 import RationalOwl;
 
 class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDelegate {
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +26,8 @@ class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDe
 
 
     @IBAction func btnReg(_ sender: Any) {
-        let gateHost: String = "211.239.150.113";
+        let gateHost: String = "gate.rationalowl.com";  // cloud
+        // let gateHost: String = "211.239.150.123";
         let serviceId: String = "SVC871d16c3-fe28-4f09-ac32-4870d171b067";
         let mgr: MinervaManager = MinervaManager.getInstance();
         mgr.registerDevice(gateHost, serviceId: serviceId, deviceRegName: "my Ios app");
@@ -47,7 +50,9 @@ class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDe
         
         // device app registration success!
         // send deviceRegId to the app server.
-        if(resultCode == RESULT_OK || resultCode == RESULT_DEVICE_ALREADY_REGISTERED) {
+        if(resultCode == RESULT_OK) {
+            let mgr: MinervaManager = MinervaManager.getInstance();
+            mgr.sendUpstreamMsg("send deviceRegId to the app server", serverRegId: "app server reg id");
             
         }
     }
@@ -61,14 +66,24 @@ class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDe
     // message delegate
     /////////////////////////////////////////////////////////////////
     
-    func onDownstreamMsgRecieved(_ msgSize: Int32, msgList: [Any]!, alarmIdx: Int32) {
-        print("onMsgRecieved msg size = \(msgSize)")
+    
+    func onDownstreamMsgRecieved(_ msgList: [Any]!) {
+        // hello world app don't tream realtime message
+        print("onDownstreamMsgRecieved");
+    }
+    
+    func onP2PMsgRecieved(_ msgList: [Any]!) {
+        // hello world app don't tream realtime message
+        print("onP2PMsgRecieved");
+    }
+    
+    // while app running this callback called when push arried,
+    // If there's some un-delivered push message exist, this callback delivered un-delivered push list.
+    func onPushMsgRecieved(_ msgSize: Int32, msgList: [Any]!, alarmIdx: Int32) {
+        print("onPushMsgRecieved msg size = \(msgSize)")
         var msg: Dictionary<String, Any>;
-        // downstream msg type
-        // 1(realtime downstream),   3[custom push: 1) un-delivered push msg list delivered after app launch, 2) push while app fore-ground]
-        var msgType: Int;
-        // sender's registration id
-        var sender: String;
+        // msg send time
+        var sendTime: Double;
         // msgData sould be simple string or dictionary(json string on custom push)
         var msgData: Any?;
         let dateFormatter = DateFormatter();
@@ -76,46 +91,12 @@ class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDe
         
         for i in 0..<msgList.count {
             msg = msgList[i] as! Dictionary<String, Any>;
-            // 1(realtime downstream),  3[custom push: 1) un-delivered push while app launch, 2) push while app fore-ground]
-            msgType = msg["type"] as! Int;
-            // message sender(app server)'s app server registraion id
-            sender = msg["sender"] as! String;
+            // message sent time
+            sendTime = msg["serverTime"] as! Double;
+            let date = Date(timeIntervalSince1970: sendTime/1000);
             msgData = msg["data"];
-            
-            switch (msgType) {
-                // realtime downstream received
-                case 1:
-                    // hello app don't use realtime msg
-                    break;
-                
-                // realtime p2p msg received
-                case 2:
-                    // hello app don't use realtime msg
-                    break;
-                
-                // custom push received
-                case 3:
-                    // When push received while app foreground, simplay print msg.
-                    let customPushStr: String = (String(describing: msgData));
-                    // custom push format can be any fields app need.
-                    // RationalUms Demo format
-                    /*
-                    {
-                        "mId": "message id here",
-                        "title": "message title here",
-                        "body": "message body here",
-                        "ii": "image id here"
-                        "st": "(message) send time"
-                        }
-                    */
-                    // hello world simply print custom push string.
-                    print("push msg = \(customPushStr)")
-                    break;
-                
-                default:
-                    break;
-                
-            }
+            let customPushStr: String = (String(describing: msgData));
+            print("push msg = \(customPushStr)")
         }
     }
     

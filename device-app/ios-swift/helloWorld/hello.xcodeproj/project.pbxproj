@@ -13,12 +13,12 @@
 		040192F42B3424D800B1CD50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040192F22B3424D800B1CD50 /* Main.storyboard */; };
 		040192F62B3424D900B1CD50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 040192F52B3424D900B1CD50 /* Assets.xcassets */; };
 		040192F92B3424D900B1CD50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040192F72B3424D900B1CD50 /* LaunchScreen.storyboard */; };
-		040193052B346B4900B1CD50 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040193032B346A9500B1CD50 /* RationalOwl.framework */; };
-		040193062B346B4900B1CD50 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 040193032B346A9500B1CD50 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		040193092B346BB300B1CD50 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040193082B346BB300B1CD50 /* UserNotifications.framework */; };
 		040193112B346F2200B1CD50 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040193102B346F2200B1CD50 /* NotificationService.swift */; };
 		040193152B346F2200B1CD50 /* NotiServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0401930E2B346F2200B1CD50 /* NotiServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		0401931B2B35CE6300B1CD50 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040193032B346A9500B1CD50 /* RationalOwl.framework */; };
+		04D3FB132B611E5C0075EE77 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D3FB112B611E5C0075EE77 /* RationalOwl.framework */; };
+		04D3FB142B611E790075EE77 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D3FB112B611E5C0075EE77 /* RationalOwl.framework */; };
+		04D3FB152B611E790075EE77 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04D3FB112B611E5C0075EE77 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		804ED6E5E78CC2158849EDAA /* Pods_hello.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10BCDBD976C255FAE25C6CB1 /* Pods_hello.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +39,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				040193062B346B4900B1CD50 /* RationalOwl.framework in Embed Frameworks */,
+				04D3FB152B611E790075EE77 /* RationalOwl.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,13 +66,13 @@
 		040192F52B3424D900B1CD50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		040192F82B3424D900B1CD50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		040192FA2B3424D900B1CD50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		040193032B346A9500B1CD50 /* RationalOwl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RationalOwl.framework; sourceTree = "<group>"; };
 		040193082B346BB300B1CD50 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		0401930E2B346F2200B1CD50 /* NotiServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotiServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		040193102B346F2200B1CD50 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		040193122B346F2200B1CD50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0401931A2B35C9A800B1CD50 /* hello.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = hello.entitlements; sourceTree = "<group>"; };
 		0401931C2B35DF8F00B1CD50 /* NotiServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotiServiceExtension.entitlements; sourceTree = "<group>"; };
+		04D3FB112B611E5C0075EE77 /* RationalOwl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RationalOwl.framework; sourceTree = "<group>"; };
 		10BCDBD976C255FAE25C6CB1 /* Pods_hello.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hello.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB9927E4DCC043EDAA1EE6E /* Pods-hello.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hello.release.xcconfig"; path = "Target Support Files/Pods-hello/Pods-hello.release.xcconfig"; sourceTree = "<group>"; };
 		C948C37AB5D79A6527ABD00E /* Pods-hello.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hello.debug.xcconfig"; path = "Target Support Files/Pods-hello/Pods-hello.debug.xcconfig"; sourceTree = "<group>"; };
@@ -83,8 +83,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D3FB142B611E790075EE77 /* RationalOwl.framework in Frameworks */,
 				040193092B346BB300B1CD50 /* UserNotifications.framework in Frameworks */,
-				040193052B346B4900B1CD50 /* RationalOwl.framework in Frameworks */,
 				804ED6E5E78CC2158849EDAA /* Pods_hello.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,7 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0401931B2B35CE6300B1CD50 /* RationalOwl.framework in Frameworks */,
+				04D3FB132B611E5C0075EE77 /* RationalOwl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +138,8 @@
 		040193022B346A3700B1CD50 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04D3FB112B611E5C0075EE77 /* RationalOwl.framework */,
 				040193082B346BB300B1CD50 /* UserNotifications.framework */,
-				040193032B346A9500B1CD50 /* RationalOwl.framework */,
 				10BCDBD976C255FAE25C6CB1 /* Pods_hello.framework */,
 			);
 			path = Frameworks;
@@ -177,7 +177,6 @@
 				040192E72B3424D800B1CD50 /* Resources */,
 				040193072B346B4900B1CD50 /* Embed Frameworks */,
 				040193192B346F2200B1CD50 /* Embed Foundation Extensions */,
-				DEF5BEB3A1003FE7814ABE6E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -284,23 +283,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DEF5BEB3A1003FE7814ABE6E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-hello/Pods-hello-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-hello/Pods-hello-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hello/Pods-hello-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
