@@ -28,7 +28,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, DeviceRegisterRe
                 val title = mMsg!![2]
                 val imgId = mMsg!![3]
                 val strB = StringBuilder()
-                strB.append("push from Rationalowl message listener".trimIndent())
+                strB.append(
+                    """
+    push from Rationalowl message listener 
+    
+    """.trimIndent()
+                )
                 strB.append("message id: $msgId\r\n")
                 strB.append("message id: $msgId\r\n")
                 strB.append("title: $title\r\n")
@@ -78,7 +83,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, DeviceRegisterRe
             val title = mMsg!![2]
             val imgId = mMsg!![3]
             val strB = StringBuilder()
-            strB.append("push from Rationalowl message listener".trimIndent())
+            strB.append(
+                """
+    push from firebase messaging service 
+    
+    """.trimIndent()
+            )
             strB.append("message id: $msgId\r\n")
             strB.append("title: $title\r\n")
             strB.append("msg: $body\r\n")
