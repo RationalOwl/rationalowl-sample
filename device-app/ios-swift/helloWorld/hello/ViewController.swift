@@ -46,7 +46,7 @@ class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDe
     /////////////////////////////////////////////////////////////////
     
     func onRegisterResult(_ resultCode: Int32, resultMsg: String!, deviceRegId: String!) {
-        print("onRegisterResult resultCode = \(resultCode) resultMsg = \(resultMsg) deviceRegId = \(deviceRegId)")
+        print("onRegisterResult resultCode = \(resultCode) resultMsg = \(String(describing: resultMsg)) deviceRegId = \(String(describing: deviceRegId))")
         
         // device app registration success!
         // send deviceRegId to the app server.
@@ -58,7 +58,7 @@ class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDe
     }
     
     func onUnregisterResult(_ resultCode: Int32, resultMsg: String!) {
-        print("onUnregisterResult resultCode = \(resultCode) resultMsg = \(resultMsg)")
+        print("onUnregisterResult resultCode = \(resultCode) resultMsg = \(String(describing: resultMsg))")
     }
     
     
