@@ -119,16 +119,17 @@
         // system push is also silent push.
         // if system push has received, just return.
         if ([userInfo objectForKey:@"SystemPush"]) {
-            NSLog(@"system push received!!");            
-            return;
+            NSLog(@"system push received!!");
+            // do nothing.
         }
         // normal silent push which are sent by your app server.
         // do your logic
         else {
-		    NSLog(@"silent push received!");
+            NSLog(@"silent push received!");
             // do your logic
         }
     }
+    completionHandler(UIBackgroundFetchResultNewData);
 }
 
 
