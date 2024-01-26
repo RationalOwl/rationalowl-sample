@@ -1,0 +1,6 @@
+framework module Pods_RationalOwlUMSDemo {
+  umbrella header "Pods-RationalOwlUMSDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}

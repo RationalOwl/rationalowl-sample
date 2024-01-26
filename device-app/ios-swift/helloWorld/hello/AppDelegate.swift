@@ -42,6 +42,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+
+        NSLog("User Info : %@", userInfo);
+        let aps: Dictionary<String, Any> = userInfo["aps"] as! Dictionary<String, Any>;
+        
+        // silent push recieved
+        if (aps["content-available"] != nil) {
+            // enable notification delivery tracking
+            let minMgr: MinervaManager = MinervaManager.getInstance();
+            minMgr.enableNotificationTracking(userInfo, appGroup: "group.com.rationalowl.hello")
+
+            // system push is sent by RationalOwl for device app lifecycle check.
+            // system push is also silent push.
+            // if system push has received, just return.
+            if (userInfo["SystemPush"] != nil) {
+                NSLog("system push received!!");
+                // do nothing.
+            }
+            // normal silent push which are sent by your app server.
+            // do your logic
+            else {
+                NSLog("silent push received!");
+                // do your logic
+            }
+        }
+        completionHandler(.newData)
+    }
+    
+    
     // MARK: UNUserNotificationCenterDelegate
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse) async

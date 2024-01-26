@@ -66,12 +66,13 @@ class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDe
     // message delegate
     /////////////////////////////////////////////////////////////////
     
-    
+    //realtime downstream received.
     func onDownstreamMsgRecieved(_ msgList: [Any]!) {
         // hello world app don't tream realtime message
         print("onDownstreamMsgRecieved");
     }
     
+    // realtime p2p received
     func onP2PMsgRecieved(_ msgList: [Any]!) {
         // hello world app don't tream realtime message
         print("onP2PMsgRecieved");
@@ -98,11 +99,6 @@ class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDe
             let customPushStr: String = (String(describing: msgData));
             print("push msg = \(customPushStr)")
         }
-    }
-    
-    
-    func onP2PMsgRecieved(_ msgSize: Int32, msgList: [Any]!, alarmIdx: Int32) {
-        print("onMsgRecieved msg size = \(msgSize)");
     }
     
     
