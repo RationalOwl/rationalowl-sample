@@ -49,7 +49,7 @@ class UserInfoViewController : UIViewController
                                                       message: "error_code_message".localize(response.resultCode.rawValue),
                                                       preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "ok".localize(), style: .default))
-                        self.present(alert, animated: true)
+                        self.present(alert, animated: true)
                         
                         return
                     }
@@ -60,7 +60,7 @@ class UserInfoViewController : UIViewController
                                                   message: error.errorDescription,
                                                   preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "ok".localize(), style: .default))
-                    self.present(alert, animated: true)
+                    self.present(alert, animated: true)
                     
                     return
                 }
@@ -75,6 +75,6 @@ class UserInfoViewController : UIViewController
             }
         })
         alert.addAction(UIAlertAction(title: "cancel".localize(), style: .default))
-        self.present(alert, animated: true)
+        self.present(alert, animated: true)
     }
 }

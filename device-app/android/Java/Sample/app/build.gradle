@@ -34,7 +34,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // RationalOwl library
-    implementation files('libs/rationalowl-android-1.4.0.aar')
+    implementation files('libs/rationalowl-android-1.4.1.aar')
 
     // RationalOwl using library
     implementation "androidx.lifecycle:lifecycle-service:2.5.1"

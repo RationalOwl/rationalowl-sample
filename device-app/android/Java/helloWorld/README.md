@@ -28,7 +28,7 @@ Android 단말앱 샘플은 Android 단말앱 라이브러리에서 제공하는
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     // RationalOwl library
-    implementation files('libs/rationalowl-android-1.4.0.aar')
+    implementation files('libs/rationalowl-android-1.4.1.aar')
     // RationalOwl using library
     implementation "androidx.lifecycle:lifecycle-service:2.5.1"
     implementation "androidx.lifecycle:lifecycle-process:2.5.1"

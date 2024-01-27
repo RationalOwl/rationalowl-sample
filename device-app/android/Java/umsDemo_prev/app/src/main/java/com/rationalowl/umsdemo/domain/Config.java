@@ -32,7 +32,6 @@ public class Config {
         final Context context = MinervaManager.getContext();
         final AssetManager assetManager = context.getResources().getAssets();
 
-        // 서비스 이용약관
         try {
             final InputStream stream = assetManager.open("config.ini");
             final Ini ini = new Ini(stream);
