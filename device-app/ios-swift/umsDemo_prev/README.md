@@ -396,8 +396,7 @@ ok
 ```
  - post parameter 설명
     - cId : (command id) 
-    - aId : (account id) 래셔널UMS 계정 아이디    
-    - pn : (phone number) 앱이 설치된 폰의 전화번호
+    - aId : (account id) 래셔널UMS 계정 아이디
     - mId: (message) 이미지가 첨부된 메시지의 아이디
         - 메시지 아이디는 메시지 수신 콜백으로 전달된다.
     - iId: (image id) 확인하고자 하는 이미지의 아이디
