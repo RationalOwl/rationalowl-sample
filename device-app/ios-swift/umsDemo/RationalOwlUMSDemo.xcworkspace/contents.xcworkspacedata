@@ -2,9 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:RationalOwlUMSDemo.xcodeproj">
+      location = "group:/Users/taekmin/Projects/DaysLab/iOS/rationalowl_umsdemo/RationalOwlUMSDemo.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:RationalOwlUMSDemo.xcodeproj">
    </FileRef>
 </Workspace>

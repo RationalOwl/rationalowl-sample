@@ -1,40 +1,40 @@
-import UIKit
 import RationalOwl
+import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate
-{
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private static let appGroupId = "group.com.rationalowl.umsdemo"
     var window: UIWindow?
-    
+
     private let userDefaults = UserDefaults(suiteName: appGroupId)!
-    private let manager: MinervaManager = MinervaManager.getInstance()
-    
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions)
-    {
+
+    func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let isSignedUp = UserRepository.shared.user != nil
-        
-        let storyboard = UIStoryboard(name: (isSignedUp ? "Message" : "SignUp"), bundle: nil)
+        let isSignedUp = UserLocalDataSource.shared.user != nil
+
+        let storyboard = UIStoryboard(name: isSignedUp ? "Message" : "SignUp", bundle: nil)
         let viewController = storyboard.instantiateInitialViewController()
-        
+
         window = UIWindow(windowScene: windowScene)
         window!.rootViewController = viewController
         window!.makeKeyAndVisible()
     }
-    
-    func sceneWillResignActive(_ scene: UIScene)
-    {
+
+    func sceneWillResignActive(_: UIScene) {
         NSLog("[\(type(of: self))] sceneWillResignActive")
-        manager.enterBackground()
+
+        let minMgr = MinervaManager.getInstance()
+        minMgr?.enterBackground()
+
         userDefaults.setValue(false, forKey: "isActive")
     }
 
-    func sceneDidBecomeActive(_ scene: UIScene)
-    {
+    func sceneDidBecomeActive(_: UIScene) {
         NSLog("[\(type(of: self))] sceneDidBecomeActive")
-        manager.becomeActive()
+
+        let minMgr = MinervaManager.getInstance()
+        minMgr?.becomeActive()
+
         userDefaults.setValue(true, forKey: "isActive")
-        
         MessageSyncService.shared.syncMessages()
     }
 }
