@@ -1,0 +1,27 @@
+name: rationalowl_flutter_example
+description: "Demonstrates how to use the rationalowl_flutter plugin."
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  rationalowl_flutter:
+  firebase_core:
+  firebase_messaging:
+
+  flutter_local_notifications:
+
+dev_dependencies:
+  integration_test:
+    sdk: flutter
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints:
+
+flutter:
+  uses-material-design: true
