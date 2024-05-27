@@ -52,10 +52,9 @@ public class RegisterActivity extends Activity implements View.OnClickListener, 
     protected void onStart() {
         //Logger.debug(TAG, "onStart() enter");
         super.onStart();
-        mUrlEt.setText("gate.rationalowl.com");
-        //mUrlEt.setText("211.239.150.124"); //aws dev
-        //mUrlEt.setText("3.39.200.245"); //aws dev
-        //mUrlEt.setText("117.52.153.229"); // NH network
+        mUrlEt.setText("211.239.150.123"); //aws dev
+        System.out.println("hi");
+        // mUrlEt.setText("gate.rationalowl.com");
 
 
 
@@ -92,15 +91,14 @@ public class RegisterActivity extends Activity implements View.OnClickListener, 
                 // after setDeviceToken API, call register API.
                 String url = mUrlEt.getText().toString();
                 mgr.setRegisterResultListener(this);
-                mgr.registerDevice(url, "9bd4db31dbaa4897ad9aa81c3e7e183a","sample android");
+                //mgr.registerDevice(url, "9bd4db31dbaa4897ad9aa81c3e7e183a","sample android");
+                mgr.registerDevice(url,"SVC93197bc0-e186-4f27-a87d-1fcdc68b02c5","sample android");
             });
         }
         else if(resId == R.id.unregBtn) {
             MinervaManager mgr = MinervaManager.getInstance();
-            //mgr.unregisterDevice("afab0b12c8f44c00860195446032933d"); //aws dev gate
-            //mgr.unregisterDevice("def829b853d046779e2227bdd091653c"); //hostway
-            //mgr.unregisterDevice("SVC59132746-625b-4773-b5db-aa8a0775e04d"); //aws test
             mgr.unregisterDevice("9bd4db31dbaa4897ad9aa81c3e7e183a"); //aws dev gate
+            mgr.unregisterDevice("SVC93197bc0-e186-4f27-a87d-1fcdc68b02c5"); //dev
         }
     }
 

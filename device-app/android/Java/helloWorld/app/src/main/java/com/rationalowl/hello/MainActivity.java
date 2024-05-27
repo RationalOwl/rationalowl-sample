@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 StringBuilder strB = new StringBuilder();
                 strB.append("push from Rationalowl message listener " + "\r\n");
                 strB.append("message id: " + msgId + "\r\n");
-                strB.append("message id: " + msgId + "\r\n");
                 strB.append("title: " + title + "\r\n");
                 strB.append("msg: " + body + "\r\n");
                 strB.append("image id: " + imgId + "\r\n");
