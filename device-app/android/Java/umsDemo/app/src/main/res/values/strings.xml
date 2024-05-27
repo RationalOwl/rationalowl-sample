@@ -1,0 +1,91 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Rational UMS</string>
+
+    <!-- Notification settings -->
+    <string name="notification_channel_id">notices</string>
+    <string name="notification_channel_name">공지</string>
+
+    <!-- Common -->
+    <string name="next">다음</string>
+    <string name="ok">확인</string>
+    <string name="cancel">취소</string>
+    <string name="error_code_message">오류가 발생했습니다. (rc: %1$d)</string>
+
+    <!-- fragment_signup_input_phone -->
+    <string name="input_phone_number">휴대전화 번호를 입력해 주세요.</string>
+    <string name="phone_number">전화번호</string>
+    <string name="country_korea">대한민국(Republic of Korea)</string>
+    <string name="country_code_korea">82</string>
+    <string name="phone_auth">전화번호 인증</string>
+    <string name="send_auth_number">%1$s 번호로 SMS 인증번호를 발신합니다.</string>
+    <string name="phone_auth_error">전화번호 인증 오류</string>
+
+    <!-- fragment_signup_verify_phone -->
+    <string name="input_auth_number">%1$s로 전송받은 인증번호를 입력하세요.</string>
+    <string name="edit_phone_number">전화번호 수정</string>
+    <string name="auth_number">인증번호</string>
+    <string name="invalid_auth_number">인증번호 확인</string>
+    <string name="invalid_auth_number_message">인증번호가 일치하지 않습니다.</string>
+    <string name="auth_failed">인증 실패</string>
+    <string name="auth_error">인증 오류</string>
+
+    <!-- fragment_signup_agreement -->
+    <string name="service_terms">서비스 이용약관</string>
+    <string name="privacy_policy">개인정보 수집 및 이용안내</string>
+    <string name="agree">동의합니다.</string>
+
+    <!-- fragment_signup_input_info -->
+    <string name="input_info">이름과 앱 내 표시할 아이디를 입력하세요.</string>
+    <string name="user_name">이름</string>
+    <string name="user_id">아이디</string>
+    <string name="confirm_sign_up">가입 완료</string>
+    <string name="new_user">가입 완료</string>
+    <string name="welcome_new_user">%1$s님 가입을 환영합니다.</string>
+    <string name="old_user">기가입 회원</string>
+    <string name="welcome_old_user">%1$s님 재방문을 환영합니다.</string>
+    <string name="register_device_error">기기 등록 오류</string>
+    <string name="sign_up_error">가입 오류</string>
+
+    <!-- activity_message_list -->
+    <string name="messages">메시지</string>
+    <string name="delete">삭제</string>
+    <string name="mark_all_as_read">모두 수신확인으로 표시</string>
+    <string name="message_normal_title">%1$s (공지)</string>
+    <string name="message_emergency_title">%1$s (긴급공지)</string>
+    <string name="message_short_time_format">a h:mm</string>
+    <string name="message_short_date_format">M월 d일</string>
+    <string name="message_unread">미확인</string>
+    <string name="message_read">수신확인</string>
+    <string name="delete_messages">메시지 삭제</string>
+    <string name="select_all">모두 선택</string>
+    <string name="deselect_all">모두 선택 해제</string>
+    <string name="no_messages">수신 메시지가 없습니다.</string>
+    <string name="delete_messages_selection_count">%1$d개 삭제 선택</string>
+    <string name="delete_multiple_messages">%1$d개 메시지를 삭제할까요?</string>
+
+    <!-- activity_message_view -->
+    <string name="message_long_datetime_format">M월 d일, a h:mm:ss</string>
+    <string name="copy" tools:override="true">복사</string>
+    <string name="info">정보</string>
+    <string name="copied_to_clipboard">클립보드에 복사되었습니다.</string>
+    <string name="delete_message">메시지를 삭제할까요?</string>
+    <string name="message_delivery_info">통합 메시지 전달 정보</string>
+    <string name="push_sent">푸시 알림 발신</string>
+    <string name="push_received">푸시 알림 수신</string>
+    <string name="talk_sent">알림톡 발신</string>
+    <string name="text_sent">문자 발신</string>
+    <string name="not_sent">미발신</string>
+
+    <!-- activity_user_info -->
+    <string name="user_info">사용자 정보</string>
+    <string name="delete_account">탈퇴하기</string>
+    <string name="joined_at">가입일</string>
+    <string name="joined_date_format">yyyy년 M월 d일</string>
+    <string name="delete_account_message">
+        탈퇴 전 확인하세요.\n\n
+        탈퇴하시면 아래 정보가 영구 삭제되며 다시 복구되지 않습니다. 탈퇴하시겠습니까?\n\n
+        &lt;삭제대상&gt;\n
+        회원 프로필 정보, 회원에게 전달된 메시지
+    </string>
+    <string name="delete_account_error">탈퇴하기 오류</string>
+</resources>
