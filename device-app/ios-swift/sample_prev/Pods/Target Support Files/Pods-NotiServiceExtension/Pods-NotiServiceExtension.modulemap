@@ -1,6 +1,0 @@
-framework module Pods_NotiServiceExtension {
-  umbrella header "Pods-NotiServiceExtension-umbrella.h"
-
-  export *
-  module * { export * }
-}
