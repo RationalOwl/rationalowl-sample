@@ -1,9 +1,12 @@
 package com.rationalowl.hello
 
+import android.Manifest
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,6 +14,8 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.android.gms.tasks.Task
 import com.google.firebase.messaging.FirebaseMessaging
 import com.rationalowl.minerva.client.android.DeviceRegisterResultListener
@@ -59,6 +64,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, DeviceRegisterRe
         val intentFilter = IntentFilter()
         intentFilter.addAction(MESSAGE_FROM_RATIONALOWL_MSG_LISTENER_ACTION)
         registerReceiver(mReceiver, intentFilter)
+
+        // check push permission
+        checkPushPermission()
     }
 
     override fun onDestroy() {
@@ -145,6 +153,29 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, DeviceRegisterRe
         } else {
         }
     }
+
+
+    private fun checkPushPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // permission not allowed
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                // simply request push permission.
+                Logger.error("Hi", "user rejected push permission in the past")
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS),1)
+            }
+            else {
+                // do nothing.
+                Logger.debug("Hi", "push permission allowed")
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(resultCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(resultCode, permissions, grantResults)
+
+        // do your logic.
+    }
+
 
     companion object {
         private const val TAG = "MainActivity"

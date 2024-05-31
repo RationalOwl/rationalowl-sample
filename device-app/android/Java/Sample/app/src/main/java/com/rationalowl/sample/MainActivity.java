@@ -1,8 +1,13 @@
 package com.rationalowl.sample;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +28,9 @@ public class MainActivity  extends AppCompatActivity implements View.OnClickList
         Button msgBtn = (Button) findViewById(R.id.btn_msg);
         regBtn.setOnClickListener(this);
         msgBtn.setOnClickListener(this);
+
+        // check push permission
+        checkPushPermission();
     }
 
 
@@ -46,5 +54,28 @@ public class MainActivity  extends AppCompatActivity implements View.OnClickList
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
         }
+    }
+
+    private void checkPushPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // permission not allowed
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                // simply request push permission.
+                Logger.error("Hi", "user rejected push permission in the past");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
+            }
+            // Already permission allowed
+            else {
+                // do nothing.
+                Logger.debug("Hi", "push permission allowed");
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int resultCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(resultCode, permissions, grantResults);
+
+        // do your logic.
     }
 }

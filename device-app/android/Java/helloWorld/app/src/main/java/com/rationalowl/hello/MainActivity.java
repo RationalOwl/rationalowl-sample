@@ -1,17 +1,23 @@
 package com.rationalowl.hello;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import android.Manifest;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.rationalowl.minerva.client.android.DeviceRegisterResultListener;
@@ -77,6 +83,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(MESSAGE_FROM_RATIONALOWL_MSG_LISTENER_ACTION);
         registerReceiver(mReceiver, intentFilter);
+
+        // check push permission
+        checkPushPermission();
     }
 
 
@@ -175,5 +184,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //registration error has occurred!
         else {
         }
+    }
+
+    private void checkPushPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // permission not allowed
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                // simply request push permission.
+                Logger.error("Hi", "user rejected push permission in the past");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
+            }
+            // Already permission allowed
+            else {
+                // do nothing.
+                Logger.debug("Hi", "push permission allowed");
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int resultCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(resultCode, permissions, grantResults);
+
+        // do your logic.
     }
 }
