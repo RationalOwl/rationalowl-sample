@@ -4,8 +4,6 @@ import UIKit
 import RationalOwl
 
 class UserInfoViewController: UIViewController {
-    private static let tag = "UserInfoViewController"
-    
     @IBOutlet private var labelUserName: UILabel!
     @IBOutlet private var labelUserId: UILabel!
     @IBOutlet private var labelPhoneNumber: UILabel!
@@ -53,7 +51,7 @@ class UserInfoViewController: UIViewController {
                         return
                     }
                 case let .failure(error):
-                    NSLog("[\(Self.tag)] \(error)")
+                    NSLog("[\(type(of: self))] \(error)")
                     onError(error.errorDescription!)
                     return
                 }

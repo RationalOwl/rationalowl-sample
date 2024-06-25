@@ -42,7 +42,7 @@ class DataDef {
     }
 
     struct Server: Codable {
-        let regId: String
+        let regId: String?
     }
 
     struct User: Codable {

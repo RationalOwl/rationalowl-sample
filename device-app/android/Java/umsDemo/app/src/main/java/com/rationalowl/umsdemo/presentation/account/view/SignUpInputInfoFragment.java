@@ -173,9 +173,9 @@ public class SignUpInputInfoFragment extends Fragment {
 
                 requireActivity().runOnUiThread(() ->
                         new MaterialAlertDialogBuilder(requireActivity())
-                                .setTitle(getString(titleId))
+                                .setTitle(titleId)
                                 .setMessage(getString(messageId, viewModel.getUserName().getValue()))
-                                .setPositiveButton(getString(R.string.ok), null)
+                                .setPositiveButton(R.string.ok, null)
                                 .setOnDismissListener(dialogInterface -> {
                                     final Intent intent = new Intent(getActivity(), MessageListActivity.class);
                                     startActivity(intent);

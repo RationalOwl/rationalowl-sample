@@ -3,8 +3,6 @@ import OSLog
 import UIKit
 import UserNotifications
 
-import FirebaseCore
-import FirebaseMessaging
 import RationalOwl
 
 @main
@@ -18,22 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
         UNUserNotificationCenter.current().delegate = self
-
-        if #available(iOS 10, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { _, _ in }
-            application.registerForRemoteNotifications()
-        } else {
-            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil))
-            UIApplication.shared.registerForRemoteNotifications()
-        }
-
+        
+        application.registerForRemoteNotifications()
+            
         let notifyCenter = CFNotificationCenterGetDarwinNotifyCenter()
         let observer = UnsafeRawPointer(Unmanaged.passUnretained(self).toOpaque())
         CFNotificationCenterAddObserver(notifyCenter, observer, handleDarwinNotification, MessageSyncService.newMessagesId as CFString, nil, .deliverImmediately)
 
-        let minMgr = MinervaManager.getInstance()
-        minMgr?.setAppGroup(Self.appGroupId)
-        minMgr?.setMessageDelegate(RoMessageDelegate())
+        let minMgr: MinervaManager = MinervaManager.getInstance()
+        minMgr.setAppGroup(Self.appGroupId)
+        minMgr.setMessageDelegate(RoMessageDelegate())
 
         return true
     }
@@ -41,8 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(_: UIApplication) {
         NSLog("[\(type(of: self))] applicationWillResignActive")
 
-        let minMgr = MinervaManager.getInstance()
-        minMgr?.enterBackground()
+        let minMgr: MinervaManager = MinervaManager.getInstance()
+        minMgr.enterBackground()
 
         userDefaults.setValue(false, forKey: "isActive")
     }
@@ -50,8 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_: UIApplication) {
         NSLog("[\(type(of: self))] applicationDidBecomeActive")
 
-        let minMgr = MinervaManager.getInstance()
-        minMgr?.becomeActive()
+        let minMgr: MinervaManager = MinervaManager.getInstance()
+        minMgr.becomeActive()
 
         userDefaults.setValue(true, forKey: "isActive")
         MessageSyncService.shared.syncMessages()
@@ -64,33 +56,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
-    func registerForPushNotifications() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, _ in
-            NSLog("Permission granted: \(granted)")
-            guard granted else { return }
-
-            self?.getNotificationSettings()
-        }
-    }
-
-    func getNotificationSettings() {
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
-            NSLog("Notification settings: \(settings)")
-            guard settings.authorizationStatus == .authorized else { return }
-
-            DispatchQueue.main.async {
-                UIApplication.shared.registerForRemoteNotifications()
-            }
-        }
-    }
-
     func application(_: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
     {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
 
-        let minMgr = MinervaManager.getInstance()
-        minMgr?.setDeviceToken(token)
+        let minMgr: MinervaManager = MinervaManager.getInstance()
+        minMgr.setDeviceToken(token)
     }
 
     func application(_: UIApplication,
@@ -115,8 +87,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // silent push recieved)
             if aps["content-available"] != nil {
                 // enable notification delivery tracking
-                let minMgr = MinervaManager.getInstance()
-                minMgr?.enableNotificationTracking(userInfo, appGroup: MessageSyncService.appGroupId)
+                let minMgr: MinervaManager = MinervaManager.getInstance()
+                minMgr.enableNotificationTracking(userInfo, appGroup: MessageSyncService.appGroupId)
 
                 // system push is sent by RationalOwl for device app lifecycle check.
                 // system push is also silent push.

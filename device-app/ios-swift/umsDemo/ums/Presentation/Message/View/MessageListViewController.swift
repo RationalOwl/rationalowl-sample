@@ -49,9 +49,12 @@ class MessageListViewController: UITableViewController {
         viewModel.selectedItemIds.observe(on: self) { [weak self] selectedItemIds in
             self?.onSelectedItemsChange(selectedItemIds)
         }
+
+        requestPermission()
     }
 
-    override func viewWillAppear(_: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.isToolbarHidden = viewModel.viewType.value == .normal
     }
 
@@ -108,6 +111,7 @@ class MessageListViewController: UITableViewController {
     }
 
     // MARK: UI
+
     private func updateListBackground() {
         if viewModel.items.value.isEmpty {
             let label = UILabel()
@@ -172,6 +176,7 @@ class MessageListViewController: UITableViewController {
     }
 
     // MARK: Event handlers
+
     @objc private func onButtonMoreClick(_: UIBarButtonItem) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
@@ -277,6 +282,28 @@ extension MessageListViewController {
         if viewModel.viewType.value == .delete {
             let message = viewModel.items.value[indexPath.row]
             viewModel.setSelectedState(message.id, selected: false)
+        }
+    }
+
+    @objc private func requestPermission() {
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { [weak self] settings in
+            if settings.authorizationStatus == .notDetermined {
+                let alert = UIAlertController(title: "notification_permission_title".localize(),
+                                              message: "notification_permission_message".localize(),
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "ok".localize(), style: .default) { [weak self] _ in
+                    center.requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, error in
+                        if error != nil {
+                            NSLog("[\(type(of: self))] \(error!)")
+                        }
+                    }
+                })
+                
+                DispatchQueue.main.async {
+                    self?.present(alert, animated: true)
+                }
+            }
         }
     }
 }

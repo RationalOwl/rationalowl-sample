@@ -2,9 +2,11 @@ package com.rationalowl.umsdemo.presentation.account.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.text.HtmlCompat;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.rationalowl.bridgeUms.PushAppProto;
@@ -41,7 +43,7 @@ public class UserInfoActivity extends AppCompatActivity {
         binding.buttonDeleteAccount.setOnClickListener(v ->
                 new MaterialAlertDialogBuilder(this)
                         .setTitle(R.string.delete_account)
-                        .setMessage(R.string.delete_account_message)
+                        .setMessage(Html.fromHtml(getString(R.string.delete_account_message), HtmlCompat.FROM_HTML_MODE_LEGACY))
                         .setNegativeButton(R.string.cancel, null)
                         .setPositiveButton(R.string.delete_account, (dialogInterface, i) -> deleteAccount())
                         .show());

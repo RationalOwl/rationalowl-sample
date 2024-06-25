@@ -47,6 +47,13 @@
     <string name="sign_up_error">가입 오류</string>
 
     <!-- activity_message_list -->
+    <string name="notification_permission_title">앱 접근 권한 안내</string>
+    <string name="notification_permission_message">
+        서비스 이용을 위해 다음과 같은 접근 권한을 필요로 합니다.&lt;br>
+        &lt;br>
+        &lt;b>[필수적 접근 권한]&lt;/b>&lt;br>
+        • &lt;b>알림&lt;/b>: 메시지 수신 알림</string>
+
     <string name="messages">메시지</string>
     <string name="delete">삭제</string>
     <string name="mark_all_as_read">모두 수신확인으로 표시</string>
@@ -82,10 +89,11 @@
     <string name="joined_at">가입일</string>
     <string name="joined_date_format">yyyy년 M월 d일</string>
     <string name="delete_account_message">
-        탈퇴 전 확인하세요.\n\n
-        탈퇴하시면 아래 정보가 영구 삭제되며 다시 복구되지 않습니다. 탈퇴하시겠습니까?\n\n
-        &lt;삭제대상&gt;\n
-        회원 프로필 정보, 회원에게 전달된 메시지
+        탈퇴 후 아래 정보가 모두 삭제되며, 다시 복구되지 않습니다.&lt;br>
+        • 사용자 정보&lt;br>
+        • 수신된 메시지&lt;br>
+        &lt;br>
+        계속하시겠습니까?
     </string>
     <string name="delete_account_error">탈퇴하기 오류</string>
 </resources>

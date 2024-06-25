@@ -32,7 +32,7 @@ public class NotificationService extends FirebaseMessagingService {
      */
     @Override
     public void onNewToken(@NonNull String token) {
-        Logger.debug(TAG, "onNewToken(" + token + ")");
+        Log.d(TAG, "onNewToken(" + token + ")");
 
         // just call setDeviceToken() API
         final MinervaManager minMgr = MinervaManager.getInstance();
@@ -82,7 +82,7 @@ public class NotificationService extends FirebaseMessagingService {
     }
 
     public void handleMessage(Map<String, String> data) {
-        if (data.size() == 0) return;
+        if (data.isEmpty()) return;
 
         // ro_todo_1: data {"mId":"dkdk","type":1,"title":"dkd","body":"dkdk","st":"11111","ii":"imgId"}
         // 메시지에 send time(st) imageId(ii) 메시지 모델 저장.

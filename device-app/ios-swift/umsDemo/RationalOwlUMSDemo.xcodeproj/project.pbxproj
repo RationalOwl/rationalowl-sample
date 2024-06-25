@@ -29,7 +29,6 @@
 		957FD8912A62E7990093C242 /* ServerLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957FD8902A62E7990093C242 /* ServerLocalDataSource.swift */; };
 		957FD8942A62EA2D0093C242 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 957FD8932A62EA2D0093C242 /* Alamofire */; };
 		957FD8B92A62F8B10093C242 /* UmsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957FD8B82A62F8B10093C242 /* UmsService.swift */; };
-		957FD8BC2A62FB270093C242 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 957FD8BB2A62FB270093C242 /* FirebaseMessaging */; };
 		957FD8C32A62FB7C0093C242 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957FD8C02A62FB7C0093C242 /* UIViewExtension.swift */; };
 		957FD8C42A62FB7C0093C242 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957FD8C12A62FB7C0093C242 /* UIViewControllerExtension.swift */; };
 		957FD8C52A62FB7C0093C242 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957FD8C22A62FB7C0093C242 /* StringExtension.swift */; };
@@ -171,7 +170,6 @@
 				957FD8942A62EA2D0093C242 /* Alamofire in Frameworks */,
 				95D247922B7E547200A5FDBF /* Pods_RationalOwlUMSDemo.framework in Frameworks */,
 				95D247952B7E547400A5FDBF /* RationalOwl.framework in Frameworks */,
-				957FD8BC2A62FB270093C242 /* FirebaseMessaging in Frameworks */,
 				956F697E2A5E5995008AF7A0 /* INI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,7 +440,6 @@
 			packageProductDependencies = (
 				956F697D2A5E5995008AF7A0 /* INI */,
 				957FD8932A62EA2D0093C242 /* Alamofire */,
-				957FD8BB2A62FB270093C242 /* FirebaseMessaging */,
 			);
 			productName = ums;
 			productReference = 957697C92A5AD623005EA3EC /* RationalOwlUMSDemo.app */;
@@ -478,7 +475,6 @@
 			packageReferences = (
 				956F697C2A5E5995008AF7A0 /* XCRemoteSwiftPackageReference "ini" */,
 				957FD8922A62EA2D0093C242 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				957FD8BA2A62FB270093C242 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 957697CA2A5AD623005EA3EC /* Products */;
 			projectDirPath = "";
@@ -801,7 +797,7 @@
 				CODE_SIGN_ENTITLEMENTS = RationalOwlUMSDemo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 56AQ6CM687;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -823,7 +819,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rationalowl.umsdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -848,7 +844,7 @@
 				CODE_SIGN_ENTITLEMENTS = RationalOwlUMSDemo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 56AQ6CM687;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -869,7 +865,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rationalowl.umsdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -933,14 +929,6 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		957FD8BA2A62FB270093C242 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -953,11 +941,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 957FD8922A62EA2D0093C242 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		957FD8BB2A62FB270093C242 /* FirebaseMessaging */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 957FD8BA2A62FB270093C242 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

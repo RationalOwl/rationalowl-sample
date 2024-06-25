@@ -95,7 +95,7 @@ public enum PushAppProto {
         public var mResultCode: Int
         public var mComment: String?
 
-        public var mUmsServerRegId: String
+        public var mUmsServerRegId: String?
     }
 
     public struct PushAppUnregUserReq: Codable {

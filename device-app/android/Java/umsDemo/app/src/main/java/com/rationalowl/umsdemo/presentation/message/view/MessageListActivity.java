@@ -1,15 +1,29 @@
 package com.rationalowl.umsdemo.presentation.message.view;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.text.HtmlCompat;
 import androidx.databinding.BindingAdapter;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
@@ -28,9 +42,23 @@ import java.util.List;
 import java.util.Set;
 
 public class MessageListActivity extends AppCompatActivity {
+    private static final String TAG = "MessageListActivity";
+
     private ActivityMessageListBinding binding;
     private MessageListAdapter adapter;
     private MessageListViewModel viewModel;
+
+    private final ActivityResultLauncher<String> requestPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    Log.d(TAG, "POST_NOTIFICATIONS permission is granted.");
+                } else {
+                    Log.d(TAG, "POST_NOTIFICATIONS permission is rejected.");
+                    requestPermission();
+                }
+            });
+
+    private AlertDialog permissionDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +90,12 @@ public class MessageListActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        requestPermission();
     }
 
     private void initRecyclerView() {
@@ -174,5 +208,38 @@ public class MessageListActivity extends AppCompatActivity {
         startActivity(intent);
 
         MessageRepository.getInstance().setAsRead(message);
+    }
+
+    private void requestPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            final int state = ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS);
+
+            if (state == PackageManager.PERMISSION_GRANTED)
+                return;
+
+            if (permissionDialog == null || !permissionDialog.isShowing()) {
+                if (permissionDialog == null) {
+                    permissionDialog = new MaterialAlertDialogBuilder(this)
+                            .setTitle(R.string.notification_permission_title)
+                            .setMessage(Html.fromHtml(getString(R.string.notification_permission_message), HtmlCompat.FROM_HTML_MODE_LEGACY))
+                            .setPositiveButton(R.string.ok, (d, i) -> {
+                                if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.POST_NOTIFICATIONS)) {
+                                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+                                } else {
+                                    final Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+                                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                            .putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName())
+                                            .putExtra(Settings.EXTRA_CHANNEL_ID, "notices");
+
+                                    startActivity(intent);
+                                }
+                            })
+                            .setCancelable(false)
+                            .create();
+                }
+
+                permissionDialog.show();
+            }
+        }
     }
 }
