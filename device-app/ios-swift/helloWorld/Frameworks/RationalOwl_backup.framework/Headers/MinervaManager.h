@@ -29,6 +29,60 @@
 
 /* API */
 
+
+/////////////////////////////////////////
+// set and clear Rationalowl delegate
+/////////////////////////////////////////
+
+/**
+ * 단말앱 등록 요청 및 등록해제 요청 후 결과 수신 시 호출할 Delegate를 지정한다.
+ * 해당 Delegate 객체는 단 하나만 지정해야 한다.
+ * @param delegate 단말앱 등록/등록해제 결과 콜백 처리를 담당할 Delegate
+ *          - 단말앱 등록 결과 수신시 delegate의 onRegisterResult 콜백이 호출된다.
+ *          - 단말앱 등록해제 결과 수신시 delegate의 onUnregisterResult 콜백이 호출된다.
+ */
+- (void) setDeviceRegisterResultDelegate: (id<DeviceRegisterResultDelegate>) delegate;
+
+/**
+ * 지정된 단말앱 등록/등록해제 콜백 Delegate를 해제한다.
+ */
+- (void) clearDeviceRegisterResultDelegate;
+
+/**
+ * 실시간 메시지 발신 후 발신 결과나 실시간 메시지 수신 시 호출할 Delegate를 지정한다.
+ * 해당 Delegate 객체는 단 하나만 지정해야 한다.
+ * @param delegate 메시지 관련 콜백 처리를 담당할 Delegate
+ *         - 앱서버로부터 다운스트림 메시지 수신시 delegate의 onDownstreamMsgRecieved 콜백이 호출된다.
+ *         - 다른 단말앱으로부터 P2P 메시지 수신신 delegate의 onP2PMsgRecieved 콜백이 호출된다.
+ *         - 앱서버에게 업스트림 메시지 발신 후 발신 결과 delegate의 onUpstreamMsgResult 콜백이 호출된다.
+ *         - 다른 단말앱에게 P2P 메시지 발신 후 발신 결과 delegate의 onP2PMsgResult 콜백이 호출된다.
+ */
+- (void) setMessageDelegate: (id<MessageDelegate>) delegate;
+
+/**
+ * 지정된 메시지 콜백 Delegate를 해제한다.
+ */
+- (void) clearMessageDelegate;
+
+
+/////////////////////////////////////////
+// life cycle delegate
+/////////////////////////////////////////
+
+/**
+ * 단말앱이 액티브 상태가 됨을 단말 라이브러리에게 알린다.
+ * AppDelegate 의 applicationDidBecomeActive 함수 내에서 API 호출을 해야 한다
+ */
+- (void) becomeActive;
+
+
+/**
+ * 단말앱이 백그라운드 상태로 전이됨을 단말 라이브러리에게 알린다.
+ * AppDelegate 의 applicationWillResignActive 함수 내에서 API 호출을 해야 한다
+ */
+- (void) enterBackground;
+
+
 /**
  * 단말앱 등록 요청을 한다.
  * 이후 단말앱 등록 결과 DeviceRegisterResultDelegate의 onRegisterResult 콜백이 호출되고 단말 등록 성공시 단말 등록 아이디가 발급된다.
@@ -99,57 +153,7 @@
 
 
 
-/////////////////////////////////////////
-// set and clear Rationalowl delegate
-/////////////////////////////////////////
 
-/**
- * 단말앱 등록 요청 및 등록해제 요청 후 결과 수신 시 호출할 Delegate를 지정한다.
- * 해당 Delegate 객체는 단 하나만 지정해야 한다.
- * @param delegate 단말앱 등록/등록해제 결과 콜백 처리를 담당할 Delegate
- *          - 단말앱 등록 결과 수신시 delegate의 onRegisterResult 콜백이 호출된다.
- *          - 단말앱 등록해제 결과 수신시 delegate의 onUnregisterResult 콜백이 호출된다.
- */
-- (void) setDeviceRegisterResultDelegate: (id<DeviceRegisterResultDelegate>) delegate;
-
-/**
- * 지정된 단말앱 등록/등록해제 콜백 Delegate를 해제한다.
- */
-- (void) clearDeviceRegisterResultDelegate;
-
-/**
- * 실시간 메시지 발신 후 발신 결과나 실시간 메시지 수신 시 호출할 Delegate를 지정한다.
- * 해당 Delegate 객체는 단 하나만 지정해야 한다.
- * @param delegate 메시지 관련 콜백 처리를 담당할 Delegate
- *         - 앱서버로부터 다운스트림 메시지 수신시 delegate의 onDownstreamMsgRecieved 콜백이 호출된다.
- *         - 다른 단말앱으로부터 P2P 메시지 수신신 delegate의 onP2PMsgRecieved 콜백이 호출된다.
- *         - 앱서버에게 업스트림 메시지 발신 후 발신 결과 delegate의 onUpstreamMsgResult 콜백이 호출된다.
- *         - 다른 단말앱에게 P2P 메시지 발신 후 발신 결과 delegate의 onP2PMsgResult 콜백이 호출된다.
- */
-- (void) setMessageDelegate: (id<MessageDelegate>) delegate;
-
-/**
- * 지정된 메시지 콜백 Delegate를 해제한다.
- */
-- (void) clearMessageDelegate;
-
-
-/////////////////////////////////////////
-// life cycle delegate
-/////////////////////////////////////////
-
-/**
- * 단말앱이 액티브 상태가 됨을 단말 라이브러리에게 알린다.
- * AppDelegate 의 applicationDidBecomeActive 함수 내에서 API 호출을 해야 한다
- */
-- (void) becomeActive;
-
-
-/**
- * 단말앱이 백그라운드 상태로 전이됨을 단말 라이브러리에게 알린다.
- * AppDelegate 의 applicationWillResignActive 함수 내에서 API 호출을 해야 한다
- */
-- (void) enterBackground;
 
 /////////////////////////////////////////
 // APNS delegate

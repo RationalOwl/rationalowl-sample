@@ -59,16 +59,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
     {
-        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined();
 
-        let minMgr: MinervaManager = MinervaManager.getInstance()
-        minMgr.setDeviceToken(token)
+        NSLog("APNs registration token:"+token);
+        let minMgr: MinervaManager = MinervaManager.getInstance();
+        minMgr.setDeviceToken(token);
     }
 
     func application(_: UIApplication,
                      didFailToRegisterForRemoteNotificationsWithError error: Error)
     {
-        NSLog("APNs registration failed: \(error)")
+        NSLog("APNs registration failed: \(error)");
     }
 
     func application(_: UIApplication,

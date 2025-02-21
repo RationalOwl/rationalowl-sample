@@ -1,0 +1,6 @@
+framework module RationalOwl {
+  umbrella header "RationalOwl.h"
+  export *
+
+  module * { export * }
+}

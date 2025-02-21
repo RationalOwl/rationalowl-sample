@@ -25,6 +25,7 @@ public class UmsService {
 
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private static final int UMS_PORT = 36001;
+    //private static final int UMS_PORT_test_for_nginx = 443;
 
     private static UmsService instance;
 
