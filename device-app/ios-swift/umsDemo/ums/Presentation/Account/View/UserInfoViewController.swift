@@ -37,7 +37,7 @@ class UserInfoViewController: UIViewController {
             let user = UserLocalDataSource.shared.user!
             let request = PushAppProto.PushAppUnregUserReq(
                 mAccountId: Config.shared.umsAccountId,
-                mPhoneNumber: user.phoneNumber
+                mDeviceRegId: user.regId
             )
             
             UmsService.shared.deleteUser(request) { [weak self] result in

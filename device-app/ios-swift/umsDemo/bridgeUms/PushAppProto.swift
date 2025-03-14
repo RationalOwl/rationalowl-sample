@@ -102,13 +102,13 @@ public enum PushAppProto {
         enum CodingKeys: String, CodingKey {
             case mCid = "cId"
             case mAccountId = "aId"
-            case mPhoneNumber = "pn"
+            case mDeviceRegId = "dRId"
         }
 
         public var mCid: Int = UmsProtocol.APP_UNREG_USER_CMD_ID
         public var mAccountId: String
 
-        public var mPhoneNumber: String
+        public var mDeviceRegId: String
     }
 
     public struct PushAppUnregUserRes: Decodable {
@@ -117,7 +117,7 @@ public enum PushAppProto {
             case mAccountId = "aId"
             case mResultCode = "rc"
             case mComment = "cmt"
-            case mPhoneNumber = "pn"
+            case mDeviceRegId = "dRId"
         }
 
         public var mCid: Int = UmsProtocol.APP_UNREG_USER_CMD_ID
@@ -125,7 +125,7 @@ public enum PushAppProto {
         public var mResultCode: Int
         public var mComment: String?
 
-        public var mPhoneNumber: String
+        public var mDeviceRegId: String
     }
 
     /////// push app job
@@ -135,7 +135,6 @@ public enum PushAppProto {
             case mCid = "cId"
             case mReqType = "r"
             case mAccountId = "aId"
-            case mPhoneNum = "pn"
             case mDeviceRegId = "dRId"
             case mMsgId = "mId"
         }
@@ -143,7 +142,6 @@ public enum PushAppProto {
         public var mCid: Int = UmsProtocol.APP_MSG_READ_NOTI_CMD_ID
         public var mReqType: Int = UmsProtocol.REQUEST_TYPE
         public var mAccountId: String
-        public var mPhoneNum: String
         public var mDeviceRegId: String
         public var mMsgId: String
     }
@@ -152,7 +150,6 @@ public enum PushAppProto {
         enum CodingKeys: String, CodingKey {
             case mCid = "cId"
             case mAccountId = "aId"
-            case mPhoneNum = "pn"
             case mDeviceRegId = "dRId"
             case mMsgId = "mId"
         }
@@ -160,7 +157,6 @@ public enum PushAppProto {
         public var mCid: Int = UmsProtocol.APP_MSG_INFO_CMD_ID
 
         public var mAccountId: String
-        public var mPhoneNum: String
         public var mDeviceRegId: String
 
         public var mMsgId: String

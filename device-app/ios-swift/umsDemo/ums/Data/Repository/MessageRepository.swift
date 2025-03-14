@@ -47,7 +47,6 @@ class MessageRepository {
         
         let request = PushAppProto.PushAppMsgInfoReq(
             mAccountId: Config.shared.umsAccountId,
-            mPhoneNum: user.phoneNumber,
             mDeviceRegId: user.regId,
             mMsgId: message.id
         )
@@ -90,7 +89,6 @@ class MessageRepository {
     func sendReadRequest(_ message: DataDef.Message) {
         let user = UserLocalDataSource.shared.user!
         let request = PushAppProto.PushAppMsgReadNoti(mAccountId: Config.shared.umsAccountId,
-                                                      mPhoneNum: user.phoneNumber,
                                                       mDeviceRegId: user.regId,
                                                       mMsgId: message.id)
         
