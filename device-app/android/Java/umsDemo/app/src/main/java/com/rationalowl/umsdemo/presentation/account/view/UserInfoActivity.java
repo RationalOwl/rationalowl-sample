@@ -65,7 +65,7 @@ public class UserInfoActivity extends AppCompatActivity {
     private void deleteAccount() {
         final PushAppProto.PushAppUnregUserReq request = new PushAppProto.PushAppUnregUserReq();
         request.mAccountId = Config.getInstance().getUmsAccountId();
-        request.mPhoneNumber = binding.getUser().getPhoneNumber();
+        request.mDeviceRegId = binding.getUser().getRegId();
 
         UmsService.getInstance().deleteUser(request, new DataCallback<PushAppProto.PushAppUnregUserRes>() {
             @Override
