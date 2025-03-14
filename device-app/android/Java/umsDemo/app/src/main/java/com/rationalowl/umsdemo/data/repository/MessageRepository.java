@@ -72,7 +72,6 @@ public class MessageRepository {
 
         final PushAppProto.PushAppMsgInfoReq request = new PushAppProto.PushAppMsgInfoReq();
         request.mAccountId = Config.getInstance().getUmsAccountId();
-        request.mPhoneNum = user.getPhoneNumber();
         request.mDeviceRegId = user.getRegId();
         request.mMsgId = message.getId();
 
@@ -115,7 +114,6 @@ public class MessageRepository {
         final PushAppProto.PushAppMsgReadNoti request = new PushAppProto.PushAppMsgReadNoti();
         final DataDef.User user = UserLocalDataSource.getInstance().getUser();
         request.mAccountId = Config.getInstance().getUmsAccountId();
-        request.mPhoneNum = user.getPhoneNumber();
         request.mDeviceRegId = user.getRegId();
         request.mMsgId = message.getId();
 

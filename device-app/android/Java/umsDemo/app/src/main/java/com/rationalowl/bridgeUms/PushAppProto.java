@@ -126,8 +126,8 @@ public class PushAppProto {
         @JsonProperty("aId")
         public String mAccountId;
 
-        @JsonProperty("pn")
-        public String mPhoneNumber;
+        @JsonProperty("dRId")
+        public String mDeviceRegId;
 
         public PushAppUnregUserReq() {
             mCid = UmsProtocol.APP_UNREG_USER_CMD_ID;
@@ -145,8 +145,8 @@ public class PushAppProto {
         @JsonProperty("cmt")
         public String mComment;
 
-        @JsonProperty("pn")
-        public String mPhoneNumber;
+        @JsonProperty("dRId")
+        public String mDeviceRegId;
 
         public PushAppUnregUserRes() {
             mCid = UmsProtocol.APP_UNREG_USER_CMD_ID;
@@ -163,8 +163,6 @@ public class PushAppProto {
         public int mReqType;
         @JsonProperty("aId")
         public String mAccountId;
-        @JsonProperty("pn")
-        public String mPhoneNum;
         @JsonProperty("dRId")
         public String mDeviceRegId;
         @JsonProperty("mId")
@@ -185,11 +183,8 @@ public class PushAppProto {
 
         @JsonProperty("aId")
         public String mAccountId;
-        @JsonProperty("pn")
-        public String mPhoneNum;
         @JsonProperty("dRId")
         public String mDeviceRegId;
-
         @JsonProperty("mId")
         public String mMsgId;
 
