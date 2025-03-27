@@ -20,7 +20,7 @@ Android 단말앱 샘플은 Android 단말앱 라이브러리에서 제공하는
 
 
 아래는 2023년 12월 기준 샘플앱 앱레벨 build.gradle의 dependencies 부분이다.
-최신 사용법은 샘플앱 소스 검색을 통해 참고한다.
+최신 사용법은 샘플앱 build.gradle을 참고하면 된다.
 
 
 ```java
@@ -114,8 +114,29 @@ handleMessage(data)의 data에는 푸시알림 메시지 뿐 아니라 발신시
 
 
 ## 메시지 리스너 등록
-
 MinervaManager.setMsgListener() API를 통해 메시지 콜백 루틴을 지정한다. 해당 콜백은 P2P, Upstream, downstream 과 같은 실시간 메시지에 대한 콜백도 포함되지만 쉬운 설정을 위해 본 문서에서는 푸시메시지 콜백부분만 설명한다. 
 
 FirebaseMessagingService onMessageReceived 콜백은 안드로이드 폰 자체에서 푸시 알림 수신시 호출하는데 반해 아래 MessageListener onMsgReceived 콜백은 앱 실행시 호출한다. 정상적인 경우는 onMsgReceived내에 하나의 메시지가 전달되지만 미전달된 푸시알림이 여러개 존재할 경우 미전달된 푸시알림 목록을 전달한다. 
+
+
+## 속성 연동
+
+속성으로 래셔널아울 솔루션 연동을 빨리 적용하기 위한 팁을 제공한다. 
+
+1.  API 호출부 검색
+래셔널아울 API 호출은 MinervaManager 클래스에서 호출한다. 따라서 샘플앱을 다운로드 후 개발 Editor에서 MinervaManager.getInstance()을 검색하면 래셔널아울 API호출한 부분을 모두 검색할 수 있다. 안드로이드, IOS 모두 API 호출이 비슷하지만 OS특성상 상이한 부분도 있으므로 각 OS 환경에서 주의가 필요하다.
+다음은 안드로이드 환경에서 MinervaManager.getInstance() 검색결과이다. 아래의 7개의 API가 제대로 적용되어 호출되고 있는 지 확인인
+- init(), setDeviceToken(), setRegisterResultListener(), registerDevice(), unregisterDevice()
+- setMsgListener(), enableNotificationTracking()
+
+
+2.  콜백함수 확인
+래셔널아울 콜백함수는 DeviceRegisterResultListener(), MessageListener() 2개의 인터페이스에서 정의한다.
+
+- DeviceRegisterResultListener에서 정의된 콜백들이 정상적으로 호출되는지 확인
+    - onRegisterResult: 단말앱 등록 결과 콜백
+    - onUnregisterResult: 단말앱 등록해제 결과 콜백
+- MessageListener에서 정의된 콜백들이 정상적으로 호출되고 구현했는지 확인
+    - onPushMsgRecieved: 1. 앱실행 중 푸시알림 수신시 콜백 호출, 2. 앱실행시 미전달 푸시알림 목록 전달 콜백 호출
+    - onP2PMsgRecieved, onPushMsgRecieved, onSendUpstreamMsgResult, onSendP2PMsgResult: 래셔널아울 실시간 데이터 이용시 
 

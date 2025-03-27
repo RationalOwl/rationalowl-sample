@@ -1,0 +1,157 @@
+
+
+# 래셔널아울 IOS Swift 단말앱 샘플
+IOS Swift 단말앱 샘플은 IOS Objective-C 단말앱 라이브러리에서 제공하는 API를 이용해서 단말앱을 만드는 것을 쉽게 따라할 수 있도록 작성되었다. 
+
+- 샘플 코드내 RationalOwl.framework 라이브러리내 헤더 파일에 API 정의를 참조하여 샘플코드에 사용된 API 파라미터를 자신의 샘플앱에 맞게 수정한다.
+- 필요한 기반 지식은 [IOS 단말앱 개발 가이드](http://guide.rationalowl.com/guide/device-app)을 참조한다.
+- 본 샘플앱은 래셔널아울 커스텀 푸시를 지원한다. 커스텀 푸시의 개념은 [커스텀푸시 앱 개발](https://rationalowl.tistory.com/21) 을 참조한다.
+- 샘플앱에서 제공되는 래셔널아울 라이브러리인 RationalOwl.framework/RationalOwl 은 유니버설 프레임워크로 시뮬레이션을 위한 x86_64, 실제 폰을 위한 Arm64를 모두 지원한다. 실제 앱스토어에 배포시에는 lipo -remove x86_64 명령어로 시뮬레이션용 아키텍쳐를 제거후 앱스토어에 배포해야 한다.
+
+## 개발 전 IOS 설정
+[IOS 설정 가이드](https://github.com/RationalOwl/rationalowl-guide/tree/master/device-app/ios-setting)를 통해 개발 전 아래 설정을 먼저 진행해야 한다.
+
+- APNS 발신용 인증서 생성 및 래셔널아울 서비스에 등록
+- 프로비저닝 프로파일 설정
+
+
+## 샘플 프로젝트 설정
+1. github에서 샘플코드를 다운받는다.
+2. 다운받은 폴더에서 'sample.xcodeproj'파일을 클릭하여 XCode를 실행한다.
+ - 샘플앱을 XCode로 실행하면 실행가능한 상태로 설정들이 되어 있다.
+ - 프로젝트 루트에 'RationalOwl.framework'파일이 래셔널아울 OS Objective-C 단말앱 라이브러리이다.
+ - 'sample-Bridging-Header.h'파일이 Objective-C 단말앱 라이브러리를 Swift에서 사용할 수 있게 해 준다.
+ - General > Identify > Bundle Identifier에 developer.apple.com에서 등록한 App ID와 동일한 값을 입력해야 한다.
+    
+
+![이미지 이름](./img/project.png)
+
+# General > Frameworks, Libraries, and Embedded Contents
+1. 샘플앱 메인앱 확인
+ - X Code Targets을 메인앱(sample)을 선택 후 'General > Frameworks, Libraries, and Embedded Contents' 확인
+ - NotiServiceExtension.appex, RationalOwl.framework, UserNotification.framework 가 포함되어 있는지 확인
+
+![이미지 이름](./img/main_general_library.png)
+
+2. 리치 노티피케이션 지원을 위한 Service Extension 확인
+ - X Code Targets을 NotiServiceExtension 선택 후 'General > Frameworks, Libraries, and Embedded Contents' 확인
+ - 래셔널아울 라이브러리인 RationalOwl.framework 이 포함되어 있는지 확인
+
+![이미지 이름](./img/ext_general_library.png)
+
+아래는 래셔널아울 라이브러리를 적용한 앱을 개발시 확인해야 하는 주요 설정이다. 실제 개발시 샘플앱을 기반으로 개발하면 기설정되어 있어 상관이 없지만 새로 만들거나 기존 자신의 앱을 기반으로 적용시 참조하기 바란다.
+
+# Signing & Capabilities
+1. 샘플앱 메인앱 확인
+ - App Groups가 설정되어야 한다.
+ - Push Notifications 설정이 되어야 한다.
+ - Background Modes 의 Remote Notifications 항목이 체크되어야 한다.
+ 
+ ![이미지 이름](./img/main_capa_library.png)
+
+2. 리치 노티피케이션 지원을 위한 Service Extension 확인
+ - X Code Targets을 NotiServiceExtension 선택 후 'Signing & Capabilities' 확인
+ - App Groups 가 메인앱(sample)에서 설정된 것과 동일하게 설정되어 있는지 확인
+
+![이미지 이름](./img/ext_capa_library.png)
+
+# Build Phases
+1. 샘플앱 메인앱 확인
+ - Link Binary With Libraries 에 UserNotifications.framework, RationalOwl.framework 가 설정
+ - Embed Frameworks에 RationalOwl.framework 가 설정
+ - ERROR ITMS-90685/90205/90206 발생시 해결방안(Cocoa Pods과 함께 사용 할 경우 발생할 수 있음)
+     -> 프로젝트 설정 -> Targets - Extension 선택 -> Build Phases -> '[CP] Embed Pods Frameworks' 전체 삭제
+ 
+ ![이미지 이름](./img/main_build_phase.png)
+
+2. 리치 노티피케이션 지원을 위한 Service Extension 확인
+ - Link Binary With Libraries 에 RationalOwl.framework 가 설정
+ - Embed Frameworks에 RationalOwl.framework 가 설정
+ 
+ ![이미지 이름](./img/ext_build_phase.png)
+
+
+# Build Settings
+1. 샘플앱 메인앱 확인
+ - Swift Compiler - General > Objective-C Bridging Header 항목이 세팅한다.
+ - 좌측 파일 네비 창에서 Bridging header 파일을 마우스 드래그로 간단히 설정한다.
+ 
+ ![이미지 이름](./img/main_build_setting.png)
+
+2. 리치 노티피케이션 지원을 위한 Service Extension 확인
+ - Service Extension에서 빌드세팅 항목에 별도의 설정이 필요없다.
+
+ 
+## 샘플 단말앱 소스 구성
+샘플 단말앱의 소스는 세개로 구성된다. 각 소스에서는 래셔널아울 단말앱 개발시 필요한 코드와  래셔널아울 단말앱 API이용법을 제공한다. 
+
+ - AppDelegate
+   - 단말앱 구동시 APNS 등록
+   - 단말앱 백그라운드 전환시 enterBackground API 호출
+   - 단말앱 포그라운드 전환시 becomeActive API 호출
+   - APNS콜백에서 호출해야하는 래셔널아울 단말API 
+
+ - RegViewController
+   - 단말앱 등록 API 호출
+   - 단말앱 등록해제 API 호출
+   - 단말앱 등록/등록해제 결과 콜백
+
+- MsgViewController
+   - 푸시 메시지 수신시 콜백
+
+
+>## 단말앱 등록
+
+- 샘플코드에서 registerDevice 를 검색하면 관련 샘플코드를 확인할 수 있다. 
+- MinervaManager.registerDevice API는 단말앱 등록 API로 해당 API가 호출해야 앱에서 래셔널아울 푸시알림 수신 및 실시간 데이터 수/발신 API를 이용할 있다.
+- registerDevice API 실행결과는 onRegisterResult() 콜백함수를 통해 알수 있다. 
+
+## 단말앱 등록해제
+
+- 샘플코드에서 unregisterDevice 를 검색하면 관련 샘플코드를 확인할 수 있다. 
+- MinervaManager.unregisterDevice API는 단말앱 등록해제 API이다.
+- unregisterDevice API 실행결과는 onUnregisterResult() 콜백함수를 통해 알수 있다.
+
+
+## 단말앱 등록 및 등록해제 콜백 지정
+- 샘플코드에서 setDeviceRegisterResultDelegate 를 검색하면 관련 샘플코드를 확인할 수 있다. 
+- setDeviceRegisterResultDelegate API를 통해 단말앱 등록 및 등록해제 결과를 처리하는 콜백을 지정한다.
+
+
+## 푸시메시지 수신 콜백 처리
+- IOS Rich Notification을 통해 푸시 메시지를 수신한다.
+- 샘플 코드의 UNNotificationServiceExtension 를 검색하여 소스수준에서 참조한다.
+- IOS Rich Notification의 이론은 표준 IOS 개념이어서 온라인 상에서 쉽게 참조할 수 있다.
+
+## 래셔널아울 메시지 콜백 지정
+
+- 샘플코드에서 setDeviceRegisterResultDelegate 를 검색하면 관련 샘플코드를 확인할 수 있다. 
+- 미전달 푸시 알림 처리 콜백과 실시간 데이터 처리 콜백을 지정한다.
+  - onPushMsgRecieved: 앱 실행시 미전달 푸시알림을 알려주는 콜백으로 미전달 푸시알림을 처리하는 루틴 제공  
+  - 실시간 데이터 처리 관련 콜백
+    - onDownstreamMsgRecieved, onP2PMsgRecieved, onUpstreamMsgResult, onP2PMsgResult
+    - 본 샘플은 푸시알림 이용만 보여주고 실시간 데이터는 이용하지 않음.
+  - 앱 미실행시 푸시 알림 콜백처리는 앞서 언급한 '푸시메시지 수신 콜백 처리' 부분을 참고.
+
+
+## 속성 연동
+
+속성으로 래셔널아울 솔루션 연동을 쉽고 빠르게 적용하기 위한 팁을 제공한다. 
+
+1.  API 호출부 검색
+
+래셔널아울 API 호출은 MinervaManager 클래스에서 호출한다. 따라서 샘플앱을 다운로드 후 개발 Editor에서 MinervaManager.getInstance()을 검색하면 래셔널아울 API호출한 부분을 모두 검색할 수 있다. 안드로이드, IOS 모두 API 호출이 비슷하지만 OS 특성상 상이한 부분도 있으므로 각 OS 환경에서 주의가 필요하다.
+다음은 IOS 환경에서 MinervaManager.getInstance() 검색결과이다. 아래의 API가 제대로 적용되어 호출되고 있는 지 확인한다.
+- setAppGroup(), setDeviceToken(), enableNotificationTracking(), receivedApns(), becomeActive()
+- enterBackground(), setDeviceRegisterResultDelegate(), setMessageDelegate(), registerDevice(), unregisterDevice()
+
+2.  콜백함수 확인
+
+래셔널아울 콜백함수는 DeviceRegisterResultListener(), MessageListener() 2개의 인터페이스에서 정의한다.
+
+- DeviceRegisterResultListener에서 정의된 콜백들이 정상적으로 호출되는지 확인
+    - onRegisterResult: 단말앱 등록 결과 콜백
+    - onUnregisterResult: 단말앱 등록해제 결과 콜백
+- MessageListener에서 정의된 콜백들이 정상적으로 호출되고 구현했는지 확인
+    - onPushMsgRecieved: 1. 앱실행 중 푸시알림 수신시 콜백 호출, 2. 앱실행시 미전달 푸시알림 목록 전달 콜백 호출
+    - onP2PMsgRecieved, onPushMsgRecieved, onSendUpstreamMsgResult, onSendP2PMsgResult: 래셔널아울 실시간 데이터 이용시 
