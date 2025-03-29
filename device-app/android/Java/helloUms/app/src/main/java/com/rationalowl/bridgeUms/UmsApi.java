@@ -70,7 +70,4 @@ public class UmsApi {
             e.printStackTrace();
         }
     }
-
-
-
 }

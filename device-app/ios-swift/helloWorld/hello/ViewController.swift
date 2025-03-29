@@ -51,9 +51,7 @@ class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDe
         // device app registration success!
         // send deviceRegId to the app server.
         if(resultCode == RESULT_OK) {
-            let mgr: MinervaManager = MinervaManager.getInstance();
-            mgr.sendUpstreamMsg("send deviceRegId to the app server", serverRegId: "app server reg id");
-            
+                        
         }
     }
     
@@ -68,13 +66,13 @@ class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDe
     
     //realtime downstream received.
     func onDownstreamMsgRecieved(_ msgList: [Any]!) {
-        // hello world app don't tream realtime message
+        // hello world app don't treat realtime message
         print("onDownstreamMsgRecieved");
     }
     
     // realtime p2p received
     func onP2PMsgRecieved(_ msgList: [Any]!) {
-        // hello world app don't tream realtime message
+        // hello world app don't treat realtime message
         print("onP2PMsgRecieved");
     }
     

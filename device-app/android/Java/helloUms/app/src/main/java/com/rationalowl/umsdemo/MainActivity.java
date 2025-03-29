@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         //registration error has occurred!
         else {
-            Toast.makeText(this, "단말앱 해제 에러:" + resultMsg, Toast.LENGTH_LONG).show();
+            Log.e(TAG, "단말앱 해제 에러:" + resultMsg);
         }
     }
 
