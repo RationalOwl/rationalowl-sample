@@ -3,12 +3,21 @@
 struct PushAppProto {
 
     struct PushAppInstallReq: Codable {
+        // command id
         var cId: Int
+        // account id
         var aId: String
+        // device type  1: android, 2: ios
         var dt: Int
+        // device reg id
         var dRId: String
+
+        /* optional fields */
+        // phone number
         var pn: String?
+        // app user id
         var auId: String?
+        // app user name
         var n: String?
 
         init() {
@@ -23,10 +32,15 @@ struct PushAppProto {
     }
 
     struct PushAppInstallRes: Codable {
+        // command id
         var cId: Int
+        // account id
         var aId: String
+        // result code 1: success else: error
         var rc: Int
+        // comment
         var cmt: String?
+        // ums server reg id
         var usRid: String
 
         init() {
@@ -39,8 +53,11 @@ struct PushAppProto {
     }
 
     struct PushAppUnregUserReq: Codable {
+        // command id
         var cId: Int
+        // account id
         var aId: String
+        // device reg id
         var dRId: String
 
         init() {
@@ -51,10 +68,15 @@ struct PushAppProto {
     }
 
     struct PushAppUnregUserRes: Codable {
+        // command id
         var cId: Int
+        // account id
         var aId: String
+        // result code
         var rc: Int
+        // comment
         var cmt: String?
+        // device reg id
         var dRId: String?
 
         init() {
