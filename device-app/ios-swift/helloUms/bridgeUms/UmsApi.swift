@@ -1,4 +1,5 @@
-import Foundation
+
+import Foundation;
 
 class UmsApi {
 
@@ -13,7 +14,7 @@ class UmsApi {
         guard let url = URL(string: urlString) else { return }
 
         var req = PushAppProto.PushAppInstallReq()
-        req.dt = UmsProtocol.APP_TYPE_ANDROID
+        req.dt = UmsProtocol.APP_TYPE_IOS
         req.aId = accountId
         req.dRId = deviceRegId
         req.pn = phoneNum ?? ""

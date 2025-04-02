@@ -9,8 +9,11 @@ import UIKit;
 
 import RationalOwl;
 
+
+
 class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDelegate {
     
+    var mDeviceRegId: String?
     
 
     override func viewDidLoad() {
@@ -45,13 +48,14 @@ class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDe
     // device register delegate
     /////////////////////////////////////////////////////////////////
     
-    func onRegisterResult(resultCode: Int, resultMsg: String, deviceRegId: String) {
+    
+    func onRegisterResult(_ resultCode: Int32, resultMsg: String!, deviceRegId: String!) {
         print("onRegisterResult \(resultCode)")
         let msg = "\(resultMsg) registration id: \(deviceRegId)"
         print(msg)
         
         // registration has completed successfully!
-        if resultCode == Result.RESULT_OK || resultCode == Result.RESULT_DEVICE_ALREADY_REGISTERED {
+        if resultCode == RESULT_OK || resultCode == RESULT_DEVICE_ALREADY_REGISTERED {
             print("rationalOwl register success!!!")
             
             // save deviceRegId to local file
@@ -66,34 +70,36 @@ class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDe
                     return
                 }
                 
+                print(NSString(data: data!, encoding: NSUTF8StringEncoding))
+                
                 guard let data = data else { return }
                 do {
-                    let res = try JSONDecoder().decode(PushAppInstallRes.self, from: data)
+                    let res = try JSONDecoder().decode(PushAppProto.PushAppInstallRes.self, from: data)
                     
-                    if res.mResultCode == Result.RESULT_OK {
-                        mDeviceRegId = fDeviceRegId
+                    if res.rc == RESULT_OK {
+                        self.mDeviceRegId = fDeviceRegId
                         print("단말앱 등록 성공")
-                    } 
-                    else {
-                        print("resCode: \(res.mResultCode) comment: \(res.mComment)")
                     }
-                } 
+                    else {
+                        print("resCode: \(res.rc) comment: \(res.cmt)")
+                    }
+                }
                 catch {
                     print("Error decoding response: \(error)")
                 }
             }
-        } 
+        }
         else {
             // registration error has occurred!
-            print("단말앱 등록 에러: \(resultMsg)")
-        }        
+            print("단말앱 등록 에러: \(String(describing: resultMsg))")
+        }
     }
     
-    func onUnregisterResult(resultCode: Int, resultMsg: String) {
+    func onUnregisterResult(_ resultCode: Int32, resultMsg: String!) {
         // rationalowl unregistration has completed successfully!
-        if resultCode == Result.RESULT_OK {
+        if resultCode == RESULT_OK {
             // call rationalums rest api
-            UmsApi.callUnregisterUmsApp(accountId: "923a0aac-abf4-493d-9f9d-787569ac53bc", deviceRegId: mDeviceRegId) { data, response, error in
+            UmsApi.callUnregisterUmsApp(accountId: "923a0aac-abf4-493d-9f9d-787569ac53bc", deviceRegId: mDeviceRegId!) { data, response, error in
                 
                 if let error = error {
                     print("Error Occurred: \(error)")
@@ -102,24 +108,24 @@ class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDe
                 
                 guard let data = data else { return }
                 do {
-                    let res = try JSONDecoder().decode(PushAppUnregUserRes.self, from: data)
+                    let res = try JSONDecoder().decode(PushAppProto.PushAppUnregUserRes.self, from: data)
                     
-                    if res.mResultCode == Result.RESULT_OK {
-                        mDeviceRegId = nil
+                    if res.rc == RESULT_OK {
+                        self.mDeviceRegId = nil
                         print("단말앱 해제 성공")
-                    } 
-                    else {
-                        print("resCode: \(res.mResultCode) comment: \(res.mComment)")
                     }
-                } 
+                    else {
+                        print("resCode: \(res.rc) comment: \(res.cmt)")
+                    }
+                }
                 catch {
                     print("Error decoding response: \(error)")
                 }
             }
-        } 
+        }
         else {
             // registration error has occurred!
-            print("단말앱 해제 에러: \(resultMsg)")
+            print("단말앱 해제 에러: \(String(describing: resultMsg))")
         }
     }
     

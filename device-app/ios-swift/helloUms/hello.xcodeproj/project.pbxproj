@@ -16,6 +16,9 @@
 		040193092B346BB300B1CD50 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040193082B346BB300B1CD50 /* UserNotifications.framework */; };
 		040193112B346F2200B1CD50 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040193102B346F2200B1CD50 /* NotificationService.swift */; };
 		040193152B346F2200B1CD50 /* NotiServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0401930E2B346F2200B1CD50 /* NotiServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		04047B022D9D143C003FF232 /* UmsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04047AFF2D9D143C003FF232 /* UmsProtocol.swift */; };
+		04047B032D9D143C003FF232 /* UmsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04047B002D9D143C003FF232 /* UmsApi.swift */; };
+		04047B042D9D143C003FF232 /* PushAppProto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04047B012D9D143C003FF232 /* PushAppProto.swift */; };
 		04D3FB132B611E5C0075EE77 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D3FB112B611E5C0075EE77 /* RationalOwl.framework */; };
 		04D3FB142B611E790075EE77 /* RationalOwl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D3FB112B611E5C0075EE77 /* RationalOwl.framework */; };
 		04D3FB152B611E790075EE77 /* RationalOwl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04D3FB112B611E5C0075EE77 /* RationalOwl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -72,6 +75,9 @@
 		040193122B346F2200B1CD50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0401931A2B35C9A800B1CD50 /* hello.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = hello.entitlements; sourceTree = "<group>"; };
 		0401931C2B35DF8F00B1CD50 /* NotiServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotiServiceExtension.entitlements; sourceTree = "<group>"; };
+		04047AFF2D9D143C003FF232 /* UmsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UmsProtocol.swift; sourceTree = "<group>"; };
+		04047B002D9D143C003FF232 /* UmsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UmsApi.swift; sourceTree = "<group>"; };
+		04047B012D9D143C003FF232 /* PushAppProto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushAppProto.swift; sourceTree = "<group>"; };
 		04D3FB112B611E5C0075EE77 /* RationalOwl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RationalOwl.framework; sourceTree = "<group>"; };
 		10BCDBD976C255FAE25C6CB1 /* Pods_hello.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hello.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB9927E4DCC043EDAA1EE6E /* Pods-hello.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hello.release.xcconfig"; path = "Target Support Files/Pods-hello/Pods-hello.release.xcconfig"; sourceTree = "<group>"; };
@@ -103,6 +109,7 @@
 		040192E02B3424D800B1CD50 = {
 			isa = PBXGroup;
 			children = (
+				04047AFE2D9D143C003FF232 /* bridgeUms */,
 				0401930F2B346F2200B1CD50 /* NotiServiceExtension */,
 				040193022B346A3700B1CD50 /* Frameworks */,
 				040192EB2B3424D800B1CD50 /* hello */,
@@ -153,6 +160,16 @@
 				040193122B346F2200B1CD50 /* Info.plist */,
 			);
 			path = NotiServiceExtension;
+			sourceTree = "<group>";
+		};
+		04047AFE2D9D143C003FF232 /* bridgeUms */ = {
+			isa = PBXGroup;
+			children = (
+				04047AFF2D9D143C003FF232 /* UmsProtocol.swift */,
+				04047B002D9D143C003FF232 /* UmsApi.swift */,
+				04047B012D9D143C003FF232 /* PushAppProto.swift */,
+			);
+			path = bridgeUms;
 			sourceTree = "<group>";
 		};
 		B4B8A1BE46017CB7FB620000 /* Pods */ = {
@@ -295,6 +312,9 @@
 				040192F12B3424D800B1CD50 /* ViewController.swift in Sources */,
 				040192ED2B3424D800B1CD50 /* AppDelegate.swift in Sources */,
 				040192EF2B3424D800B1CD50 /* SceneDelegate.swift in Sources */,
+				04047B022D9D143C003FF232 /* UmsProtocol.swift in Sources */,
+				04047B042D9D143C003FF232 /* PushAppProto.swift in Sources */,
+				04047B032D9D143C003FF232 /* UmsApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,7 +499,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rationalowl.hello;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rationalowl.umsdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -516,7 +536,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rationalowl.hello;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rationalowl.umsdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -545,7 +565,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rationalowl.hello.NotiServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rationalowl.umsdemo.NotiServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -575,7 +595,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rationalowl.hello.NotiServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rationalowl.umsdemo.NotiServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;

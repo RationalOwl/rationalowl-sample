@@ -1,4 +1,4 @@
-import Foundation
+
 
 struct PushAppProto {
 
@@ -7,9 +7,9 @@ struct PushAppProto {
         var aId: String
         var dt: Int
         var dRId: String
-        var pn: String
-        var auId: String
-        var n: String
+        var pn: String?
+        var auId: String?
+        var n: String?
 
         init() {
             self.cId = UmsProtocol.APP_INSTALL_CMD_ID
@@ -26,7 +26,7 @@ struct PushAppProto {
         var cId: Int
         var aId: String
         var rc: Int
-        var cmt: String
+        var cmt: String?
         var usRid: String
 
         init() {
@@ -54,8 +54,8 @@ struct PushAppProto {
         var cId: Int
         var aId: String
         var rc: Int
-        var cmt: String
-        var dRId: String
+        var cmt: String?
+        var dRId: String?
 
         init() {
             self.cId = UmsProtocol.APP_UNREG_USER_CMD_ID

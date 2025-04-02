@@ -28,7 +28,7 @@ class NotificationService: UNNotificationServiceExtension {
             
             // enable notification delivery tracking
             let minMgr: MinervaManager = MinervaManager.getInstance();
-            minMgr.enableNotificationTracking(userInfo, appGroup: "group.com.rationalowl.hello");
+            minMgr.enableNotificationTracking(userInfo, appGroup: "group.com.rationalowl.umsdemo");
             
             // Modify the notification content here...
             if userInfo["notiTitle"] != nil {

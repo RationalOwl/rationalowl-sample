@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // 1. call setAppGroup API at the container app(main app).
         // 2. call enableNotificationTracking() API at the service extension
         let minMgr: MinervaManager = MinervaManager.getInstance();
-        minMgr.setAppGroup("group.com.rationalowl.hello");
+        minMgr.setAppGroup("group.com.rationalowl.umsdemo");
         return true
     }
     
@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if (aps["content-available"] != nil) {
             // enable notification delivery tracking
             let minMgr: MinervaManager = MinervaManager.getInstance();
-            minMgr.enableNotificationTracking(userInfo, appGroup: "group.com.rationalowl.hello")
+            minMgr.enableNotificationTracking(userInfo, appGroup: "group.com.rationalowl.umsdemo")
 
             // system push is sent by RationalOwl for device app lifecycle check.
             // system push is also silent push.
