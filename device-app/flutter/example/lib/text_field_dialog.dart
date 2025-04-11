@@ -31,9 +31,7 @@ class _TextFieldDialogState extends State<TextFieldDialog> {
       content: SingleChildScrollView(
         child: TextFormField(
           controller: _controller,
-          decoration: InputDecoration(
-            labelText: widget.labelText,
-          ),
+          decoration: InputDecoration(labelText: widget.labelText),
         ),
       ),
       actions: <Widget>[

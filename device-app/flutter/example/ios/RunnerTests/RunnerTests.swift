@@ -2,7 +2,8 @@ import Flutter
 import UIKit
 import XCTest
 
-@testable import rationalowl
+
+@testable import rationalowl_flutter2
 
 // This demonstrates a simple unit test of the Swift portion of this plugin's implementation.
 //
@@ -11,7 +12,7 @@ import XCTest
 class RunnerTests: XCTestCase {
 
   func testGetPlatformVersion() {
-    let plugin = RationalowlPlugin()
+    let plugin = RationalowlFlutter2Plugin()
 
     let call = FlutterMethodCall(methodName: "getPlatformVersion", arguments: [])
 

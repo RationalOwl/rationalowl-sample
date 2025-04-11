@@ -9,10 +9,19 @@ import 'package:rationalowl_flutter/rationalowl_flutter.dart';
 
 import 'text_field_dialog.dart';
 
-const _gateHost = '211.239.150.113';
+
+// dev
+const _gateHost = 'dev.rationalowl.com';
+const _serviceId = 'SVCd6321331-289e-4337-aae6-333f3cc39d47';
+const _deviceRegName = 'RationalOwl Flutter Example';
+const _serverId = 'SVR74083a2a-48c6-46ea-b558-cedef12d10fa';
+// cloud
+/*
+const _gateHost = 'gate.rationalowl.com';
 const _serviceId = 'SVCf5db348a-069b-4a70-b5b0-05468a732241';
 const _deviceRegName = 'RationalOwl Flutter Example';
 const _serverId = 'SVR74083a2a-48c6-46ea-b558-cedef12d10fa';
+ */
 
 const _durationShort = Duration(seconds: 2);
 const _durationLong = Duration(seconds: 4);
@@ -27,7 +36,8 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> implements DeviceRegisterResultListener {
+class _MainPageState extends State<MainPage>
+    implements DeviceRegisterResultListener {
   String? _deviceRegId, _lastRecipientDeviceRegId;
 
   @override
@@ -59,7 +69,10 @@ class _MainPageState extends State<MainPage> implements DeviceRegisterResultList
             if (_deviceRegId == null) return;
 
             Clipboard.setData(ClipboardData(text: _deviceRegId!));
-            _showSnackBar('단말앱 등록 아이디가 클립보드에 복사되었습니다.', duration: _durationShort);
+            _showSnackBar(
+              '단말앱 등록 아이디가 클립보드에 복사되었습니다.',
+              duration: _durationShort,
+            );
           },
           child: Text(
             '단말앱 등록 아이디: ${_deviceRegId ?? '미등록'}',
@@ -90,7 +103,7 @@ class _MainPageState extends State<MainPage> implements DeviceRegisterResultList
   }
 
   Future<void> _registerDevice() async {
-    final MinervaManager mgr = MinervaManager.getInstance();
+    final MinervaManager minMgr = MinervaManager.getInstance();
 
     if (Platform.isAndroid) {
       final String? fcmToken = await FirebaseMessaging.instance.getToken();
@@ -100,17 +113,22 @@ class _MainPageState extends State<MainPage> implements DeviceRegisterResultList
         return;
       }
 
-      await mgr.setDeviceToken(fcmToken);
+      log('fcmToken: $fcmToken', name: (MainPage).toString());
+      await minMgr.setDeviceToken(fcmToken);
     }
 
-    await mgr.setRegisterResultListener(this);
-    mgr.registerDevice(gateHost: _gateHost, serviceId: _serviceId, deviceRegName: _deviceRegName);
+    await minMgr.setRegisterResultListener(this);
+    minMgr.registerDevice(
+      gateHost: _gateHost,
+      serviceId: _serviceId,
+      deviceRegName: _deviceRegName,
+    );
   }
 
   Future<void> _unregisterDevice() async {
-    final MinervaManager mgr = MinervaManager.getInstance();
-    await mgr.setRegisterResultListener(this);
-    mgr.unregisterDevice(serviceId: _serviceId);
+    final MinervaManager minMgr = MinervaManager.getInstance();
+    await minMgr.setRegisterResultListener(this);
+    minMgr.unregisterDevice(serviceId: _serviceId);
   }
 
   String _buildMessage({required String title, required String body}) {
@@ -124,11 +142,12 @@ class _MainPageState extends State<MainPage> implements DeviceRegisterResultList
   Future<void> _sendP2PMessage() async {
     final String? recipientDeviceRegId = await showDialog(
       context: context,
-      builder: (_) => TextFieldDialog(
-        title: const Text('P2P 전송'),
-        labelText: '상대 단말앱 등록 아이디',
-        initialValue: _lastRecipientDeviceRegId,
-      ),
+      builder:
+          (_) => TextFieldDialog(
+            title: const Text('P2P 전송'),
+            labelText: '상대 단말앱 등록 아이디',
+            initialValue: _lastRecipientDeviceRegId,
+          ),
     );
 
     if (recipientDeviceRegId == null) return;
@@ -137,8 +156,8 @@ class _MainPageState extends State<MainPage> implements DeviceRegisterResultList
     const String title = 'P2P Message';
     final String body = 'P2P Message from $_deviceRegId';
 
-    final MinervaManager mgr = MinervaManager.getInstance();
-    mgr.sendP2PMsg(
+    final MinervaManager minMgr = MinervaManager.getInstance();
+    minMgr.sendP2PMsg(
       data: _buildMessage(title: title, body: body),
       destDevices: [recipientDeviceRegId],
       notiTitle: title,
@@ -147,23 +166,32 @@ class _MainPageState extends State<MainPage> implements DeviceRegisterResultList
   }
 
   Future<void> _sendUpstreamMessage() async {
-    final MinervaManager mgr = MinervaManager.getInstance();
-    mgr.sendUpstreamMsg(data: 'Upstream Message from $_deviceRegId', serverRegId: _serverId);
+    final MinervaManager minMgr = MinervaManager.getInstance();
+    minMgr.sendUpstreamMsg(
+      data: 'Upstream Message from $_deviceRegId',
+      serverRegId: _serverId,
+    );
   }
 
   void _showSnackBar(String message, {Duration duration = _durationLong}) {
     final messenger = ScaffoldMessenger.of(context);
 
     messenger.clearSnackBars();
-    messenger.showSnackBar(SnackBar(
-      content: Text(message),
-      duration: duration,
-    ));
+    messenger.showSnackBar(
+      SnackBar(content: Text(message), duration: duration),
+    );
   }
 
   @override
-  void onRegisterResult(int resultCode, String? resultMsg, String? deviceRegId) {
-    log('onRegisterResult(resultCode: $resultCode, resultMsg: $resultMsg, deviceRegId: $deviceRegId)', name: (MainPage).toString());
+  void onRegisterResult(
+    int resultCode,
+    String? resultMsg,
+    String? deviceRegId,
+  ) {
+    log(
+      'onRegisterResult(resultCode: $resultCode, resultMsg: $resultMsg, deviceRegId: $deviceRegId)',
+      name: (MainPage).toString(),
+    );
 
     switch (resultCode) {
       case _resultOk:
@@ -188,7 +216,10 @@ class _MainPageState extends State<MainPage> implements DeviceRegisterResultList
 
   @override
   void onUnregisterResult(int resultCode, String? resultMsg) {
-    log('onUnregisterResult(resultCode: $resultCode, resultMsg: $resultMsg)', name: (MainPage).toString());
+    log(
+      'onUnregisterResult(resultCode: $resultCode, resultMsg: $resultMsg)',
+      name: (MainPage).toString(),
+    );
 
     if (resultCode == _resultOk) {
       setState(() {
