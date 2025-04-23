@@ -13,11 +13,6 @@ class RoMessageDelegate: NSObject, MessageDelegate {
         for userInfo in msgList {
             let userInfo = userInfo as! [String: Any]
 
-            if userInfo["SystemPush"] != nil {
-                print("system push received!!")
-                continue
-            }
-
             let data = userInfo["data"]
             var map: [String: Any]?
 

@@ -107,28 +107,8 @@
 
 - (void)application:(UIApplication*) application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
     NSLog(@"didReceiveRemoteNotification");
-    NSLog(@"User Info : %@", userInfo);
+    NSLog(@"User Info : %@", userInfo);    
     
-    // silent push recieved
-    if ([[userInfo objectForKey:@"aps"] objectForKey:@"content-available"]) {
-        // enable notification delivery tracking
-        MinervaManager* minMgr = [MinervaManager getInstance];
-        [minMgr enableNotificationTracking:userInfo appGroup:@"group.com.rationalowl.sample"];
-
-        // system push is sent by RationalOwl for device app lifecycle check.
-        // system push is also silent push.
-        // if system push has received, just return.
-        if ([userInfo objectForKey:@"SystemPush"]) {
-            NSLog(@"system push received!!");
-            // do nothing.
-        }
-        // normal silent push which are sent by your app server.
-        // do your logic
-        else {
-            NSLog(@"silent push received!");
-            // do your logic
-        }
-    }
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
