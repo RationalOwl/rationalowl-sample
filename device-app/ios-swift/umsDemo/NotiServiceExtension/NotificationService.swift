@@ -27,14 +27,6 @@ class NotificationService: UNNotificationServiceExtension {
             let minMgr = MinervaManager.getInstance()
             minMgr?.enableNotificationTracking(userInfo, appGroup: Self.appGroupId)
 
-            // system push is sent by RationalOwl for device app lifecycle check.
-            // system push is also silent push.
-            // if system push has received, just return.
-            if userInfo["SystemPush"] != nil {
-                print("system push received!!")
-                return
-            }
-
             userInfo["received-at"] = Date().timeIntervalSince1970
             userInfo["show-notification"] = userDefaults.bool(forKey: "isActive")
 

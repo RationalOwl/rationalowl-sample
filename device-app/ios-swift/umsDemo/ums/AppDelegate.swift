@@ -76,37 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
     {
-        // system push is sent by RationalOwl for device app lifecycle check.
-        // system push is also silent push.
-        // if system push has received, just return.
-        if userInfo["SystemPush"] != nil {
-            print("system push received!!")
-            return
-        }
-
-        if let aps = userInfo["aps"] as? NSDictionary {
-            // silent push recieved)
-            if aps["content-available"] != nil {
-                // enable notification delivery tracking
-                let minMgr: MinervaManager = MinervaManager.getInstance()
-                minMgr.enableNotificationTracking(userInfo, appGroup: MessageSyncService.appGroupId)
-
-                // system push is sent by RationalOwl for device app lifecycle check.
-                // system push is also silent push.
-                // if system push has received, just return.
-                if userInfo["SystemPush"] != nil {
-                    NSLog("system push received!!")
-                    // do nothing.
-                }
-                // normal silent push which are sent by your app server.
-                // do your logic
-                else {
-                    NSLog("silent push received!")
-                    // do your logic
-                }
-            }
-        }
-
         completionHandler(.newData)
     }
 }
@@ -129,13 +98,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let userInfo = response.notification.request.content.userInfo
         let messageId = response.notification.request.identifier
 
-        if userInfo["SystemPush"] != nil {
-            print("system push received!!")
-            return
-        }
-
         let minMgr = MinervaManager.getInstance()
-        minMgr?.receivedApns(userInfo)
+        minMgr.receivedApns(userInfo)
 
         var message = MessageLocalDataSource.shared.getMessage(messageId)
 

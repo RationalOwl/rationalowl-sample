@@ -15,7 +15,9 @@ const iOSAppGroup = 'group.com.rationalowl.flutterexample';
 
 Future<void> _initialize() async {
   if (Platform.isAndroid) {
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     FirebaseMessaging.onBackgroundMessage(handleMessage);
   }
 
@@ -26,8 +28,6 @@ Future<void> _initialize() async {
   if (Platform.isIOS) {
     await minMgr.setAppGroup(iOSAppGroup);
   }
-
-  await minMgr.setMsgListener(RoMessageListener());
 }
 
 void main() async {
@@ -57,6 +57,9 @@ class _ApplicationState extends State<Application> with WidgetsBindingObserver {
     } else {
       FirebaseMessaging.instance.onTokenRefresh.listen(handleTokenRefresh);
     }
+
+    final MinervaManager minMgr = MinervaManager.getInstance();
+    minMgr.setMsgListener(RoMessageListener());
   }
 
   @override
@@ -65,17 +68,14 @@ class _ApplicationState extends State<Application> with WidgetsBindingObserver {
       WidgetsBinding.instance.removeObserver(_observer);
     }
 
+    final MinervaManager minMgr = MinervaManager.getInstance();
+    minMgr.clearMsgListener();
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: SafeArea(
-          child: MainPage(),
-        ),
-      ),
-    );
+    return const MaterialApp(home: Scaffold(body: SafeArea(child: MainPage())));
   }
 }

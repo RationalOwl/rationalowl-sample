@@ -9,7 +9,7 @@ class PushAppProto {
         var cc: String = ""
         // phone number
         var pn: String = ""
-
+        
         // 기본 생성자
         init() {}
         
@@ -19,8 +19,8 @@ class PushAppProto {
             self.cc = cc
             self.pn = pn
         }
-
     }
+
 
     class PushAppAuthNumberRes: Codable {
         // command id
@@ -148,6 +148,7 @@ class PushAppProto {
 
     }
 
+
     class PushAppUnregUserReq: Codable {
         // command id
         var cId: Int = UmsProtocol.APP_UNREG_USER_CMD_ID
@@ -166,6 +167,7 @@ class PushAppProto {
         }
 
     }
+
 
     class PushAppUnregUserRes: Codable {
         // command id

@@ -23,14 +23,23 @@ Future<void> initializeNotification() async {
   );
 
   if (Platform.isAndroid) {
-    final androidImplementation = plugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
-    final bool? granted = await androidImplementation?.requestNotificationsPermission();
+    final androidImplementation =
+        plugin
+            .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin
+            >();
+    final bool? granted =
+        await androidImplementation?.requestNotificationsPermission();
 
     if (granted == true) {
       androidImplementation?.createNotificationChannel(channel);
     }
   } else if (Platform.isIOS) {
-    final iosImplementation = plugin.resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>();
+    final iosImplementation =
+        plugin
+            .resolvePlatformSpecificImplementation<
+              IOSFlutterLocalNotificationsPlugin
+            >();
 
     await iosImplementation?.requestPermissions(
       alert: true,

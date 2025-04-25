@@ -55,28 +55,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         MinervaManager minMgr = MinervaManager.getInstance();
         minMgr.enableNotificationTracking(data);
 
-        // silent push received.
-        if(data.containsKey("silent")) {
-            // system push is sent by RationalOwl for device app lifecycle check.
-            // system push is also silent push.
-            // if system push has received, just return.
-            if(data.containsKey("SystemPush")) {
-                Logger.debug(TAG, "System push received!");
-                return;
-            }
-            // normal silent push which are sent by your app server.
-            // do your logic
-            else {
-                Logger.debug(TAG, "your app server sent silent push");
-                // do your logic
-            }
-        }
-        // it is normal custom push not silent push.
-        // do your logic here
-        else {
-            // make your custom notification UI
-            showCustomNotification(data);
-        }
+        // make your custom notification UI
+        showCustomNotification(data);
     }
 
 
