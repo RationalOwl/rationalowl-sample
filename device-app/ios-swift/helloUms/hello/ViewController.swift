@@ -48,87 +48,82 @@ class ViewController: UIViewController , DeviceRegisterResultDelegate, MessageDe
     // device register delegate
     /////////////////////////////////////////////////////////////////
     
-    
     func onRegisterResult(_ resultCode: Int32, resultMsg: String!, deviceRegId: String!) {
         print("onRegisterResult \(resultCode)")
         let msg = "\(resultMsg) registration id: \(deviceRegId)"
         print(msg)
         
-        // registration has completed successfully!
         if resultCode == RESULT_OK || resultCode == RESULT_DEVICE_ALREADY_REGISTERED {
             print("rationalOwl register success!!!")
-            
-            // save deviceRegId to local file
-            // and send deviceRegId to app server
             let fDeviceRegId = deviceRegId
             
-            // call rationalums rest api
-            UmsApi.callInstallUmsApp(accountId: "923a0aac-abf4-493d-9f9d-787569ac53bc", deviceRegId: deviceRegId, phoneNum: nil, appUserId: nil, name: nil) { data, response, error in
-                
-                if let error = error {
-                    print("Error Occurred: \(error)")
-                    return
-                }
-                
-                print(NSString(data: data!, encoding: NSUTF8StringEncoding))
-                
-                guard let data = data else { return }
-                do {
-                    let res = try JSONDecoder().decode(PushAppProto.PushAppInstallRes.self, from: data)
+            // 변경된 API 호출 방식
+            UmsApi.callInstallUmsApp(accountId: "923a0aac-abf4-493d-9f9d-787569ac53bc", deviceRegId: deviceRegId, phoneNum: nil, appUserId: nil, name: nil) { result in
+                switch result {
+                case .success(let data):
+                    if let responseString = String(data: data, encoding: .utf8) {
+                        print("응답 데이터: \(responseString)")
+                    }
                     
-                    if res.rc == RESULT_OK {
-                        self.mDeviceRegId = fDeviceRegId
-                        print("단말앱 등록 성공")
+                    do {
+                        let res = try JSONDecoder().decode(PushAppProto.PushAppInstallRes.self, from: data)
+                        if res.rc == RESULT_OK {
+                            self.mDeviceRegId = fDeviceRegId
+                            print("단말앱 등록 성공")
+                        }
+                        else {
+                            print("에러 코드: \(res.rc), 사유: \(res.cmt)")
+                        }
                     }
-                    else {
-                        print("resCode: \(res.rc) comment: \(res.cmt)")
+                    catch {
+                        print("디코딩 오류: \(error.localizedDescription)")
                     }
-                }
-                catch {
-                    print("Error decoding response: \(error)")
+                    
+                case .failure(let error):
+                    print("API 호출 실패: \(error.localizedDescription)")
                 }
             }
         }
-        else {
-            // registration error has occurred!
+       else {
             print("단말앱 등록 에러: \(String(describing: resultMsg))")
         }
     }
+
     
     func onUnregisterResult(_ resultCode: Int32, resultMsg: String!) {
-        // rationalowl unregistration has completed successfully!
         if resultCode == RESULT_OK {
-            // call rationalums rest api
-            UmsApi.callUnregisterUmsApp(accountId: "923a0aac-abf4-493d-9f9d-787569ac53bc", deviceRegId: mDeviceRegId!) { data, response, error in
-                
-                if let error = error {
-                    print("Error Occurred: \(error)")
-                    return
-                }
-                
-                guard let data = data else { return }
-                do {
-                    let res = try JSONDecoder().decode(PushAppProto.PushAppUnregUserRes.self, from: data)
+            guard let regId = mDeviceRegId else {
+                print("등록 아이디 없음")
+                return
+            }
+            
+            // 변경된 언레지스터 호출
+            UmsApi.callUnregisterUmsApp(accountId: "923a0aac-abf4-493d-9f9d-787569ac53bc", deviceRegId: regId) { result in
+                switch result {
+                case .success(let data):
+                    do {
+                        let res = try JSONDecoder().decode(PushAppProto.PushAppUnregUserRes.self, from: data)
+                        if res.rc == RESULT_OK {
+                            self.mDeviceRegId = nil
+                            print("단말앱 해제 성공")
+                        }
+                        else {
+                            print("에러 코드: \(res.rc), 사유: \(res.cmt)")
+                        }
+                    }
+                    catch {
+                        print("디코딩 오류: \(error.localizedDescription)")
+                    }
                     
-                    if res.rc == RESULT_OK {
-                        self.mDeviceRegId = nil
-                        print("단말앱 해제 성공")
-                    }
-                    else {
-                        print("resCode: \(res.rc) comment: \(res.cmt)")
-                    }
-                }
-                catch {
-                    print("Error decoding response: \(error)")
+                case .failure(let error):
+                    print("API 호출 실패: \(error.localizedDescription)")
                 }
             }
         }
-        else {
-            // registration error has occurred!
+       else {
             print("단말앱 해제 에러: \(String(describing: resultMsg))")
         }
     }
-    
     
     /////////////////////////////////////////////////////////////////
     // message delegate
