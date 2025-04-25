@@ -68,7 +68,7 @@ public class PushAppProto {
         @JsonProperty("rc")
         public int mResultCode;
 
-        @JsonProperty("c")
+        @JsonProperty("cmt")
         public String mComment;
 
         public PushAppVerifyAuthNumberRes() {
@@ -209,14 +209,14 @@ public class PushAppProto {
         public String mMsgId;
         @JsonProperty("ast")
         public long mAlimtalkSendTime;
-        @JsonProperty("as")
+        @JsonProperty("ase")
         public int mAlimtalkState;  // 0: unsend, 1: send request, 2: success, 3: fail
         @JsonProperty("mst")
         public long mMunjaSendTime;
         @JsonProperty("mt")
         public int mMunjaType;      // 12: sms, 13: lms, 14: mms
         @JsonProperty("ms")
-        public int mMunjaState;
+        public int mMunjaState;     // 0: unsend, 1: send request, 2: success, 3: fail
 
         public PushAppMsgInfoRes() {
             mCid = UmsProtocol.APP_MSG_INFO_CMD_ID;
