@@ -3,13 +3,6 @@ package com.rationalowl.bridgeUms;
 
 public class UmsProtocol {
 
-    ////////////////////////////////////////////////
-    // common
-    ////////////////////////////////////////////////
-
-    // request type
-    public static final int REQUEST_TYPE = 1;
-    public static final int RESPONSE_TYPE = 2;
 
 
     ////////////////////////////////////////////////
@@ -29,7 +22,6 @@ public class UmsProtocol {
     public static final int APP_IMG_DATA_CMD_ID = 313;
 
     // device type
-    public static final int APP_TYPE_NOT_INSTALL = 0;
     public static final int APP_TYPE_ANDROID = 1;
     public static final int APP_TYPE_IOS = 2;
 
