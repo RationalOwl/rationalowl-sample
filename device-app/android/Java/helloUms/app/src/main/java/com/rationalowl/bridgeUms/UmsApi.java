@@ -132,7 +132,7 @@ public class UmsApi {
     }
 
     /**
-     * callReqAuthNumber 호출결과 SMS로 전달받은 보안번호를 검증한다.
+     * callReqAuthNumber 호출결과 SMS로 전달받은 인증번호를 검증한다.
      *
      * @param accountId (필수)앱 서비스에 부여되는 아이디
      * @param phoneNum (필수)사용자 폰번호
