@@ -50,7 +50,7 @@ public enum PushAppProto {
             case mCid = "cId"
             case mAccountId = "aId"
             case mResultCode = "rc"
-            case mComment = "c"
+            case mComment = "cmt"
         }
 
         public var mCid: Int = UmsProtocol.APP_VERITY_AUTH_NUMBER_CMD_ID
@@ -133,14 +133,11 @@ public enum PushAppProto {
     public struct PushAppMsgReadNoti: Codable {
         enum CodingKeys: String, CodingKey {
             case mCid = "cId"
-            case mReqType = "r"
             case mAccountId = "aId"
             case mDeviceRegId = "dRId"
             case mMsgId = "mId"
         }
-
         public var mCid: Int = UmsProtocol.APP_MSG_READ_NOTI_CMD_ID
-        public var mReqType: Int = UmsProtocol.REQUEST_TYPE
         public var mAccountId: String
         public var mDeviceRegId: String
         public var mMsgId: String
@@ -170,7 +167,7 @@ public enum PushAppProto {
             case mComment = "cmt"
             case mMsgId = "mId"
             case mAlimtalkSendTime = "ast"
-            case mAlimtalkState = "as"
+            case mAlimtalkState = "ase"
             case mMunjaSendTime = "mst"
             case mMunjaType = "mt"
             case mMunjaState = "ms"
