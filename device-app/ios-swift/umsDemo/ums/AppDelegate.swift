@@ -99,7 +99,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let messageId = response.notification.request.identifier
 
         let minMgr = MinervaManager.getInstance()
-        minMgr.receivedApns(userInfo)
+        minMgr?.receivedApns(userInfo)
 
         var message = MessageLocalDataSource.shared.getMessage(messageId)
 
