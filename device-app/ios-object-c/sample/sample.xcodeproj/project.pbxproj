@@ -539,7 +539,7 @@
 				DEVELOPMENT_TEAM = 56AQ6CM687;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = NotiServiceExtension/Info.plist;
