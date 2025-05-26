@@ -31,10 +31,10 @@ class NotificationService: UNNotificationServiceExtension {
             minMgr.enableNotificationTracking(userInfo, appGroup: "group.com.rationalowl.umsdemo");
             
             // Modify the notification content here...
-            if userInfo["notiTitle"] != nil {
+            if userInfo["title"] != nil {
                 bestAttemptContent.title = userInfo["notiTitle"] as! String;
             }
-            if userInfo["notiBody"] != nil {
+            if userInfo["body"] != nil {
                 bestAttemptContent.body = userInfo["notiBody"] as! String;
             }
             

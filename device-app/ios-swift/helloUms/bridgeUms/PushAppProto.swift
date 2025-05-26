@@ -11,7 +11,9 @@ class PushAppProto {
         var pn: String = ""
         
         // 기본 생성자
-        init() {}
+        init() {
+            self.cId = UmsProtocol.APP_AUTH_NUMBER_CMD_ID
+        }
         
         init(aId: String, cc: String, pn: String) {
             self.cId = UmsProtocol.APP_AUTH_NUMBER_CMD_ID
@@ -33,7 +35,9 @@ class PushAppProto {
         var cmt: String? = nil
 
         // 기본 생성자
-        init() {}
+        init() {
+            self.cId = UmsProtocol.APP_AUTH_NUMBER_CMD_ID
+        }
         
         init(aId: String, rc: Int, cmt: String) {
             self.cId = UmsProtocol.APP_AUTH_NUMBER_CMD_ID
@@ -41,8 +45,6 @@ class PushAppProto {
             self.rc = rc
             self.cmt = cmt
         }
-        
-        
     }
 
     class PushAppVerifyAuthNumberReq: Codable {
@@ -58,7 +60,9 @@ class PushAppProto {
         var an: String = ""
 
         // 기본 생성자
-        init() {}
+        init() {
+            self.cId = UmsProtocol.APP_VERITY_AUTH_NUMBER_CMD_ID
+        }
         
         init(aId: String, dt: Int, pn: String, an: String) {
             self.cId = UmsProtocol.APP_VERITY_AUTH_NUMBER_CMD_ID
@@ -81,7 +85,9 @@ class PushAppProto {
         var cmt: String? = nil
 
         // 기본 생성자
-        init() {}
+        init() {
+            self.cId = UmsProtocol.APP_VERITY_AUTH_NUMBER_CMD_ID
+        }
         
         init(aId: String, rc: Int, cmt: String) {
             self.cId = UmsProtocol.APP_VERITY_AUTH_NUMBER_CMD_ID
@@ -109,7 +115,9 @@ class PushAppProto {
         var n: String? = nil
 
         // 기본 생성자
-        init() {}
+        init() {
+            self.cId = UmsProtocol.APP_INSTALL_CMD_ID
+        }
         
         init(aId: String, dt: Int, dRId: String, pn: String, auId: String?, n: String?) {
             self.cId = UmsProtocol.APP_INSTALL_CMD_ID
@@ -136,7 +144,9 @@ class PushAppProto {
         var usRid: String = ""
 
         // 기본 생성자
-        init() {}
+        init() {
+            self.cId = UmsProtocol.APP_INSTALL_CMD_ID
+        }
         
         init(aId: String, rc: Int, cmt: String, usRid: String) {
             self.cId = UmsProtocol.APP_INSTALL_CMD_ID
@@ -158,7 +168,9 @@ class PushAppProto {
         var dRId: String = ""
 
         // 기본 생성자
-        init() {}
+        init() {
+            self.cId = UmsProtocol.APP_UNREG_USER_CMD_ID
+        }
         
         init(aId: String, dRId: String) {
             self.cId = UmsProtocol.APP_UNREG_USER_CMD_ID
@@ -182,7 +194,9 @@ class PushAppProto {
         var dRId: String = ""
 
         // 기본 생성자
-        init() {}
+        init() {
+            self.cId = UmsProtocol.APP_UNREG_USER_CMD_ID
+        }
         
         init(aId: String, rc: Int, cmt: String, dRId: String) {
             self.cId = UmsProtocol.APP_UNREG_USER_CMD_ID
@@ -205,7 +219,9 @@ class PushAppProto {
         var mId: String = ""
 
         // 기본 생성자
-        init() {}
+        init() {
+            self.cId = UmsProtocol.APP_MSG_READ_NOTI_CMD_ID
+        }
         
         init(aId: String, dRId: String, mId: String) {
             self.cId = UmsProtocol.APP_MSG_READ_NOTI_CMD_ID
@@ -227,7 +243,9 @@ class PushAppProto {
         var mId: String = ""
 
         // 기본 생성자
-        init() {}
+        init() {
+            self.cId = UmsProtocol.APP_MSG_INFO_CMD_ID
+        }
         
         init(aId: String, dRId: String, mId: String) {
             self.cId = UmsProtocol.APP_MSG_INFO_CMD_ID
@@ -261,7 +279,9 @@ class PushAppProto {
         var ms: Int = 0
 
         // 기본 생성자
-        init() {}
+        init() {
+            self.cId = UmsProtocol.APP_MSG_INFO_CMD_ID
+        }
         
         init(aId: String, rc: Int, cmt: String, mId: String,
                            ast: Int64, ase: Int, mst: Int64, mt: Int, ms: Int) {
@@ -290,7 +310,9 @@ class PushAppProto {
         var iId: String = ""
 
         // 기본 생성자
-        init() {}
+        init() {
+            self.cId = UmsProtocol.APP_IMG_DATA_CMD_ID
+        }
         
         init(aId: String, mId: String, iId: String,) {
             self.cId = UmsProtocol.APP_IMG_DATA_CMD_ID
@@ -314,7 +336,9 @@ class PushAppProto {
         var imgD: String = ""
 
         // 기본 생성자
-        init() {}
+        init() {
+            self.cId = UmsProtocol.APP_IMG_DATA_CMD_ID
+        }
         
         init(aId: String, rc: Int, cmt: String, imgD: String) {
             self.cId = UmsProtocol.APP_IMG_DATA_CMD_ID
