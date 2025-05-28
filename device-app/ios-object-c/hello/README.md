@@ -63,7 +63,7 @@ IOS Objective-C 단말앱 라이브러리에서 제공하는 API를 이용해서
  - Targets을 NotiServiceExtension 선택
  - App Groups 이 메인앱(sample)에서 설정된 것과 동일하게 설정되어 있는지 확인
 
-![이미지 이름](./img/ext_capa_library.png)
+![이미지 이름](./img/capa_ext.png)
 
 
 # Build Settings 탭 확인
@@ -76,6 +76,7 @@ IOS Objective-C 단말앱 라이브러리에서 제공하는 API를 이용해서
  - Targets을 NotiServiceExtension 선택
  - Framework Search Paths, Header Search Paths 항목에 $(SRCROOT) recursive로 설정
  ![이미지 이름](./img/build_ext.png)
+
 
 
  
