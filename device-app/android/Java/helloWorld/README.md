@@ -55,8 +55,8 @@ dependencies {
 [FCM 설정 가이드](https://github.com/RationalOwl/rationalowl-guide/tree/master/device-app/fcm-setting)를 참조하여 아래 FCM 관련 설정을 처리한다.
 1) 파이어베이스 콘솔에서 안드로이드 앱을 위한 프로젝트를 생성한다.
 2) google-service.json 파일을 다운로드하여 안드로이드 스튜디오에 적용한다. 
-3) 서버키를 카피한다.
-4) 래셔널UMS 기반으로 앱 개발시 [래셔널UMS 웹관리자 가이드](https://github.com/RationalOwl/ums/tree/main/web_admin) 의 '푸시앱 인증서 설정' 파트를 참조하여 안드로이드 서버키를 등록한다.
+3) Firebase Cloud Messaging API(V1) 키관리를 통해 키를 생성한다.
+4) 프로젝트 ID 와 '3) 과정'에서 생성한 인증파일(.json)을 래셔널아울울 웹 관리자 화면의 '안드로이드 FCM인증 설정'에서 등록한다.
 
 
 
@@ -119,13 +119,21 @@ MinervaManager.setMsgListener() API를 통해 메시지 콜백 루틴을 지정�
 FirebaseMessagingService onMessageReceived 콜백은 안드로이드 폰 자체에서 푸시 알림 수신시 호출하는데 반해 아래 MessageListener onMsgReceived 콜백은 앱 실행시 호출한다. 정상적인 경우는 onMsgReceived내에 하나의 메시지가 전달되지만 미전달된 푸시알림이 여러개 존재할 경우 미전달된 푸시알림 목록을 전달한다. 
 
 
+## API 레퍼런스
+
+솔루션 연동 관련 API는 MinervaManager, DeviceRegisterResultListener, MessageListener 세 인터페이스를 이용하는데 레퍼런스는 아래 링크를 참조한다.
+
+[바로가기](https://guide.rationalowl.com/api-docs/device-app/android/)
+
+
+
 ## 속성 연동
 
 속성으로 래셔널아울 솔루션 연동을 빨리 적용하기 위한 팁을 제공한다. 
 
 1.  API 호출부 검색
 래셔널아울 API 호출은 MinervaManager 클래스에서 호출한다. 따라서 샘플앱을 다운로드 후 개발 Editor에서 MinervaManager.getInstance()을 검색하면 래셔널아울 API호출한 부분을 모두 검색할 수 있다. 안드로이드, IOS 모두 API 호출이 비슷하지만 OS특성상 상이한 부분도 있으므로 각 OS 환경에서 주의가 필요하다.
-다음은 안드로이드 환경에서 MinervaManager.getInstance() 검색결과이다. 아래의 7개의 API가 제대로 적용되어 호출되고 있는 지 확인인
+다음은 안드로이드 환경에서 MinervaManager.getInstance() 검색결과이다. 아래의 7개의 API가 제대로 적용되어 호출되고 있는 지 확인
 - init(), setDeviceToken(), setRegisterResultListener(), registerDevice(), unregisterDevice()
 - setMsgListener(), enableNotificationTracking()
 
@@ -138,5 +146,5 @@ FirebaseMessagingService onMessageReceived 콜백은 안드로이드 폰 자체�
     - onUnregisterResult: 단말앱 등록해제 결과 콜백
 - MessageListener에서 정의된 콜백들이 정상적으로 호출되고 구현했는지 확인
     - onPushMsgRecieved: 1. 앱실행 중 푸시알림 수신시 콜백 호출, 2. 앱실행시 미전달 푸시알림 목록 전달 콜백 호출
-    - onP2PMsgRecieved, onPushMsgRecieved, onSendUpstreamMsgResult, onSendP2PMsgResult: 래셔널아울 실시간 데이터 이용시 
+    - onP2PMsgRecieved, onDownstreamMsgRecieved, onSendUpstreamMsgResult, onSendP2PMsgResult: 래셔널아울 실시간 데이터 이용시 
 

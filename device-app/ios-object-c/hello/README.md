@@ -9,7 +9,7 @@ IOS Objective-C 단말앱 라이브러리에서 제공하는 API를 이용해서
 
 
 ## 개발 전 IOS 설정
-[IOS 설정 가이드](https://github.com/RationalOwl/rationalowl-guide/tree/master/device-app/ios-setting)를 통해 개발 전 아래 설정을 먼저 진행해야 한다.
+[IOS 설정 가이드](https://github.com/RationalOwl/rationalowl-guide/tree/master/device-app/ios-apns-p8)를 통해 개발 전 아래 설정을 먼저 진행해야 한다.
 
 - APNS 발신용 인증서 생성 및 래셔널아울 서비스에 등록
 
@@ -131,6 +131,10 @@ IOS Objective-C 단말앱 라이브러리에서 제공하는 API를 이용해서
     - 본 샘플은 푸시알림 이용만 보여주고 실시간 데이터는 이용하지 않음.
   - 앱 미실행시 푸시 알림 콜백처리는 앞서 언급한 '푸시메시지 수신 콜백 처리' 부분을 참고.
 
+## API 레퍼런스
+
+솔루션 연동 관련 API는 'RationalOwl.framework' 파일 내 MinervaManager.h, MinervaDelegate.h 파일을 참조한다.
+
 
 ## 속성 연동
 
@@ -151,14 +155,6 @@ Signing & Capabilities  탭에서 설정한 앱그룹명(샘플앱 기준 group.
 - setAppGroup API, enableNotificationTracking API 파라미터에 앱 그룹명 포함되어 2개 검색됨.
 
 
-
-- DeviceRegisterResultListener에서 정의된 콜백들이 정상적으로 호출되는지 확인
-    - onRegisterResult: 단말앱 등록 결과 콜백
-    - onUnregisterResult: 단말앱 등록해제 결과 콜백
-- MessageListener에서 정의된 콜백들이 정상적으로 호출되고 구현했는지 확인
-    - onPushMsgRecieved: 1. 앱실행 중 푸시알림 수신시 콜백 호출, 2. 앱실행시 미전달 푸시알림 목록 전달 콜백 호출
-    - onP2PMsgRecieved, onPushMsgRecieved, onSendUpstreamMsgResult, onSendP2PMsgResult: 래셔널아울 실시간 데이터 이용시 
-
 3.  콜백함수 확인
 
 래셔널아울 콜백함수는 DeviceRegisterResultListener(), MessageListener() 2개의 인터페이스에서 정의한다.
@@ -168,4 +164,4 @@ Signing & Capabilities  탭에서 설정한 앱그룹명(샘플앱 기준 group.
     - onUnregisterResult: 단말앱 등록해제 결과 콜백
 - MessageListener에서 정의된 콜백들이 정상적으로 호출되고 구현했는지 확인
     - onPushMsgRecieved: 1. 앱실행 중 푸시알림 수신시 콜백 호출, 2. 앱실행시 미전달 푸시알림 목록 전달 콜백 호출
-    - onP2PMsgRecieved, onPushMsgRecieved, onSendUpstreamMsgResult, onSendP2PMsgResult: 래셔널아울 실시간 데이터 이용시 
+    - onP2PMsgRecieved, onDownstreamMsgRecieved, onSendUpstreamMsgResult, onSendP2PMsgResult: 래셔널아울 실시간 데이터 이용시 

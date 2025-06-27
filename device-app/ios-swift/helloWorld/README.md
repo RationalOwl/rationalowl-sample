@@ -134,6 +134,12 @@ IOS Swift 단말앱 샘플은 IOS Objective-C 단말앱 라이브러리에서 �
   - 앱 미실행시 푸시 알림 콜백처리는 앞서 언급한 '푸시메시지 수신 콜백 처리' 부분을 참고.
 
 
+## API 레퍼런스
+
+솔루션 연동 관련 API는 'RationalOwl.framework' 파일 내 MinervaManager.h, MinervaDelegate.h 파일을 참조한다.
+
+
+
 ## 속성 연동
 
 1.  API 호출부 검색
@@ -151,14 +157,6 @@ Signing & Capabilities  탭에서 설정한 앱그룹명(샘플앱 기준 group.
 - setAppGroup API, enableNotificationTracking API 파라미터에 앱 그룹명 포함되어 2개 검색됨.
 
 
-
-- DeviceRegisterResultListener에서 정의된 콜백들이 정상적으로 호출되는지 확인
-    - onRegisterResult: 단말앱 등록 결과 콜백
-    - onUnregisterResult: 단말앱 등록해제 결과 콜백
-- MessageListener에서 정의된 콜백들이 정상적으로 호출되고 구현했는지 확인
-    - onPushMsgRecieved: 1. 앱실행 중 푸시알림 수신시 콜백 호출, 2. 앱실행시 미전달 푸시알림 목록 전달 콜백 호출
-    - onP2PMsgRecieved, onPushMsgRecieved, onSendUpstreamMsgResult, onSendP2PMsgResult: 래셔널아울 실시간 데이터 이용시 
-
 3.  콜백함수 확인
 
 래셔널아울 콜백함수는 DeviceRegisterResultListener(), MessageListener() 2개의 인터페이스에서 정의한다.
@@ -168,4 +166,4 @@ Signing & Capabilities  탭에서 설정한 앱그룹명(샘플앱 기준 group.
     - onUnregisterResult: 단말앱 등록해제 결과 콜백
 - MessageListener에서 정의된 콜백들이 정상적으로 호출되고 구현했는지 확인
     - onPushMsgRecieved: 1. 앱실행 중 푸시알림 수신시 콜백 호출, 2. 앱실행시 미전달 푸시알림 목록 전달 콜백 호출
-    - onP2PMsgRecieved, onPushMsgRecieved, onSendUpstreamMsgResult, onSendP2PMsgResult: 래셔널아울 실시간 데이터 이용시 
+    - onP2PMsgRecieved, onDownstreamMsgRecieved, onSendUpstreamMsgResult, onSendP2PMsgResult: 래셔널아울 실시간 데이터 이용시 

@@ -22,7 +22,7 @@
     - onUnregisterResult: 단말앱 등록해제 결과 콜백
 - MessageListener에서 정의된 콜백들이 정상적으로 호출되고 구현했는지 확인
     - onPushMsgRecieved: 1. 앱실행 중 푸시알림 수신시 콜백 호출, 2. 앱실행시 미전달 푸시알림 목록 전달 콜백 호출
-    - onP2PMsgRecieved, onPushMsgRecieved, onSendUpstreamMsgResult, onSendP2PMsgResult: 래셔널아울 실시간 데이터 이용시 
+    - onP2PMsgRecieved, onDownstreamMsgRecieved, onSendUpstreamMsgResult, onSendP2PMsgResult: 래셔널아울 실시간 데이터 이용시 
 
 3. 래셔널UMS 연동
 - 본 소스는 [Swift HelloWorld 샘플앱](https://github.com/RationalOwl/rationalowl-sample/tree/master/device-app/ios-swift/helloWorld) 개발환경에 UMS 연동 부분만 추가한 환경이어서 두 소스 구조를 다운로드 후 소스비교툴로 비교해 보면 UMS 연동 연동 과련 추가 작업 부분을 가장 쉽게 알 수 있다.
