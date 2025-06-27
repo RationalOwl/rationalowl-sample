@@ -49,7 +49,7 @@
         NSLog(@"rationalOwl register success!!!");
         //NSString *fDeviceRegId = deviceRegId;
 
-        [UmsApi callInstallUmsAppWithAccountId:@"33c29555-b2b8-4ca0-90ee-1df92ca63b1f"
+        [UmsApi callInstallUmsApp:@"33c29555-b2b8-4ca0-90ee-1df92ca63b1f"
                                    deviceRegId:deviceRegId
                                       phoneNum:nil
                                     appUserId:nil
@@ -90,7 +90,7 @@
             return;
         }
 
-        [UmsApi callUnregisterUmsAppWithAccountId:@"33c29555-b2b8-4ca0-90ee-1df92ca63b1f"
+        [UmsApi callUnregisterUmsApp:@"33c29555-b2b8-4ca0-90ee-1df92ca63b1f"
                                      deviceRegId:self.mDeviceRegId
                                       completion:^(NSData *data, NSError *error) {
             if (error) {

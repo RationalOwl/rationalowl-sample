@@ -10,8 +10,10 @@ import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -50,14 +52,23 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Logger.debug(TAG, "onMessageReceived enter");
-        Map<String, String> data = remoteMessage.getData();
+        Context context = MinervaManager.getContext();
+        boolean pushEnable = NotificationManagerCompat.from(context).areNotificationsEnabled();
 
-        // set notification  delivery tracking
-        MinervaManager minMgr = MinervaManager.getInstance();
-        minMgr.enableNotificationTracking(data);
+        // push disabled by settings.
+        if(!pushEnable) {
+            Toast.makeText(context, "push blocked!! ", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Map<String, String> data = remoteMessage.getData();
 
-        // make your custom notification UI
-        showCustomNotification(data);
+            // set notification  delivery tracking
+            MinervaManager minMgr = MinervaManager.getInstance();
+            minMgr.enableNotificationTracking(data);
+
+            // make your custom notification UI
+            showCustomNotification(data);
+        }
     }
 
 

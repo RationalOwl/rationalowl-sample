@@ -24,7 +24,7 @@
 #define UMS_APP_IMG_DATA_URL UMS_REST_SERVER @"/pushApp/imgData"
 
 
-+ (void)callInstallUmsAppWithAccountId:(NSString *)accountId
++ (void)callInstallUmsApp:(NSString *)accountId
                             deviceRegId:(NSString *)deviceRegId
                                 phoneNum:(NSString *)phoneNum
                                 appUserId:(NSString *)appUserId
@@ -43,7 +43,7 @@
     [self postToUrl:UMS_APP_REGISTER_URL withObject:req completion:completion];
 }
 
-+ (void)callUnregisterUmsAppWithAccountId:(NSString *)accountId
++ (void)callUnregisterUmsApp:(NSString *)accountId
                               deviceRegId:(NSString *)deviceRegId
                                 completion:(void (^)(NSData * _Nullable, NSError * _Nullable))completion {
     NSLog(@"callUnregisterUmsApp enter");
@@ -55,7 +55,7 @@
     [self postToUrl:UMS_APP_UNREGISTER_URL withObject:req completion:completion];
 }
 
-+ (void)callReqAuthNumberWithAccountId:(NSString *)accountId
++ (void)callReqAuthNumber:(NSString *)accountId
                            countryCode:(NSString *)countryCode
                                phoneNum:(NSString *)phoneNum
                              completion:(void (^)(NSData * _Nullable, NSError * _Nullable))completion {
@@ -69,7 +69,7 @@
     [self postToUrl:UMS_APP_REQ_AUTH_NUMBER_URL withObject:req completion:completion];
 }
 
-+ (void)callVerifyAuthNumberWithAccountId:(NSString *)accountId
++ (void)callVerifyAuthNumber:(NSString *)accountId
                                   phoneNum:(NSString *)phoneNum
                                 authNumber:(NSString *)authNumber
                                 completion:(void (^)(NSData * _Nullable, NSError * _Nullable))completion {
@@ -84,7 +84,7 @@
     [self postToUrl:UMS_APP_VERIFY_AUTH_NUMBER_URL withObject:req completion:completion];
 }
 
-+ (void)callNotifyReadWithAccountId:(NSString *)accountId
++ (void)callNotifyRead:(NSString *)accountId
                         deviceRegId:(NSString *)deviceRegId
                                msgId:(NSString *)msgId
                           completion:(void (^)(NSData * _Nullable, NSError * _Nullable))completion {
@@ -98,7 +98,7 @@
     [self postToUrl:UMS_APP_NOTI_READ_URL withObject:req completion:completion];
 }
 
-+ (void)callMsgInfoWithAccountId:(NSString *)accountId
++ (void)callMsgInfo:(NSString *)accountId
                      deviceRegId:(NSString *)deviceRegId
                             msgId:(NSString *)msgId
                        completion:(void (^)(NSData * _Nullable, NSError * _Nullable))completion {
@@ -112,7 +112,7 @@
     [self postToUrl:UMS_APP_MSG_INFO_URL withObject:req completion:completion];
 }
 
-+ (void)callImgDataWithAccountId:(NSString *)accountId
++ (void)callImgData:(NSString *)accountId
                             msgId:(NSString *)msgId
                             imgId:(NSString *)imgId
                        completion:(void (^)(NSData * _Nullable, NSError * _Nullable))completion {

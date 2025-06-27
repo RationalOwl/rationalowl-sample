@@ -29,7 +29,7 @@
 * @param name (옵션)앱 사용자 이름
 * @param callback (필수)API 결과 콜백
 */
-+ (void)callInstallUmsAppWithAccountId:(NSString *)accountId
++ (void)callInstallUmsApp:(NSString *)accountId
                          deviceRegId:(NSString *)deviceRegId
                             phoneNum:(NSString *)phoneNum
                           appUserId:(NSString *)appUserId
@@ -44,7 +44,7 @@
 * @param deviceRegId (필수)단말앱 아이디
 * @param callback (필수)API 결과 콜백
 */
-+ (void)callUnregisterUmsAppWithAccountId:(NSString *)accountId
++ (void)callUnregisterUmsApp:(NSString *)accountId
                              deviceRegId:(NSString *)deviceRegId
                                 completion:(void (^)(NSData *data, NSError *error))completion;
 
@@ -65,7 +65,7 @@
 * @param phoneNum (필수)사용자 폰번호
 * @param callback (필수)API 결과 콜백
 */
-+ (void)callReqAuthNumberWithAccountId:(NSString *)accountId
++ (void)callReqAuthNumber:(NSString *)accountId
                           countryCode:(NSString *)countryCode
                              phoneNum:(NSString *)phoneNum
                            completion:(void (^)(NSData *data, NSError *error))completion;
@@ -79,7 +79,7 @@
 * @param authNumber (필수)callReqAuthNumber 호출결과 SMS로 전달받은 보안번호
 * @param callback (필수)API 결과 콜백
 */                           
-+ (void)callVerifyAuthNumberWithAccountId:(NSString *)accountId
++ (void)callVerifyAuthNumber:(NSString *)accountId
                                  phoneNum:(NSString *)phoneNum
                                authNumber:(NSString *)authNumber
                                completion:(void (^)(NSData *data, NSError *error))completion;
@@ -94,7 +94,7 @@
 * @param msgId (필수) 푸시알림 수신시 mId 필드에 기입된 메시지 아이디
 * @param callback (필수)API 결과 콜백
 */                               
-+ (void)callNotifyReadWithAccountId:(NSString *)accountId
++ (void)callNotifyRead:(NSString *)accountId
                         deviceRegId:(NSString *)deviceRegId
                                msgId:(NSString *)msgId
                           completion:(void (^)(NSData *data, NSError *error))completion;
@@ -109,7 +109,7 @@
   * @param msgId (필수) 푸시알림 수신시 mId 필드에 기입된 메시지 아이디
   * @param callback (필수)API 결과 콜백
   */                         
-+ (void)callMsgInfoWithAccountId:(NSString *)accountId
++ (void)callMsgInfo:(NSString *)accountId
                     deviceRegId:(NSString *)deviceRegId
                            msgId:(NSString *)msgId
                      completion:(void (^)(NSData *data, NSError *error))completion;
@@ -123,7 +123,7 @@
  * @param imgId (필수) 푸시알림 수신시 ii 필드에 기입된 이미지 아이디
  * @param callback (필수)API 결과 콜백
  */                     
-+ (void)callImgDataWithAccountId:(NSString *)accountId
++ (void)callImgData:(NSString *)accountId
                            msgId:(NSString *)msgId
                            imgId:(NSString *)imgId
                      completion:(void (^)(NSData *data, NSError *error))completion;
