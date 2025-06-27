@@ -9,21 +9,18 @@ IOS Swift 단말앱 샘플은 IOS Objective-C 단말앱 라이브러리에서 �
 - 샘플앱에서 제공되는 래셔널아울 라이브러리인 RationalOwl.framework/RationalOwl 은 유니버설 프레임워크로 시뮬레이션을 위한 x86_64, 실제 폰을 위한 Arm64를 모두 지원한다. 실제 앱스토어에 배포시에는 lipo -remove x86_64 명령어로 시뮬레이션용 아키텍쳐를 제거후 앱스토어에 배포해야 한다.
 
 ## 개발 전 IOS 설정
-[IOS 설정 가이드](https://github.com/RationalOwl/rationalowl-guide/tree/master/device-app/ios-setting)를 통해 개발 전 아래 설정을 먼저 진행해야 한다.
+[IOS 설정 가이드](https://github.com/RationalOwl/rationalowl-guide/tree/master/device-app/ios-apns-p8)를 통해 개발 전 아래 설정을 먼저 진행해야 한다.
 
 - APNS 발신용 인증서 생성 및 래셔널아울 서비스에 등록
-- 프로비저닝 프로파일 설정
+
 
 
 ## 샘플 프로젝트 설정
 1. github에서 샘플코드를 다운받는다.
 2. 다운받은 폴더에서 'sample.xcodeproj'파일을 클릭하여 XCode를 실행한다.
  - 샘플앱을 XCode로 실행하면 실행가능한 상태로 설정들이 되어 있다.
- - 프로젝트 루트에 'RationalOwl.framework'파일이 래셔널아울 OS Objective-C 단말앱 라이브러리이다.
- - 'sample-Bridging-Header.h'파일이 Objective-C 단말앱 라이브러리를 Swift에서 사용할 수 있게 해 준다.
- - General > Identify > Bundle Identifier에 developer.apple.com에서 등록한 App ID와 동일한 값을 입력해야 한다.
+ - 프로젝트 루트에 'RationalOwl.framework'파일이 래셔널아울 IOS 단말앱 라이브러리이다.
     
-
 ## 리치 노티피케이션
  - IOS에서 이미지 푸시 및 커스텀 푸시를 지원하는 개념을 리치 노티피케이션(Rich Notification)이라고 명한다.
  - 래셔널아울 푸시도 커스텀 푸시를 지원하고 IOS에서 리치 노티피케이션을 이용한다.
@@ -33,7 +30,7 @@ IOS Swift 단말앱 샘플은 IOS Objective-C 단말앱 라이브러리에서 �
 
 ### 리치 노티피케이션 생성
  
- - 별도 프로젝트를 통해 리치 노티피케이션을 새로 만들려면 xcode 에서 'File > New > Target...' 을 클릭하여 Notification Service Extension을 선택하여 생성하면 된다. 샘플앱에서는 'NotiServiceExtension' 이름으로 생성했다.
+ - 별도 프로젝트를 통해 리치 노티피케이션을 새로 만들려면 xcode 에서 'File > New > Target...' 을 클릭하여 Notification Service Extension을 선택하여 생성하면 된다.
  ![이미지 이름](./img/extension.png)
 
 
@@ -79,6 +76,7 @@ IOS Swift 단말앱 샘플은 IOS Objective-C 단말앱 라이브러리에서 �
  - Targets을 NotiServiceExtension 선택
  - Framework Search Paths, Header Search Paths 항목에 $(SRCROOT) recursive로 설정
  ![이미지 이름](./img/build_ext.png)
+
 
 
  
@@ -133,14 +131,14 @@ IOS Swift 단말앱 샘플은 IOS Objective-C 단말앱 라이브러리에서 �
     - 본 샘플은 푸시알림 이용만 보여주고 실시간 데이터는 이용하지 않음.
   - 앱 미실행시 푸시 알림 콜백처리는 앞서 언급한 '푸시메시지 수신 콜백 처리' 부분을 참고.
 
-
 ## API 레퍼런스
 
 솔루션 연동 관련 API는 'RationalOwl.framework' 파일 내 MinervaManager.h, MinervaDelegate.h 파일을 참조한다.
 
 
-
 ## 속성 연동
+
+속성으로 래셔널아울 솔루션 연동을 쉽고 빠르게 적용하기 위한 팁을 제공한다. 
 
 1.  API 호출부 검색
 
