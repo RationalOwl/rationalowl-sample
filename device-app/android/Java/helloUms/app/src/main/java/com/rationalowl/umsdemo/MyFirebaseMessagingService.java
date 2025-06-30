@@ -9,13 +9,11 @@ import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.rationalowl.umsdemo.R;
 import com.rationalowl.minerva.client.android.MinervaManager;
-import com.rationalowl.minerva.client.android.util.Logger;
 
 import java.util.Map;
 
@@ -31,7 +29,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      */
     @Override
     public void onNewToken(String token) {
-        Logger.debug(TAG, "onNewToken token: " + token);
+        Log.d(TAG, "onNewToken token: " + token);
         // just call setDeviceToken() API
         MinervaManager minMgr = MinervaManager.getInstance();
         minMgr.setDeviceToken(token);
@@ -48,15 +46,24 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     // [START receive_message]
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        Logger.debug(TAG, "onMessageReceived enter");
-        Map<String, String> data = remoteMessage.getData();
+        Log.d(TAG, "onMessageReceived enter");
+        Context context = MinervaManager.getContext();
+        boolean pushEnable = NotificationManagerCompat.from(context).areNotificationsEnabled();
 
-        // set notification  delivery tracking
-        MinervaManager minMgr = MinervaManager.getInstance();
-        minMgr.enableNotificationTracking(data);
+        // push disabled by settings.
+        if(!pushEnable) {
+            Log.e(TAG, "Push blocked by setting!!!");
+        }
+        else {
+            Map<String, String> data = remoteMessage.getData();
 
-        // make your custom notification UI
-        showCustomNotification(data);
+            // set notification  delivery tracking
+            MinervaManager minMgr = MinervaManager.getInstance();
+            minMgr.enableNotificationTracking(data);
+
+            // make your custom notification UI
+            showCustomNotification(data);
+        }
     }
 
 
