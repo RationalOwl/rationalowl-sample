@@ -25,7 +25,7 @@
                                     <action selector="btnReg:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NjD-Pl-Axb"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="hello world!" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Mmf-nV-wdm">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="helloUms!" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Mmf-nV-wdm">
                                 <rect key="frame" x="76" y="223" width="240" height="327"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" systemColor="labelColor"/>

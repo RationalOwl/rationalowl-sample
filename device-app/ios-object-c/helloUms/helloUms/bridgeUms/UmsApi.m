@@ -11,9 +11,9 @@
 
 @implementation UmsApi
 
-
-#define UMS_REST_SERVER @"https://linux.rationalowl.kr:36001"
-
+#define UMS_REST_SERVER @"https://ums.airkorea.or.kr:36001" //airkorea
+//#define UMS_REST_SERVER @"https://linux.rationalowl.kr:36001"
+//#define UMS_REST_SERVER @"https://ums.rationalowl.com:36001"
 #define UMS_APP_REGISTER_URL UMS_REST_SERVER @"/pushApp/installApp"
 #define UMS_APP_UNREGISTER_URL UMS_REST_SERVER @"/pushApp/unregUser"
 

@@ -27,7 +27,7 @@
 * @param phoneNum (옵션)사용자 폰번호(푸시 알림 미 전달시 문자, 알림톡으로 수신하고자 할때)
 * @param appUserId (옵션)앱 사용자 아이디
 * @param name (옵션)앱 사용자 이름
-* @param callback (필수)API 결과 콜백
+* @param completion (필수)API 결과 콜백
 */
 + (void)callInstallUmsApp:(NSString *)accountId
                          deviceRegId:(NSString *)deviceRegId
@@ -42,7 +42,7 @@
 *
 * @param accountId (필수)앱 서비스에 부여되는 아이디
 * @param deviceRegId (필수)단말앱 아이디
-* @param callback (필수)API 결과 콜백
+* @param completion (필수)API 결과 콜백
 */
 + (void)callUnregisterUmsApp:(NSString *)accountId
                              deviceRegId:(NSString *)deviceRegId
@@ -63,7 +63,7 @@
 * @param accountId (필수)앱 서비스에 부여되는 아이디
 * @param countryCode (필수) 전화번호 국가코드 (대한민국 82)
 * @param phoneNum (필수)사용자 폰번호
-* @param callback (필수)API 결과 콜백
+* @param completion (필수)API 결과 콜백
 */
 + (void)callReqAuthNumber:(NSString *)accountId
                           countryCode:(NSString *)countryCode
@@ -77,8 +77,8 @@
 * @param accountId (필수)앱 서비스에 부여되는 아이디
 * @param phoneNum (필수)사용자 폰번호
 * @param authNumber (필수)callReqAuthNumber 호출결과 SMS로 전달받은 보안번호
-* @param callback (필수)API 결과 콜백
-*/                           
+* @param completion (필수)API 결과 콜백
+*/
 + (void)callVerifyAuthNumber:(NSString *)accountId
                                  phoneNum:(NSString *)phoneNum
                                authNumber:(NSString *)authNumber
@@ -92,8 +92,8 @@
 * @param accountId (필수)앱 서비스에 부여되는 아이디
 * @param deviceRegId (필수)단말앱 아이디
 * @param msgId (필수) 푸시알림 수신시 mId 필드에 기입된 메시지 아이디
-* @param callback (필수)API 결과 콜백
-*/                               
+* @param completion (필수)API 결과 콜백
+*/
 + (void)callNotifyRead:(NSString *)accountId
                         deviceRegId:(NSString *)deviceRegId
                                msgId:(NSString *)msgId
@@ -107,8 +107,8 @@
   * @param accountId (필수)앱 서비스에 부여되는 아이디
   * @param deviceRegId (필수)단말앱 아이디
   * @param msgId (필수) 푸시알림 수신시 mId 필드에 기입된 메시지 아이디
-  * @param callback (필수)API 결과 콜백
-  */                         
+  * @param completion (필수)API 결과 콜백
+  */
 + (void)callMsgInfo:(NSString *)accountId
                     deviceRegId:(NSString *)deviceRegId
                            msgId:(NSString *)msgId
@@ -121,8 +121,8 @@
  * @param accountId (필수)앱 서비스에 부여되는 아이디
  * @param msgId (필수) 푸시알림 수신시 mId 필드에 기입된 메시지 아이디
  * @param imgId (필수) 푸시알림 수신시 ii 필드에 기입된 이미지 아이디
- * @param callback (필수)API 결과 콜백
- */                     
+ * @param completion (필수)API 결과 콜백
+ */
 + (void)callImgData:(NSString *)accountId
                            msgId:(NSString *)msgId
                            imgId:(NSString *)imgId

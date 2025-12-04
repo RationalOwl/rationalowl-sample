@@ -19,9 +19,11 @@
 
 
 - (IBAction)btnReg:(id)sender {
-    NSString *gateHost = @"linux.rationalowl.kr"; // @"gate.rationalowl.com";
-    NSString *serviceId = @"SVCf3173aae-d166-4199-b266-3aa78f601508"; //@"696c8a6aa7e44903b02e3948714d3887";
-    
+    // airkorea
+    NSString *gateHost = @"210.99.81.117";
+    NSString *serviceId = @"SVC1829c8fd-920e-444d-805d-ef04e96c4811"; //@"696c
+    //NSString *gateHost = @"linux.rationalowl.kr"; //@"ums.rationalowl.com"; //
+    //NSString *serviceId = @"SVCf3173aae-d166-4199-b266-3aa78f601508"; //@"696c8a6aa7e44903b02e3948714d3887";
     MinervaManager *mgr = [MinervaManager getInstance];
     [mgr registerDevice:gateHost
               serviceId:serviceId
@@ -29,7 +31,9 @@
 }
 
 - (IBAction)btnUnreg:(id)sender {
-    NSString *serviceId = @"SVCf3173aae-d166-4199-b266-3aa78f601508";
+    // airkorea
+    NSString *serviceId = @"SVC1829c8fd-920e-444d-805d-ef04e96c4811";
+    //NSString *serviceId = @"SVCf3173aae-d166-4199-b266-3aa78f601508";
     
     MinervaManager *mgr = [MinervaManager getInstance];
     [mgr unregisterDevice:serviceId];
@@ -48,10 +52,10 @@
     if (resultCode == RESULT_OK || resultCode == RESULT_DEVICE_ALREADY_REGISTERED) {
         NSLog(@"rationalOwl register success!!!");
         //NSString *fDeviceRegId = deviceRegId;
-
-        [UmsApi callInstallUmsApp:@"33c29555-b2b8-4ca0-90ee-1df92ca63b1f"
+        // airkorea
+        [UmsApi callInstallUmsApp:@"9139c4e4-4fa3-47b1-bc6b-f4921fc54214"
                                    deviceRegId:deviceRegId
-                                      phoneNum:nil
+                                      phoneNum:@"01025011792"
                                     appUserId:nil
                                            name:nil
                                     completion:^(NSData *data, NSError *error) {
@@ -89,8 +93,8 @@
             NSLog(@"등록 아이디 없음");
             return;
         }
-
-        [UmsApi callUnregisterUmsApp:@"33c29555-b2b8-4ca0-90ee-1df92ca63b1f"
+        // airkorea
+        [UmsApi callUnregisterUmsApp:@"9139c4e4-4fa3-47b1-bc6b-f4921fc54214"
                                      deviceRegId:self.mDeviceRegId
                                       completion:^(NSData *data, NSError *error) {
             if (error) {
