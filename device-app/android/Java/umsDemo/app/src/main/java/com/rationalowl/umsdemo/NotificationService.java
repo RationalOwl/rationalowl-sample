@@ -8,17 +8,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.rationalowl.minerva.client.android.MinervaManager;
-import com.rationalowl.minerva.client.android.util.Logger;
-import com.rationalowl.umsdemo.data.DataDef;
-import com.rationalowl.umsdemo.data.datasource.MessageLocalDataSource;
-import com.rationalowl.umsdemo.presentation.message.view.MessageReadActivity;
 
 import java.util.Map;
 
@@ -49,16 +44,24 @@ public class NotificationService extends FirebaseMessagingService {
     // [START receive_message]
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        Log.d(TAG, "onMessageReceived(" + remoteMessage.getMessageId() + ")");
+        Log.d(TAG, "onMessageReceived enter");
+        Context context = MinervaManager.getContext();
+        boolean pushEnable = NotificationManagerCompat.from(context).areNotificationsEnabled();
 
-        final Map<String, String> data = remoteMessage.getData();
+        // push disabled by settings.
+        if(!pushEnable) {
+            Log.e(TAG, "Push blocked by setting!!!");
+        }
+        else {
+            Map<String, String> data = remoteMessage.getData();
 
-        // set notification  delivery tracking
-        final MinervaManager minMgr = MinervaManager.getInstance();
-        minMgr.enableNotificationTracking(data);
+            // set notification  delivery tracking
+            MinervaManager minMgr = MinervaManager.getInstance();
+            minMgr.enableNotificationTracking(data);
 
-        // make your custom notification UI
-        handleMessage(data);
+            // make your custom notification UI
+            showCustomNotification(data);
+        }
     }
 
     public void handleMessage(Map<String, String> data) {

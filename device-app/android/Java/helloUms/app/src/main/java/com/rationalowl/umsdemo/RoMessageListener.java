@@ -69,7 +69,7 @@ public class RoMessageListener implements MessageListener {
                   "ii": "image id here"         // (optional) : 이미지 첨부시 이미지 아이디 세팅
                 }
                 */
-                // if multiple custom push received, we just notify recentest push only.
+
                 if(customPush == null) {
                     customPush = mapper.readValue(data, new TypeReference<Map<String, String>>() {});
 
@@ -97,7 +97,7 @@ public class RoMessageListener implements MessageListener {
                     context.sendBroadcast(intent);
                 }
             }
-
+            // if multiple custom push received, we just notify recentest push only.
             if(customPush != null) {
                 MyFirebaseMessagingService.showCustomNotification(customPush);
             }
