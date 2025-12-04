@@ -12,7 +12,12 @@ import okhttp3.RequestBody;
 
 public class UmsApi {
 
-    private static final String UMS_REST_SERVER = "https://dev.rationalowl.com:36001";
+    //private static final String UMS_REST_SERVER = "https://dev.rationalowl.com:36001";
+    //private static final String UMS_REST_SERVER = "https://ums.rationalowl.com:36001";
+    //private static final String UMS_REST_SERVER = "https://linux.rationalowl.kr:36001";
+
+    // airkorea
+    private static final String UMS_REST_SERVER = "https://ums.airkorea.or.kr:36001";
 
     // 필수 API
     private static final String UMS_APP_REGISTER_URL = UMS_REST_SERVER + "/pushApp/installApp";

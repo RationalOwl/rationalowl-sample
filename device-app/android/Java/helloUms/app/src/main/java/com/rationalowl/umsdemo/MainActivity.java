@@ -158,14 +158,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 // after setDeviceToken API, call register API.
                 mgr.setRegisterResultListener(this);
-                mgr.registerDevice("dev.rationalowl.com", "adbce9791c2c46cca10aa527a86dd6e7","my helloUms app");
-                //mgr.registerDevice("211.239.150.113", "SVC871d16c3-fe28-4f09-ac32-4870d171b067","my helloUms app");
+                //mgr.registerDevice("dev.rationalowl.com", "adbce9791c2c46cca10aa527a86dd6e7","my helloUms app");
+                //mgr.registerDevice("gate.rationalowl.com","696c8a6aa7e44903b02e3948714d3887","myAndroid1");
+                //mgr.registerDevice("linux.rationalowl.kr","SVCf3173aae-d166-4199-b266-3aa78f601508","myAndroid1");
+                mgr.registerDevice("210.99.81.117","SVC1829c8fd-920e-444d-805d-ef04e96c4811","myAndroid1");  // airkorea
             });
         }
         else if(resId == R.id.btn_unreg) {
             MinervaManager mgr = MinervaManager.getInstance();
             mgr.setRegisterResultListener(this);
-            mgr.unregisterDevice("adbce9791c2c46cca10aa527a86dd6e7"); //aws dev gate
+            // linux.rationalowl.kr
+            //mgr.unregisterDevice("SVCf3173aae-d166-4199-b266-3aa78f601508");
+            // airkorea
+            mgr.unregisterDevice("SVC1829c8fd-920e-444d-805d-ef04e96c4811");
         }
     }
 
@@ -181,7 +186,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             final String fDeviceFegId = deviceRegId;
 
             // call rationalums rest api
-            UmsApi.callInstallUmsApp("923a0aac-abf4-493d-9f9d-787569ac53bc", deviceRegId, null, null, null,
+            // linux.rationalowl.kr
+            //UmsApi.callInstallUmsApp("33c29555-b2b8-4ca0-90ee-1df92ca63b1f", deviceRegId, null, null, null,
+            // airkorea
+            UmsApi.callInstallUmsApp("9139c4e4-4fa3-47b1-bc6b-f4921fc54214", deviceRegId, "01077931792", null, null,
                 new Callback() {
 
                     @Override
@@ -222,7 +230,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //yes rationalowl unregistration has completed successfully!
         if(resultCode == Result.RESULT_OK) {
             // call rationalums rest api
-            UmsApi.callUnregisterUmsApp("923a0aac-abf4-493d-9f9d-787569ac53bc", mDeviceRegId,
+            // linux.rationalowl.kr
+            //UmsApi.callUnregisterUmsApp("33c29555-b2b8-4ca0-90ee-1df92ca63b1f", mDeviceRegId,
+            // airkorea
+            UmsApi.callUnregisterUmsApp("9139c4e4-4fa3-47b1-bc6b-f4921fc54214", mDeviceRegId,
                 new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
