@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // linux.rationalowl.kr
             //UmsApi.callInstallUmsApp("33c29555-b2b8-4ca0-90ee-1df92ca63b1f", deviceRegId, null, null, null,
             // airkorea
-            UmsApi.callInstallUmsApp("9139c4e4-4fa3-47b1-bc6b-f4921fc54214", deviceRegId, "01077931792", null, null,
+            UmsApi.callInstallUmsApp("9139c4e4-4fa3-47b1-bc6b-f4921fc54214", deviceRegId, null, null, null,
                 new Callback() {
 
                     @Override

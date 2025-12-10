@@ -55,7 +55,7 @@
         // airkorea
         [UmsApi callInstallUmsApp:@"9139c4e4-4fa3-47b1-bc6b-f4921fc54214"
                                    deviceRegId:deviceRegId
-                                      phoneNum:@"01025011792"
+                                      phoneNum:nil
                                     appUserId:nil
                                            name:nil
                                     completion:^(NSData *data, NSError *error) {
