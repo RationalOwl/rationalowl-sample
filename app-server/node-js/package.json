@@ -20,7 +20,7 @@
         "@types/morgan": "^1.7.35",
         "body-parser": "^1.18.2",
         "express": "^4.16.2",
-        "morgan": "^1.9.0",
+        "morgan": "^1.9.1",
         "rational-js-server": "^1.0.13"
     },
     "devDependencies": {
